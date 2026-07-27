@@ -1,4 +1,11 @@
 {
-  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=827846
-  "recommendations": ["angular.ng-template"]
+  "recommendations": [
+    "Angular.ng-template",
+    "formulahendry.auto-close-tag",
+    "formulahendry.auto-rename-tag",
+    "BracketPairColorDLW.bracket-pair-color-dlw",
+    "PKief.material-icon-theme",
+    "christian-kohler.path-intellisense",
+]
+  
 }
