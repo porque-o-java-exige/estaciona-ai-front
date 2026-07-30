@@ -1,59 +1,161 @@
-# EstacionaAi
+<h1 align='center'>Estaciona Ai Front</h1>
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.0.8.
+## Como começar a contribuir
+> Leia este documento com atenção e crie sua branch de acordo.
 
-## Development server
+## Pré-requisitos
+É necessário ter:
+  
+  - <a href='https://nodejs.org/pt-br/download'>Node</a>
+  - <a href='https://www.npmjs.com/'>Npm</a> 
+  - <a href='https://git-scm.com/'>Git</a> 
+  - <a href='https://angular.dev/tools/cli/setup-local'>Angular CLI</a> 
+  - Uma IDE de sua preferência.
 
-To start a local development server, run:
-
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Instalando o Node / Npm
+> Este comando abaixo funciona tanto no **terminal do Linux** quanto no **git bash** no Windows.
 
 ```bash
-ng generate --help
+# Baixar e instalar o nvm:
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+
+# Carregar o nvm sem precisar reiniciar o terminal
+\. "$HOME/.nvm/nvm.sh"
+
+# Baixar e instalar o Node.js:
+nvm install 24
+
+# Verifique a versão do Node.js:
+node -v # Deve exibir "v24.14.0".
+
+# Verificar a versão do npm:
+npm -v # Deve imprimir "11.9.0".
 ```
 
-## Building
-
-To build the project run:
-
+## Instalando Angular CLI
+Com Npm instalado rode este comando no terminal:
 ```bash
-ng build
+# Instalando o angular globalmente(-g)
+npm install -g @angular/cli
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Como rodar o projeto
+1. Clone este repositório.
+2. Abra o terminal dentro da pasta do projeto.
+3. instale as dependências do projeto com o comando `` npm i ``.
+4. Inicie o projeto com o comando `` ng serve -o `` para rodar localmente.
 
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
+## Estrutura das pastas
+```
+.
+├── .github/
+│   ├── CODEOWNERS
+│   └── PULL_REQUEST_TEMPLATE.md
+├── .vscode/
+│   ├── extensions.json
+│   ├── launch.json
+│   └── tasks.json
+├── src/
+│   ├── app/
+│   │   ├── components/
+│   │   │   ├── atoms/
+│   │   │   │   └── .gitkeep
+│   │   │   ├── molecules/
+│   │   │   │   └── .gitkeep
+│   │   │   └── organisms/
+│   │   │       └── .gitkeep
+│   │   ├── pages/
+│   │   │   └── .gitkeep
+│   │   ├── app.config.ts
+│   │   ├── app.html
+│   │   ├── app.routes.ts
+│   │   ├── app.scss
+│   │   ├── app.spec.ts
+│   │   └── app.ts
+│   ├── assets/
+│   │   ├── icons/
+│   │   │   └── favicon.ico
+│   │   └── images/
+│   │       └── .gitkeep
+│   ├── styles/
+│   │   └── styles.scss
+│   ├── index.html
+│   └── main.ts
+├── .editorconfig
+├── .gitignore
+├── .prettierrc
+├── angular.json
+├── package-lock.json
+├── package.json
+├── README.md
+├── tsconfig.app.json
+├── tsconfig.json
+└── tsconfig.spec.json
 ```
 
-## Running end-to-end tests
+## Convenção de nomenclatura
+> Padrão de nomeação que deve ser seguido em todas as etapas de desenvolvimento.
 
-For end-to-end (e2e) testing, run:
+### Linguagem
+- Inglês
 
-```bash
-ng e2e
-```
+### Arquivos e pastas
+- kebab-case.
+- Com exceção dos arquivos na pasta .github que devem ser todos em maiúsculo todas as pastas e arquivos devem permanecer neste padrão.
+- Exemplo:
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+  ```
+  ├── .github/
+  │   ├── CODEOWNERS
+  │   └── PULL_REQUEST_TEMPLATE.md
+  └── src/
+      └── app/
+          └── components/
+              └── atoms/
+                  └── primary-button/
+  ```
 
-## Additional Resources
+### Variáveis e funções
+- camelCase.
+- Exemplo:
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+  ```ts
+  export class Header {
+
+  isModalOpen = false
+
+  toggleModal = () => {
+    this.isModalOpen = !this.isModalOpen    
+  }
+
+  }
+  ```
+
+### Componentes(componentes, estilos e páginas)
+- kebab-case.
+- Exemplos:
+
+#### Componentes
+  ```
+    └─── src/
+        └── components
+            └── organisms
+                └── header/
+                    ├── header.html
+                    ├── header.scss
+                    ├── header.spec.ts
+                    └── header.ts
+  ```
+
+#### Páginas
+- Mesma nomeação com o prefixo **page** no final.
+  ```
+    └─── src/
+        └── pages/
+            └── coming-soon-page.ts
+  ```
+
+## Requisitos
+### Requisitos Funcionais 
+
+### Requisitos Não Funcionais
