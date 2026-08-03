@@ -1,0 +1,86 @@
+<div class="home-container">
+  
+  <!-- Map container -->
+  <div id="map" class="map-view"></div>
+  
+  <!-- Top Search Bar Floating -->
+  <div class="search-overlay">
+    <div class="header">
+      <div class="greeting">
+        <span class="hello">Olá Rodraigol</span>
+        <h1>Onde vai estacionar hoje?</h1>
+      </div>
+      <button class="btn-icon bell"><i class="ph ph-bell"></i></button>
+    </div>
+    
+    <div class="search-box">
+      <div class="input-wrapper">
+        <i class="ph ph-magnifying-glass"></i>
+        <input type="text" placeholder="Buscar endereço, bairro..." />
+      </div>
+      <button class="btn-icon filter"><i class="ph ph-funnel"></i></button>
+    </div>
+  </div>
+
+  <!-- Bottom Sheet for Garage details -->
+  <div class="bottom-sheet" [class.show]="showBottomSheet">
+    
+    <div class="drag-handle"></div>
+    <button class="btn-close-sheet" (click)="closeSheet()"><i class="ph ph-x"></i></button>
+    
+    <div class="sheet-content" *ngIf="selectedGarage">
+      <div class="garage-image-wrapper">
+        <img [src]="selectedGarage.image" alt="Garagem" />
+        <div class="badge-overlay">{{ selectedGarage.spaces }} vagas restantes</div>
+      </div>
+      
+      <div class="garage-header">
+        <div class="title-col">
+          <h2>{{ selectedGarage.name }}</h2>
+          <p>{{ selectedGarage.address }}</p>
+        </div>
+        <div class="price-col">
+          <span class="price">{{ selectedGarage.price }}</span>
+          <span class="unit">/hora</span>
+        </div>
+      </div>
+      
+      <div class="rating-dist">
+        <span class="rating">
+          <i class="ph-fill ph-star"></i>
+          <i class="ph-fill ph-star"></i>
+          <i class="ph-fill ph-star"></i>
+          <i class="ph-fill ph-star"></i>
+          <i class="ph-fill ph-star-half"></i>
+          <span class="score">{{ selectedGarage.rating }} (124)</span>
+        </span>
+        <span class="distance">
+          <i class="ph ph-navigation-arrow"></i> {{ selectedGarage.distance }}
+        </span>
+      </div>
+
+      <div class="features">
+        <h3>Características da garagem</h3>
+        <div class="chips">
+          <span class="chip">24/7 acesso</span>
+          <span class="chip">coberto</span>
+          <span class="chip">câmera de segurança</span>
+          <span class="chip">EV Charging</span>
+        </div>
+      </div>
+
+      <div class="owner">
+        <div class="owner-info">
+          <div class="avatar">MK</div>
+          <span class="name">Marcus Kim</span>
+        </div>
+        <button class="btn-outline">
+          <i class="ph ph-chat-circle"></i> Chat
+        </button>
+      </div>
+
+      <button class="btn-primary mt-4">Adicionar a reservas</button>
+    </div>
+    
+  </div>
+</div>
