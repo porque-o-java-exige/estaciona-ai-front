@@ -1,0 +1,94 @@
+.bottom-nav {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background-color: var(--color-background);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-bottom: 16px; /* safe area for iOS */
+  box-shadow: var(--shadow-bottom-nav);
+  z-index: 1000;
+
+  @media (min-width: 768px) {
+    position: relative;
+    width: 280px;
+    height: 100%;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 40px 16px;
+    border-top: none;
+    border-right: 1px solid var(--color-border);
+    box-shadow: none;
+    gap: 8px;
+  }
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: var(--color-text-light);
+  gap: 4px;
+  width: 60px;
+  transition: all 0.2s;
+  
+  i {
+    font-size: 24px;
+  }
+  
+  span {
+    font-size: 10px;
+    font-weight: 500;
+  }
+  
+  &.active {
+    color: var(--color-primary);
+    
+    i {
+      /* use filled icon weight for active state if supported, or just keep color change */
+      font-weight: bold;
+    }
+  }
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    width: 100%;
+    padding: 16px;
+    justify-content: flex-start;
+    gap: 16px;
+    border-radius: 12px;
+    
+    span {
+      font-size: 16px;
+    }
+    
+    &.active {
+      background-color: rgba(30, 82, 165, 0.1);
+    }
+    
+    &:hover:not(.active) {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+  }
+}
+
+.badge-container {
+  position: relative;
+  
+  .badge {
+    position: absolute;
+    top: -2px;
+    right: 14px;
+    width: 8px;
+    height: 8px;
+    background-color: var(--color-danger);
+    border-radius: 50%;
+  }
+}
