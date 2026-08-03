@@ -1,0 +1,32 @@
+:root {
+  --color-primary: #1e52a5;
+  --color-primary-light: #4371ba;
+  --color-primary-dark: #123773;
+  
+  --color-secondary: #f0f4fa;
+  --color-secondary-dark: #e1e7ef;
+  
+  --color-background: #ffffff;
+  --color-surface: #ffffff;
+  --color-surface-hover: #f7f9fc;
+  
+  --color-text-primary: #1d232b;
+  --color-text-secondary: #6e7683;
+  --color-text-light: #9ea5af;
+  
+  --color-border: #eaedf2;
+  
+  --color-success: #1ea36c;
+  --color-danger: #e23b4e;
+  
+  --font-family-base: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  
+  --border-radius-sm: 8px;
+  --border-radius-md: 16px;
+  --border-radius-lg: 24px;
+  --border-radius-pill: 50px;
+  
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+  --shadow-bottom-nav: 0 -4px 20px rgba(0,0,0,0.04);
+}
