@@ -1,0 +1,173 @@
+<div class="page-container">
+  
+  <header class="page-header">
+    <span class="time">11:30</span>
+    <div class="status-bar">
+      <i class="ph-fill ph-cell-signal-full"></i>
+      <i class="ph-fill ph-wifi-high"></i>
+      <i class="ph-fill ph-battery-full"></i>
+    </div>
+  </header>
+
+  <div class="profile-content">
+    <h1 class="page-title">Perfil</h1>
+
+    <!-- User Info Card -->
+    <div class="user-card">
+      <div class="avatar">
+        <img src="https://i.pravatar.cc/150?u=a042581f4e29026024d" alt="Profile" />
+        <div class="verified-badge"><i class="ph-fill ph-check-circle"></i></div>
+      </div>
+      <div class="user-details">
+        <h2>Kookiemoto Piska</h2>
+        <p class="email">kookiepiska@email.com</p>
+        <div class="stats-row">
+          <span class="rating"><i class="ph-fill ph-star"></i> 4.9</span>
+          <span class="reservations">400 reservas</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Wallet Card -->
+    <div class="wallet-card">
+      <div class="wallet-header">
+        <span class="label">Saldo na carteira</span>
+        <button class="btn-recharge">Recarregar</button>
+      </div>
+      <div class="balance">R$23,50</div>
+      <div class="card-info">Cartão ****** 4812 visa</div>
+    </div>
+
+    <!-- Stats summary -->
+    <div class="stats-summary">
+      <div class="stat-item">
+        <span class="number">2</span>
+        <span class="label">Veículos</span>
+      </div>
+      <div class="stat-item">
+        <span class="number">1</span>
+        <span class="label">Garagem</span>
+      </div>
+      <div class="stat-item">
+        <span class="number">69</span>
+        <span class="label">Reservas</span>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button [class.active]="activeTab === 'geral'" (click)="setTab('geral')">Geral</button>
+      <button [class.active]="activeTab === 'veiculos'" (click)="setTab('veiculos')">Veículos</button>
+      <button [class.active]="activeTab === 'garagens'" (click)="setTab('garagens')">Garagens</button>
+      <button [class.active]="activeTab === 'config'" (click)="setTab('config')">Config</button>
+    </div>
+
+    <!-- Menu List -->
+    <div class="menu-list" *ngIf="activeTab === 'geral'">
+      
+      <div class="active-reservation">
+        <div class="reservation-icon"><i class="ph ph-map-pin"></i></div>
+        <div class="reservation-info">
+          <div class="label">Reserva ativa</div>
+          <div class="title">Nome da vaga de garagem</div>
+          <div class="time">Hoje 15:00 - 17:00 • $16,20</div>
+        </div>
+      </div>
+
+      <a routerLink="/profile" class="menu-item">
+        <div class="icon-wrap"><i class="ph ph-user"></i></div>
+        <div class="text">
+          <span class="title">Minha conta</span>
+          <span class="subtitle">R$123.456</span>
+        </div>
+        <i class="ph ph-caret-right chevron"></i>
+      </a>
+      
+      <a routerLink="/profile" (click)="setTab('veiculos')" class="menu-item">
+        <div class="icon-wrap"><i class="ph ph-car"></i></div>
+        <div class="text">
+          <span class="title">Meus Veículos</span>
+          <span class="subtitle">HB20 ABC - 1A23</span>
+        </div>
+        <i class="ph ph-caret-right chevron"></i>
+      </a>
+
+      <a routerLink="/payment" class="menu-item">
+        <div class="icon-wrap"><i class="ph ph-credit-card"></i></div>
+        <div class="text">
+          <span class="title">Formas de pagamento</span>
+          <span class="subtitle">Mastercard **** 4812</span>
+        </div>
+        <i class="ph ph-caret-right chevron"></i>
+      </a>
+
+      <a routerLink="/chat" class="menu-item">
+        <div class="icon-wrap"><i class="ph ph-chat-circle"></i></div>
+        <div class="text">
+          <span class="title">Chat</span>
+          <span class="subtitle">Online</span>
+        </div>
+        <i class="ph ph-caret-right chevron"></i>
+      </a>
+
+    </div>
+
+    <!-- Veículos Tab -->
+    <div class="menu-list" *ngIf="activeTab === 'veiculos'">
+      <div class="active-reservation" style="margin-bottom: 12px; background: white; border: 1px solid var(--color-border); box-shadow: none;">
+        <div class="reservation-icon" style="background: #eff6ff; color: #1e52a5;"><i class="ph ph-car"></i></div>
+        <div class="reservation-info">
+          <div class="title">Hyundai HB20</div>
+          <div class="time">Placa: ABC-1A23 • Branco</div>
+        </div>
+      </div>
+      <div class="active-reservation" style="margin-bottom: 12px; background: white; border: 1px solid var(--color-border); box-shadow: none;">
+        <div class="reservation-icon" style="background: #eff6ff; color: #1e52a5;"><i class="ph ph-car"></i></div>
+        <div class="reservation-info">
+          <div class="title">Honda Civic</div>
+          <div class="time">Placa: XYZ-9B87 • Preto</div>
+        </div>
+      </div>
+      <button class="btn-primary" style="margin-top: 16px; width: 100%; border-radius: 8px; padding: 12px; border: none; background: #1e52a5; color: white;">+ Adicionar Veículo</button>
+    </div>
+
+    <!-- Garagens Tab -->
+    <div class="menu-list" *ngIf="activeTab === 'garagens'">
+      <div class="active-reservation" style="margin-bottom: 12px; background: white; border: 1px solid var(--color-border); box-shadow: none;">
+        <div class="reservation-icon" style="background: #ecfdf5; color: #059669;"><i class="ph ph-garage"></i></div>
+        <div class="reservation-info">
+          <div class="title">Minha Garagem Centro</div>
+          <div class="time">Rua Augusta, 100 • 2 Vagas</div>
+        </div>
+      </div>
+      <button class="btn-primary" style="margin-top: 16px; width: 100%; border-radius: 8px; padding: 12px; border: none; background: #1e52a5; color: white;">+ Cadastrar Garagem</button>
+    </div>
+
+    <!-- Config Tab -->
+    <div class="menu-list" *ngIf="activeTab === 'config'">
+      <a class="menu-item" style="cursor: pointer;">
+        <div class="icon-wrap"><i class="ph ph-bell"></i></div>
+        <div class="text">
+          <span class="title">Notificações</span>
+          <span class="subtitle">Ativadas</span>
+        </div>
+        <i class="ph ph-caret-right chevron"></i>
+      </a>
+      <a class="menu-item" style="cursor: pointer;">
+        <div class="icon-wrap"><i class="ph ph-shield-check"></i></div>
+        <div class="text">
+          <span class="title">Privacidade e Segurança</span>
+          <span class="subtitle">Senhas, Autenticação</span>
+        </div>
+        <i class="ph ph-caret-right chevron"></i>
+      </a>
+      <a class="menu-item" style="cursor: pointer; margin-top: 24px; color: #dc2626;">
+        <div class="icon-wrap" style="background: #fef2f2; color: #dc2626;"><i class="ph ph-sign-out"></i></div>
+        <div class="text">
+          <span class="title" style="color: #dc2626;">Sair da conta</span>
+        </div>
+      </a>
+    </div>
+
+  </div>
+</div>
