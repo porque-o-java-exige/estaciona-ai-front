@@ -27,7 +27,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles/styles.scss"
+              "src/styles/global.scss"
             ]
           },
           "configurations": {
