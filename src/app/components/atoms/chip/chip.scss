@@ -1,0 +1,40 @@
+@import '../../../../styles/variables';
+
+.chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 10px;
+    
+    border-radius: 10px;
+    background: $clr-white-100;
+    border: 1px solid $clr-blue-600;
+    
+    p {
+        font-size: 10px;
+        font-weight: bold;
+        color: $clr-black-1000;
+    }
+
+    span {
+        color: #9C9494;
+    }
+
+    img {
+        width: 8px;
+        height: 8px;
+    }
+
+    &.chip-chat {
+        background: $clr-blue-100;
+
+        p {
+            font-size: 14px;
+        }
+        
+        img {
+            width: 16px;
+            height: 16px;
+        }
+    }
+}
