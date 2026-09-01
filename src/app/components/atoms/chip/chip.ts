@@ -1,13 +1,15 @@
 import { Component, computed, input } from '@angular/core';
 
-export type chipVariant = 'attribute' | 'rating' | 'distance' | 'chat' | 'parking-spots'
+export type chipVariant = 'attribute' | 'rating' | 'distance' | 'chat' | 'parking-spots' | 'reservation-filter' | 'status'
 
 const variantIcon:Record<chipVariant, string[]> = {
   attribute: [],
   rating: ['star-icon.svg', 'star-icon.svg', 'star-icon.svg', 'star-icon.svg', 'star-icon.svg'],
   distance: ['distance-icon.svg'],
   chat: ['chat-icon.svg'],
-  "parking-spots": []
+  "parking-spots": [],
+  "reservation-filter": [],
+  status: []
 }
 
 @Component({

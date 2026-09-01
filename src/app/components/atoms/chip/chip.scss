@@ -48,4 +48,26 @@
             color: $clr-white-1100;
         }
     }
+
+    &.chip-reservation-filter {
+        border: none;
+        background-color: $clr-blue-1000;
+
+        p {
+            font-size: 12px;
+            font-weight: 500;
+            color: $clr-white-1100;
+        }
+    }
+    
+    &.chip-status {
+        border: none;
+        background-color: $clr-blue-1000;
+        
+        p {
+            font-size: 10px;
+            font-weight: 500;
+            color: $clr-white-1100;
+        }
+    }
 }
