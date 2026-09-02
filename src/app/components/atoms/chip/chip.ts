@@ -30,4 +30,9 @@ export class Chip {
   text = input.required<string>()
   subtext = input<string>('')
 
+  isActive = input<boolean>(false)
+
+  isReservationFilterActive = computed(() => {
+    return this.variant() === 'reservation-filter' && this.isActive()
+  })
 }

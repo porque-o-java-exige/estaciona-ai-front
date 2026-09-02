@@ -50,13 +50,22 @@
     }
 
     &.chip-reservation-filter {
-        border: none;
-        background-color: $clr-blue-1000;
-
+        border: 1px solid $clr-primary-300;
+        
         p {
             font-size: 12px;
-            font-weight: 500;
-            color: $clr-white-1100;
+            font-weight: normal;
+            color: $clr-blue-600;
+        }
+        
+        &.is-active {
+            border: none;
+            background-color: $clr-blue-1000;
+            
+            p {
+                font-weight: 500;
+                color: $clr-white-1100;
+            }
         }
     }
     
