@@ -1,0 +1,132 @@
+:host {
+    display: block;
+    width: 100%;
+}
+
+// Eu coloquei essas cores, mas depois iremos mudar 
+// para as variáveis definitivas do projeto.
+$color-border: #e2e6ee;
+$color-bg: #f7f9fc;
+$color-bg-disabled: #edeff3;
+$color-text: #1c2b45;
+$color-placeholder: #98a2b3;
+$color-icon: #7b8aa3;
+$color-primary: #16244a;
+$color-hint: #8892a6;
+$color-error: #e0483e;
+$radius: 14px;
+
+.app-input {
+    width: 100%;
+
+    &__field {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: $color-bg;
+        border: 1px solid $color-border;
+        border-radius: $radius;
+        padding: 12px 16px;
+        transition: border-color 0.15s ease, box-shadow 0.15s ease;
+
+        &:focus-within {
+            border-color: $color-primary;
+            box-shadow: 0 0 0 3px rgba($color-primary, 0.12);
+        }
+
+        &--disabled {
+            background: $color-bg-disabled;
+            opacity: 0.7;
+        }
+    }
+
+    &__icon {
+        display: flex;
+        color: $color-icon;
+        flex-shrink: 0;
+
+        svg {
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    &__control {
+        flex: 1;
+        border: none;
+        background: transparent;
+        outline: none;
+        font-size: 15px;
+        color: $color-text;
+        font-family: inherit;
+
+        &::placeholder {
+            color: $color-placeholder;
+        }
+
+        &:disabled {
+            cursor: not-allowed;
+        }
+    }
+
+    &__toggle {
+        display: flex;
+        align-items: center;
+        background: none;
+        border: none;
+        padding: 0;
+        color: $color-icon;
+        cursor: pointer;
+        flex-shrink: 0;
+
+        svg {
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    &__send {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        border: none;
+        background: $color-primary;
+        color: #fff;
+        cursor: pointer;
+        flex-shrink: 0;
+        transition: opacity 0.15s ease;
+
+        svg {
+            width: 17px;
+            height: 17px;
+        }
+
+        &:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+    }
+
+    &__hint {
+        margin: 6px 2px 0;
+        font-size: 12.5px;
+        color: $color-hint;
+    }
+
+    &__error {
+        margin: 6px 2px 0;
+        font-size: 12.5px;
+        color: $color-error;
+    }
+
+    &--error &__field {
+        border-color: $color-error;
+
+        &:focus-within {
+            box-shadow: 0 0 0 3px rgba($color-error, 0.12);
+        }
+    }
+}
