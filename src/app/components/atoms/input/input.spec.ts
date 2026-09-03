@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Component } from '@angular/core';
+import { vi } from 'vitest';
 
 import { InputComponent } from './input';
 
@@ -34,7 +35,7 @@ describe('InputComponent', () => {
   });
 
   it('deve renderizar o placeholder recebido', () => {
-    component.placeholder = 'Nome';
+    fixture.componentRef.setInput('placeholder', 'Nome');
     fixture.detectChanges();
 
     const input = fixture.debugElement.query(By.css('input')).nativeElement as HTMLInputElement;
@@ -48,12 +49,12 @@ describe('InputComponent', () => {
     input.dispatchEvent(new Event('input'));
     fixture.detectChanges();
 
-    expect(component.value).toBe('Rodrigo');
+    expect(component.value()).toBe('Rodrigo');
   });
 
   it('não deve mostrar o texto de exemplo (hint) quando houver errorMessage', () => {
-    component.hint = 'exemplo -> algo';
-    component.errorMessage = 'Campo obrigatório';
+    fixture.componentRef.setInput('hint', 'exemplo -> algo');
+    fixture.componentRef.setInput('errorMessage', 'Campo obrigatório');
     fixture.detectChanges();
 
     const hint = fixture.debugElement.query(By.css('.app-input__hint'));
@@ -65,12 +66,12 @@ describe('InputComponent', () => {
 
   describe('campo de senha', () => {
     beforeEach(() => {
-      component.type = 'password';
+      fixture.componentRef.setInput('type', 'password');
       fixture.detectChanges();
     });
 
     it('deve começar como type="password"', () => {
-      expect(component.resolvedType).toBe('password');
+      expect(component.resolvedType()).toBe('password');
     });
 
     it('deve alternar para texto visível ao clicar no botão de olhinho', () => {
@@ -79,20 +80,20 @@ describe('InputComponent', () => {
       toggleBtn.click();
       fixture.detectChanges();
 
-      expect(component.showPassword).toBeTrue();
-      expect(component.resolvedType).toBe('text');
+      expect(component.showPassword()).toBe(true);
+      expect(component.resolvedType()).toBe('text');
     });
   });
 
   describe('botão de enviar (chat)', () => {
     beforeEach(() => {
-      component.showSendButton = true;
+      fixture.componentRef.setInput('showSendButton', true);
       fixture.detectChanges();
     });
 
     it('deve ficar desabilitado quando o campo está vazio', () => {
       const sendBtn = fixture.debugElement.query(By.css('.app-input__send')).nativeElement as HTMLButtonElement;
-      expect(sendBtn.disabled).toBeTrue();
+      expect(sendBtn.disabled).toBe(true);
     });
 
     it('deve emitir "send" com o texto sem espaços nas pontas ao clicar', () => {
@@ -109,7 +110,7 @@ describe('InputComponent', () => {
     });
 
     it('não deve emitir "send" se o campo estiver vazio', () => {
-      const spy = jasmine.createSpy('send');
+      const spy = vi.fn();
       component.send.subscribe(spy);
 
       component.handleSend();
@@ -156,6 +157,6 @@ describe('InputComponent com Reactive Forms', () => {
     hostFixture.detectChanges();
 
     const input = hostFixture.debugElement.query(By.css('input')).nativeElement as HTMLInputElement;
-    expect(input.disabled).toBeTrue();
+    expect(input.disabled).toBe(true);
   });
 });

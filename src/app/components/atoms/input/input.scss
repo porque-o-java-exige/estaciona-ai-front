@@ -1,19 +1,19 @@
+@use '../../../../styles/variables' as *;
+
 :host {
     display: block;
     width: 100%;
 }
 
-// Eu coloquei essas cores, mas depois iremos mudar 
-// para as variáveis definitivas do projeto.
-$color-border: #e2e6ee;
-$color-bg: #f7f9fc;
-$color-bg-disabled: #edeff3;
-$color-text: #1c2b45;
-$color-placeholder: #98a2b3;
-$color-icon: #7b8aa3;
-$color-primary: #16244a;
-$color-hint: #8892a6;
-$color-error: #e0483e;
+$color-border: $clr-black-200;
+$color-bg: $clr-white-1000;
+$color-bg-disabled: $clr-black-100;
+$color-text: $clr-black-1000;
+$color-placeholder: $clr-black-400;
+$color-icon: $clr-black-600;
+$color-primary: $clr-blue-1000;
+$color-hint: $clr-black-500;
+$color-error: $clr-red-800;
 $radius: 14px;
 
 .app-input {

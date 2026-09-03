@@ -1,31 +1,14 @@
-import { Component, EventEmitter, Input, Output, forwardRef } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {
-  ControlValueAccessor,
-  FormsModule,
-  NG_VALUE_ACCESSOR,
-} from '@angular/forms';
+import { Component, computed, forwardRef, input, model, output, signal } from '@angular/core';
+import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-/**
- * Ícones exibidos à ESQUERDA do input.
- * 'message' não entra aqui: o campo de chat usa uma AÇÃO à direita (ver `showSendButton`), não ícone à esquerda.
- */
-export type InputIconType =
-  | 'user'
-  | 'email'
-  | 'phone'
-  | 'password'
-  | 'search'
-  | 'none';
-
+export type InputIconType = 'user' | 'email' | 'phone' | 'password' | 'search' | 'none';
 export type InputHtmlType = 'text' | 'email' | 'tel' | 'password' | 'search';
 
 @Component({
   selector: 'app-input',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [FormsModule],
   templateUrl: './input.html',
-  styleUrls: ['./input.scss'],
+  styleUrl: './input.scss',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -35,53 +18,37 @@ export type InputHtmlType = 'text' | 'email' | 'tel' | 'password' | 'search';
   ],
 })
 export class InputComponent implements ControlValueAccessor {
-  /** Tipo HTML real do input (text, email, tel, password, search) */
-  @Input() type: InputHtmlType = 'text';
+  type = input<InputHtmlType>('text');
+  icon = input<InputIconType>('none');
+  placeholder = input<string>('');
+  hint = input<string>('');
+  errorMessage = input<string>('');
+  disabled = model<boolean>(false);
+  inputId = input<string>('');
+  showSendButton = input<boolean>(false);
 
-  /** Qual ícone mostrar à esquerda. 'none' esconde o ícone. */
-  @Input() icon: InputIconType = 'none';
+  send = output<string>();
 
-  /** Texto exibido dentro do input quando vazio */
-  @Input() placeholder = '';
-
-  /** Texto de exemplo/ajuda exibido abaixo do input (ex: "exemplo -> ...") */
-  @Input() hint = '';
-
-  /** Mensagem de erro. Quando preenchida, o input entra em estado de erro */
-  @Input() errorMessage = '';
-
-  /** Desabilita o campo */
-  @Input() disabled = false;
-
-  /** Id do input, útil para <label for="..."> em outras páginas */
-  @Input() inputId = '';
-
-  /** Mostra um botão de "enviar" (seta) à direita do input — usado no campo de chat */
-  @Input() showSendButton = false;
-
-  /** Disparado ao clicar no botão de enviar ou apertar Enter, com o valor atual do campo */
-  @Output() send = new EventEmitter<string>();
-
-  value = '';
-  showPassword = false;
+  value = signal('');
+  showPassword = signal(false);
 
   private onChange: (value: string) => void = () => {};
   private onTouched: () => void = () => {};
 
-  get resolvedType(): InputHtmlType {
-    if (this.type === 'password' && this.showPassword) {
+  resolvedType = computed(() => {
+    if (this.type() === 'password' && this.showPassword()) {
       return 'text';
     }
-    return this.type;
-  }
+    return this.type();
+  });
 
   togglePasswordVisibility(): void {
-    this.showPassword = !this.showPassword;
+    this.showPassword.update((val) => !val);
   }
 
   handleInput(newValue: string): void {
-    this.value = newValue;
-    this.onChange(this.value);
+    this.value.set(newValue);
+    this.onChange(this.value());
   }
 
   handleBlur(): void {
@@ -89,8 +56,8 @@ export class InputComponent implements ControlValueAccessor {
   }
 
   handleSend(): void {
-    const trimmed = this.value.trim();
-    if (!trimmed || this.disabled) {
+    const trimmed = this.value().trim();
+    if (!trimmed || this.disabled()) {
       return;
     }
     this.send.emit(trimmed);
@@ -98,7 +65,7 @@ export class InputComponent implements ControlValueAccessor {
 
   // ---- ControlValueAccessor ----
   writeValue(value: string): void {
-    this.value = value ?? '';
+    this.value.set(value ?? '');
   }
 
   registerOnChange(fn: (value: string) => void): void {
@@ -110,6 +77,6 @@ export class InputComponent implements ControlValueAccessor {
   }
 
   setDisabledState(isDisabled: boolean): void {
-    this.disabled = isDisabled;
+    this.disabled.set(isDisabled);
   }
 }
