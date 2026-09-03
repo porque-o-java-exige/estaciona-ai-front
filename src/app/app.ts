@@ -1,9 +1,10 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { InputComponent } from './components/atoms/input/input';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, InputComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
