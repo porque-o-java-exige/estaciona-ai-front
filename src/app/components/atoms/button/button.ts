@@ -1,13 +1,21 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, input, } from '@angular/core';
 
-export type buttonVariant = 'primary' | 'secondary' | 'google' | 'notification' | 'filter';
+export type buttonVariant = 'primary'| 'secondary' | 'tertiary' | 'google' | 'notification' | 'filter' | 'payment' | 'card' | 'pix-action' | 
+'pix-action-danger' | 'pix-copy' | 'pix-cancel';
 
 const variantIcon: Record<buttonVariant, string | null> = {
   primary: null,
   secondary: null,
+  tertiary: null,
   google: 'google-icon.svg',
   notification: 'notification-icon.svg',
   filter: 'filter-icon.svg',
+  payment: 'pix-icon.svg',
+  card: 'card-icon.svg',
+  'pix-action': null,
+  'pix-action-danger': null,
+  'pix-copy': 'pix-icon.svg',
+  'pix-cancel': null,
 };
 @Component({
   selector: 'app-button',
