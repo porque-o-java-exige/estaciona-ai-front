@@ -1,0 +1,10 @@
+<button [class]="'button-' + variant()">
+    @if(iconPath())
+    {
+      <img
+    [src]="iconPath()!"
+    alt="icon"
+  >
+    }
+ {{ text() }} 
+</button>

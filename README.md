@@ -4,13 +4,16 @@
 > Leia este documento com atenção e crie sua branch de acordo.
 
 ## Pré-requisitos
-É necessário ter:
+Para rodar este projeto é necessário ter:
   
+  - Uma IDE de sua preferência.
+  - <a href='https://git-scm.com/'>Git</a> 
   - <a href='https://nodejs.org/pt-br/download'>Node</a>
   - <a href='https://www.npmjs.com/'>Npm</a> 
-  - <a href='https://git-scm.com/'>Git</a> 
   - <a href='https://angular.dev/tools/cli/setup-local'>Angular CLI</a> 
-  - Uma IDE de sua preferência.
+
+## Instalando o Git
+Entre no site oficial do [Git](https://git-scm.com/install/) e siga os passos para o seu respectivo sistema operacional.
 
 ## Instalando o Node / Npm
 > Este comando abaixo funciona tanto no **terminal do Linux** quanto no **git bash** no Windows.
@@ -51,6 +54,11 @@ npm install -g @angular/cli
 ├── .github/
 │   ├── CODEOWNERS
 │   └── PULL_REQUEST_TEMPLATE.md
+│   └── ISSUE_TEMPLATE/
+│       ├── bug.md
+│       ├── docs.md
+│       ├── feature.md
+│       └── question.md
 ├── .vscode/
 │   ├── extensions.json
 │   ├── launch.json
@@ -137,7 +145,7 @@ npm install -g @angular/cli
 
 #### Componentes
   ```
-    └─── src/
+    └── app/
         └── components
             └── organisms
                 └── header/
@@ -150,12 +158,23 @@ npm install -g @angular/cli
 #### Páginas
 - Mesma nomeação com o prefixo **page** no final.
   ```
-    └─── src/
+    └─── app/
         └── pages/
-            └── coming-soon-page.ts
+            └── coming-soon-page/
   ```
 
 ## Requisitos
 ### Requisitos Funcionais 
 
 ### Requisitos Não Funcionais
+
+## Ferramentas utilizadas
+![Angular logo](/src/assets/icons/angular-logo.svg)
+![Vite logo](/src/assets/icons/vite-logo.svg)
+![Vitest logo](/src/assets/icons/vitest-logo.svg)
+![Html logo](/src/assets/icons/html-logo.svg)
+![Sass logo](/src/assets/icons/sass-logo.svg)
+![Typescript logo](/src/assets/icons/typescript-logo.svg)
+
+## Licença
+Este projeto é de uso acadêmico e não possui fins comerciais.
