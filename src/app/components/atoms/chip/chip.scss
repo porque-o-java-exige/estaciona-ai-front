@@ -78,5 +78,13 @@
             font-weight: 500;
             color: $clr-white-1100;
         }
+
+        &.is-pending-or-done {
+            background-color: $clr-transparent-150;
+
+            p {
+                color: $clr-blue-600;
+            }
+        }
     }
 }

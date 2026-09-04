@@ -35,4 +35,11 @@ export class Chip {
   isReservationFilterActive = computed(() => {
     return this.variant() === 'reservation-filter' && this.isActive()
   })
+
+  isPendingOrDone = input<boolean>(false)
+
+  isStatusPendingOrDone = computed(() => {
+    return this.variant() === 'status' && this.isPendingOrDone()
+  })
+
 }
