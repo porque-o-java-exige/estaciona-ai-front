@@ -29,17 +29,22 @@
 
     <div>
       <h4>6. Input de Chat (Com botão de enviar)</h4>
-      <app-input type="text" [showSendButton]="true" placeholder="Digite uma mensagem..."></app-input>
+      <app-input type="text" [isShowSendButton]="true" placeholder="Digite uma mensagem..."></app-input>
     </div>
 
     <div>
-      <h4>7. Input com Erro</h4>
+      <h4>7. Input do Nome do Usuário</h4>
+      <app-input type="text" icon="user" placeholder="Digite seu nome de usuário" hint="Exemplo: gabriel.vereda"></app-input>
+    </div>
+
+    <div>
+      <h4>8. Input com Erro</h4>
       <app-input type="text" icon="user" placeholder="Nome de usuário" errorMessage="Nome de usuário já existe"></app-input>
     </div>
 
     <div>
-      <h4>8. Input Desativado</h4>
-      <app-input type="text" icon="user" placeholder="Não pode digitar aqui" [disabled]="true"></app-input>
+      <h4>9. Input Desativado</h4>
+      <app-input type="text" icon="user" placeholder="Não pode digitar aqui" [isDisabled]="true"></app-input>
     </div>
   </div>
 </main>
