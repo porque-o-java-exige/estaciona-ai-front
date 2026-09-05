@@ -80,14 +80,14 @@ describe('InputComponent', () => {
       toggleBtn.click();
       fixture.detectChanges();
 
-      expect(component.showPassword()).toBe(true);
+      expect(component.isShowPassword()).toBe(true);
       expect(component.resolvedType()).toBe('text');
     });
   });
 
   describe('botão de enviar (chat)', () => {
     beforeEach(() => {
-      fixture.componentRef.setInput('showSendButton', true);
+      fixture.componentRef.setInput('isShowSendButton', true);
       fixture.detectChanges();
     });
 
