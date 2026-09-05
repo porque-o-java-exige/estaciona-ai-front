@@ -1,0 +1,10 @@
+<div class="chip" [class]="'chip-' + variant()" [class.is-active]="isReservationFilterActive()" [class.is-pending-or-done]="isPendingOrDone()">
+    @for (path of iconPaths(); track path) {
+    <img [src]="path" alt="icon" />
+    }
+
+    <p>{{ text() }}</p>
+    @if(subtext()) {
+        <span>{{ subtext() }}</span>
+    }
+</div>

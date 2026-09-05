@@ -8,10 +8,10 @@ main {
     text-align: center;
     gap: 2rem;
 
-    padding-top: 3rem;
+    padding: 3rem 0;
 
     width: 100dvw;
-    height: 100dvh;
+    min-height: 100dvh;
     color: $clr-white-100;
     background: linear-gradient(60deg,
             #f40076 65%,
