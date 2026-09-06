@@ -19,8 +19,10 @@ import {
   Validator,
 } from '@angular/forms';
 
-import { Country, COUNTRIES, DEFAULT_COUNTRY } from './countries';
-import { SEARCH_MOCK_DATA, SearchResultItem } from './search-mock-data';
+import { Country } from '../../../interfaces/country.interface';
+import { SearchResultItem } from '../../../interfaces/search-result-item.interface';
+import { COUNTRIES, DEFAULT_COUNTRY } from './countries';
+import { SEARCH_MOCK_DATA } from './search-mock-data';
 
 export type InputIconType = 'user' | 'email' | 'phone' | 'password' | 'search' | 'none';
 export type InputHtmlType = 'text' | 'email' | 'tel' | 'password' | 'search';

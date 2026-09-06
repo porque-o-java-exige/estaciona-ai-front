@@ -1,9 +1,9 @@
-<div class="app-input" [class.app-input--error]="displayError()">
-    <div class="app-input__field" [class.app-input__field--disabled]="isDisabled()">
+<div class="app-input" [class.app-input-error]="displayError()">
+    <div class="app-input-field" [class.app-input-field-disabled]="isDisabled()">
 
         <!-- Estilização dos ícones -->
         @if (icon() !== 'none') {
-        <span class="app-input__icon">
+        <span class="app-input-icon">
             @if (icon() === 'user') {
             <svg viewBox="0 0 24 24" fill="none">
                 <path d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Z" stroke="currentColor" stroke-width="1.6" />
@@ -46,7 +46,7 @@
 
         <!-- Seletor de país (só aparece no input de telefone) -->
         @if (type() === 'tel') {
-        <select class="app-input__country-select" aria-label="Selecionar país" [disabled]="isDisabled()"
+        <select class="app-input-country-select" aria-label="Selecionar país" [disabled]="isDisabled()"
             [value]="selectedCountry().code" (change)="handleCountryChange($any($event.target).value)">
             @for (country of countries; track country.code) {
             <option [value]="country.code">{{ country.code }} {{ country.dialCode }}</option>
@@ -56,11 +56,11 @@
 
         <input #controlInput [id]="inputId() || null" [type]="resolvedType()" [placeholder]="placeholder()" [disabled]="isDisabled()"
             [value]="controlDisplayValue()" (input)="handleInput($any($event.target).value)" (focus)="handleFocus()"
-            (blur)="handleBlur()" (keyup.enter)="isShowSendButton() && handleSend()" class="app-input__control" />
+            (blur)="handleBlur()" (keyup.enter)="isShowSendButton() && handleSend()" class="app-input-control" />
 
         <!-- Byakugan do input da password -->
         @if (type() === 'password') {
-        <button type="button" class="app-input__toggle" (click)="togglePasswordVisibility()"
+        <button type="button" class="app-input-toggle" (click)="togglePasswordVisibility()"
             [attr.aria-label]="isShowPassword() ? 'Ocultar senha' : 'Mostrar senha'">
             @if (!isShowPassword()) {
             <svg viewBox="0 0 24 24" fill="none">
@@ -81,7 +81,7 @@
 
         <!-- Botão de enviar os bagui no chat -->
         @if (isShowSendButton()) {
-        <button type="button" class="app-input__send" [disabled]="isDisabled() || !value().trim()"
+        <button type="button" class="app-input-send" [disabled]="isDisabled() || !value().trim()"
             (click)="handleSend()" aria-label="Enviar mensagem">
             <img src="assets/icons/send.png" alt="Enviar mensagem" style="width: 17px; height: 17px; filter: brightness(0) invert(1);" />
         </button>
@@ -90,11 +90,11 @@
 
     <!-- Lista de sugestões da busca (3 resultados mais próximos, mockados) -->
     @if (icon() === 'search' && isSearchFocused() && searchResults().length > 0) {
-    <ul class="app-input__suggestions" role="listbox">
+    <ul class="app-input-suggestions" role="listbox">
         @for (item of searchResults(); track item.id) {
-        <li role="option" class="app-input__suggestion" (mousedown)="handleSelectResult(item)">
-            <span class="app-input__suggestion-name">{{ item.name }}</span>
-            <span class="app-input__suggestion-address">{{ item.address }}</span>
+        <li role="option" class="app-input-suggestion" (mousedown)="handleSelectResult(item)">
+            <span class="app-input-suggestion-name">{{ item.name }}</span>
+            <span class="app-input-suggestion-address">{{ item.address }}</span>
         </li>
         }
     </ul>
@@ -102,11 +102,11 @@
 
     <!-- Mostrar oque a anta do usuário tem que escrever naqule input -->
     @if (hint() && !displayError()) {
-    <p class="app-input__hint">{{ hint() }}</p>
+    <p class="app-input-hint">{{ hint() }}</p>
     }
 
     <!-- Mensagem de erro para o usuário que é burro -->
     @if (displayError()) {
-    <p class="app-input__error">{{ displayError() }}</p>
+    <p class="app-input-error-message">{{ displayError() }}</p>
     }
 </div>

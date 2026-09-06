@@ -57,8 +57,8 @@ describe('InputComponent', () => {
     fixture.componentRef.setInput('errorMessage', 'Campo obrigatório');
     fixture.detectChanges();
 
-    const hint = fixture.debugElement.query(By.css('.app-input__hint'));
-    const error = fixture.debugElement.query(By.css('.app-input__error'));
+    const hint = fixture.debugElement.query(By.css('.app-input-hint'));
+    const error = fixture.debugElement.query(By.css('.app-input-error-message'));
 
     expect(hint).toBeNull();
     expect(error.nativeElement.textContent).toContain('Campo obrigatório');
@@ -75,7 +75,7 @@ describe('InputComponent', () => {
     });
 
     it('deve alternar para texto visível ao clicar no botão de olhinho', () => {
-      const toggleBtn = fixture.debugElement.query(By.css('.app-input__toggle')).nativeElement as HTMLButtonElement;
+      const toggleBtn = fixture.debugElement.query(By.css('.app-input-toggle')).nativeElement as HTMLButtonElement;
 
       toggleBtn.click();
       fixture.detectChanges();
@@ -92,7 +92,7 @@ describe('InputComponent', () => {
     });
 
     it('deve ficar desabilitado quando o campo está vazio', () => {
-      const sendBtn = fixture.debugElement.query(By.css('.app-input__send')).nativeElement as HTMLButtonElement;
+      const sendBtn = fixture.debugElement.query(By.css('.app-input-send')).nativeElement as HTMLButtonElement;
       expect(sendBtn.disabled).toBe(true);
     });
 
@@ -103,7 +103,7 @@ describe('InputComponent', () => {
       component.writeValue('  Olá, tudo bem?  ');
       fixture.detectChanges();
 
-      const sendBtn = fixture.debugElement.query(By.css('.app-input__send')).nativeElement as HTMLButtonElement;
+      const sendBtn = fixture.debugElement.query(By.css('.app-input-send')).nativeElement as HTMLButtonElement;
       sendBtn.click();
 
       expect(emitted).toBe('Olá, tudo bem?');

@@ -20,173 +20,175 @@ $radius: 14px;
     width: 100%;
     position: relative;
 
-    &__field {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        background: $color-bg;
-        border: 1px solid $color-border;
-        border-radius: $radius;
-        padding: 12px 16px;
-        transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    &.app-input-error {
+        .app-input-field {
+            border-color: $color-error;
 
-        &:focus-within {
-            border-color: $color-primary;
-            box-shadow: 0 0 0 3px rgba($color-primary, 0.12);
-        }
-
-        &--disabled {
-            background: $color-bg-disabled;
-            opacity: 0.7;
+            &:focus-within {
+                box-shadow: 0 0 0 3px rgba($color-error, 0.12);
+            }
         }
     }
+}
 
-    &__icon {
-        display: flex;
-        color: $color-icon;
-        flex-shrink: 0;
+.app-input-field {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: $color-bg;
+    border: 1px solid $color-border;
+    border-radius: $radius;
+    padding: 12px 16px;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
 
-        svg {
-            width: 20px;
-            height: 20px;
-        }
+    &:focus-within {
+        border-color: $color-primary;
+        box-shadow: 0 0 0 3px rgba($color-primary, 0.12);
     }
 
-    &__country-select {
-        flex-shrink: 0;
-        border: none;
-        background: transparent;
-        outline: none;
-        font-size: 15px;
-        font-weight: 500;
-        font-family: inherit;
-        font-variant-caps: normal;
-        letter-spacing: normal;
-        color: $color-text;
-        max-width: 100px;
-        padding-right: 4px;
-        border-right: 1px solid $color-border;
-        cursor: pointer;
+    &.app-input-field-disabled {
+        background: $color-bg-disabled;
+        opacity: 0.7;
+    }
+}
 
-        &:disabled {
-            cursor: not-allowed;
-        }
+.app-input-icon {
+    display: flex;
+    color: $color-icon;
+    flex-shrink: 0;
+
+    svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+.app-input-country-select {
+    flex-shrink: 0;
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: inherit;
+    font-variant-caps: normal;
+    letter-spacing: normal;
+    color: $color-text;
+    max-width: 100px;
+    padding-right: 4px;
+    border-right: 1px solid $color-border;
+    cursor: pointer;
+
+    &:disabled {
+        cursor: not-allowed;
+    }
+}
+
+.app-input-control {
+    flex: 1;
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 15px;
+    color: $color-text;
+    font-family: inherit;
+
+    &::placeholder {
+        color: $color-placeholder;
     }
 
-    &__control {
-        flex: 1;
-        border: none;
-        background: transparent;
-        outline: none;
-        font-size: 15px;
-        color: $color-text;
-        font-family: inherit;
+    &:disabled {
+        cursor: not-allowed;
+    }
+}
 
-        &::placeholder {
-            color: $color-placeholder;
-        }
+.app-input-toggle {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    padding: 0;
+    color: $color-icon;
+    cursor: pointer;
+    flex-shrink: 0;
 
-        &:disabled {
-            cursor: not-allowed;
-        }
+    svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+.app-input-send {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background: $color-primary;
+    color: #fff;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: opacity 0.15s ease;
+
+    svg {
+        width: 17px;
+        height: 17px;
     }
 
-    &__toggle {
-        display: flex;
-        align-items: center;
-        background: none;
-        border: none;
-        padding: 0;
-        color: $color-icon;
-        cursor: pointer;
-        flex-shrink: 0;
-
-        svg {
-            width: 20px;
-            height: 20px;
-        }
+    &:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
     }
+}
 
-    &__send {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        border: none;
-        background: $color-primary;
-        color: #fff;
-        cursor: pointer;
-        flex-shrink: 0;
-        transition: opacity 0.15s ease;
+.app-input-suggestions {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    right: 0;
+    z-index: 20;
+    margin: 0;
+    padding: 6px;
+    list-style: none;
+    background: $color-bg;
+    border: 1px solid $color-border;
+    border-radius: $radius;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
 
-        svg {
-            width: 17px;
-            height: 17px;
-        }
+.app-input-suggestion {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 8px 10px;
+    border-radius: 10px;
+    cursor: pointer;
 
-        &:disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
-        }
+    &:hover {
+        background: $color-bg-disabled;
     }
+}
 
-    &__suggestions {
-        position: absolute;
-        top: calc(100% + 6px);
-        left: 0;
-        right: 0;
-        z-index: 20;
-        margin: 0;
-        padding: 6px;
-        list-style: none;
-        background: $color-bg;
-        border: 1px solid $color-border;
-        border-radius: $radius;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-    }
+.app-input-suggestion-name {
+    font-size: 14px;
+    color: $color-text;
+}
 
-    &__suggestion {
-        display: flex;
-        flex-direction: column;
-        gap: 2px;
-        padding: 8px 10px;
-        border-radius: 10px;
-        cursor: pointer;
+.app-input-suggestion-address {
+    font-size: 12px;
+    color: $color-hint;
+}
 
-        &:hover {
-            background: $color-bg-disabled;
-        }
-    }
+.app-input-hint {
+    margin: 6px 2px 0;
+    font-size: 12.5px;
+    color: $color-hint;
+}
 
-    &__suggestion-name {
-        font-size: 14px;
-        color: $color-text;
-    }
-
-    &__suggestion-address {
-        font-size: 12px;
-        color: $color-hint;
-    }
-
-    &__hint {
-        margin: 6px 2px 0;
-        font-size: 12.5px;
-        color: $color-hint;
-    }
-
-    &__error {
-        margin: 6px 2px 0;
-        font-size: 12.5px;
-        color: $color-error;
-    }
-
-    &--error &__field {
-        border-color: $color-error;
-
-        &:focus-within {
-            box-shadow: 0 0 0 3px rgba($color-error, 0.12);
-        }
-    }
+.app-input-error-message {
+    margin: 6px 2px 0;
+    font-size: 12.5px;
+    color: $color-error;
 }

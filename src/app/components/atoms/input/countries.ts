@@ -1,13 +1,4 @@
-export interface Country {
-  /** Código ISO do país (ex: 'BR') */
-  code: string;
-  /** Nome exibido na listinha de seleção */
-  name: string;
-  /** Código de discagem, sempre com o "+" na frente (ex: '+55') */
-  dialCode: string;
-  /** Emoji da bandeira, só pra ficar bonitinho no select */
-  flag: string;
-}
+import { Country } from '../../../interfaces/country.interface';
 
 // Lista simples com os países mais comuns pro Estaciona AI.
 // Pode ir adicionando mais países aqui sem precisar mexer em nenhuma outra parte do componente.

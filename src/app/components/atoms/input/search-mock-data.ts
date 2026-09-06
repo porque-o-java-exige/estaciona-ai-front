@@ -1,10 +1,4 @@
-export interface SearchResultItem {
-  id: string;
-  /** Nome do estacionamento/local (o que casa com o texto digitado) */
-  name: string;
-  /** Endereço fictício, só pra dar contexto no resultado */
-  address: string;
-}
+import { SearchResultItem } from '../../../interfaces/search-result-item.interface';
 
 // Lista fictícia de estacionamentos só pra simular a busca "os 3 mais próximos".
 // Em produção isso viria de uma API (ex: geolocalização + busca no back-end).
