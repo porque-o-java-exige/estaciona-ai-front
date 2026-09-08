@@ -7,6 +7,8 @@ button {
 
   border-radius: 10px;
   border: none;
+  box-sizing: border-box; // padding/border entram na largura, não somam a ela
+  max-width: 100%;        // nunca ultrapassa o container, mesmo com width fixo abaixo
 
   font-size: 20px;
   font-weight: 500;
@@ -59,13 +61,17 @@ button {
     }
   }
 
-  
-  // Botões de notificação e filtro
+
+  // Botões de notificação e filtro — só ícone, sem texto visível.
+  // overflow: hidden aqui é uma trava de segurança extra: quem
+  // realmente impede o texto de aparecer é o template (isIconOnly()),
+  // isso aqui só cobre casos extremos.
   &.button-notification,
   &.button-filter {
     border-radius: 12px;
     box-sizing: border-box;
     background-color: $clr-primary-100;
+    overflow: hidden;
 
     display: flex;
     align-items: center;
@@ -170,4 +176,42 @@ button {
 
   }
 
+}
+
+// ---------------------------------------------------------
+// Responsivo — os botões mantêm o tamanho original de design
+// em qualquer tela onde couberem. Só abaixo de 480px (onde os
+// maiores, tipo 390px, estourariam a viewport) eles viram fluidos.
+// Com max-width: 100% no seletor base, isso agora é redundante
+// como trava de segurança, mas mantido pra clareza e compatibilidade.
+// ---------------------------------------------------------
+@media (max-width: 480px) {
+  button {
+    &.button-primary,
+    &.button-secondary,
+    &.button-tertiary,
+    &.button-google,
+    &.button-payment,
+    &.button-card,
+    &.button-pix-action,
+    &.button-pix-action-danger,
+    &.button-pix-copy,
+    &.button-pix-cancel {
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+}
+
+@media (max-width: 380px) {
+  button {
+    &.button-primary,
+    &.button-pix-cancel {
+      font-size: 17px;
+    }
+
+    &.button-google {
+      font-size: 16px;
+    }
+  }
 }

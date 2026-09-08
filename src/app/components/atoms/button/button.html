@@ -1,10 +1,16 @@
-<button [class]="'button-' + variant()">
+<button
+  [class]="'button-' + variant()"
+  [attr.aria-label]="isIconOnly() ? text() : null"
+>
     @if(iconPath())
     {
       <img
     [src]="iconPath()!"
-    alt="icon"
+    alt=""
   >
     }
- {{ text() }} 
+    @if(!isIconOnly())
+    {
+      {{ text() }}
+    }
 </button>

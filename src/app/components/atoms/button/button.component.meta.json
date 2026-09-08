@@ -1,0 +1,21 @@
+{
+  "id": "button",
+  "name": "Button",
+  "description": "Componente de botão com múltiplas variantes e estilos",
+  "category": "atoms",
+  "longDescription": "O componente Button oferece uma ampla variedade de estilos para diferentes contextos de uso, incluindo botões primários, secundários, de login social, notificações, filtros, pagamentos e ações específicas do sistema Pix. Cada variante é otimizada para seu caso de uso específico.",
+  "examples": [
+    "Button Primary - Ações principais como cadastrar e entrar",
+    "Button Secondary - Ações secundárias como adicionar reservas",
+    "Button Tertiary - Ações terciárias como reservar vaga",
+    "Button Google - Login com conta Google",
+    "Button Notification - Ícone de notificações",
+    "Button Filter - Ícone de filtros",
+    "Button Payment - Pagamento com Pix",
+    "Button Card - Pagamento com cartão de crédito",
+    "Button Pix Action - Ações específicas do Pix",
+    "Button Pix Action Danger - Ações de cancelamento Pix",
+    "Button Pix Copy - Copiar código Pix",
+    "Button Pix Cancel - Cancelar pagamento"
+  ]
+}

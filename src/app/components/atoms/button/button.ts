@@ -17,6 +17,13 @@ const variantIcon: Record<buttonVariant, string | null> = {
   'pix-copy': 'pix-icon.svg',
   'pix-cancel': null,
 };
+
+// Variantes que só mostram ícone (sem texto visível no DOM).
+// O overflow: hidden no SCSS é só uma trava visual extra — quem
+// realmente impede o texto de aparecer é não renderizá-lo, feito
+// no template via isIconOnly().
+const iconOnlyVariants: readonly buttonVariant[] = ['notification', 'filter'];
+
 @Component({
   selector: 'app-button',
   standalone: true,
@@ -30,6 +37,11 @@ export class Button {
 
   iconPath = computed(() => {
     const fileName = variantIcon[this.variant()];
-    return fileName ? `assets/icons/${fileName}` : null;
+    // Path absoluto (com "/" na frente): evita 404 quando o app está
+    // em uma rota aninhada, tipo /component/button, onde um path
+    // relativo resolveria para /component/assets/icons/... e quebraria.
+    return fileName ? `/assets/icons/${fileName}` : null;
   });
+
+  isIconOnly = computed(() => iconOnlyVariants.includes(this.variant()));
 }
