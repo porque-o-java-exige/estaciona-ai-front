@@ -1,0 +1,279 @@
+@use '../../../styles/_variables' as *;
+
+.component-detail-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+.detail-header {
+  margin-bottom: 3rem;
+}
+
+// Container que agrupa o botão de voltar e o de baixar documentação
+.header-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: $clr-white-1100;
+  border: 1px solid $clr-primary-300;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: $clr-blue-1000;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background: $clr-primary-100;
+    transform: translateX(-4px);
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+// Botão de baixar a documentação (.md) do componente atual
+.download-doc-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: $clr-blue-1000;
+  border: 1px solid $clr-blue-1000;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: $clr-white-1100;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background: $clr-blue-1100;
+    border-color: $clr-blue-1100;
+    transform: translateY(-2px);
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.header-content {
+  border-left: 4px solid $clr-blue-1000;
+  padding-left: 1.5rem;
+}
+
+.component-category {
+  font-size: 0.875rem;
+  padding: 0.25rem 0.75rem;
+  background: $clr-primary-100;
+  color: $clr-blue-1000;
+  border-radius: 4px;
+  text-transform: uppercase;
+  font-weight: 600;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.component-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: $clr-black-1100;
+  margin-bottom: 0.5rem;
+}
+
+.component-description {
+  font-size: 1.25rem;
+  color: $clr-black-700;
+  line-height: 1.6;
+}
+
+.detail-content {
+  margin-bottom: 3rem;
+}
+
+.detail-section {
+  background: $clr-white-1100;
+  border: 1px solid $clr-primary-300;
+  border-radius: 12px;
+  padding: 3rem;
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: $clr-black-1100;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid $clr-primary-100;
+}
+
+.section-content {
+  color: $clr-black-700;
+  line-height: 1.8;
+}
+
+.long-description {
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.examples-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.example-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: $clr-primary-100;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.example-icon {
+  width: 24px;
+  height: 24px;
+  color: $clr-blue-1000;
+  flex-shrink: 0;
+}
+
+.demo-area {
+  background: $clr-white-100;
+  border-radius: 8px;
+  padding: 3.5rem;
+}
+
+.component-demo {
+  .demo-grid {
+    display: grid;
+    // colunas de largura igual, mínimo 280px cada — evita vazios
+    // quando botões pequenos (notification/filter) ficam ao lado
+    // de botões grandes (primary/secondary/google etc.)
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    align-items: start; // cada card ocupa só a altura do próprio
+                        // conteúdo, em vez de esticar pra bater com
+                        // o vizinho mais alto da mesma linha
+  }
+
+  .demo-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; // padrão: elementos pequenos (chip, etc.)
+                              // mantêm o próprio tamanho natural
+    gap: 0.75rem;
+    border: 1px solid $clr-blue-1000;
+    border-radius: 8px;
+    padding: 1.5rem;
+    min-width: 0; // itens de grid têm min-width:auto por padrão,
+                  // o que pode impedir o item de encolher abaixo
+                  // do tamanho do conteúdo (ex: botão com width fixo)
+
+    // Só o app-button precisa esticar até a largura do card: ele tem
+    // variantes com largura fixa grande (390px etc.) e, sem esticar,
+    // o wrapper do host encolhe pro tamanho do próprio conteúdo,
+    // fazendo o max-width:100% do <button> interno não servir de nada
+    // (calcularia contra 390px, não contra a largura real do card).
+    // align-self aqui afeta só esse componente — chip e outros
+    // continuam com align-items:flex-start (tamanho natural).
+    app-button {
+      align-self: stretch;
+      display: block;
+      min-width: 0;
+    }
+  }
+
+  label {
+    font-weight: 600;
+    color: $clr-black-1100;
+    font-size: 0.875rem;
+  }
+}
+
+.demo-placeholder {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.demo-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.demo-icon {
+  width: 64px;
+  height: 64px;
+  color: $clr-blue-1000;
+  opacity: 0.5;
+}
+
+.demo-content p {
+  color: $clr-black-700;
+  font-size: 1.1rem;
+}
+
+.demo-hint {
+  font-size: 0.875rem;
+  color: $clr-black-700;
+  opacity: 0.7;
+}
+
+.specs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.spec-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.spec-label {
+  font-size: 0.875rem;
+  color: $clr-black-700;
+  font-weight: 500;
+}
+
+.spec-value {
+  font-size: 1.1rem;
+  color: $clr-black-1100;
+  font-weight: 600;
+}
+
+.status-active {
+  color: $clr-green-1000;
+}
+
+.detail-footer {
+  text-align: center;
+  padding: 2rem;
+  color: $clr-black-700;
+  border-top: 1px solid $clr-primary-300;
+}
