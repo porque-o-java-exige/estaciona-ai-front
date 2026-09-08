@@ -1,0 +1,16 @@
+{
+  "id": "chip",
+  "name": "Chip",
+  "description": "Componente de chip para exibir informações compactas",
+  "category": "atoms",
+  "longDescription": "O componente Chip é ideal para exibir informações compactas e categorizadas, como atributos, avaliações, distâncias, contadores de mensagens, disponibilidade de vagas, filtros de reservas e status de processamento. Suporta diferentes estados visuais e variantes contextuais.",
+  "examples": [
+    "Chip Attribute - Exibir atributos como \"Coberto\"",
+    "Chip Rating - Mostrar avaliações com estrelas",
+    "Chip Distance - Exibir distância com subtexto",
+    "Chip Chat - Contador de mensagens",
+    "Chip Parking Spots - Disponibilidade de vagas",
+    "Chip Reservation Filter - Filtros de reserva com estado ativo/inativo",
+    "Chip Status - Indicadores de status (pendente, concluído, em andamento)"
+  ]
+}
