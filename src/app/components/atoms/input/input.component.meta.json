@@ -1,0 +1,17 @@
+{
+  "id": "input",
+  "name": "Input",
+  "description": "Componente de entrada de texto com validação e máscaras",
+  "category": "atoms",
+  "longDescription": "O componente Input é um elemento fundamental de formulário que oferece suporte a diversos tipos de entrada como texto, e-mail, telefone, senha e busca. Inclui validação automática, máscaras de formatação, ícones contextuais e estados de erro.",
+  "examples": [
+    "Input de texto simples com placeholder",
+    "Input de e-mail com validação automática",
+    "Input de telefone com máscara (DDD) NNNNN-NNNN",
+    "Input de senha com toggle de visibilidade",
+    "Input de busca com resultados em tempo real",
+    "Input com ícones contextuais (user, email, phone, password, search)",
+    "Input com botão de enviar (chat)",
+    "Input com estados de erro e desabilitado"
+  ]
+}
