@@ -1,0 +1,94 @@
+<div class="home-container">
+  <!-- Header com Logo e Frase Impactante -->
+  <header class="home-header">
+    <div class="logo-container">
+      <svg class="logo" viewBox="0 0 100 100" fill="none">
+        <circle cx="50" cy="50" r="45" stroke="currentColor" stroke-width="3"/>
+        <path d="M30 50 L45 65 L70 35" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <h1 class="logo-text">Estaciona AI</h1>
+    </div>
+    <h2 class="hero-title">Componentes UI Reutilizáveis</h2>
+    <p class="hero-subtitle">Construa interfaces consistentes e modernas com nossa biblioteca de componentes atômicos</p>
+  </header>
+
+  <!-- Barra de Pesquisa -->
+  <div class="search-container">
+    <app-input 
+      type="search" 
+      icon="search" 
+      placeholder="Pesquisar componentes..."
+      [(ngModel)]="searchQuery"
+      (ngModelChange)="onSearchChange($event)"
+      (keydown)="handleKeyDown($event)"
+    />
+    
+    <!-- Sugestões personalizadas de componentes -->
+    <div class="search-suggestions" *ngIf="searchQuery && filteredComponents.length > 0">
+      <div 
+        *ngFor="let component of filteredComponents.slice(0, 5); let i = index"
+        class="suggestion-item"
+        [class.selected]="selectedIndex === i"
+        (click)="navigateToComponent(component.id)"
+        (mouseenter)="selectedIndex = i"
+      >
+        <div class="suggestion-icon">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="suggestion-content">
+          <div class="suggestion-name">{{ component.name }}</div>
+          <div class="suggestion-description">{{ component.description }}</div>
+        </div>
+        <div class="suggestion-category">{{ component.category }}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Explicação do sistema -->
+  <div class="info-section">
+    <div class="info-card">
+      <svg class="info-icon" viewBox="0 0 24 24" fill="none">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <h3>Design System Atômico</h3>
+      <p>Nossos componentes seguem a metodologia de design atomic, garantindo consistência e facilidade de manutenção.</p>
+    </div>
+    <div class="info-card">
+      <svg class="info-icon" viewBox="0 0 24 24" fill="none">
+        <path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <h3>Fácil Integração</h3>
+      <p>Componentes prontos para uso com Angular, totalmente configuráveis e documentados.</p>
+    </div>
+    <div class="info-card">
+      <svg class="info-icon" viewBox="0 0 24 24" fill="none">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <h3>Testado e Validado</h3>
+      <p>Todos os componentes passam por rigorosos testes para garantir qualidade e performance.</p>
+    </div>
+  </div>
+
+  <!-- Lista de Componentes -->
+  <div class="components-section">
+    <h3 class="section-title">Componentes Disponíveis</h3>
+    <div class="components-grid">
+      <div *ngFor="let component of filteredComponents" class="component-card" (click)="navigateToComponent(component.id)">
+        <div class="component-category">{{ component.category }}</div>
+        <h4 class="component-name">{{ component.name }}</h4>
+        <p class="component-description">{{ component.description }}</p>
+        <div class="component-arrow">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+    
+    <div *ngIf="filteredComponents.length === 0" class="no-results">
+      <p>Nenhum componente encontrado para "{{ searchQuery }}"</p>
+    </div>
+  </div>
+</div>

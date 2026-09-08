@@ -1,0 +1,384 @@
+@use '../../../styles/_variables' as *;
+@use './home-input-override';
+
+.home-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+.warning-banner {
+  background: $clr-red-1000;
+  color: $clr-white-1100;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 12px rgba(204, 0, 0, 0.2);
+}
+
+.warning-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+}
+
+.warning-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.warning-text {
+  flex: 1;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.missing-components {
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  margin-left: 0.5rem;
+}
+
+.warning-close {
+  background: none;
+  border: none;
+  color: $clr-white-1100;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.home-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.logo {
+  width: 60px;
+  height: 60px;
+  color: $clr-blue-1000;
+}
+
+.logo-text {
+  font-size: 2rem;
+  font-weight: 700;
+  color: $clr-blue-1000;
+  margin: 0;
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: $clr-black-1100;
+  margin-bottom: 0.5rem;
+}
+
+.hero-subtitle {
+  font-size: 1.1rem;
+  color: $clr-black-700;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.search-container {
+  max-width: 600px;
+  margin: 0 auto 3rem;
+  position: relative;
+}
+
+.search-suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: $clr-white-1100;
+  border: 1px solid $clr-primary-300;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  margin-top: 0.5rem;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.suggestion-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover,
+  &.selected {
+    background-color: $clr-primary-100;
+  }
+}
+
+.suggestion-icon {
+  width: 20px;
+  height: 20px;
+  color: $clr-blue-1000;
+  flex-shrink: 0;
+}
+
+.suggestion-content {
+  flex: 1;
+  // impede que uma descrição longa estoure a largura no mobile
+  min-width: 0;
+}
+
+.suggestion-name {
+  font-weight: 600;
+  color: $clr-black-1100;
+  margin-bottom: 0.25rem;
+}
+
+.suggestion-description {
+  font-size: 0.875rem;
+  color: $clr-black-700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.suggestion-category {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  background: $clr-primary-100;
+  color: $clr-blue-1000;
+  border-radius: 4px;
+  text-transform: uppercase;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.info-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.info-card {
+  background: $clr-white-1100;
+  border: 1px solid $clr-primary-300;
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.info-icon {
+  width: 48px;
+  height: 48px;
+  color: $clr-blue-1000;
+  margin-bottom: 1rem;
+}
+
+.info-card h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: $clr-black-1100;
+  margin-bottom: 0.5rem;
+}
+
+.info-card p {
+  color: $clr-black-700;
+  line-height: 1.6;
+}
+
+.components-section {
+  margin-top: 3rem;
+}
+
+.section-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: $clr-black-1100;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.components-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.component-card {
+  background: $clr-white-1100;
+  border: 1px solid $clr-primary-300;
+  border-radius: 12px;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.component-category {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  background: $clr-primary-100;
+  color: $clr-blue-1000;
+  border-radius: 4px;
+  text-transform: uppercase;
+  font-weight: 600;
+  display: inline-block;
+  margin-bottom: 0.75rem;
+}
+
+.component-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: $clr-black-1100;
+  margin-bottom: 0.5rem;
+}
+
+.component-description {
+  color: $clr-black-700;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.component-arrow {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 24px;
+  height: 24px;
+  color: $clr-blue-1000;
+}
+
+.no-results {
+  text-align: center;
+  padding: 3rem;
+  color: $clr-black-700;
+  font-size: 1.1rem;
+}
+
+// ---------------------------------------------------------
+// Responsivo
+// ---------------------------------------------------------
+
+// Tablet (até 768px)
+@media (max-width: 768px) {
+  .home-container {
+    padding: 1.5rem 1rem;
+  }
+
+  .home-header {
+    margin-bottom: 2rem;
+  }
+
+  .logo {
+    width: 48px;
+    height: 48px;
+  }
+
+  .logo-text {
+    font-size: 1.5rem;
+  }
+
+  .hero-title {
+    font-size: 1.875rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .info-section {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .info-card {
+    padding: 1.5rem;
+  }
+
+  .components-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .search-container {
+    margin-bottom: 2rem;
+  }
+}
+
+// Mobile (até 480px)
+@media (max-width: 480px) {
+  .home-container {
+    padding: 1rem 0.75rem;
+  }
+
+  .logo-container {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .hero-title {
+    font-size: 1.5rem;
+  }
+
+  .warning-content {
+    flex-wrap: wrap;
+    padding: 0.75rem 1rem;
+  }
+
+  .missing-components {
+    display: block;
+    margin-left: 0;
+    margin-top: 0.5rem;
+  }
+
+  .component-card {
+    padding: 1.25rem;
+  }
+
+  .component-arrow {
+    top: 1.25rem;
+    right: 1.25rem;
+  }
+
+  .section-title {
+    font-size: 1.4rem;
+  }
+}

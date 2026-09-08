@@ -1,0 +1,65 @@
+@use '../../../styles/_variables' as *;
+
+// Personalização do Input quando usado na home page
+.home-container {
+  .search-container {
+    ::ng-deep app-input {
+      .app-input {
+        max-width: 600px;
+        margin: 0 auto;
+        
+        .app-input-field {
+          border-radius: 12px;
+          border: 2px solid $clr-primary-300;
+          background: $clr-white-1100;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+          transition: all 0.3s ease;
+          
+          &:focus-within {
+            border-color: $clr-blue-1000;
+            box-shadow: 0 4px 20px rgba(0, 102, 204, 0.2);
+          }
+        }
+        
+        .app-input-control {
+          font-size: 1rem;
+          padding: 1rem 1rem 1rem 3rem;
+        }
+        
+        .app-input-icon {
+          left: 1rem;
+          width: 20px;
+          height: 20px;
+          color: $clr-blue-1000;
+        }
+        
+        // Esconde as sugestões nativas do Input
+        .app-input-suggestions {
+          display: none !important;
+        }
+      }
+    }
+  }
+}
+
+// Mobile: reduz um pouco o padding lateral do texto/ícone pra caber melhor
+@media (max-width: 480px) {
+  .home-container {
+    .search-container {
+      ::ng-deep app-input {
+        .app-input {
+          .app-input-control {
+            padding: 0.875rem 0.875rem 0.875rem 2.5rem;
+            font-size: 0.95rem;
+          }
+
+          .app-input-icon {
+            left: 0.75rem;
+            width: 18px;
+            height: 18px;
+          }
+        }
+      }
+    }
+  }
+}
