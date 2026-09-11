@@ -1,0 +1,48 @@
+@use '../../../../styles/variables' as *;
+
+.label {
+  margin: 0;
+  padding: 0;
+
+  &.label-heading {
+    font-size: 22px;
+    font-weight: 700;
+    color: $clr-black-1100;
+    line-height: 1.2;
+  }
+
+  &.label-subheading {
+    font-size: 16px;
+    font-weight: 600;
+    color: $clr-black-1000;
+    line-height: 1.3;
+  }
+
+  &.label-body {
+    font-size: 14px;
+    font-weight: 400;
+    color: $clr-black-800;
+    line-height: 1.5;
+  }
+
+  &.label-caption {
+    font-size: 11px;
+    font-weight: 400;
+    color: $clr-black-600;
+    line-height: 1.4;
+  }
+
+  &.label-price {
+    font-size: 20px;
+    font-weight: 700;
+    color: $clr-blue-1000;
+    line-height: 1;
+  }
+
+  &.label-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: $clr-black-700;
+    line-height: 1;
+  }
+}

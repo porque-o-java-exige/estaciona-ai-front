@@ -1,0 +1,20 @@
+@switch (variant()) {
+  @case ('heading') {
+    <h2 class="label label-heading" [style.color]="color() || null">{{ text() }}</h2>
+  }
+  @case ('subheading') {
+    <h3 class="label label-subheading" [style.color]="color() || null">{{ text() }}</h3>
+  }
+  @case ('price') {
+    <span class="label label-price" [style.color]="color() || null">{{ text() }}</span>
+  }
+  @case ('caption') {
+    <span class="label label-caption" [style.color]="color() || null">{{ text() }}</span>
+  }
+  @case ('label') {
+    <label class="label label-label" [style.color]="color() || null">{{ text() }}</label>
+  }
+  @default {
+    <p class="label label-body" [style.color]="color() || null">{{ text() }}</p>
+  }
+}

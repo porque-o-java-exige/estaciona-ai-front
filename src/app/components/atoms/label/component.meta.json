@@ -1,0 +1,15 @@
+{
+  "id": "label",
+  "name": "Label",
+  "description": "Átomo de tipografia para padronizar textos e títulos do design system",
+  "category": "atoms",
+  "longDescription": "O componente Label padroniza todos os estilos tipográficos do Estaciona AI em um único átomo reutilizável. Renderiza o elemento HTML semântico correto (h2, h3, p, span, label) de acordo com a variante, garantindo consistência visual em todo o app.",
+  "examples": [
+    "Label heading — Título de tela 'Onde vai estacionar hoje?'",
+    "Label subheading — Subtítulo 'Vagas mais próximas de acordo com seu endereço'",
+    "Label body — Textos corridos e descrições",
+    "Label caption — Textos auxiliares pequenos como endereço e horário",
+    "Label price — Preços destacados 'R$8/h'",
+    "Label label — Rótulos de formulário"
+  ]
+}
