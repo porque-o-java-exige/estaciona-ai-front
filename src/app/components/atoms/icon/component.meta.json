@@ -1,0 +1,19 @@
+{
+  "id": "icon",
+  "name": "Icon",
+  "description": "Wrapper semântico para ícones SVG do sistema",
+  "category": "atoms",
+  "longDescription": "O componente Icon é um wrapper padronizado para todos os ícones SVG do Design System do Estaciona AI. Mapeia um nome simbólico (ex: 'home', 'car', 'bell') para o arquivo SVG correspondente em assets/icons/, aplicando o tamanho correto automaticamente. Centraliza o catálogo completo de ícones do app.",
+  "examples": [
+    "Icon home tamanho md — tab bar Início",
+    "Icon booking — tab bar Reservas",
+    "Icon payment — tab bar Pagamento",
+    "Icon chat-tab — tab bar Chat",
+    "Icon profile — tab bar Perfil",
+    "Icon back-arrow — botão voltar",
+    "Icon chevron-right — navegação em lista",
+    "Icon car tamanho lg — card de veículo",
+    "Icon wallet — item de perfil conta",
+    "Icon bell — item de perfil notificações"
+  ]
+}
