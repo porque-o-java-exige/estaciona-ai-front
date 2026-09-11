@@ -1,4 +1,5 @@
 @use 'variables' as *;
+@use 'reset' as *;
 
 body {
   background-color: $clr-white-100;
