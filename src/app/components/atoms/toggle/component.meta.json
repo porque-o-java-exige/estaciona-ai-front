@@ -1,0 +1,13 @@
+{
+  "id": "toggle",
+  "name": "Toggle",
+  "description": "Switch on/off animado para configurações e preferências",
+  "category": "atoms",
+  "longDescription": "O componente Toggle é um switch visual animado, ideal para configurações binárias como Dark Mode, Notificações e Idioma. Implementa ControlValueAccessor para integração com Reactive Forms e Template-driven Forms. Acessível com role='switch' e aria-checked.",
+  "examples": [
+    "Toggle off — Dark Mode desativado",
+    "Toggle on — Notificações ativas",
+    "Toggle on — Idioma Português ativo",
+    "Toggle disabled — opção não disponível"
+  ]
+}
