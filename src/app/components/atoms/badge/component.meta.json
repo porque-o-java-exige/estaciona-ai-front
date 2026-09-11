@@ -1,0 +1,13 @@
+{
+  "id": "badge",
+  "name": "Badge",
+  "description": "Indicador numérico ou pontual para sobrepor a ícones e elementos",
+  "category": "atoms",
+  "longDescription": "O componente Badge é um indicador visual pequeno, usado para sobrepor contadores de notificações e mensagens sobre ícones ou outros elementos. Suporta variante 'dot' (apenas ponto, sem número) e 'count' (exibe número, com cap em 99+). Não é renderizado quando count é 0 na variante count.",
+  "examples": [
+    "Badge dot — ponto de notificação na tab bar",
+    "Badge count 1 — 1 mensagem não lida",
+    "Badge count 5 — contador de chats",
+    "Badge count 99+ — cap de contagem alta"
+  ]
+}
