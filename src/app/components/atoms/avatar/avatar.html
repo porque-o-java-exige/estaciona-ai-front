@@ -1,0 +1,13 @@
+<div class="avatar" [class]="'avatar-' + size()" [class.has-status]="status() !== 'none'">
+  @if (variant() === 'image') {
+    <img [src]="src()" [alt]="name()" class="avatar-img" />
+  } @else {
+    <div class="avatar-initials">{{ initials() }}</div>
+  }
+  @if (status() !== 'none') {
+    <span class="avatar-status" [class]="'status-' + status()"></span>
+  }
+  @if (isVerified()) {
+    <img src="/assets/icons/verified-icon.svg" alt="verificado" class="avatar-verified" />
+  }
+</div>
