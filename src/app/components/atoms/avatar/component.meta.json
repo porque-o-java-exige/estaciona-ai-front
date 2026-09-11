@@ -1,0 +1,17 @@
+{
+  "id": "avatar",
+  "name": "Avatar",
+  "description": "Componente de avatar de usuário com suporte a imagem, iniciais, status e verificação",
+  "category": "atoms",
+  "longDescription": "O componente Avatar exibe a identidade visual de um usuário. Quando uma URL de imagem é fornecida, exibe a foto; caso contrário, gera automaticamente as iniciais do nome. Suporta três tamanhos (sm, md, lg), indicador de status online/offline e badge de conta verificada.",
+  "examples": [
+    "Avatar com imagem de perfil",
+    "Avatar com iniciais (sem foto)",
+    "Avatar tamanho sm — chats e listas",
+    "Avatar tamanho md — cards de usuário",
+    "Avatar tamanho lg — header de perfil",
+    "Avatar com status online (bolinha verde)",
+    "Avatar com status offline (bolinha vermelha)",
+    "Avatar com badge de verificado"
+  ]
+}
