@@ -1,0 +1,79 @@
+@use '../../../../styles/variables' as *;
+
+.calendar {
+  background-color: $clr-white-1100;
+  border-radius: 16px;
+  padding: 20px 16px;
+  width: 100%;
+  box-sizing: border-box;
+
+  .calendar-header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
+
+    .calendar-month {
+      font-size: 16px;
+      font-weight: 600;
+      color: $clr-black-1100;
+      text-transform: capitalize;
+    }
+  }
+
+  .calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin-bottom: 8px;
+
+    .weekday {
+      text-align: center;
+      font-size: 12px;
+      font-weight: 500;
+      color: $clr-black-500;
+    }
+  }
+
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px 0;
+  }
+
+  .calendar-day {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    margin: 0 auto;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    font-size: 14px;
+    color: $clr-black-1000;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+
+    &.day-today {
+      border: 2px solid $clr-yellow-1000;
+      color: $clr-yellow-1000;
+      font-weight: 600;
+    }
+
+    &.day-selected {
+      background-color: $clr-blue-1000;
+      color: $clr-white-1100;
+      font-weight: 600;
+      border: none;
+    }
+
+    &.day-other-month {
+      color: $clr-black-300;
+      cursor: default;
+    }
+
+    &:hover:not(.day-other-month):not(.day-selected) {
+      background-color: $clr-primary-100;
+    }
+  }
+}

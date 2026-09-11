@@ -1,0 +1,13 @@
+{
+  "id": "calendar",
+  "name": "Calendar",
+  "description": "Calendário mensal para seleção de datas com suporte a múltipla seleção",
+  "category": "atoms",
+  "longDescription": "O componente Calendar exibe um calendário mensal completo com grid de 7 colunas. Permite selecionar múltiplas datas (toggle: clicar novamente desseleciona). Destaca o dia de hoje com borda colorida e os dias selecionados com fundo azul. Dias de outros meses são exibidos em cinza e não são selecionáveis.",
+  "examples": [
+    "Calendar mês atual com hoje destacado",
+    "Calendar com um dia selecionado (fundo azul)",
+    "Calendar com múltiplos dias selecionados",
+    "Calendar sem highlight de hoje"
+  ]
+}

@@ -1,0 +1,26 @@
+<div class="calendar">
+  <div class="calendar-header">
+    <span class="calendar-month">{{ monthLabel() }}</span>
+  </div>
+
+  <div class="calendar-weekdays">
+    @for (day of weekDays; track day) {
+      <span class="weekday">{{ day }}</span>
+    }
+  </div>
+
+  <div class="calendar-grid">
+    @for (day of days(); track day.date.getTime()) {
+      <button
+        type="button"
+        class="calendar-day"
+        [class.day-today]="day.isToday && highlightToday()"
+        [class.day-selected]="day.isSelected"
+        [class.day-other-month]="!day.isCurrentMonth"
+        (click)="selectDay(day)"
+      >
+        {{ day.dayNumber }}
+      </button>
+    }
+  </div>
+</div>
