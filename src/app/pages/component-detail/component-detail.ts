@@ -4,13 +4,21 @@ import { CommonModule } from '@angular/common';
 import { InputComponent } from '../../components/atoms/input/input';
 import { Button } from '../../components/atoms/button/button';
 import { Chip } from '../../components/atoms/chip/chip';
+import { Avatar } from '../../components/atoms/avatar/avatar';
+import { Badge } from '../../components/atoms/badge/badge';
+import { Icon } from '../../components/atoms/icon/icon';
+import { Label } from '../../components/atoms/label/label';
+import { Toggle } from '../../components/atoms/toggle/toggle';
+import { Checkbox } from '../../components/atoms/checkbox/checkbox';
+import { Calendar } from '../../components/atoms/calendar/calendar';
+import { GarageCard } from '../../components/atoms/garage-card/garage-card';
 import { ComponentData } from '../../interfaces/component-data.interface';
 import { COMPONENTS_DATA } from '../../interfaces/component-data.generated';
 import { COMPONENT_DOCS } from './component-docs';
 
 @Component({
   selector: 'app-component-detail',
-  imports: [CommonModule, InputComponent, Button, Chip],
+  imports: [CommonModule, InputComponent, Button, Chip, Avatar, Badge, Icon, Label, Toggle, Checkbox, Calendar, GarageCard],
   templateUrl: './component-detail.html',
   styleUrl: './component-detail.scss'
 })
