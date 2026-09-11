@@ -1,0 +1,65 @@
+@if (variant() === 'listing') {
+  <div class="garage-card garage-card-listing">
+    <div class="card-thumbnail">
+      @if (imageUrl()) {
+        <img [src]="imageUrl()" [alt]="name()" />
+      } @else {
+        <div class="card-thumbnail-placeholder"></div>
+      }
+    </div>
+    <div class="card-info">
+      <div class="card-header">
+        <span class="card-name">{{ name() }}</span>
+        @if (spots() > 0) {
+          <span class="card-spots" [class.spots-low]="spots() <= 3">{{ spots() }} {{ spots() === 1 ? 'vaga' : 'vagas' }}</span>
+        }
+      </div>
+      <span class="card-address">{{ address() }}</span>
+      <div class="card-meta">
+        <div class="card-rating">
+          <img src="/assets/icons/star-icon.svg" alt="estrela" />
+          <span>{{ rating() }}</span>
+        </div>
+        @if (distance()) {
+          <span class="card-dot">·</span>
+          <span class="card-distance">{{ distance() }}</span>
+        }
+      </div>
+    </div>
+    <div class="card-price">
+      <span class="price-value">{{ price() }}</span>
+      <span class="price-unit">{{ priceUnit() }}</span>
+    </div>
+  </div>
+} @else {
+  <div class="garage-card garage-card-owned">
+    <div class="card-image-wrapper">
+      @if (imageUrl()) {
+        <img [src]="imageUrl()" [alt]="name()" class="card-image" />
+      } @else {
+        <div class="card-image-placeholder"></div>
+      }
+      <span class="card-status-badge" [class.badge-active]="isActive()" [class.badge-inactive]="!isActive()">
+        {{ isActive() ? 'ativo' : 'inativo' }}
+      </span>
+    </div>
+    <div class="card-details">
+      <div class="card-title-row">
+        <span class="card-name">{{ name() }}</span>
+        <span class="card-owned-price">{{ price() }}<span class="price-unit">{{ priceUnit() }}</span></span>
+      </div>
+      <span class="card-address">{{ address() }}</span>
+      <div class="card-divider"></div>
+      <div class="card-stats">
+        <div class="stat">
+          <span class="stat-label">Este mês</span>
+          <span class="stat-value earnings">{{ earnings() }} ganho</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Reservas</span>
+          <span class="stat-value">{{ totalReservations() }} total</span>
+        </div>
+      </div>
+    </div>
+  </div>
+}

@@ -1,0 +1,14 @@
+{
+  "id": "garage-card",
+  "name": "Garage Card",
+  "description": "Card de exibição de garagem/vaga com variantes para listagem e propriedade",
+  "category": "atoms",
+  "longDescription": "O componente GarageCard exibe as informações de uma garagem ou vaga de estacionamento. Na variante 'listing', apresenta thumbnail, nome, endereço, avaliação, distância, vagas disponíveis e preço — usado na lista de vagas próximas da Home. Na variante 'owned', exibe imagem full-width com badge de status (ativo/inativo), além de ganhos e reservas do mês — usado no perfil do proprietário.",
+  "examples": [
+    "GarageCard listing — 14 vagas, R$8/h, 0.2 mi",
+    "GarageCard listing — 3 vagas (amarelo warning), R$10/h",
+    "GarageCard listing — 1 vaga (vermelho urgente), R$15/h",
+    "GarageCard owned ativo — $846,50 ganho este mês, 23 reservas",
+    "GarageCard owned inativo — garagem desativada"
+  ]
+}
