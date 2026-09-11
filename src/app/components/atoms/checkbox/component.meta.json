@@ -1,0 +1,12 @@
+{
+  "id": "checkbox",
+  "name": "Checkbox",
+  "description": "Caixa de seleção customizada para listas e formulários",
+  "category": "atoms",
+  "longDescription": "O componente Checkbox é uma caixa de seleção visual customizada que substitui o checkbox nativo. Exibe um check branco sobre fundo azul quando marcado. Usado na tela de pagamento para seleção de estacionamentos. Implementa ControlValueAccessor para integração com formulários Angular.",
+  "examples": [
+    "Checkbox desmarcado — estacionamento não selecionado",
+    "Checkbox marcado — estacionamento selecionado (fundo azul com check)",
+    "Checkbox disabled — opção não selecionável"
+  ]
+}
