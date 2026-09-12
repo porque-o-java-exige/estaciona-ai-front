@@ -5,8 +5,8 @@ button {
   align-items: center;
   justify-content: center;
 
-  border-radius: 10px;
   border: none;
+  border-radius: 10px;
 
   font-size: 20px;
   font-weight: 500;
@@ -14,80 +14,159 @@ button {
   background-color: $clr-blue-1000;
   color: $clr-white-1100;
 
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+
+  &:hover {
+    filter: brightness(0.95);
+  }
+
+  &:active {
+    transform: scale(0.90);
+  }
+
+  &:focus-visible {
+    outline: 2px solid $clr-blue-1000;
+    outline-offset: 2px;
+  }
+
   // Botão principal — Cadastrar / Entrar
   &.button-primary {
     width: 388px;
     height: 46px;
+
+    &:hover {
+      background-color: $clr-blue-900;
+    }
   }
+
   // Botão secundário — Adicionar reservas
   &.button-secondary {
     width: 390px;
     height: 57px;
+
     background-color: $clr-blue-1100;
     font-weight: 700;
+
+    &:hover {
+      background-color: $clr-blue-1000;
+    }
   }
+
   // Botão terciário — Reservar vaga
   &.button-tertiary {
     width: 370px;
     height: 38px;
+
     background-color: $clr-blue-1000;
     border: 1px solid $clr-primary-300;
     border-radius: 9px;
+
     font-size: 16px;
+
+    &:hover {
+      background-color: $clr-blue-900;
+    }
   }
+
+  // Botão de recarregar
+  &.button-reload {
+    width: 103px;
+    height: 33px;
+    padding: 10px 14px;
+
+    background-color: $clr-blue-100;
+    color: $clr-black-1100;
+
+    font-size: 14px;
+    font-weight: 400;
+
+    &:hover {
+      background-color: $clr-blue-200;
+    }
+  }
+
+  // Botão de adicionar garagem ou veículo
+  &.button-add {
+    width: 390px;
+    height: 50px;
+    padding: 15px 10px;
+    gap: 24px;
+
+    background-color: transparent;
+    border: 1px dashed $clr-blue-100;
+    border-radius: 12px;
+
+    color: $clr-black-1000;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13.12px;
+    font-weight: 400;
+
+    &:hover {
+      background-color: $clr-blue-100;
+    }
+  }
+
   // Botão de login com Google
   &.button-google {
     width: 388px;
     height: 44px;
+    gap: 10px;
 
     background-color: $clr-white-1100;
     border: 1px solid $clr-blue-1000;
 
+    color: $clr-black-1100;
     font-size: 18px;
     font-weight: 400;
-    color: $clr-black-1100;
 
-    gap: 10px;
+    &:hover {
+      background-color: $clr-blue-100;
+    }
 
     img {
-      height: 24px;
       width: 24px;
+      height: 24px;
     }
-    // Remove a borda no modo escuro
+
     @media (prefers-color-scheme: dark) {
       border: none;
     }
   }
 
-  
   // Botões de notificação e filtro
   &.button-notification,
   &.button-filter {
     border-radius: 12px;
     box-sizing: border-box;
+
     background-color: $clr-primary-100;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    &:hover {
+      background-color: $clr-primary-300;
+    }
 
     img {
       width: 16px;
       height: 16px;
     }
   }
+
   // Botão de notificações
   &.button-notification {
     width: 36px;
     height: 36px;
     padding: 9.2px;
+
     border: 0.8px solid $clr-white-100;
   }
+
   // Botão de filtro
   &.button-filter {
     width: 40px;
     height: 40px;
     padding: 11.7px;
+
     border: 0.8px solid $clr-primary-300;
 
     img {
@@ -96,78 +175,105 @@ button {
     }
   }
 
-  // Botões de pagamento: pix e cartão
+  // Botões de pagamento por Pix e cartão
   &.button-payment,
   &.button-card {
     width: 390px;
     height: 64px;
+    gap: 12px;
 
     background-color: $clr-black-1100;
 
-    gap: 12px;
+    &:hover {
+      background-color: $clr-black-900;
+    }
 
     img {
       width: 30px;
       height: 30px;
     }
   }
-  // Ajuste do ícone do botão de pagamento com cartão
+
+  // Ajuste do ícone do botão de cartão
   &.button-card {
     img {
-    width: 24px;
-    height: 24px;
+      width: 24px;
+      height: 24px;
     }
   }
-// Botões de ação do Pix
-&.button-pix-action,
-&.button-pix-action-danger {
-  width: 390px;
-  height: 50px;
-  border-radius: 8px;
 
-  color: $clr-white-700;
-  font-weight: 400;
+  // Botões antigos de ação do Pix
+  &.button-pix-action,
+  &.button-pix-action-danger {
+    width: 390px;
+    height: 50px;
 
-}
-
-// Cancelar pagamento por Pix
-&.button-pix-action-danger {
-  background-color: $clr-red-1000;
-}
-
-// Botão para copiar o código Pix
-&.button-pix-copy {
-  width: 300px;
-  height: 50px;
-  border-radius: 8px;
-
-  gap: 10px;
-
-  background-color: $clr-blue-1100;
-
-  font-size: 16px;
-  font-weight: 700;
-
-  img {
-    width: 30px;
-    height: 30px;
+    border-radius: 8px;
+    color: $clr-white-700;
+    font-weight: 400;
   }
+
+  // Botão antigo de ação perigosa do Pix
+  &.button-pix-action-danger {
+    background-color: $clr-red-1000;
+  }
+
+  // Botão para copiar o código Pix
+  &.button-pix-copy {
+    width: 300px;
+    height: 50px;
+    gap: 10px;
+
+    background-color: $clr-blue-1100;
+    border-radius: 8px;
+
+    font-size: 16px;
+    font-weight: 700;
+
+    &:hover {
+      background-color: $clr-blue-1000;
+    }
+
+    img {
+      width: 30px;
+      height: 30px;
+    }
   }
 
   // Botão para cancelar pagamento por Pix
   &.button-pix-cancel {
     width: 330px;
     height: 46px;
-    border-radius: 5px;
-    border: 1px solid $clr-black-800;
-
     gap: 10px;
 
     background-color: $clr-white-1100;
-    color: $clr-black-700;
+    border: 1px solid $clr-black-800;
+    border-radius: 5px;
 
+    color: $clr-black-700;
     font-size: 20px;
 
+    &:hover {
+      background-color: $clr-black-100;
+    }
   }
 
+  // Botão de voltar
+  &.button-back {
+    width: 10px;
+    height: 16.67px;
+    padding: 0;
+
+    background: transparent;
+    border: none;
+
+    &:hover {
+    opacity: 0.6;
+    }
+
+    img {
+      width: 10px;
+      height: 16.67px;
+    }
+  }
 }
