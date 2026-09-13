@@ -41,7 +41,7 @@
             font-weight: normal;
             font-size: 14px;
         }
-        
+
         img {
             width: 16px;
             height: 16px;
@@ -49,39 +49,53 @@
     }
 
     &.chip-parking-spots {
+        border: 1px solid $clr-green-1000;
         border-radius: 25px;
         background-color: $clr-black-1100;
-        border: 1px solid $clr-green-1000;
-        
+
         p {
             color: $clr-white-1100;
         }
     }
 
     &.chip-reservation-filter {
+        cursor: pointer;
+
         border: 1px solid $clr-primary-300;
-        
+
         p {
             font-size: 12px;
             font-weight: normal;
             color: $clr-blue-600;
         }
-        
-        &.is-active {
+
+        &:hover {
             border: none;
             background-color: $clr-blue-1000;
-            
+
+            p {
+                font-weight: 500;
+                color: $clr-white-1100;
+            }
+        }
+
+        &.is-active {
+            cursor: auto;
+
+            border: none;
+            background-color: $clr-blue-1000;
+
             p {
                 font-weight: 500;
                 color: $clr-white-1100;
             }
         }
     }
-    
+
     &.chip-status {
         border: none;
         background-color: $clr-blue-1000;
-        
+
         p {
             font-size: 10px;
             font-weight: 500;
