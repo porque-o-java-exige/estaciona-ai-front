@@ -1,0 +1,90 @@
+@import '../../../../styles/variables';
+
+.chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 10px;
+
+    border-radius: 10px;
+    background: $clr-white-100;
+    border: 1px solid $clr-blue-600;
+
+    p {
+        font-size: 10px;
+        font-weight: bold;
+        color: $clr-black-1000;
+    }
+
+    span {
+        color: #9C9494;
+    }
+
+    img {
+        width: 8px;
+        height: 8px;
+    }
+
+    &.chip-chat {
+        background: $clr-blue-100;
+
+        p {
+            font-weight: normal;
+            font-size: 14px;
+        }
+        
+        img {
+            width: 16px;
+            height: 16px;
+        }
+    }
+
+    &.chip-parking-spots {
+        border-radius: 25px;
+        background-color: $clr-black-1100;
+        border: 1px solid $clr-green-1000;
+        
+        p {
+            color: $clr-white-1100;
+        }
+    }
+
+    &.chip-reservation-filter {
+        border: 1px solid $clr-primary-300;
+        
+        p {
+            font-size: 12px;
+            font-weight: normal;
+            color: $clr-blue-600;
+        }
+        
+        &.is-active {
+            border: none;
+            background-color: $clr-blue-1000;
+            
+            p {
+                font-weight: 500;
+                color: $clr-white-1100;
+            }
+        }
+    }
+    
+    &.chip-status {
+        border: none;
+        background-color: $clr-blue-1000;
+        
+        p {
+            font-size: 10px;
+            font-weight: 500;
+            color: $clr-white-1100;
+        }
+
+        &.is-pending-or-done {
+            background-color: $clr-transparent-150;
+
+            p {
+                color: $clr-blue-600;
+            }
+        }
+    }
+}

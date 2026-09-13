@@ -1,0 +1,112 @@
+<div class="app-input" [class.app-input-error]="displayError()">
+    <div class="app-input-field" [class.app-input-field-disabled]="isDisabled()">
+
+        <!-- Estilização dos ícones -->
+        @if (icon() !== 'none') {
+        <span class="app-input-icon">
+            @if (icon() === 'user') {
+            <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Z" stroke="currentColor" stroke-width="1.6" />
+                <path d="M4 20.5c1.4-3.6 4.6-5.5 8-5.5s6.6 1.9 8 5.5" stroke="currentColor" stroke-width="1.6"
+                    stroke-linecap="round" />
+            </svg>
+            }
+
+            @if (icon() === 'email') {
+            <svg viewBox="0 0 24 24" fill="none">
+                <rect x="3" y="5.5" width="18" height="13" rx="2" stroke="currentColor" stroke-width="1.6" />
+                <path d="M3.5 6.5 12 13l8.5-6.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+            }
+
+            @if (icon() === 'phone') {
+            <svg viewBox="0 0 24 24" fill="none">
+                <path
+                    d="M6 3.5h2.3l1.2 4-1.9 1.5a11 11 0 0 0 5.4 5.4l1.5-1.9 4 1.2V16c0 1.4-1.2 2.6-2.7 2.4A15.5 15.5 0 0 1 3.6 6.2 2.4 2.4 0 0 1 6 3.5Z"
+                    stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+            </svg>
+            }
+
+            @if (icon() === 'password') {
+            <svg viewBox="0 0 24 24" fill="none">
+                <rect x="5" y="10.5" width="14" height="9" rx="2" stroke="currentColor" stroke-width="1.6" />
+                <path d="M8 10.5V8a4 4 0 0 1 8 0v2.5" stroke="currentColor" stroke-width="1.6" />
+            </svg>
+            }
+
+            @if (icon() === 'search') {
+            <svg viewBox="0 0 24 24" fill="none">
+                <circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="1.6" />
+                <path d="m20 20-4.3-4.3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+            </svg>
+            }
+        </span>
+        }
+
+        <!-- Seletor de país (só aparece no input de telefone) -->
+        @if (type() === 'tel') {
+        <select class="app-input-country-select" aria-label="Selecionar país" [disabled]="isDisabled()"
+            [value]="selectedCountry().code" (change)="handleCountryChange($any($event.target).value)">
+            @for (country of countries; track country.code) {
+            <option [value]="country.code">{{ country.code }} {{ country.dialCode }}</option>
+            }
+        </select>
+        }
+
+        <input #controlInput [id]="inputId() || null" [type]="resolvedType()" [placeholder]="placeholder()" [disabled]="isDisabled()"
+            [value]="controlDisplayValue()" (input)="handleInput($any($event.target).value)" (focus)="handleFocus()"
+            (blur)="handleBlur()" (keyup.enter)="isShowSendButton() && handleSend()" class="app-input-control" />
+
+        <!-- Byakugan do input da password -->
+        @if (type() === 'password') {
+        <button type="button" class="app-input-toggle" (click)="togglePasswordVisibility()"
+            [attr.aria-label]="isShowPassword() ? 'Ocultar senha' : 'Mostrar senha'">
+            @if (!isShowPassword()) {
+            <svg viewBox="0 0 24 24" fill="none">
+                <path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12Z" stroke="currentColor"
+                    stroke-width="1.6" />
+                <circle cx="12" cy="12" r="2.5" stroke="currentColor" stroke-width="1.6" />
+            </svg>
+            }
+            @if (isShowPassword()) {
+            <svg viewBox="0 0 24 24" fill="none">
+                <path
+                    d="M3 3l18 18M9.9 5.1A10.4 10.4 0 0 1 12 5c6.4 0 10 6.5 10 6.5a15.7 15.7 0 0 1-3.3 4M6.3 6.9C3.7 8.7 2 12 2 12s3.6 6.5 10 6.5c1.3 0 2.5-.2 3.6-.6"
+                    stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+            </svg>
+            }
+        </button>
+        }
+
+        <!-- Botão de enviar os bagui no chat -->
+        @if (isShowSendButton()) {
+        <button type="button" class="app-input-send" [disabled]="isDisabled() || !value().trim()"
+            (click)="handleSend()" aria-label="Enviar mensagem">
+            <img src="assets/icons/send.png" alt="Enviar mensagem" style="width: 17px; height: 17px; filter: brightness(0) invert(1);" />
+        </button>
+        }
+    </div>
+
+    <!-- Lista de sugestões da busca (3 resultados mais próximos, mockados) -->
+    @if (icon() === 'search' && isSearchFocused() && searchResults().length > 0) {
+    <ul class="app-input-suggestions" role="listbox">
+        @for (item of searchResults(); track item.id) {
+        <li role="option" class="app-input-suggestion" (mousedown)="handleSelectResult(item)">
+            <span class="app-input-suggestion-name">{{ item.name }}</span>
+            <span class="app-input-suggestion-address">{{ item.address }}</span>
+        </li>
+        }
+    </ul>
+    }
+
+    <!-- Mostrar oque a anta do usuário tem que escrever naqule input -->
+    @if (hint() && !displayError()) {
+    <p class="app-input-hint">{{ hint() }}</p>
+    }
+
+    <!-- Mensagem de erro para o usuário que é burro -->
+    @if (displayError()) {
+    <p class="app-input-error-message">{{ displayError() }}</p>
+    }
+</div>
