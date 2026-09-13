@@ -11,6 +11,54 @@
   <app-chip variant="reservation-filter" text="Todas" [isActive]="true"></app-chip>
   <app-chip variant="status" text="Ativo"></app-chip>
   <app-chip variant="status" text="Pendente" [isPendingOrDone]="true"></app-chip>
-</main>
 
+  <h2>Testes de Input</h2>
+  
+  <div style="width: 100%; max-width: 400px; text-align: left; display: flex; flex-direction: column; gap: 2rem;">
+    <div>
+      <h4>1. Input de Texto Simples (Sem ícone)</h4>
+      <app-input placeholder="Digite seu nome..." hint="Exemplo: Gabriel Vereda"></app-input>
+    </div>
+    
+    <div>
+      <h4>2. Input de E-mail (Com ícone)</h4>
+      <app-input type="email" icon="email" placeholder="E-mail" hint="Exemplo: teste@email.com"></app-input>
+    </div>
+    
+    <div>
+      <h4>3. Input de Senha (Com ícone e toggle de visibilidade)</h4>
+      <app-input type="password" icon="password" placeholder="Digite sua senha"></app-input>
+    </div>
+    
+    <div>
+      <h4>4. Input de Busca</h4>
+      <app-input type="search" icon="search" placeholder="Buscar..."></app-input>
+    </div>
+    
+    <div>
+      <h4>5. Input de Telefone</h4>
+      <app-input type="tel" icon="phone" placeholder="(11) 99999-9999"></app-input>
+    </div>
+    
+    <div>
+      <h4>6. Input de Chat (Com botão de enviar)</h4>
+      <app-input type="text" [isShowSendButton]="true" placeholder="Digite uma mensagem..."></app-input>
+    </div>
+    
+    <div>
+      <h4>7. Input do Nome do Usuário</h4>
+      <app-input type="text" icon="user" placeholder="Digite seu nome de usuário" hint="Exemplo: gabriel.vereda"></app-input>
+    </div>
+    
+    <div>
+      <h4>8. Input com Erro</h4>
+      <app-input type="text" icon="user" placeholder="Nome de usuário" errorMessage="Nome de usuário já existe"></app-input>
+    </div>
+    
+    <div>
+      <h4>9. Input Desativado</h4>
+      <app-input type="text" icon="user" placeholder="Não pode digitar aqui" [isDisabled]="true"></app-input>
+    </div>
+  </div>
+</main>
 <router-outlet />
