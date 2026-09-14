@@ -1,0 +1,9 @@
+@use '../../../../styles/variables' as *;
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        width: max-content;
+    }
