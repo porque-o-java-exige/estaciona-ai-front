@@ -25,47 +25,29 @@ section {
 
         width: 640px;
         padding: 30px 20px;
+        margin-top: 50px;
 
         border-radius: 30px;
         background-color: $clr-white-1100;
 
-        img {
-            padding: 50px;
-        }
-
-        .enter-with-google {
+        .logo-wrapper {
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap: 10px;
+            gap: 2px;
+            padding: 50px 0;
 
-            width: 100%;
-
-            .enter-with-title {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                gap: 20px;
-
-                .line {
-                    width: 219px;
-                    height: 4px;
-                    background-color: $clr-blue-100;
-                }
-
-                span {
-                    font-size: 18px;
-                    color: $clr-blue-800;
-                }
+            h1 {
+                font-family: "Fugaz One", sans-serif;
+                
+                font-size: 48px;
+                font-weight: 400;
+                text-shadow: 4px 0 0 #00C0FF;
+                font-style: italic;
+                text-transform: uppercase;
             }
 
-            a {
-                font-size: 18px;
-
-                text-decoration: underline;
-                color: $clr-blue-600;
-            }
         }
+
     }
 }

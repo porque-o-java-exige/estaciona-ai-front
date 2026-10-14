@@ -1,0 +1,38 @@
+@use '../../../../styles/variables' as *;
+
+.enter-with-google {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    width: 100%;
+
+    .enter-with-title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+
+        width: 100%;
+
+        .line {
+            flex-grow: 1;
+            height: 4px;
+            background-color: $clr-blue-100;
+        }
+
+        span {
+            font-size: 18px;
+            color: $clr-blue-800;
+        }
+    }
+
+    a {
+        font-size: 18px;
+
+        text-decoration: underline;
+        color: $clr-blue-600;
+    }
+}
