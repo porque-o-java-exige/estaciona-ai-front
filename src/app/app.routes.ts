@@ -9,7 +9,7 @@ export const routes: Routes = [
         title: 'Estaciona Ai - Cadastro'
     },
     {
-        path: '/login',
+        path: 'login',
         component: SignIn,
         title: 'Estaciona Ai - login'
     }
