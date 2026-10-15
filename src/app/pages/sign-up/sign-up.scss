@@ -13,6 +13,10 @@ section {
             rgba(146, 194, 255, 0.04) 53.85%,
             rgba(146, 194, 255, 0.01) 65.87%);
 
+    @media (min-width: 640px) {
+        padding-top: 30px;
+    }
+
     .sign-up {
         display: flex;
         flex-direction: column;
@@ -26,5 +30,9 @@ section {
 
         border-radius: 30px;
         background-color: $clr-white-1100;
+
+        @media (min-width: 640px) {
+            height: calc(100vh - 50px);
+        }
     }
 }
