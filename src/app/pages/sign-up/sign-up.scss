@@ -5,9 +5,6 @@ section {
     justify-content: center;
     align-items: center;
 
-    max-width: 100dvw;
-    min-height: 100dvh;
-
     background: linear-gradient(180deg,
             rgba(146, 194, 255, 0.16) 0%,
             rgba(146, 194, 255, 0.13) 16.35%,
@@ -16,16 +13,16 @@ section {
             rgba(146, 194, 255, 0.04) 53.85%,
             rgba(146, 194, 255, 0.01) 65.87%);
 
-    .modal-sign-up {
+    .sign-up {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         gap: 10px;
 
-        width: 640px;
-        padding: 30px 20px;
-        margin-top: 50px;
+        width: 100%;
+        max-width: 640px;
+        height: 100dvh;
 
         border-radius: 30px;
         background-color: $clr-white-1100;
@@ -35,12 +32,11 @@ section {
             justify-content: center;
             align-items: center;
             gap: 2px;
-            padding: 50px 0;
 
             h1 {
                 font-family: "Fugaz One", sans-serif;
                 
-                font-size: 48px;
+                font-size: 32px;
                 font-weight: 400;
                 text-shadow: 4px 0 0 #00C0FF;
                 font-style: italic;
