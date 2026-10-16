@@ -4,10 +4,6 @@ import { SignIn } from './pages/sign-in/sign-in';
 
 export const routes: Routes = [
     {
-        path: '**',
-        redirectTo: ''
-    },
-    {
         path: '',
         component: SignUp,
         title: 'Estaciona Ai - Cadastro'
@@ -16,5 +12,9 @@ export const routes: Routes = [
         path: 'login',
         component: SignIn,
         title: 'Estaciona Ai - login'
+    },
+    {
+        path: '**',
+        redirectTo: ''
     }
 ];
