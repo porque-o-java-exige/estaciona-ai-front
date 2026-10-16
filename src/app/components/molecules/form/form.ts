@@ -1,6 +1,7 @@
 import { Component, input } from '@angular/core';
 import { InputComponent } from '../../atoms/input/input';
 import { Button } from '../../atoms/button/button';
+import { Link } from '../../atoms/link/link';
 
 export type formVariant = 'sign-up' | 'sign-in' 
 
@@ -8,8 +9,9 @@ export type formVariant = 'sign-up' | 'sign-in'
   selector: 'app-form',
   imports: [
     InputComponent,
-    Button  
-  ],
+    Button,
+    Link
+],
   templateUrl: './form.html',
   styleUrl: './form.scss',
 })
