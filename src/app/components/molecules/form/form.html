@@ -1,6 +1,6 @@
 @if (variant() === 'sign-up') {
     <form>
-        <app-input placeholder="Digite seu nome..." hint="exemplo → Arthur "></app-input>
+        <app-input type="text" icon="user" placeholder="Digite seu nome..." hint="exemplo → Arthur "></app-input>
         <app-input type="email" icon="email" placeholder="E-mail" hint="exemplo → meuexemplodeemail@email.com"></app-input>
         <app-input type="password" icon="password" placeholder="Digite sua senha"
             hint="exemplo → meuexemplodesenha123@"></app-input>
@@ -15,7 +15,7 @@
             hint="exemplo → meuexemplodesenha123@"></app-input>
     
         <app-button type="submit" variant="primary" text="Entrar"></app-button>
-        
+
         <app-link route="/" content="Esqueceu a senha ?"></app-link>
     </form>
     
