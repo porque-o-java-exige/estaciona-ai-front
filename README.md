@@ -169,12 +169,12 @@ npm install -g @angular/cli
 ### Requisitos Não Funcionais
 
 ## Ferramentas utilizadas
-![Angular logo](/src/assets/icons/angular-logo.svg)
-![Vite logo](/src/assets/icons/vite-logo.svg)
-![Vitest logo](/src/assets/icons/vitest-logo.svg)
-![Html logo](/src/assets/icons/html-logo.svg)
-![Sass logo](/src/assets/icons/sass-logo.svg)
-![Typescript logo](/src/assets/icons/typescript-logo.svg)
+![Angular logo](/.github/assets/angular-logo.svg)
+![Vite logo](/.github/assets/vite-logo.svg)
+![Vitest logo](/.github/assets/vitest-logo.svg)
+![Html logo](/.github/assets/html-logo.svg)
+![Sass logo](/.github/assets/sass-logo.svg)
+![Typescript logo](/.github/assets/typescript-logo.svg)
 
 ## Licença
 Este projeto é de uso acadêmico e não possui fins comerciais.
