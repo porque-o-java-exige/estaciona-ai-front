@@ -5,9 +5,9 @@ import { Logotype } from '../../components/molecules/logotype/logotype';
 import { Link } from '../../components/atoms/link/link';
 
 @Component({
-  selector: 'app-sign-in',
+  selector: 'app-login',
   imports: [EnterWithGoogle, Form, Logotype, Link],
-  templateUrl: './sign-in.html',
-  styleUrl: './sign-in.scss',
+  templateUrl: './login.html',
+  styleUrl: './login.scss',
 })
-export class SignIn {}
+export class login {}

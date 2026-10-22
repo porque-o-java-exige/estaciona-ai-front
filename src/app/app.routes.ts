@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { SignUp } from './pages/sign-up/sign-up';
-import { SignIn } from './pages/sign-in/sign-in';
+import { login } from './pages/login/login';
 
 export const routes: Routes = [
     {
@@ -10,7 +10,7 @@ export const routes: Routes = [
     },
     {
         path: 'login',
-        component: SignIn,
+        component: login,
         title: 'Estaciona Ai - login'
     },
     {

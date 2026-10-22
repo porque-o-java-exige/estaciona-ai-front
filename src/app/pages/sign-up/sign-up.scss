@@ -26,13 +26,14 @@ section {
 
         width: 100%;
         max-width: 640px;
-        height: 100dvh;
+        min-height: 100dvh;
+        padding: 10px 0;
 
         border-radius: 30px;
         background-color: $clr-white-1100;
 
         @media (min-width: 640px) {
-            height: calc(100vh - 50px);
+            min-height: calc(100dvh - 50px);
         }
     }
 }
