@@ -34,20 +34,6 @@
         }
     }
 
-    &.chip-chat {
-        background-color: $clr-blue-100;
-
-        p {
-            font-weight: normal;
-            font-size: 14px;
-        }
-
-        img {
-            width: 16px;
-            height: 16px;
-        }
-    }
-
     &.chip-parking-spots {
         border: 1px solid $clr-green-1000;
         border-radius: 25px;
