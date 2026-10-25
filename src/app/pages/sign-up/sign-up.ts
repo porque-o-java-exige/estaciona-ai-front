@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { Form } from '../../components/molecules/form/form';
 import { EnterWithGoogle } from '../../components/molecules/enter-with-google/enter-with-google';
 import { Logotype } from '../../components/molecules/logotype/logotype';
 import { Link } from '../../components/atoms/link/link';
+import { SignUpForm } from '../../components/molecules/sign-up-form/sign-up-form';
 
 @Component({
   selector: 'app-sign-up',
-  imports: [Form, EnterWithGoogle, Logotype, Link],
+  imports: [EnterWithGoogle, Logotype, Link, SignUpForm],
   templateUrl: './sign-up.html',
   styleUrl: './sign-up.scss',
 })
