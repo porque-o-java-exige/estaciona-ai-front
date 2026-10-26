@@ -5,16 +5,17 @@
     width: 100%;
 }
 
-$color-border: $clr-black-200;
+$color-border: $input-border;
 $color-bg: $clr-white-1000;
 $color-bg-disabled: $clr-black-100;
 $color-text: $clr-black-1000;
 $color-placeholder: $clr-black-400;
-$color-icon: $clr-black-600;
-$color-primary: $clr-blue-1000;
+$color-icon: $input-icon;
+$color-primary: $input-primary;
 $color-hint: $clr-black-500;
 $color-error: $clr-red-800;
-$radius: 14px;
+$radius: $input-radius;
+$radius-chat: $input-radius-chat;
 
 .app-input {
     width: 100%;
@@ -46,6 +47,10 @@ $radius: 14px;
         box-shadow: 0 0 0 3px rgba($color-primary, 0.12);
     }
 
+    &.app-input-field-chat {
+        border-radius: $radius-chat;
+    }
+
     &.app-input-field-disabled {
         background: $color-bg-disabled;
         opacity: 0.7;
@@ -57,9 +62,11 @@ $radius: 14px;
     color: $color-icon;
     flex-shrink: 0;
 
-    svg {
-        width: 20px;
-        height: 20px;
+    img {
+        width: 18px;
+        height: 18px;
+        display: block;
+        object-fit: contain;
     }
 }
 
@@ -112,9 +119,11 @@ $radius: 14px;
     cursor: pointer;
     flex-shrink: 0;
 
-    svg {
-        width: 20px;
-        height: 20px;
+    img {
+        width: 18px;
+        height: 18px;
+        display: block;
+        object-fit: contain;
     }
 }
 
@@ -122,19 +131,21 @@ $radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
+    width: auto;
+    height: auto;
     border: none;
-    background: $color-primary;
-    color: #fff;
+    border-radius: 0;
+    background: transparent;
+    color: inherit;
     cursor: pointer;
     flex-shrink: 0;
     transition: opacity 0.15s ease;
+    padding: 0;
 
-    svg {
-        width: 17px;
-        height: 17px;
+    img {
+        width: 22px;
+        height: 22px;
+        display: block;
     }
 
     &:disabled {
