@@ -1,7 +1,7 @@
 import { Component, computed, input, } from '@angular/core';
 
 export type buttonVariant = 'primary'| 'secondary' | 'tertiary' | 'google' | 'notification' | 'filter' | 'payment' | 'card' | 'pix-action' | 
-'pix-action-danger' | 'pix-copy' | 'pix-cancel' | 'back'| 'reload' | 'add';
+'pix-action-danger' | 'pix-copy' | 'pix-cancel' | 'back'| 'reload' | 'add' | 'chat';
 
 const variantIcon: Record<buttonVariant, string | null> = {
   primary: null,
@@ -19,6 +19,7 @@ const variantIcon: Record<buttonVariant, string | null> = {
   'pix-copy': 'pix-icon.svg',
   'pix-cancel': null,
   'back': 'back-icon.svg',
+  chat: 'chat-icon.svg',
 };
 @Component({
   selector: 'app-button',

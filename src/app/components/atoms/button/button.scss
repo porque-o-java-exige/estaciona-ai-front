@@ -32,8 +32,10 @@ button {
 
   // Botão principal — Cadastrar / Entrar
   &.button-primary {
-    width: 388px;
+    max-width: 388px;
     height: 46px;
+    padding: 10px 5px;
+    width: 100%;
 
     &:hover {
       background-color: $clr-blue-900;
@@ -42,8 +44,10 @@ button {
 
   // Botão secundário — Adicionar reservas
   &.button-secondary {
-    width: 390px;
-    height: 57px;
+    width: 100%;
+    max-width: 390px;
+    height: 66px;
+    padding: 20px 20px;
 
     background-color: $clr-blue-1100;
     font-weight: 700;
@@ -55,12 +59,15 @@ button {
 
   // Botão terciário — Reservar vaga
   &.button-tertiary {
-    width: 370px;
-    height: 38px;
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    gap: 10px;
+
 
     background-color: $clr-blue-1000;
     border: 1px solid $clr-primary-300;
-    border-radius: 9px;
+    border-radius: 10px;
 
     font-size: 16px;
 
@@ -72,14 +79,14 @@ button {
   // Botão de recarregar
   &.button-reload {
     width: 103px;
-    height: 33px;
+    height: 38px;
     padding: 10px 14px;
 
+    border-radius: 7.5px;
     background-color: $clr-blue-100;
     color: $clr-black-1100;
 
     font-size: 14px;
-    font-weight: 400;
 
     &:hover {
       background-color: $clr-blue-200;
@@ -88,19 +95,19 @@ button {
 
   // Botão de adicionar garagem ou veículo
   &.button-add {
-    width: 390px;
-    height: 50px;
+    width: 100%;
+    max-width: 390px;
+    height: 51px;
     padding: 15px 10px;
     gap: 24px;
 
     background-color: transparent;
-    border: 1px dashed $clr-blue-100;
-    border-radius: 12px;
+    border: 1.5px dashed $clr-blue-400;
+    border-radius: 10px;
 
-    color: $clr-black-1000;
+    color: $clr-black-1100;
     font-family: 'DM Sans', sans-serif;
-    font-size: 13.12px;
-    font-weight: 400;
+    font-size: 16px;
 
     &:hover {
       background-color: $clr-blue-100;
@@ -108,78 +115,69 @@ button {
   }
 
   // Botão de login com Google
-  &.button-google {
-    width: 388px;
-    height: 44px;
-    gap: 10px;
+ &.button-google {
+  width: 100%;
+  max-width: 388px;
+  height: 44px;
+  padding: 10px 5px;
+  gap: 20px;
 
-    background-color: $clr-white-1100;
-    border: 1px solid $clr-blue-1000;
 
-    color: $clr-black-1100;
-    font-size: 18px;
-    font-weight: 400;
+  background-color: $clr-white-1000;
+  border: 1px solid #747775;
+  border-radius: 10px;
 
-    &:hover {
-      background-color: $clr-blue-100;
-    }
+  color: #121212;
+  font-family: 'Google Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
 
-    img {
-      width: 24px;
-      height: 24px;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      border: none;
-    }
+  &:hover {
+    background-color: $clr-blue-100;
   }
 
-  // Botões de notificação e filtro
-  &.button-notification,
-  &.button-filter {
-    border-radius: 12px;
-    box-sizing: border-box;
+  img {
+    width: 24px;
+    height: 24px;
+  }
+}
 
-    background-color: $clr-primary-100;
+ // Botões de notificação e filtro
+&.button-notification,
+&.button-filter {
+  width: 36px;
+  height: 36px;
 
-    &:hover {
-      background-color: $clr-primary-300;
-    }
+  border-radius: 10px;
+  box-sizing: border-box;
+  background-color: $clr-primary-100;
 
-    img {
-      width: 16px;
-      height: 16px;
-    }
+  &:hover {
+    background-color: $clr-primary-300;
   }
 
-  // Botão de notificações
-  &.button-notification {
-    width: 36px;
-    height: 36px;
-    padding: 9.2px;
-
-    border: 0.8px solid $clr-white-100;
+  img {
+    width: 16px;
+    height: 16px;
   }
+}
 
-  // Botão de filtro
-  &.button-filter {
-    width: 40px;
-    height: 40px;
-    padding: 11.7px;
+// Botão de notificações
+&.button-notification {
+  border: 0.8px solid $clr-primary-900;
+}
 
-    border: 0.8px solid $clr-primary-300;
-
-    img {
-      width: 15px;
-      height: 15px;
-    }
-  }
+// Botão de filtro
+&.button-filter {
+  border: 0.8px solid $clr-primary-300;
+}
 
   // Botões de pagamento por Pix e cartão
   &.button-payment,
   &.button-card {
-    width: 390px;
+    width: 100%;
     height: 64px;
+    padding: 16px;
     gap: 12px;
 
     background-color: $clr-black-1100;
@@ -189,25 +187,20 @@ button {
     }
 
     img {
-      width: 30px;
-      height: 30px;
-    }
-  }
-
-  // Ajuste do ícone do botão de cartão
-  &.button-card {
-    img {
-      width: 24px;
-      height: 24px;
+      width: 36px;
+      height: 36px;
     }
   }
 
   // Botões antigos de ação do Pix
   &.button-pix-action,
   &.button-pix-action-danger {
-    width: 390px;
-    height: 50px;
+    width: 100%;
+    padding: 10px 15px;
+    gap: 10px;
+    align-self: stretch;
 
+    background-color: $clr-blue-1100;
     border-radius: 8px;
     color: $clr-white-700;
     font-weight: 400;
@@ -221,8 +214,9 @@ button {
   // Botão para copiar o código Pix
   &.button-pix-copy {
     width: 300px;
-    height: 50px;
+    height: 56px;
     gap: 10px;
+    padding: 10px 20px;
 
     background-color: $clr-blue-1100;
     border-radius: 8px;
@@ -235,23 +229,25 @@ button {
     }
 
     img {
-      width: 30px;
-      height: 30px;
+      width: 36px;
+      height: 36px;
     }
   }
 
   // Botão para cancelar pagamento por Pix
   &.button-pix-cancel {
-    width: 330px;
-    height: 46px;
+    width: 272px;
+    height: 40px;
     gap: 10px;
+    padding: 10px 20px;
 
     background-color: $clr-white-1100;
     border: 1px solid $clr-black-800;
     border-radius: 5px;
 
     color: $clr-black-700;
-    font-size: 20px;
+    font-weight: 400;
+    font-size: 16px;
 
     &:hover {
       background-color: $clr-black-100;
@@ -260,8 +256,8 @@ button {
 
   // Botão de voltar
   &.button-back {
-    width: 10px;
-    height: 16.67px;
+    width: 36px;
+    height: 36px;
     padding: 0;
 
     background: transparent;
@@ -272,8 +268,26 @@ button {
     }
 
     img {
-      width: 10px;
-      height: 16.67px;
+      width: 9px;
+      height: 18px;
     }
   }
+
+  &.button-chat {
+  padding: 5px 10px;
+  gap: 5px;
+
+  border-radius: 5px;
+  border: 1px solid $clr-blue-600;
+  background: $clr-blue-100;
+  color: $clr-black-1000;
+
+  font-weight: normal;
+  font-size: 14px;
+
+  img {
+    width: 20px;
+    height: 20px;
+  }
+}
 }
