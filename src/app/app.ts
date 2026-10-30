@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { Chip } from './components/atoms/chip/chip';
 import { InputComponent } from './components/atoms/input/input';
 import { Button } from './components/atoms/button/button';
+import { Mapa } from './components/mapa/mapa';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,8 @@ import { Button } from './components/atoms/button/button';
     RouterOutlet,
     Chip,
     Button,
-    InputComponent
+    InputComponent,
+    Mapa
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss'
