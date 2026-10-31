@@ -1,30 +1,48 @@
-<div class="map-wrapper" [class.light-mode]="!isDarkMode">
-  
-  <!-- Controles Flutuantes (Canto Superior Direito) -->
-  <div class="floating-controls">
-    <button class="ctrl-btn" (click)="toggleTheme()" [title]="isDarkMode ? 'Modo Claro' : 'Modo Escuro'">
-      {{ isDarkMode ? '☀️' : '🌙' }}
-    </button>
-    <button class="ctrl-btn" (click)="toggleLeftPanel()" title="Menu Lateral">
-      📋
-    </button>
-  </div>
+<div class="app-screen-container">
+  <!-- Cabeçalho e Busca (Conforme Figma) -->
+  <div class="app-header">
+    <div class="user-greeting">
+      <span>Olá Rodraigo!</span>
+      <h2>Onde vai estacionar hoje ?</h2>
+    </div>
 
-  <!-- Painel Lateral Esquerdo -->
-  <div class="left-panel" [class.active]="isLeftPanelOpen">
-    <div class="panel-content">
-      <div class="panel-header">
-        <h3>Painel do Mapa</h3>
-        <button class="close-btn" (click)="toggleLeftPanel()">✕</button>
+    <div class="search-bar-container">
+      <div class="search-input-wrapper">
+        <span class="icon">🔍</span>
+        <input type="text" placeholder="Buscar endereço, bairro..." />
       </div>
-
-      <div class="panel-card">
-        <h4>Status do Sistema</h4>
-        <p>Mapa carregado via OpenStreetMap e sincronizado com os temas da aplicação.</p>
-      </div>
+      <button class="filter-btn" (click)="toggleTheme()" [title]="isDarkMode ? 'Modo Claro' : 'Modo Escuro'">
+        {{ isDarkMode ? '☀️' : '🌙' }}
+      </button>
     </div>
   </div>
 
-  <!-- Container do Mapa -->
-  <div #mapContainer class="map-container"></div>
+  <!-- Wrapper do Mapa -->
+  <div class="map-wrapper" [class.light-mode]="!isDarkMode">
+    <div #mapContainer class="map-container"></div>
+  </div>
+
+  <!-- Barra de Navegação Inferior (Conforme Figma) -->
+  <div class="bottom-nav">
+    <button class="nav-item active">
+      <span class="nav-icon">🏠</span>
+      <span>Início</span>
+    </button>
+    <button class="nav-item">
+      <span class="nav-icon">📅</span>
+      <span>Reservas</span>
+    </button>
+    <button class="nav-item">
+      <span class="nav-icon">💳</span>
+      <span>Pagamento</span>
+    </button>
+    <button class="nav-item">
+      <span class="nav-icon">💬</span>
+      <span>Conversas</span>
+    </button>
+    <button class="nav-item">
+      <span class="nav-icon">👤</span>
+      <span>Perfil</span>
+    </button>
+  </div>
 </div>

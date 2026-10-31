@@ -41,25 +41,24 @@ export class Mapa implements AfterViewInit, OnDestroy {
 
   // 1. Método initMap ATUALIZADO (Substitua o antigo por este)
   private initMap(): void {
-    if (!this.mapContainer?.nativeElement) return;
+  if (!this.mapContainer?.nativeElement) return;
 
-    this.map = new maplibregl.Map({
-      container: this.mapContainer.nativeElement,
-      style: this.mapStyle,
-      center: this.defaultCenter,
-      zoom: 11, // Zoom ajustado para visualizar a Grande SP como no Figma
-      attributionControl: { compact: true }
-    });
+  this.map = new maplibregl.Map({
+    container: this.mapContainer.nativeElement,
+    style: this.mapStyle,
+    center: this.defaultCenter,
+    zoom: 13.5, // Zoom aproximado para focar na região das vagas
+    attributionControl: { compact: true }
+  });
 
-    this.map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'bottom-right');
+  this.map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'bottom-right');
 
-    this.map.on('load', () => {
-      this.map?.resize();
-      // Executa os novos elementos visuais assim que o mapa carrega
-      this.adicionarRaioDeBusca();
-      this.adicionarPinosEstacionamento();
-    });
-  }
+  this.map.on('load', () => {
+    this.map?.resize();
+    this.adicionarRaioDeBusca();
+    this.adicionarPinosEstacionamento();
+  });
+}
 
   // 2. Desenha o círculo de raio centralizado (Novo método)
   private adicionarRaioDeBusca(): void {
