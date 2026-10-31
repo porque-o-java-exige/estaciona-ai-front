@@ -1,34 +1,30 @@
 <div class="map-wrapper" [class.light-mode]="!isDarkMode">
-  <!-- Referência do Angular (#mapContainer) em vez de ID estático -->
-  <div #mapContainer class="map-container"></div>
-
-  <!-- Botões Flutuantes de Ação -->
+  
+  <!-- Controles Flutuantes (Canto Superior Direito) -->
   <div class="floating-controls">
-    <button type="button" class="ctrl-btn" (click)="toggleLeftPanel()" title="Abrir Indicadores">
-      📊
-    </button>
-    <button type="button" class="ctrl-btn" (click)="toggleTheme()" title="Alternar Tema">
+    <button class="ctrl-btn" (click)="toggleTheme()" [title]="isDarkMode ? 'Modo Claro' : 'Modo Escuro'">
       {{ isDarkMode ? '☀️' : '🌙' }}
+    </button>
+    <button class="ctrl-btn" (click)="toggleLeftPanel()" title="Menu Lateral">
+      📋
     </button>
   </div>
 
   <!-- Painel Lateral Esquerdo -->
-  <aside class="left-panel" [class.active]="isLeftPanelOpen">
+  <div class="left-panel" [class.active]="isLeftPanelOpen">
     <div class="panel-content">
       <div class="panel-header">
-        <h3>Painel de Vagas & Indicadores</h3>
-        <button type="button" class="close-btn" (click)="toggleLeftPanel()">✕</button>
+        <h3>Painel do Mapa</h3>
+        <button class="close-btn" (click)="toggleLeftPanel()">✕</button>
       </div>
 
       <div class="panel-card">
-        <h4>Status de Ocupação</h4>
-        <p>Acompanhe o fluxo de vagas em tempo real.</p>
-      </div>
-
-      <div class="panel-card">
-        <h4>Estacionamentos Próximos</h4>
-        <p>Selecione um ponto no mapa para ver detalhes.</p>
+        <h4>Status do Sistema</h4>
+        <p>Mapa carregado via OpenStreetMap e sincronizado com os temas da aplicação.</p>
       </div>
     </div>
-  </aside>
+  </div>
+
+  <!-- Container do Mapa -->
+  <div #mapContainer class="map-container"></div>
 </div>
