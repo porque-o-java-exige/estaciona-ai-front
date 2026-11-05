@@ -1,1 +1,51 @@
-<p>reservas works!</p>
+<section class="reservas-page">
+  <header class="page-header">
+    <h2 class="titulo-pagina">Reservas</h2>
+    
+    <!-- Filtros por status -->
+    <div class="filtros-container">
+      <button 
+        type="button" 
+        class="filtro-btn" 
+        [class.active]="filtroSelecionado() === 'TODAS'"
+        (click)="selecionarFiltro('TODAS')">
+        Todas
+      </button>
+
+      <button 
+        type="button" 
+        class="filtro-btn" 
+        [class.active]="filtroSelecionado() === 'EM_ANDAMENTO'"
+        (click)="selecionarFiltro('EM_ANDAMENTO')">
+        Em andamento
+      </button>
+
+      <button 
+        type="button" 
+        class="filtro-btn" 
+        [class.active]="filtroSelecionado() === 'CONCLUIDA'"
+        (click)="selecionarFiltro('CONCLUIDA')">
+        Concluídas
+      </button>
+
+      <button 
+        type="button" 
+        class="filtro-btn" 
+        [class.active]="filtroSelecionado() === 'ATIVA'"
+        (click)="selecionarFiltro('ATIVA')">
+        Ativas
+      </button>
+    </div>
+  </header>
+
+  <!-- Listagem de Cards (Responsiva: 1 coluna mobile / 3 colunas desktop) -->
+  <div class="cards-grid">
+    @for (reserva of reservasFiltradas(); track reserva.id) {
+      <app-card-reserva [reserva]="reserva"></app-card-reserva>
+    } @empty {
+      <div class="lista-vazia">
+        <p>Nenhuma reserva encontrada para este filtro.</p>
+      </div>
+    }
+  </div>
+</section>

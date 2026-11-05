@@ -1,1 +1,35 @@
-<p>card-reserva works!</p>
+<article class="card-reserva">
+  <header class="card-header">
+    <div class="local-info">
+      <h3 class="estacionamento">{{ reserva().estacionamento }}</h3>
+      <span class="periodo">{{ reserva().data }} · {{ reserva().horario }}</span>
+    </div>
+
+    <!-- Reutilizando o componente Chip existente no projeto -->
+    <app-chip 
+      variant="status" 
+      [text]="statusLabel()" 
+      [isPendingOrDone]="isPendingOrDone()">
+    </app-chip>
+  </header>
+
+  <main class="card-body">
+    <div class="vaga-info">
+      <div class="icon-container">
+        <!-- Ícone do carro ou vaga -->
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M5 17h14M5 12h14M7 9l2-4h6l2 4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="detalhes-vaga">
+        <span class="label">Vaga reservada</span>
+        <strong class="identificacao">{{ reserva().vaga }} · {{ reserva().nivel }}</strong>
+      </div>
+    </div>
+
+    <div class="pagamento-info">
+      <span class="rotulo-pagamento">{{ reserva().rotuloPagamento }}</span>
+      <strong class="valor">{{ reserva().valor | currency:'BRL':'symbol':'1.0-2' }}</strong>
+    </div>
+  </main>
+</article>

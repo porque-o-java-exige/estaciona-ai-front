@@ -1,0 +1,92 @@
+@use '../../../../../styles/variables' as *;
+
+.card-reserva {
+  background-color: $clr-white-1100;
+  border: 1px solid $clr-blue-100;
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+
+  .local-info {
+    display: flex;
+    flex-direction: column;
+
+    .estacionamento {
+      font-size: 1rem;
+      font-weight: 600;
+      color: $clr-black-1100;
+      margin: 0;
+    }
+
+    .periodo {
+      font-size: 0.875rem;
+      color: $clr-black-600;
+    }
+  }
+}
+
+.card-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .vaga-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    .icon-container {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid $clr-blue-200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $clr-blue-900;
+    }
+
+    .detalhes-vaga {
+      display: flex;
+      flex-direction: column;
+
+      .label {
+        font-size: 0.75rem;
+        color: $clr-black-600;
+      }
+
+      .identificacao {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: $clr-black-1100;
+      }
+    }
+  }
+
+  .pagamento-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    .rotulo-pagamento {
+      font-size: 0.75rem;
+      color: $clr-black-600;
+    }
+
+    .valor {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: $clr-blue-1000;
+    }
+  }
+}
