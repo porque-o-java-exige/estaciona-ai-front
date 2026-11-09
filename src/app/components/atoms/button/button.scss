@@ -30,6 +30,17 @@ button {
     outline-offset: 2px;
   }
 
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  &.button-full-width {
+    max-width: 100% !important;
+    width: 100%;
+  }
+
   // Botão principal — Cadastrar / Entrar
   &.button-primary {
     max-width: 388px;

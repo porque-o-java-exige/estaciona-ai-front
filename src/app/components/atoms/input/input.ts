@@ -62,17 +62,17 @@ function formatLocalPhone(digits: string): string {
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => InputComponent),
+      useExisting: forwardRef(() => Input),
       multi: true,
     },
     {
       provide: NG_VALIDATORS,
-      useExisting: forwardRef(() => InputComponent),
+      useExisting: forwardRef(() => Input),
       multi: true,
     },
   ],
 })
-export class InputComponent implements ControlValueAccessor, Validator {
+export class Input implements ControlValueAccessor, Validator {
   type = input<InputHtmlType>('text');
   icon = input<InputIconType>('none');
   placeholder = input<string>('');
@@ -80,6 +80,10 @@ export class InputComponent implements ControlValueAccessor, Validator {
   errorMessage = input<string>('');
   isDisabled = model<boolean>(false);
   inputId = input<string>('');
+  name = input<string>('');
+  autocomplete = input<string>('');
+  enterkeyhint = input<string>('');
+  isRequired = input<boolean>(false);
   isShowSendButton = input<boolean>(false);
 
   send = output<string>();
@@ -279,3 +283,6 @@ export class InputComponent implements ControlValueAccessor, Validator {
     return EMAIL_PATTERN.test(v) ? null : { invalidEmail: true };
   }
 }
+
+export { Input as InputComponent };
+

@@ -1,0 +1,204 @@
+@use '../../../../styles/variables' as *;
+
+:host {
+  display: block;
+  position: relative;
+  width: 80px;
+  min-height: calc(100dvh - 92px);
+  flex-shrink: 0;
+  z-index: 35;
+
+  @media (max-width: $bp-mobile) {
+    display: none;
+  }
+}
+
+.app-sidebar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 80px;
+  min-height: 100%;
+  padding: 15px 16px;
+  background-color: $surface-page;
+  border-right: 1px solid $border-subtle;
+  overflow: hidden;
+  transition:
+    width 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.28s ease,
+    border-color 0.28s ease;
+
+  &:hover,
+  &:focus-within,
+  &.is-expanded {
+    width: 200px;
+    border-right-color: $border-brand-light;
+    // I through box-shadow may be fine, i will talk with Ryan and Vinicius to include it
+    // box-shadow: 10px 0 28px rgba(18, 18, 18, 0.1);
+
+    .app-sidebar-label {
+      opacity: 1;
+      max-width: 112px;
+      transform: translateX(0);
+    }
+  }
+
+  .app-sidebar-nav {
+    position: sticky;
+    top: 112px;
+    width: 100%;
+  }
+
+  .app-sidebar-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    width: 100%;
+  }
+
+  .app-sidebar-item {
+    width: 100%;
+  }
+
+  .app-sidebar-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 4px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: $text-strong;
+    transition:
+      background-color 0.22s ease,
+      transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 3px;
+      height: 0;
+      border-radius: 999px;
+      background-color: $surface-brand-primary;
+      transform: translateY(-50%);
+      transition: height 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    &:hover {
+      background-color: $surface-brand-tint;
+      transform: translateX(2px);
+
+      .app-sidebar-icon-box {
+        background-color: $surface-brand-soft;
+        border-color: $border-brand-hover;
+        transform: scale(1.05);
+      }
+
+      .app-sidebar-label {
+        color: $text-brand;
+      }
+    }
+
+    &:focus-visible {
+      outline: 2px solid $border-brand-strong;
+      outline-offset: 2px;
+    }
+
+    &.app-sidebar-link-active {
+      background-color: $surface-brand-tint;
+
+      &::before {
+        height: 22px;
+      }
+
+      .app-sidebar-icon-box {
+        background-color: $surface-brand-active;
+        border-color: $border-brand-strong;
+        box-shadow: 0 3px 10px rgba(30, 91, 183, 0.18);
+      }
+
+      .app-sidebar-label {
+        color: $text-brand;
+        font-weight: $fw-bold;
+      }
+    }
+  }
+
+  .app-sidebar-icon-box {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background-color: $surface-page;
+    border: 0.8px solid $border-brand;
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease,
+      transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.2s ease;
+  }
+
+  .app-sidebar-icon {
+    width: 18px;
+    height: 18px;
+    display: block;
+  }
+
+  .app-sidebar-badge {
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: 1.5px solid $surface-page;
+
+    &.app-sidebar-badge-yellow {
+      background-color: $status-warning;
+    }
+
+    &.app-sidebar-badge-red {
+      background-color: $status-danger;
+    }
+  }
+
+  .app-sidebar-label {
+    font: $fw-medium 16px/1.2 $font-heading;
+    color: $text-strong;
+    white-space: nowrap;
+    overflow: hidden;
+    opacity: 0;
+    max-width: 0;
+    transform: translateX(-8px);
+    transition:
+      opacity 0.2s ease 0.03s,
+      max-width 0.26s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.24s cubic-bezier(0.22, 1, 0.36, 1),
+      color 0.2s ease;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+
+    .app-sidebar-link,
+    .app-sidebar-link::before,
+    .app-sidebar-icon-box,
+    .app-sidebar-label {
+      transition: none;
+    }
+  }
+}

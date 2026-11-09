@@ -1,85 +1,165 @@
-$clr-white-100: #E6E6E6FF;
-$clr-white-200: #E8E8E8FF;
-$clr-white-300: #EAEAEAFF;
-$clr-white-400: #ECECECFF;
-$clr-white-500: #EEEEEEFF;
-$clr-white-600: #F0F0F0FF;
-$clr-white-700: #F2F2F2FF;
-$clr-white-800: #F4F4F4FF;
-$clr-white-900: #F6F6F6FF;
-$clr-white-1000: #F8F8F8FF;
-$clr-white-1100: #FAFAFAFF;
+// ==========================================================================
+// 1. PRIMITIVE PALETTE TOKENS (Figma Variable Collection — node-id=17-36)
+// ==========================================================================
 
-$clr-black-100: #E6E6E6FF;
-$clr-black-200: #D0D0D0FF;
-$clr-black-300: #BBBBBBFF;
-$clr-black-400: #A6A6A6FF;
-$clr-black-500: #919191FF;
-$clr-black-600: #7C7C7CFF;
-$clr-black-700: #676767FF;
-$clr-black-800: #515151FF;
-$clr-black-900: #3C3C3CFF;
-$clr-black-1000: #272727FF;
-$clr-black-1100: #121212FF;
+// colorWhite
+$clr-white-100: #E6E6E6;
+$clr-white-200: #E8E8E8;
+$clr-white-300: #EAEAEA;
+$clr-white-400: #ECECEC;
+$clr-white-500: #EEEEEE;
+$clr-white-600: #F0F0F0;
+$clr-white-700: #F2F2F2;
+$clr-white-800: #F4F4F4;
+$clr-white-900: #F6F6F6;
+$clr-white-1000: #F8F8F8;
+$clr-white-1100: #FAFAFA;
 
-$clr-primary-100: #CCE2FFFF;
-$clr-primary-200: #C6DFFFFF;
-$clr-primary-300: #C0DCFFFF;
-$clr-primary-400: #BBD8FFFF;
-$clr-primary-500: #B5D5FFFF;
-$clr-primary-600: #AFD2FFFF;
-$clr-primary-700: #A9CFFFFF;
-$clr-primary-800: #A3CBFFFF;
-$clr-primary-900: #9EC8FFFF;
-$clr-primary-1000: #98C5FFFF;
-$clr-primary-transparent-515: #92C2FF26;
+// colorBlack
+$clr-black-100: #E6E6E6;
+$clr-black-200: #D0D0D0;
+$clr-black-300: #BBBBBB;
+$clr-black-400: #A6A6A6;
+$clr-black-500: #919191;
+$clr-black-600: #7C7C7C;
+$clr-black-700: #676767;
+$clr-black-800: #515151;
+$clr-black-900: #3C3C3C;
+$clr-black-1000: #272727;
+$clr-black-1100: #121212;
 
-$clr-blue-100: #D3E2F8FF;
-$clr-blue-200: #BCD2F4FF;
-$clr-blue-300: #A4C2F0FF;
-$clr-blue-400: #8DB3ECFF;
-$clr-blue-500: #75A3E9FF;
-$clr-blue-600: #5E93E5FF;
-$clr-blue-700: #4683E1FF;
-$clr-blue-800: #2F74DDFF;
-$clr-blue-900: #2266CFFF;
-$clr-blue-1000: #1E5BB7FF;
-$clr-blue-1100: #154895FF;
-$clr-transparent-110: #D3E2F81A;
-$clr-transparent-125: #D3E2F840;
-$clr-transparent-150: #D3E2F880;
+// colorPrimary
+$clr-primary-100: #CCE2FF;
+$clr-primary-200: #C6DFFF;
+$clr-primary-300: #C0DCFF;
+$clr-primary-400: #BBD8FF;
+$clr-primary-500: #B5D5FF;
+$clr-primary-600: #AFD2FF;
+$clr-primary-700: #A9CFFF;
+$clr-primary-800: #A3CBFF;
+$clr-primary-900: #9EC8FF;
+$clr-primary-1000: #98C5FF;
+$clr-primary-transparent-515: rgba(146, 194, 255, 0.15);
 
-$clr-red-100: #F6D5DBFF;
-$clr-red-200: #F2C4CCFF;
-$clr-red-300: #EFB3BDFF;
-$clr-red-400: #EBA2AEFF;
-$clr-red-500: #E7919FFF;
-$clr-red-600: #E37F91FF;
-$clr-red-700: #E06E82FF;
-$clr-red-800: #DC5D73FF;
-$clr-red-900: #D84C64FF;
-$clr-red-1000: #D53B55FF;
+// colorBlue
+$clr-blue-100: #D3E2F8;
+$clr-blue-200: #BCD2F4;
+$clr-blue-300: #A4C2F0;
+$clr-blue-400: #8DB3EC;
+$clr-blue-500: #75A3E9;
+$clr-blue-600: #5E93E5;
+$clr-blue-700: #4683E1;
+$clr-blue-800: #2F74DD;
+$clr-blue-900: #2266CF;
+$clr-blue-1000: #1E5BB7;
+$clr-blue-1100: #154895;
+$clr-transparent-110: rgba(211, 226, 248, 0.1);
+$clr-transparent-125: rgba(211, 226, 248, 0.25);
+$clr-transparent-150: rgba(211, 226, 248, 0.5);
 
-$clr-green-100: #D3F8EAFF;
-$clr-green-200: #C0F4E1FF;
-$clr-green-300: #ADF1D8FF;
-$clr-green-400: #9AEECFFF;
-$clr-green-500: #86EAC5FF;
-$clr-green-600: #73E7BCFF;
-$clr-green-700: #60E4B3FF;
-$clr-green-800: #4CE0AAFF;
-$clr-green-900: #39DDA0FF;
-$clr-green-1000: #26DA97FF;
-$clr-green-1100: #34CCA4FF;
+// colorRed
+$clr-red-100: #F6D5DB;
+$clr-red-200: #F2C4CC;
+$clr-red-300: #EFB3BD;
+$clr-red-400: #EBA2AE;
+$clr-red-500: #E7919F;
+$clr-red-600: #E37F91;
+$clr-red-700: #E06E82;
+$clr-red-800: #DC5D73;
+$clr-red-900: #D84C64;
+$clr-red-1000: #D53B55;
 
-$clr-yellow-100: #FDECCEFF;
-$clr-yellow-200: #FCE4BBFF;
-$clr-yellow-300: #FBDCA7FF;
-$clr-yellow-400: #FBD494FF;
-$clr-yellow-500: #FACD80FF;
-$clr-yellow-600: #F9C56DFF;
-$clr-yellow-700: #F8BD59FF;
-$clr-yellow-800: #F7B546FF;
-$clr-yellow-900: #F7AE32FF;
-$clr-yellow-1000: #F6A61FFF;
-$clr-yellow-1100: #F59E0BFF;
+// colorGreen
+$clr-green-100: #D3F8EA;
+$clr-green-200: #C0F4E1;
+$clr-green-300: #ADF1D8;
+$clr-green-400: #9AEECF;
+$clr-green-500: #86EAC5;
+$clr-green-600: #73E7BC;
+$clr-green-700: #60E4B3;
+$clr-green-800: #4CE0AA;
+$clr-green-900: #39DDA0;
+$clr-green-1000: #26DA97;
+$clr-green-1100: #34CCA4;
+
+// colorYellow
+$clr-yellow-100: #FDECCE;
+$clr-yellow-200: #FCE4BB;
+$clr-yellow-300: #FBDCA7;
+$clr-yellow-400: #FBD494;
+$clr-yellow-500: #FACD80;
+$clr-yellow-600: #F9C56D;
+$clr-yellow-700: #F8BD59;
+$clr-yellow-800: #F7B546;
+$clr-yellow-900: #F7AE32;
+$clr-yellow-1000: #F6A61F;
+$clr-yellow-1100: #F59E0B;
+
+// ==========================================================================
+// 2. SEMANTIC DESIGN TOKENS (Mapped to :root CSS Custom Properties)
+// ==========================================================================
+
+// Surfaces & Backgrounds
+$surface-page: var(--bg);
+$surface-page-subtle: var(--bg-sub);
+$surface-card: var(--card);
+$surface-elevated: var(--elev);
+$surface-input: var(--inp);
+$surface-muted: var(--muted);
+$surface-brand-tint: var(--tint);
+$surface-brand-subtle: var(--b-sub);
+$surface-brand-soft: var(--b-soft);
+$surface-brand-active: var(--b-act);
+$surface-brand-primary: var(--brand);
+$surface-brand-strong: var(--brand-str);
+
+// Typography & Text
+$text-strong: var(--tx-str);
+$text-primary: var(--tx);
+$text-secondary: var(--tx-sec);
+$text-body: var(--tx-body);
+$text-muted: var(--tx-mut);
+$text-placeholder: var(--tx-ph);
+$text-brand: var(--tx-brand);
+$text-brand-hover: var(--tx-hov);
+$text-brand-accent: var(--tx-acc);
+$text-brand-strong: var(--tx-b-str);
+$text-on-brand: var(--tx-on);
+
+// Borders & Dividers
+$border-subtle: var(--bd-sub);
+$border-neutral: var(--bd-neu);
+$border-brand-subtle: var(--bd-b-sub);
+$border-brand-light: var(--bd-b-lt);
+$border-brand-soft: var(--bd-b-soft);
+$border-brand: var(--bd-b);
+$border-brand-accent: var(--bd-b-acc);
+$border-brand-hover: var(--bd-b-hov);
+$border-brand-strong: var(--bd-b-str);
+
+// Status & Feedback
+$status-success: var(--ok);
+$status-success-strong: var(--ok-str);
+$status-success-bg: var(--ok-bg);
+$status-warning: var(--warn);
+$status-warning-soft: var(--warn-soft);
+$status-warning-bg: var(--warn-bg);
+$status-danger: var(--err);
+$status-danger-bg: var(--err-bg);
+
+// ==========================================================================
+// 3. TYPOGRAPHY & BREAKPOINTS
+// ==========================================================================
+$font-primary: 'Space Grotesk', sans-serif;
+$font-secondary: 'Inter', sans-serif;
+$font-heading: 'Space Grotesk', sans-serif;
+$font-body: 'Inter', sans-serif;
+$font-link: 'Roboto', sans-serif;
+$font-logo: 'Fugaz One', cursive;
+
+$fw-regular: 400;
+$fw-medium: 500;
+$fw-bold: 700;
+
+$bp-mobile: 768px;
+$bp-tablet: 1024px;

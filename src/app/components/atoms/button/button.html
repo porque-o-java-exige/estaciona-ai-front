@@ -1,10 +1,10 @@
-<button [class]="'button-' + variant()">
-    @if(iconPath())
-    {
-      <img
-    [src]="iconPath()!"
-    alt="icon"
-  >
-    }
- {{ text() }} 
+<button
+  [type]="buttonType()"
+  [disabled]="isDisabled()"
+  [class]="'button-' + variant()"
+  [class.button-full-width]="fullWidth()">
+  @if (iconPath()) {
+    <img [src]="iconPath()!" alt="" aria-hidden="true" />
+  }
+  {{ text() }}
 </button>

@@ -1,0 +1,218 @@
+<div class="payment-page">
+  <header class="payment-header">
+    <h1 class="payment-title">Pagamento</h1>
+
+    <div class="payment-mode-switch" role="group" aria-label="Modo de cobrança">
+      <button
+        type="button"
+        class="payment-mode-btn"
+        [class.is-active]="billingMode() === 'day'"
+        (click)="onSetBillingMode('day')">
+        Por dia (Calendário)
+      </button>
+      <button
+        type="button"
+        class="payment-mode-btn"
+        [class.is-active]="billingMode() === 'hour'"
+        (click)="onSetBillingMode('hour')">
+        Por hora
+      </button>
+    </div>
+  </header>
+
+  @if (showPixStage()) {
+    <app-pix-payment-card
+      [amount]="finalTotal()"
+      [pixCode]="pixCode()"
+      (cancelConfirmed)="onCancelPix()">
+    </app-pix-payment-card>
+  } @else {
+    <div class="payment-layout">
+      <section class="payment-candidates-grid" aria-label="Garagens para pagamento">
+        @for (item of candidates(); track item.id) {
+          <article
+            class="payment-garage-card"
+            [class.is-selected]="selectedBookingId() === item.id"
+            (click)="onSelectCandidate(item.id)">
+            <img
+              [src]="item.imageUrl"
+              [alt]="item.garageName"
+              loading="lazy"
+              width="320"
+              height="150"
+              class="payment-garage-photo" />
+
+            <div class="payment-garage-body">
+              <div class="payment-garage-info">
+                <h2 class="payment-garage-name">{{ item.garageName }}</h2>
+                <p class="payment-garage-addr">{{ item.address }}</p>
+
+                <div class="payment-garage-meta">
+                  <span>◷ {{ item.billingLabel }}</span>
+                  <span>⌖ {{ item.distanceMeters }}</span>
+                  <span>$ R$16,00</span>
+                </div>
+              </div>
+
+              <button
+                type="button"
+                class="payment-garage-check"
+                [class.is-checked]="selectedBookingId() === item.id"
+                [attr.aria-label]="'Selecionar ' + item.garageName">
+                @if (selectedBookingId() === item.id) {
+                  <span>✓</span>
+                }
+              </button>
+            </div>
+          </article>
+        }
+      </section>
+
+      <aside class="payment-sidebar">
+        @if (billingMode() === 'day') {
+          <div class="payment-calendar-card">
+            <h2 class="payment-calendar-month">Mês atual</h2>
+
+            <div class="payment-calendar-weekdays">
+              @for (dayName of weekDays; track dayName) {
+                <span>{{ dayName }}</span>
+              }
+            </div>
+
+            <div class="payment-calendar-days">
+              @for (day of calendarDays; track day) {
+                <button
+                  type="button"
+                  class="payment-day-btn"
+                  [class.is-selected]="isDaySelected(day)"
+                  [class.is-highlight]="day === 14 && isDaySelected(day)"
+                  (click)="onToggleDay(day)">
+                  {{ day }}
+                </button>
+              }
+            </div>
+
+            <app-button
+              variant="tertiary"
+              text="Reservar Vaga"
+              (click)="onReserveSpot()">
+            </app-button>
+          </div>
+        }
+
+        <div class="payment-summary-card">
+          <div class="payment-summary-head">
+            <h2 class="payment-summary-title">Duração</h2>
+
+            @if (billingMode() === 'hour') {
+              <div class="payment-hour-stepper">
+                <button
+                  type="button"
+                  class="payment-step-btn"
+                  (click)="onDecrementHours()"
+                  aria-label="Diminuir horas">
+                  −
+                </button>
+                <strong>{{ selectedHours() }}h</strong>
+                <button
+                  type="button"
+                  class="payment-step-btn is-plus"
+                  (click)="onIncrementHours()"
+                  aria-label="Aumentar horas">
+                  +
+                </button>
+              </div>
+            }
+          </div>
+
+          <div class="payment-summary-rows">
+            <div class="payment-summary-row">
+              <span>
+                {{
+                  billingMode() === 'hour'
+                    ? selectedHours() + 'h x R$8/h'
+                    : 'Dias escolhidos (' + selectedDays().length + ')'
+                }}
+              </span>
+              <strong>R${{ formatCurrency(baseSubtotal()) }}</strong>
+            </div>
+
+            <div class="payment-summary-row">
+              <span>Taxa de Serviço</span>
+              <strong>R${{ formatCurrency(serviceFee()) }}</strong>
+            </div>
+
+            <div class="payment-summary-row is-discount">
+              <span>Desconto</span>
+              <strong>- R${{ formatCurrency(discountAmount()) }}</strong>
+            </div>
+          </div>
+
+          <div class="payment-summary-total">
+            <span>Total</span>
+            <strong>R${{ formatCurrency(finalTotal()) }}</strong>
+          </div>
+        </div>
+
+        <div class="payment-methods-card">
+          <h2 class="payment-methods-title">Formas de pagamento</h2>
+
+          <button
+            type="button"
+            class="payment-method-option"
+            [class.is-active]="paymentMethod() === 'pix'"
+            (click)="onSelectPaymentMethod('pix')">
+            <div class="payment-method-left">
+              <img src="assets/icons/pix-icon.svg" alt="" width="34" height="34" />
+              <div>
+                <strong>Pix</strong>
+                <span>Aprovação Instantânea</span>
+              </div>
+            </div>
+            <span class="payment-radio" [class.is-checked]="paymentMethod() === 'pix'"></span>
+          </button>
+
+          <button
+            type="button"
+            class="payment-method-option"
+            [class.is-active]="paymentMethod() === 'card'"
+            (click)="onSelectPaymentMethod('card')">
+            <div class="payment-method-left">
+              <img src="assets/icons/card-icon.svg" alt="" width="34" height="34" />
+              <div>
+                <strong>Cartão **** 4812</strong>
+                <span>Débito</span>
+              </div>
+            </div>
+            <span class="payment-radio" [class.is-checked]="paymentMethod() === 'card'"></span>
+          </button>
+
+          <button
+            type="button"
+            class="payment-method-option"
+            [class.is-active]="paymentMethod() === 'wallet'"
+            (click)="onSelectPaymentMethod('wallet')">
+            <div class="payment-method-left">
+              <img src="assets/images/wallet-icon.png" alt="" width="34" height="34" />
+              <div>
+                <strong>Carteira Estaciona AI</strong>
+                <span>Saldo: R${{ formatCurrency(walletBalance()) }}</span>
+              </div>
+            </div>
+            <span class="payment-radio" [class.is-checked]="paymentMethod() === 'wallet'"></span>
+          </button>
+        </div>
+
+        <app-button
+          [variant]="payButtonVariant()"
+          [text]="payButtonText()"
+          [fullWidth]="true"
+          (click)="onSubmitPayment()">
+        </app-button>
+      </aside>
+    </div>
+  }
+
+  <app-footer></app-footer>
+</div>
+

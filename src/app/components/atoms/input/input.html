@@ -54,7 +54,9 @@
         </select>
         }
 
-        <input #controlInput [id]="inputId() || null" [type]="resolvedType()" [placeholder]="placeholder()" [disabled]="isDisabled()"
+        <input #controlInput [id]="inputId() || null" [attr.name]="name() || null" [type]="resolvedType()" [placeholder]="placeholder()" [disabled]="isDisabled()"
+            [required]="isRequired()" [attr.autocomplete]="autocomplete() || null" [attr.enterkeyhint]="enterkeyhint() || null"
+            [attr.spellcheck]="type() === 'email' ? 'false' : null"
             [value]="controlDisplayValue()" (input)="handleInput($any($event.target).value)" (focus)="handleFocus()"
             (blur)="handleBlur()" (keyup.enter)="isShowSendButton() && handleSend()" class="app-input-control" />
 

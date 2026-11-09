@@ -1,0 +1,86 @@
+<div class="pix-stage">
+  <div
+    #toastPopover
+    id="pix-copied-toast"
+    popover="manual"
+    class="pix-toast"
+    [class.is-fallback-open]="codeCopied()"
+    role="status"
+    aria-live="polite">
+    <span class="pix-toast-check" aria-hidden="true">✓</span>
+    <span class="pix-toast-text">Codigo pix copiado com sucesso</span>
+    <button
+      type="button"
+      class="pix-toast-close"
+      popovertarget="pix-copied-toast"
+      popovertargetaction="hide"
+      (click)="hideToast()"
+      aria-label="Fechar notificação">
+      ×
+    </button>
+  </div>
+
+  <div class="pix-card">
+    <div class="pix-card-header">
+      <h2 class="pix-card-title">Pagamento por Pix:</h2>
+      <p class="pix-card-amount">R${{ formattedAmount() }}</p>
+    </div>
+
+    <p class="pix-card-instruction">
+      copie e cole o codigo para pagar com o seu banco pelo app.
+    </p>
+
+    <div class="pix-code-box">
+      <code class="pix-code-value">{{ pixCode() }}</code>
+    </div>
+
+    <div class="pix-progress-group">
+      <div class="pix-progress-bar" aria-hidden="true"></div>
+      <span class="pix-progress-timer">expira em 10:00</span>
+    </div>
+
+    <div class="pix-copy-action">
+      <app-button
+        variant="pix-copy"
+        text="Copiar codigo pix"
+        (click)="onCopyPixCode()">
+      </app-button>
+    </div>
+  </div>
+
+  <app-button
+    variant="pix-cancel"
+    text="Cancelar pagamento por pix ?"
+    (click)="onOpenCancelModal()">
+  </app-button>
+
+  <dialog
+    #cancelDialog
+    id="cancel-pix-dialog"
+    class="pix-cancel-dialog"
+    aria-labelledby="cancel-pix-title"
+    (close)="onDialogClose()">
+    <h3 id="cancel-pix-title" class="pix-dialog-title">
+      Deseja cancelar o pagamento por Pix?
+    </h3>
+    <p class="pix-dialog-desc">
+      O código gerado perderá a validade e você voltará para a seleção de formas de pagamento.
+    </p>
+    <form method="dialog" class="pix-dialog-actions">
+      <button
+        type="submit"
+        value="keep"
+        autofocus
+        class="pix-dialog-btn pix-dialog-btn-keep">
+        Continuar com Pix
+      </button>
+      <button
+        type="submit"
+        value="confirm-cancel"
+        class="pix-dialog-btn pix-dialog-btn-danger">
+        Sim, cancelar Pix
+      </button>
+    </form>
+  </dialog>
+</div>
+

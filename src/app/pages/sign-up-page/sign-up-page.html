@@ -1,0 +1,105 @@
+<section class="auth-page">
+  <div class="auth-mobile-logo">
+    <app-logo size="md" linkTo="/sign-up"></app-logo>
+  </div>
+
+  <div class="auth-card">
+    <div class="auth-desktop-logo">
+      <app-logo size="lg" linkTo="/sign-up"></app-logo>
+    </div>
+
+    <form class="auth-form" (ngSubmit)="handleSubmit()" novalidate>
+      <div class="auth-field">
+        <label class="sr-only" for="name">Nome</label>
+        <app-input
+          inputId="name"
+          name="name"
+          type="text"
+          icon="user"
+          autocomplete="name"
+          enterkeyhint="next"
+          [isRequired]="true"
+          placeholder="Nome"
+          hint="exemplo → Arthur"
+          [(ngModel)]="name">
+        </app-input>
+      </div>
+
+      <div class="auth-field">
+        <label class="sr-only" for="email">E-mail</label>
+        <app-input
+          inputId="email"
+          name="email"
+          type="email"
+          icon="email"
+          autocomplete="username"
+          enterkeyhint="next"
+          [isRequired]="true"
+          placeholder="meuexemplodeemail@email.com"
+          hint="exemplo → meuexemplodeemail@email.com"
+          [(ngModel)]="email">
+        </app-input>
+      </div>
+
+      <div class="auth-field">
+        <label class="sr-only" for="new-password">Senha</label>
+        <app-input
+          inputId="new-password"
+          name="new-password"
+          type="password"
+          icon="password"
+          autocomplete="new-password"
+          enterkeyhint="next"
+          [isRequired]="true"
+          placeholder="**************"
+          hint="exemplo → meuexemplodesenha123@"
+          [(ngModel)]="password">
+        </app-input>
+      </div>
+
+      <div class="auth-field">
+        <label class="sr-only" for="phone">Telefone</label>
+        <app-input
+          inputId="phone"
+          name="phone"
+          type="tel"
+          icon="phone"
+          autocomplete="tel"
+          enterkeyhint="done"
+          placeholder="+(DDI) DDD DD"
+          hint="exemplo → +55 (11) 11111 1111"
+          [errorMessage]="formError()"
+          [(ngModel)]="phone">
+        </app-input>
+      </div>
+
+      <app-button
+        variant="primary"
+        buttonType="submit"
+        [fullWidth]="true"
+        text="Cadastrar">
+      </app-button>
+    </form>
+
+    <div class="auth-social-section">
+      <div class="auth-divider">
+        <span class="auth-divider-bar"></span>
+        <span class="auth-divider-text">Ou entre com:</span>
+        <span class="auth-divider-bar"></span>
+      </div>
+
+      <app-button
+        variant="google"
+        buttonType="button"
+        [fullWidth]="true"
+        text="Continuar com o Google"
+        (click)="handleGoogleSignUp()">
+      </app-button>
+
+      <a routerLink="/sign-in" class="auth-link auth-switch-link">
+        Já tenho uma conta
+      </a>
+    </div>
+  </div>
+</section>
+

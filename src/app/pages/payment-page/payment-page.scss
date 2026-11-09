@@ -1,0 +1,275 @@
+@use '../../../styles/variables' as *;
+
+.payment-page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 15px 25px 25px;
+  max-width: 1560px;
+  margin: 0 auto;
+  width: 100%;
+
+  @media (max-width: $bp-mobile) {
+    padding: 15px 16px 96px;
+  }
+}
+
+.payment-header,
+.payment-garage-body,
+.payment-summary-head,
+.payment-summary-row,
+.payment-summary-total,
+.payment-method-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.payment-header {
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid $clr-primary-300;
+}
+
+.payment-title {
+  margin: 0;
+  font: $fw-bold 24px $font-heading;
+}
+
+.payment-mode-switch,
+.payment-hour-stepper,
+.payment-garage-meta,
+.payment-method-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.payment-mode-btn {
+  padding: 6px 14px;
+  border-radius: 30px;
+  border: 1px solid $clr-primary-300;
+  background: $clr-white-1100;
+  color: $clr-blue-600;
+  font: 14px $font-heading;
+  cursor: pointer;
+
+  &.is-active {
+    background: $clr-blue-1000;
+    border-color: $clr-blue-1000;
+    color: $clr-white-1100;
+  }
+}
+
+.payment-layout {
+  display: grid;
+  grid-template-columns: 1fr 453px;
+  gap: 24px;
+  align-items: start;
+
+  @media (max-width: 1180px) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.payment-candidates-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 15px;
+
+  @media (max-width: $bp-tablet) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (max-width: $bp-mobile) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.payment-garage-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid $clr-primary-100;
+  border-radius: 8px;
+  background: $clr-white-1100;
+  overflow: hidden;
+  opacity: 0.62;
+  cursor: pointer;
+
+  &.is-selected,
+  &:hover {
+    opacity: 1;
+    border-color: $clr-blue-600;
+  }
+}
+
+.payment-garage-photo {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.payment-garage-body {
+  padding: 12px 16px;
+}
+
+.payment-garage-name {
+  margin: 0;
+  font: $fw-bold 16px $font-heading;
+}
+
+.payment-garage-addr {
+  margin: 2px 0 8px;
+  font-size: 14px;
+  color: $clr-black-700;
+}
+
+.payment-garage-meta {
+  font-size: 13px;
+  color: $clr-blue-400;
+}
+
+.payment-garage-check {
+  width: 28px;
+  height: 28px;
+  border: 1px solid $clr-primary-1000;
+  border-radius: 4px;
+  background: none;
+  color: $clr-blue-1000;
+  font-weight: $fw-bold;
+}
+
+.payment-sidebar,
+.payment-calendar-card,
+.payment-summary-card,
+.payment-methods-card,
+.payment-summary-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.payment-calendar-card,
+.payment-summary-card,
+.payment-methods-card {
+  padding: 16px 20px;
+  border-radius: 15px;
+  border: 1px solid $clr-blue-300;
+  background: $clr-white-1100;
+
+  h2 {
+    margin: 0;
+    font: $fw-medium 20px $font-heading;
+  }
+}
+
+.payment-calendar-month,
+.payment-calendar-weekdays,
+.payment-calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  text-align: center;
+}
+
+.payment-calendar-month {
+  display: block;
+}
+
+.payment-day-btn,
+.payment-step-btn {
+  width: 28px;
+  height: 28px;
+  margin: 0 auto;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  background: $clr-white-1000;
+  font: 14px $font-heading;
+  cursor: pointer;
+}
+
+.payment-day-btn {
+  &.is-selected {
+    border-color: $clr-blue-300;
+    font-weight: $fw-bold;
+  }
+
+  &.is-highlight {
+    border-color: $clr-yellow-900;
+  }
+}
+
+.payment-step-btn {
+  background: $clr-primary-100;
+  color: $clr-blue-1000;
+  font-weight: $fw-bold;
+
+  &.is-plus {
+    background: $clr-blue-1000;
+    color: $clr-white-1100;
+  }
+}
+
+.payment-summary-rows {
+  gap: 6px;
+  padding: 8px 0;
+  border-block: 1px solid $clr-primary-100;
+}
+
+.payment-summary-row,
+.payment-summary-total {
+  font: 15px $font-heading;
+  color: $clr-blue-500;
+
+  strong {
+    color: $clr-blue-1000;
+  }
+
+  &.is-discount strong {
+    color: $clr-green-1000;
+  }
+}
+
+.payment-summary-total {
+  font: $fw-bold 20px $font-heading;
+  color: $clr-black-1100;
+}
+
+.payment-method-option {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid $clr-primary-1000;
+  background: none;
+  cursor: pointer;
+
+  &.is-active {
+    background: rgba(204, 226, 255, 0.3);
+  }
+}
+
+.payment-method-left {
+  text-align: left;
+
+  div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  strong {
+    font: $fw-bold 15px $font-heading;
+    color: $clr-blue-1000;
+  }
+}
+
+.payment-radio {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid $clr-blue-1000;
+
+  &.is-checked {
+    background: $clr-blue-1000;
+    box-shadow: inset 0 0 0 3px $clr-white-1000;
+  }
+}

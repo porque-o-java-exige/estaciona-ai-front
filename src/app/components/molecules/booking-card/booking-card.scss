@@ -1,0 +1,144 @@
+@use '../../../../styles/variables' as *;
+
+:host {
+  display: block;
+  width: 100%;
+  min-width: 0;
+}
+
+.booking-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: $clr-white-1000;
+  border: 1px solid $clr-primary-300;
+  border-radius: 15px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    border-color: $clr-blue-600;
+    box-shadow: 0 8px 20px rgba(30, 91, 183, 0.12);
+  }
+}
+
+.booking-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 20px;
+
+  &.header-active {
+    background-color: $clr-transparent-150;
+  }
+
+  &.header-progress {
+    background-color: $clr-transparent-125;
+  }
+
+  &.header-done {
+    background-color: $clr-transparent-110;
+  }
+
+  ::ng-deep .chip-status {
+    border-radius: 30px;
+    padding: 3px 12px;
+  }
+}
+
+.booking-card-location {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.booking-card-title {
+  margin: 0;
+  font-family: $font-heading;
+  font-size: 16px;
+  font-weight: $fw-medium;
+  color: $clr-black-1000;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.booking-card-datetime {
+  margin: 0;
+  font-family: $font-heading;
+  font-size: 14px;
+  font-weight: $fw-regular;
+  color: $clr-black-600;
+}
+
+.booking-card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 20px;
+}
+
+.booking-card-spot-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.booking-card-icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  border: 0.8px solid $clr-blue-500;
+  background-color: $clr-white-1100;
+  flex-shrink: 0;
+}
+
+.booking-card-spot-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.booking-card-spot-label {
+  font-family: $font-heading;
+  font-size: 14px;
+  color: $clr-black-600;
+}
+
+.booking-card-spot-code {
+  font-family: $font-heading;
+  font-size: 16px;
+  font-weight: $fw-medium;
+  color: $clr-black-1000;
+}
+
+.booking-card-price-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.booking-card-price-label {
+  font-family: $font-heading;
+  font-size: 13px;
+  color: $clr-black-600;
+}
+
+.booking-card-price-value {
+  font-family: $font-heading;
+  font-size: 24px;
+  font-weight: $fw-bold;
+  line-height: 1.1;
+  color: $clr-blue-1000;
+}
+

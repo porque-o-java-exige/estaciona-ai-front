@@ -1,0 +1,46 @@
+<a
+  class="garage-card"
+  [class.is-selected]="selected()"
+  [routerLink]="['/list/details']"
+  [queryParams]="{ id: garage().id }"
+  (click)="onSelectCard()"
+  [attr.aria-label]="'Ver detalhes de ' + garage().name">
+  <img
+    [src]="garage().imageUrl"
+    [alt]="garage().name"
+    loading="lazy"
+    width="90"
+    height="90"
+    class="garage-card-image" />
+
+  <div class="garage-card-content">
+    <div class="garage-card-header">
+      <div class="garage-card-titles">
+        <h3 class="garage-card-title">{{ garage().name }}</h3>
+        <p class="garage-card-address">{{ garage().address }}</p>
+      </div>
+
+      <span
+        class="garage-card-spots"
+        [class]="'spots-' + garage().availabilityLevel">
+        {{ spotsLabel() }}
+      </span>
+    </div>
+
+    <div class="garage-card-footer">
+      <div class="garage-card-meta">
+        <img
+          src="assets/icons/star-icon.svg"
+          alt=""
+          aria-hidden="true"
+          width="13"
+          height="13"
+          class="garage-card-star" />
+        <span class="garage-card-meta-text">{{ metaSummary() }}</span>
+      </div>
+
+      <span class="garage-card-price">R${{ garage().hourlyPrice }}/h</span>
+    </div>
+  </div>
+</a>
+

@@ -1,0 +1,38 @@
+<div class="booking-page">
+  <header class="booking-header">
+    <h1 class="booking-title">Reservas</h1>
+
+    <nav class="booking-filters" aria-label="Filtrar reservas por status">
+      @for (option of filterOptions; track option) {
+        <button
+          type="button"
+          class="booking-filter-btn"
+          (click)="onSelectFilter(option)">
+          <app-chip
+            variant="reservation-filter"
+            [text]="option"
+            [isActive]="activeFilter() === option">
+          </app-chip>
+        </button>
+      }
+    </nav>
+  </header>
+
+  @if (bookings().length > 0) {
+    <section class="booking-grid" aria-label="Lista de reservas">
+      @for (item of bookings(); track item.id) {
+        <app-booking-card
+          [booking]="item"
+          (cardSelect)="onSelectBooking($event)">
+        </app-booking-card>
+      }
+    </section>
+  } @else {
+    <div class="booking-empty">
+      <p>Nenhuma reserva encontrada neste filtro.</p>
+    </div>
+  }
+
+  <app-footer></app-footer>
+</div>
+

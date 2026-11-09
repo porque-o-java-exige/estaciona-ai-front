@@ -1,0 +1,172 @@
+@use '../../../../styles/variables' as *;
+
+:host {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.garage-card {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  min-height: 90px;
+  background-color: rgba(152, 197, 255, 0.14);
+  border: 1px solid rgba(158, 200, 255, 0.35);
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.12);
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease,
+    background-color 0.18s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    background-color: rgba(152, 197, 255, 0.22);
+    border-color: $clr-blue-600;
+    box-shadow: 4px 6px 14px 0px rgba(30, 91, 183, 0.16);
+  }
+
+  &.is-selected {
+    border-color: $clr-blue-1000;
+    background-color: rgba(152, 197, 255, 0.26);
+  }
+}
+
+.garage-card-image {
+  width: 90px;
+  min-width: 90px;
+  height: auto;
+  min-height: 90px;
+  object-fit: cover;
+  border-radius: 10px 0 0 10px;
+  display: block;
+  flex-shrink: 0;
+}
+
+.garage-card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 11px;
+  flex: 1;
+  min-width: 0;
+  padding: 8px 10px 8px 0;
+}
+
+.garage-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  min-width: 0;
+}
+
+.garage-card-titles {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.garage-card-title {
+  margin: 0;
+  font-family: $font-body;
+  font-size: 16px;
+  font-weight: $fw-bold;
+  line-height: 1.25;
+  color: $clr-black-1100;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.garage-card-address {
+  margin: 0;
+  font-family: $font-body;
+  font-size: 14px;
+  font-weight: $fw-regular;
+  line-height: 1.3;
+  color: $text-body;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.garage-card-spots {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 8px;
+  border-radius: 15px;
+  font-family: $font-body;
+  font-size: 12px;
+  font-weight: $fw-bold;
+  line-height: 1.5;
+  white-space: nowrap;
+  flex-shrink: 0;
+
+  &.spots-high {
+    background-color: $surface-brand-soft;
+    color: $text-brand;
+  }
+
+  &.spots-medium {
+    background-color: $status-warning-bg;
+    color: $status-warning;
+  }
+
+  &.spots-low {
+    background-color: $status-danger-bg;
+    color: $status-danger;
+  }
+}
+
+.garage-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-width: 0;
+}
+
+.garage-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+}
+
+.garage-card-star {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+}
+
+.garage-card-meta-text {
+  font-family: $font-body;
+  font-size: 12px;
+  font-weight: $fw-regular;
+  line-height: 1.4;
+  color: $text-body;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.garage-card-price {
+  font-family: $font-body;
+  font-size: 15px;
+  font-weight: $fw-bold;
+  line-height: 1.3;
+  color: $clr-blue-1000;
+  white-space: nowrap;
+  flex-shrink: 0;
+}

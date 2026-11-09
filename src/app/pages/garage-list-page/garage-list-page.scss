@@ -1,0 +1,104 @@
+@use '../../../styles/variables' as *;
+
+.garage-list-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 25px;
+  max-width: 1560px;
+  margin: 0 auto;
+  width: 100%;
+
+  @media (max-width: $bp-mobile) {
+    padding: 16px 16px 96px;
+    gap: 18px;
+  }
+}
+
+.garage-list-topbar {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.garage-list-heading {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.garage-list-back-link {
+  text-decoration: none;
+  display: inline-flex;
+}
+
+.garage-list-title {
+  margin: 0;
+  font-family: $font-heading;
+  font-size: 24px;
+  font-weight: $fw-bold;
+  line-height: 1.3;
+  color: $clr-black-1000;
+
+  @media (max-width: $bp-mobile) {
+    font-size: 20px;
+  }
+}
+
+.garage-list-subtitle {
+  margin: 4px 0 0;
+  font-family: $font-body;
+  font-size: 14px;
+  color: $text-body;
+}
+
+.garage-list-filters {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.garage-list-filter-btn {
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+
+.garage-list-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+
+  @media (max-width: 1360px) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  @media (max-width: $bp-tablet) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (max-width: $bp-mobile) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.garage-list-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 48px 24px;
+  border-radius: 12px;
+  background-color: rgba(152, 197, 255, 0.12);
+  text-align: center;
+
+  p {
+    margin: 0;
+    font-size: 16px;
+    color: $clr-black-700;
+  }
+}
+

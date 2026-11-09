@@ -13,7 +13,8 @@ describe('Chip', () => {
 
     fixture = TestBed.createComponent(Chip);
     component = fixture.componentInstance;
-    await fixture.whenStable();
+    fixture.componentRef.setInput('text', '24 / 7');
+    fixture.detectChanges();
   });
 
   it('should create', () => {

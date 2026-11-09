@@ -1,0 +1,56 @@
+@use '../../../../styles/variables' as *;
+
+.app-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  width: 100%;
+  padding-top: 25px;
+  margin-top: 32px;
+  border-top: 1px solid $clr-black-1100;
+  font-family: $font-body;
+  color: $clr-black-1100;
+
+  @media (max-width: $bp-mobile) {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 18px;
+    margin-top: 24px;
+  }
+}
+
+.app-footer-copy {
+  margin: 0;
+  font-size: 15px;
+  font-weight: $fw-regular;
+  line-height: 1.5;
+  color: $clr-black-1100;
+}
+
+.app-footer-links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 35px;
+
+  @media (max-width: $bp-mobile) {
+    gap: 20px;
+  }
+}
+
+.app-footer-link {
+  font-size: 15px;
+  font-weight: $fw-regular;
+  line-height: 1.5;
+  color: $clr-black-1100;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $clr-blue-1000;
+    text-decoration: underline;
+  }
+}
+

@@ -1,0 +1,78 @@
+@use '../../../../styles/variables' as *;
+
+.app-logo {
+  display: inline-flex;
+  align-items: flex-end;
+  text-decoration: none;
+  user-select: none;
+  cursor: pointer;
+
+  .app-logo-text {
+    font-family: $font-logo;
+    font-weight: 400;
+    color: #ffffff;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  &.app-logo-sm {
+    gap: 8px;
+
+    .app-logo-icon {
+      width: 46px;
+      height: 40px;
+    }
+
+    .app-logo-text {
+      font-size: 24px;
+      -webkit-text-stroke: 1px #000000;
+      text-shadow: 0px 1px 0px #000000;
+    }
+  }
+
+  &.app-logo-md {
+    gap: 13px;
+
+    .app-logo-icon {
+      width: 75.64px;
+      height: 65.77px;
+    }
+
+    .app-logo-text {
+      font-size: 39.46px;
+      -webkit-text-stroke: 1.64px #000000;
+      text-shadow: 0px 1.64px 0px #000000;
+    }
+  }
+
+  &.app-logo-lg {
+    gap: 17.7px;
+
+    .app-logo-icon {
+      width: 101.78px;
+      height: 88.5px;
+    }
+
+    .app-logo-text {
+      font-size: 53.1px;
+      -webkit-text-stroke: 2.21px #000000;
+      text-shadow: 0px 2.21px 0px #000000;
+    }
+
+    @media (max-width: 768px) {
+      gap: 13px;
+
+      .app-logo-icon {
+        width: 75.64px;
+        height: 65.77px;
+      }
+
+      .app-logo-text {
+        font-size: 39.46px;
+        -webkit-text-stroke: 1.64px #000000;
+        text-shadow: 0px 1.64px 0px #000000;
+      }
+    }
+  }
+}
+

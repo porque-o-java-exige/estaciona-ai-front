@@ -1,0 +1,98 @@
+<div class="home-page">
+  <section class="home-greeting">
+    <p class="home-greeting-hello">Olá, {{ firstName() }}!</p>
+    <h1 class="home-greeting-title">Onde vai estacionar hoje ?</h1>
+  </section>
+
+  <section class="home-map-section" aria-label="Mapa de vagas próximas">
+    <div class="home-map-frame">
+      <img
+        src="assets/images/map-preview.png"
+        alt="Mapa da região com vagas de estacionamento próximas"
+        fetchpriority="high"
+        width="1280"
+        height="411"
+        class="home-map-image" />
+
+      <div class="home-map-pins">
+        @for (garage of garages(); track garage.id) {
+          <button
+            type="button"
+            class="home-map-pin"
+            [class]="'pin-' + garage.availabilityLevel"
+            [class.is-active]="selectedGarageId() === garage.id"
+            [style.top]="garage.mapPin.top"
+            [style.left]="garage.mapPin.left"
+            (click)="onSelectGarage(garage)"
+            [attr.aria-label]="garage.name + ' R$' + garage.hourlyPrice + ' por hora'">
+            <span class="home-map-pin-price">R${{ garage.hourlyPrice }}/h</span>
+          </button>
+        }
+      </div>
+
+      @if (activePinGarage(); as activeGarage) {
+        <div class="home-map-preview-card">
+          <img
+            [src]="activeGarage.imageUrl"
+            [alt]="activeGarage.name"
+            width="64"
+            height="64"
+            class="home-map-preview-thumb" />
+
+          <div class="home-map-preview-info">
+            <div class="home-map-preview-top">
+              <strong>{{ activeGarage.name }}</strong>
+              <span class="home-map-preview-spots">
+                {{ activeGarage.remainingSpots }}
+                {{ activeGarage.remainingSpots === 1 ? 'vaga' : 'vagas' }}
+              </span>
+            </div>
+            <p>{{ activeGarage.address }}</p>
+            <div class="home-map-preview-bottom">
+              <span>★ {{ activeGarage.rating }} · {{ activeGarage.distance }}</span>
+              <a
+                [routerLink]="['/list/details']"
+                [queryParams]="{ id: activeGarage.id }"
+                class="home-map-preview-cta">
+                Ver detalhes →
+              </a>
+            </div>
+          </div>
+        </div>
+      }
+
+      <a routerLink="/list" class="home-map-list-toggle">
+        <span>Ver todas em lista ({{ garages().length }})</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="home-nearby-section">
+    <div class="home-nearby-header">
+      <h2 class="home-nearby-title">
+        Vagas mais próximas de acordo com seu endereço
+      </h2>
+      <a routerLink="/list" class="home-nearby-view-all">
+        Ver catálogo completo →
+      </a>
+    </div>
+
+    @if (garages().length > 0) {
+      <div class="home-nearby-grid">
+        @for (garage of garages(); track garage.id) {
+          <app-garage-card
+            [garage]="garage"
+            [selected]="selectedGarageId() === garage.id"
+            (cardClick)="onSelectGarage($event)">
+          </app-garage-card>
+        }
+      </div>
+    } @else {
+      <div class="home-empty-state">
+        <p>Nenhuma vaga encontrada para a busca atual.</p>
+      </div>
+    }
+  </section>
+
+  <app-footer></app-footer>
+</div>

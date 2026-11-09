@@ -9,7 +9,7 @@ const variantIcon: Record<buttonVariant, string | null> = {
   tertiary: null,
   reload: null,
   add: null,
-  google: 'Google-icon.svg',
+  google: 'google-icon.svg',
   notification: 'notification-icon.svg',
   filter: 'filter-icon.svg',
   payment: 'pix-icon.svg',
@@ -31,6 +31,9 @@ const variantIcon: Record<buttonVariant, string | null> = {
 export class Button {
   variant = input<buttonVariant>('primary');
   text = input<string>('');
+  buttonType = input<'button' | 'submit'>('button');
+  fullWidth = input<boolean>(false);
+  isDisabled = input<boolean>(false);
 
   iconPath = computed(() => {
     const fileName = variantIcon[this.variant()];

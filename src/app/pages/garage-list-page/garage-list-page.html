@@ -1,0 +1,58 @@
+<div class="garage-list-page">
+  <div class="garage-list-topbar">
+    <div class="garage-list-heading">
+      <a routerLink="/home" class="garage-list-back-link" aria-label="Voltar para o mapa">
+        <app-button variant="back"></app-button>
+      </a>
+      <div>
+        <h1 class="garage-list-title">
+          Vagas mais próximas de acordo com seu endereço
+        </h1>
+        <p class="garage-list-subtitle">
+          {{ garages().length }}
+          {{ garages().length === 1 ? 'garagem disponível' : 'garagens disponíveis' }}
+          na sua região
+        </p>
+      </div>
+    </div>
+
+    <div class="garage-list-filters" role="group" aria-label="Filtros de vagas">
+      @for (option of filterOptions; track option) {
+        <button
+          type="button"
+          class="garage-list-filter-btn"
+          (click)="onSelectFilter(option)">
+          <app-chip
+            variant="reservation-filter"
+            [text]="option"
+            [isActive]="activeFilter() === option">
+          </app-chip>
+        </button>
+      }
+    </div>
+  </div>
+
+  @if (garages().length > 0) {
+    <section class="garage-list-grid" aria-label="Catálogo de vagas">
+      @for (garage of garages(); track garage.id) {
+        <app-garage-card
+          [garage]="garage"
+          [selected]="selectedGarageId() === garage.id"
+          (cardClick)="onSelectGarage($event)">
+        </app-garage-card>
+      }
+    </section>
+  } @else {
+    <div class="garage-list-empty">
+      <p>Nenhuma garagem encontrada para os filtros selecionados.</p>
+      <app-button
+        variant="secondary"
+        text="Limpar filtros"
+        (click)="onClearFilters()">
+      </app-button>
+    </div>
+  }
+
+  <app-footer></app-footer>
+</div>
+
