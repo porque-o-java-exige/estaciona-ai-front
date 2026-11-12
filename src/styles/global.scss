@@ -1,0 +1,195 @@
+@use 'reset';
+@use 'variables' as *;
+
+:root {
+  // Figma Primitive Variables — colorWhite
+  --color-white-100: #{$clr-white-100};
+  --color-white-200: #{$clr-white-200};
+  --color-white-300: #{$clr-white-300};
+  --color-white-400: #{$clr-white-400};
+  --color-white-500: #{$clr-white-500};
+  --color-white-600: #{$clr-white-600};
+  --color-white-700: #{$clr-white-700};
+  --color-white-800: #{$clr-white-800};
+  --color-white-900: #{$clr-white-900};
+  --color-white-1000: #{$clr-white-1000};
+  --color-white-1100: #{$clr-white-1100};
+
+  // Figma Primitive Variables — colorBlack
+  --color-black-100: #{$clr-black-100};
+  --color-black-200: #{$clr-black-200};
+  --color-black-300: #{$clr-black-300};
+  --color-black-400: #{$clr-black-400};
+  --color-black-500: #{$clr-black-500};
+  --color-black-600: #{$clr-black-600};
+  --color-black-700: #{$clr-black-700};
+  --color-black-800: #{$clr-black-800};
+  --color-black-900: #{$clr-black-900};
+  --color-black-1000: #{$clr-black-1000};
+  --color-black-1100: #{$clr-black-1100};
+
+  // Figma Primitive Variables — colorPrimary
+  --color-primary-100: #{$clr-primary-100};
+  --color-primary-200: #{$clr-primary-200};
+  --color-primary-300: #{$clr-primary-300};
+  --color-primary-400: #{$clr-primary-400};
+  --color-primary-500: #{$clr-primary-500};
+  --color-primary-600: #{$clr-primary-600};
+  --color-primary-700: #{$clr-primary-700};
+  --color-primary-800: #{$clr-primary-800};
+  --color-primary-900: #{$clr-primary-900};
+  --color-primary-1000: #{$clr-primary-1000};
+  --color-primary-transparent-515: #{$clr-primary-transparent-515};
+
+  // Figma Primitive Variables — colorBlue
+  --color-blue-100: #{$clr-blue-100};
+  --color-blue-200: #{$clr-blue-200};
+  --color-blue-300: #{$clr-blue-300};
+  --color-blue-400: #{$clr-blue-400};
+  --color-blue-500: #{$clr-blue-500};
+  --color-blue-600: #{$clr-blue-600};
+  --color-blue-700: #{$clr-blue-700};
+  --color-blue-800: #{$clr-blue-800};
+  --color-blue-900: #{$clr-blue-900};
+  --color-blue-1000: #{$clr-blue-1000};
+  --color-blue-1100: #{$clr-blue-1100};
+  --color-blue-transparent-110: #{$clr-transparent-110};
+  --color-blue-transparent-125: #{$clr-transparent-125};
+  --color-blue-transparent-150: #{$clr-transparent-150};
+
+  // Figma Primitive Variables — colorRed
+  --color-red-100: #{$clr-red-100};
+  --color-red-200: #{$clr-red-200};
+  --color-red-300: #{$clr-red-300};
+  --color-red-400: #{$clr-red-400};
+  --color-red-500: #{$clr-red-500};
+  --color-red-600: #{$clr-red-600};
+  --color-red-700: #{$clr-red-700};
+  --color-red-800: #{$clr-red-800};
+  --color-red-900: #{$clr-red-900};
+  --color-red-1000: #{$clr-red-1000};
+
+  // Figma Primitive Variables — colorGreen
+  --color-green-100: #{$clr-green-100};
+  --color-green-200: #{$clr-green-200};
+  --color-green-300: #{$clr-green-300};
+  --color-green-400: #{$clr-green-400};
+  --color-green-500: #{$clr-green-500};
+  --color-green-600: #{$clr-green-600};
+  --color-green-700: #{$clr-green-700};
+  --color-green-800: #{$clr-green-800};
+  --color-green-900: #{$clr-green-900};
+  --color-green-1000: #{$clr-green-1000};
+  --color-green-1100: #{$clr-green-1100};
+
+  // Figma Primitive Variables — colorYellow
+  --color-yellow-100: #{$clr-yellow-100};
+  --color-yellow-200: #{$clr-yellow-200};
+  --color-yellow-300: #{$clr-yellow-300};
+  --color-yellow-400: #{$clr-yellow-400};
+  --color-yellow-500: #{$clr-yellow-500};
+  --color-yellow-600: #{$clr-yellow-600};
+  --color-yellow-700: #{$clr-yellow-700};
+  --color-yellow-800: #{$clr-yellow-800};
+  --color-yellow-900: #{$clr-yellow-900};
+  --color-yellow-1000: #{$clr-yellow-1000};
+  --color-yellow-1100: #{$clr-yellow-1100};
+
+  // Semantic Surface Tokens
+  --surface-page: var(--color-white-1100);
+  --surface-page-subtle: var(--color-white-800);
+  --surface-card: #FFFFFF;
+  --surface-elevated: var(--color-white-1000);
+  --surface-input: var(--color-white-900);
+  --surface-muted: var(--color-white-100);
+  --surface-brand-tint: var(--color-primary-transparent-515);
+  --surface-brand-subtle: var(--color-blue-100);
+  --surface-brand-soft: var(--color-primary-100);
+  --surface-brand-active: var(--color-primary-300);
+  --surface-brand-primary: var(--color-blue-1000);
+  --surface-brand-strong: var(--color-blue-1100);
+
+  // Semantic Typography / Text Tokens
+  --text-strong: var(--color-black-1100);
+  --text-primary: var(--color-black-1000);
+  --text-secondary: var(--color-black-900);
+  --text-body: var(--color-black-700);
+  --text-muted: var(--color-black-600);
+  --text-placeholder: var(--color-black-500);
+  --text-brand: var(--color-blue-1000);
+  --text-brand-hover: var(--color-blue-900);
+  --text-brand-accent: var(--color-blue-600);
+  --text-brand-strong: var(--color-blue-1100);
+  --text-on-brand: var(--color-white-1100);
+
+  // Semantic Border Tokens
+  --border-subtle: var(--color-white-500);
+  --border-neutral: var(--color-black-200);
+  --border-brand-subtle: var(--color-blue-100);
+  --border-brand-light: var(--color-primary-100);
+  --border-brand-soft: var(--color-primary-300);
+  --border-brand: var(--color-primary-900);
+  --border-brand-accent: var(--color-blue-600);
+  --border-brand-hover: var(--color-blue-800);
+  --border-brand-strong: var(--color-blue-1000);
+
+  // Semantic Status Tokens
+  --status-success: var(--color-green-1000);
+  --status-success-strong: var(--color-green-1100);
+  --status-success-bg: var(--color-green-100);
+  --status-warning: var(--color-yellow-1100);
+  --status-warning-soft: var(--color-yellow-900);
+  --status-warning-bg: var(--color-yellow-100);
+  --status-danger: var(--color-red-1000);
+  --status-danger-bg: var(--color-red-100);
+
+  // Compact Semantic Aliases
+  --bg: var(--surface-page);
+  --bg-sub: var(--surface-page-subtle);
+  --card: var(--surface-card);
+  --elev: var(--surface-elevated);
+  --inp: var(--surface-input);
+  --muted: var(--surface-muted);
+  --tint: var(--surface-brand-tint);
+  --b-sub: var(--surface-brand-subtle);
+  --b-soft: var(--surface-brand-soft);
+  --b-act: var(--surface-brand-active);
+  --brand: var(--surface-brand-primary);
+  --brand-str: var(--surface-brand-strong);
+  --tx-str: var(--text-strong);
+  --tx: var(--text-primary);
+  --tx-sec: var(--text-secondary);
+  --tx-body: var(--text-body);
+  --tx-mut: var(--text-muted);
+  --tx-ph: var(--text-placeholder);
+  --tx-brand: var(--text-brand);
+  --tx-hov: var(--text-brand-hover);
+  --tx-acc: var(--text-brand-accent);
+  --tx-b-str: var(--text-brand-strong);
+  --tx-on: var(--text-on-brand);
+  --bd-sub: var(--border-subtle);
+  --bd-neu: var(--border-neutral);
+  --bd-b-sub: var(--border-brand-subtle);
+  --bd-b-lt: var(--border-brand-light);
+  --bd-b-soft: var(--border-brand-soft);
+  --bd-b: var(--border-brand);
+  --bd-b-acc: var(--border-brand-accent);
+  --bd-b-hov: var(--border-brand-hover);
+  --bd-b-str: var(--border-brand-strong);
+  --ok: var(--status-success);
+  --ok-str: var(--status-success-strong);
+  --ok-bg: var(--status-success-bg);
+  --warn: var(--status-warning);
+  --warn-soft: var(--status-warning-soft);
+  --warn-bg: var(--status-warning-bg);
+  --err: var(--status-danger);
+  --err-bg: var(--status-danger-bg);
+}
+
+body {
+  font-family: $font-primary;
+  background-color: $surface-page;
+  color: $text-primary;
+  min-height: 100dvh;
+  overflow-x: hidden;
+}

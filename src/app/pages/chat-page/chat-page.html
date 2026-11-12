@@ -1,0 +1,101 @@
+<div class="chat-layout" [class.mobile-thread-active]="chatService.mobileThreadOpen()">
+  <!-- Coluna Esquerda: Lista de Conversas (#2253:9067 / #2253:8703) -->
+  <aside class="conversations-pane" aria-label="Lista de conversas">
+    <header class="pane-header">
+      <h1 class="pane-title desktop-title">Conversas</h1>
+      <h1 class="pane-title mobile-title">Chat</h1>
+      <span class="count-badge">{{ chatService.totalConversations() }}</span>
+    </header>
+
+    <div class="conversations-list" role="list">
+      @for (conv of chatService.conversations(); track conv.id) {
+        <button
+          type="button"
+          class="conversation-item"
+          role="listitem"
+          [class.active]="chatService.activeConversation().id === conv.id"
+          (click)="onSelectConversation(conv.id)"
+        >
+          <div class="avatar-box">
+            <img [src]="conv.avatarUrl" [alt]="conv.contactName" width="60" height="60" />
+            <span class="status-dot" [class]="conv.status" aria-hidden="true"></span>
+          </div>
+
+          <div class="conv-content">
+            <div class="conv-info">
+              <strong class="contact-name">{{ conv.contactName }}</strong>
+              <p class="last-message">{{ conv.lastMessage }}</p>
+            </div>
+            <span class="last-time">{{ conv.lastTime }}</span>
+          </div>
+
+          @if (conv.unreadCount > 0) {
+            <span class="unread-badge" aria-label="Mensagens não lidas">
+              {{ conv.unreadCount }}
+            </span>
+          }
+        </button>
+      }
+    </div>
+  </aside>
+
+  <!-- Coluna Direita / Tela Mobile de Conversa (#2253:9119 / #1220:1664) -->
+  @if (chatService.activeConversation(); as activeConv) {
+    <section class="messages-pane" aria-label="Histórico de mensagens">
+      <header class="thread-header">
+        <button
+          type="button"
+          class="back-btn"
+          aria-label="Voltar para lista de conversas"
+          (click)="onBackToList()"
+        >
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#272727" stroke-width="2">
+            <path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+
+        <div class="thread-contact">
+          <div class="thread-avatar">
+            <img [src]="activeConv.avatarUrl" [alt]="activeConv.contactName" width="48" height="48" />
+            <span class="status-dot" [class]="activeConv.status" aria-hidden="true"></span>
+          </div>
+          <h2 class="thread-contact-name">{{ activeConv.contactName }}</h2>
+        </div>
+      </header>
+
+      <div #messagesScroll class="messages-scroll" role="log" aria-live="polite">
+        @for (msg of activeConv.messages; track msg.id) {
+          <div class="message-row" [class.mine]="msg.isMine">
+            <div class="message-bubble">
+              <p class="message-text">{{ msg.text }}</p>
+            </div>
+          </div>
+        }
+      </div>
+
+      <footer class="composer-footer">
+        <form class="composer-bar" (ngSubmit)="onSendMessage()">
+          <input
+            type="text"
+            name="draftMessage"
+            class="composer-input"
+            placeholder="digite sua mensagem..."
+            autocomplete="off"
+            [ngModel]="draftMessage()"
+            (ngModelChange)="draftMessage.set($event)"
+            aria-label="Digite sua mensagem"
+          />
+          <button type="submit" class="send-btn" aria-label="Enviar mensagem">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1E5BB7" stroke-width="2">
+              <path
+                d="M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+        </form>
+      </footer>
+    </section>
+  }
+</div>

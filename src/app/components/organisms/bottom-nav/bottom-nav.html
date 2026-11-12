@@ -1,0 +1,25 @@
+<nav class="app-bottom-nav" aria-label="Navegação inferior">
+  <ul class="app-bottom-nav-list">
+    @for (item of navItems; track item.route) {
+      <li class="app-bottom-nav-item">
+        <a
+          [routerLink]="item.route"
+          routerLinkActive="app-bottom-nav-link-active"
+          class="app-bottom-nav-link">
+          <span class="app-bottom-nav-pill">
+            <img [src]="item.icon" alt="" class="app-bottom-nav-icon" />
+            @if (item.badgeColor) {
+              <span
+                class="app-bottom-nav-badge"
+                [class.app-bottom-nav-badge-yellow]="item.badgeColor === 'yellow'"
+                [class.app-bottom-nav-badge-red]="item.badgeColor === 'red'">
+              </span>
+            }
+          </span>
+          <span class="app-bottom-nav-label">{{ item.label }}</span>
+        </a>
+      </li>
+    }
+  </ul>
+</nav>
+

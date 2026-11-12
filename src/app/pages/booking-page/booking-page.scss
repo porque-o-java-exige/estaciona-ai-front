@@ -1,0 +1,79 @@
+@use '../../../styles/variables' as *;
+
+.booking-page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 15px 25px 25px;
+  max-width: 1560px;
+  margin: 0 auto;
+  width: 100%;
+
+  @media (max-width: $bp-mobile) {
+    padding: 15px 16px 96px;
+  }
+}
+
+.booking-header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid $clr-primary-100;
+}
+
+.booking-title {
+  margin: 0;
+  font-family: $font-heading;
+  font-size: 24px;
+  font-weight: $fw-bold;
+  color: $clr-black-1100;
+
+  @media (max-width: $bp-mobile) {
+    font-size: 20px;
+  }
+}
+
+.booking-filters {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  ::ng-deep .chip-reservation-filter {
+    border-radius: 30px;
+    padding: 6px 14px;
+  }
+}
+
+.booking-filter-btn {
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+
+.booking-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  padding-top: 5px;
+
+  @media (max-width: $bp-tablet) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (max-width: $bp-mobile) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.booking-empty {
+  padding: 40px 20px;
+  text-align: center;
+  border-radius: 15px;
+  background-color: $clr-white-1000;
+  border: 1px solid $clr-primary-300;
+  color: $clr-black-600;
+}
+

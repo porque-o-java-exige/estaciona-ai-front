@@ -1,0 +1,100 @@
+@use '../../../../styles/variables' as *;
+
+.app-bottom-nav {
+  display: none;
+  position: fixed;
+  bottom: 16px;
+  left: 0;
+  right: 0;
+  margin-inline: auto;
+  width: calc(100% - 32px);
+  max-width: 390px;
+  background-color: $clr-white-1000;
+  border: 1px solid $clr-primary-900;
+  border-radius: 50px;
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.08);
+  z-index: 50;
+
+  .app-bottom-nav-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    padding: 8px 6px;
+    margin: 0;
+    list-style: none;
+    gap: 6px;
+  }
+
+  .app-bottom-nav-item {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .app-bottom-nav-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    gap: 2px;
+
+    .app-bottom-nav-pill {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px 16px;
+      height: 24px;
+      border-radius: 15px;
+      transition: background-color 0.2s ease;
+    }
+
+    .app-bottom-nav-icon {
+      width: 16px;
+      height: 16px;
+    }
+
+    .app-bottom-nav-badge {
+      position: absolute;
+      top: -2px;
+      right: 10px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      border: 1px solid $clr-blue-600;
+
+      &.app-bottom-nav-badge-yellow {
+        background-color: $clr-yellow-1100;
+      }
+
+      &.app-bottom-nav-badge-red {
+        background-color: $clr-red-1000;
+      }
+    }
+
+    .app-bottom-nav-label {
+      font-family: $font-primary;
+      font-size: 12px;
+      font-weight: 400;
+      color: $clr-blue-600;
+      text-align: center;
+    }
+
+    &.app-bottom-nav-link-active {
+      .app-bottom-nav-pill {
+        background-color: $clr-primary-500;
+      }
+
+      .app-bottom-nav-label {
+        font-weight: 700;
+        color: $clr-blue-1000;
+      }
+    }
+  }
+
+  @media (max-width: $bp-mobile) {
+    display: flex;
+  }
+}

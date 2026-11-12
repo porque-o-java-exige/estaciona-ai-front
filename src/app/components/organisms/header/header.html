@@ -1,0 +1,80 @@
+<header class="app-header">
+  <div class="app-header-brand">
+    <app-logo size="sm" linkTo="/home"></app-logo>
+  </div>
+
+  <div class="app-header-search">
+    <div class="app-header-search-input">
+      <app-input
+        type="search"
+        icon="search"
+        placeholder="Buscar endereço, bairro..."
+        enterkeyhint="search"
+        [ngModel]="searchQuery()"
+        (ngModelChange)="onSearchChange($event)">
+      </app-input>
+    </div>
+    <app-button
+      variant="filter"
+      (click)="onFilterClick()"
+      aria-label="Filtrar vagas">
+    </app-button>
+  </div>
+
+  <div class="app-header-actions">
+    <div class="app-header-notif-wrapper">
+      <app-button
+        variant="notification"
+        (click)="onNotificationClick()"
+        aria-label="Notificações">
+      </app-button>
+
+      @if (unreadNotificationsCount() > 0) {
+        <span class="app-header-notif-badge" aria-label="Notificações não lidas">
+          {{ unreadNotificationsCount() }}
+        </span>
+      }
+
+      @if (isNotificationsOpen()) {
+        <section class="app-header-notif-popover" aria-label="Painel de notificações">
+          <div class="app-header-notif-head">
+            <strong class="app-header-notif-title">Notificações</strong>
+            @if (unreadNotificationsCount() > 0) {
+              <button
+                type="button"
+                class="app-header-notif-mark"
+                (click)="markAllNotificationsAsRead()">
+                Marcar lidas
+              </button>
+            }
+          </div>
+
+          <ul class="app-header-notif-list">
+            @for (item of notifications(); track item.id) {
+              <li>
+                <button
+                  type="button"
+                  class="app-header-notif-item"
+                  [class.is-unread]="!item.read"
+                  (click)="onSelectNotification(item)">
+                  <div class="app-header-notif-top">
+                    <span class="app-header-notif-item-title">{{ item.title }}</span>
+                    <span class="app-header-notif-time">{{ item.time }}</span>
+                  </div>
+                  <p class="app-header-notif-desc">{{ item.description }}</p>
+                </button>
+              </li>
+            }
+          </ul>
+        </section>
+      }
+    </div>
+
+    <a routerLink="/profile" class="app-header-avatar-card" aria-label="Ir para o perfil">
+      <img
+        [src]="user().avatarUrl"
+        [alt]="user().name"
+        class="app-header-avatar-image" />
+    </a>
+  </div>
+</header>

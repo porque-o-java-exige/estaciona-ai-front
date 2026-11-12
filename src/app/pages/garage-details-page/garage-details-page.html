@@ -1,0 +1,98 @@
+<div class="garage-details-page">
+  <div class="garage-details-back-row">
+    <a routerLink="/list" class="garage-details-back-link" aria-label="Voltar para a lista de vagas">
+      <app-button variant="back"></app-button>
+    </a>
+  </div>
+
+  <div class="garage-details-content">
+    <div class="garage-details-photo-card">
+      <img
+        [src]="garage().imageUrl"
+        [alt]="garage().name"
+        fetchpriority="high"
+        width="734"
+        height="524"
+        class="garage-details-photo" />
+
+      <div class="garage-details-spots-badge">
+        <app-chip
+          variant="parking-spots"
+          [text]="spotsRemainingText()">
+        </app-chip>
+      </div>
+    </div>
+
+    <div class="garage-details-info">
+      <div class="garage-details-header">
+        <div class="garage-details-titles">
+          <h1 class="garage-details-title">{{ garage().name }}</h1>
+          <p class="garage-details-address">{{ garage().address }}</p>
+          <p class="garage-details-description">{{ garage().description }}</p>
+        </div>
+
+        <div class="garage-details-price" aria-label="Preço por diária">
+          <span class="garage-details-price-amount">R${{ garage().dailyPrice }}</span>
+          <span class="garage-details-price-period">/Dia</span>
+        </div>
+      </div>
+
+      <div class="garage-details-metrics">
+        <app-chip
+          variant="rating"
+          [text]="garage().rating.toString()"
+          [subtext]="reviewsSubtext()">
+        </app-chip>
+
+        <app-chip
+          variant="distance"
+          [text]="garage().distance">
+        </app-chip>
+      </div>
+
+      <section class="garage-details-features">
+        <h2 class="garage-details-features-title">Características da garagem</h2>
+
+        <div class="garage-details-features-grid">
+          @for (feature of garage().characteristics; track feature) {
+            <app-chip
+              variant="attribute"
+              [text]="feature">
+            </app-chip>
+          }
+        </div>
+      </section>
+
+      <div class="garage-details-owner-card">
+        <div class="garage-details-owner-profile">
+          <div class="garage-details-owner-avatar" aria-hidden="true">
+            <span>{{ garage().ownerInitials }}</span>
+          </div>
+          <span class="garage-details-owner-name">{{ garage().ownerName }}</span>
+        </div>
+
+        <app-button
+          variant="chat"
+          text="Chat"
+          (click)="onOpenChat()">
+        </app-button>
+      </div>
+
+      <div class="garage-details-cta">
+        <div class="garage-details-cta-price" aria-label="Resumo do valor diário">
+          <span class="garage-details-cta-amount">R${{ garage().dailyPrice }}</span>
+          <span class="garage-details-cta-period">/Dia</span>
+        </div>
+
+        <app-button
+          variant="secondary"
+          text="Adicionar a reservas"
+          [fullWidth]="true"
+          (click)="onAddToBooking()">
+        </app-button>
+      </div>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</div>

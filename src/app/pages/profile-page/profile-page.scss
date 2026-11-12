@@ -1,0 +1,336 @@
+@use '../../../styles/variables' as *;
+
+.profile-layout {
+  min-height: calc(100dvh - 92px);
+  padding: 32px 40px 48px;
+  background: $surface-page-subtle;
+  font-family: $font-heading;
+}
+
+.profile-container,
+.profile-header,
+.identity-info,
+.reservation-details,
+.dialog-form,
+.dialog-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.profile-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 24px;
+}
+
+.breadcrumb,
+.mobile-back-row,
+.reputation-row,
+.reservation-body,
+.reservation-footer,
+.identity-card {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.breadcrumb,
+.page-subtitle {
+  margin: 0;
+  font: 13px 'DM Sans', sans-serif;
+  color: $text-muted;
+}
+
+.breadcrumb-current,
+.reservation-footer {
+  color: $text-brand;
+  font-size: 12px;
+}
+
+.title-row,
+.kpi-top,
+.wallet-top,
+.wallet-bottom,
+.reservation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.mobile-back-link {
+  display: none;
+  text-decoration: none;
+  font-size: 28px;
+  color: $text-primary;
+}
+
+.page-title {
+  margin: 0;
+  font-size: 30px;
+  color: $text-primary;
+}
+
+.identity-card {
+  padding: 24px;
+  background: $surface-card;
+  border: 1px solid $border-brand-subtle;
+  border-radius: 16px;
+  gap: 24px;
+}
+
+.avatar-wrapper {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
+}
+
+.profile-portrait {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  object-fit: cover;
+  display: block;
+}
+
+.verified-icon {
+  position: absolute;
+  right: -4px;
+  bottom: -4px;
+  width: 24px;
+  height: 24px;
+}
+
+.identity-info,
+.reservation-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.user-name,
+.dialog-title {
+  margin: 0;
+  font-size: 22px;
+  color: $text-primary;
+}
+
+.user-email,
+.reputation-row,
+.spot-schedule {
+  margin: 0;
+  font-size: 14px;
+  color: $text-muted;
+}
+
+.star-icon {
+  color: $status-warning;
+}
+
+.rating-val {
+  color: $text-secondary;
+}
+
+.kpi-list,
+.wallet-reservation-row {
+  display: flex;
+  gap: 12px;
+}
+
+.wallet-reservation-row {
+  gap: 24px;
+}
+
+.kpi-box {
+  width: 112px;
+  height: 80px;
+  padding: 12px;
+  background: $surface-brand-tint;
+  border-radius: 10px;
+}
+
+.kpi-val {
+  font-size: 24px;
+  color: $text-primary;
+}
+
+.kpi-label {
+  color: $text-muted;
+}
+
+.card-divider {
+  width: 1px;
+  height: 56px;
+  background: $border-brand-subtle;
+}
+
+.edit-profile-btn,
+.recharge-btn,
+.pin-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-profile-btn,
+.recharge-btn {
+  height: 42px;
+  padding: 0 16px;
+  border-radius: 8px;
+  border: 0;
+  gap: 8px;
+  font: $fw-bold 14px inherit;
+  cursor: pointer;
+}
+
+.edit-profile-btn,
+.dialog-actions .btn-save {
+  background: $surface-brand-primary;
+  border: 0;
+  color: $surface-card;
+}
+
+.wallet-card,
+.active-reservation-card,
+.kpi-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.wallet-card,
+.active-reservation-card {
+  padding: 24px;
+  border-radius: 16px;
+  gap: 16px;
+}
+
+.wallet-card {
+  width: 400px;
+  flex-shrink: 0;
+  background: $surface-brand-strong;
+  color: $surface-muted;
+}
+
+.wallet-balance {
+  font-size: 36px;
+  color: $surface-elevated;
+}
+
+.wallet-card-info,
+.kpi-label {
+  font-size: 12px;
+}
+
+.recharge-btn {
+  background: $surface-card;
+  color: $text-brand;
+}
+
+.active-reservation-card {
+  flex: 1;
+  background: $surface-card;
+  border: 1px solid $border-brand;
+}
+
+.reservation-title,
+.spot-name {
+  margin: 0;
+  font-size: 17px;
+  color: $text-primary;
+}
+
+.today-badge {
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: $surface-brand-tint;
+  color: $text-brand;
+  font-size: 12px;
+}
+
+.reservation-body {
+  gap: 14px;
+  text-decoration: none;
+}
+
+.pin-box {
+  width: 46px;
+  height: 46px;
+  border-radius: 10px;
+  background: $surface-brand-tint;
+  flex-shrink: 0;
+}
+
+.chevron-icon {
+  font-size: 24px;
+  color: $text-muted;
+}
+
+.reservation-footer {
+  padding-top: 12px;
+  border-top: 1px solid $border-brand-subtle;
+}
+
+.action-dialog {
+  border: 1px solid $border-brand-subtle;
+  border-radius: 16px;
+  padding: 24px;
+  width: min(92vw, 400px);
+}
+
+.dialog-field {
+  font-size: 14px;
+
+  input {
+    height: 40px;
+    padding: 0 12px;
+    border-radius: 8px;
+    border: 1px solid $border-brand-light;
+  }
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+
+  button {
+    height: 38px;
+    padding: 0 16px;
+    border-radius: 8px;
+    font-weight: $fw-bold;
+    cursor: pointer;
+  }
+
+  .btn-cancel {
+    background: $surface-page-subtle;
+    border: 1px solid $border-brand-subtle;
+  }
+}
+
+@media (max-width: $bp-mobile) {
+  .profile-layout {
+    padding: 20px 16px 96px;
+  }
+
+  .breadcrumb,
+  .card-divider {
+    display: none;
+  }
+
+  .mobile-back-link {
+    display: inline-flex;
+  }
+
+  .identity-card,
+  .wallet-reservation-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .wallet-card,
+  .kpi-box {
+    width: 100%;
+  }
+}

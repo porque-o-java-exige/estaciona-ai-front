@@ -1,0 +1,190 @@
+@use '../../../../styles/variables' as *;
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 92px;
+  padding: 20px 72px 20px 24px;
+  background-color: $surface-page;
+  border-bottom: 1px solid $border-subtle;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  gap: 16px;
+
+  .app-header-brand {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .app-header-search {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex: 1;
+    max-width: 560px;
+    justify-content: center;
+
+    .app-header-search-input {
+      width: 100%;
+      max-width: 500px;
+    }
+  }
+
+  .app-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-shrink: 0;
+
+    .app-header-notif-wrapper {
+      position: relative;
+      display: inline-flex;
+    }
+
+    .app-header-notif-badge {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      min-width: 18px;
+      height: 18px;
+      padding: 0 5px;
+      border-radius: 999px;
+      background-color: $status-danger;
+      color: $surface-card;
+      font: $fw-bold 11px/18px $font-heading;
+      text-align: center;
+      pointer-events: none;
+    }
+
+    .app-header-notif-popover {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      width: 310px;
+      padding: 12px;
+      background-color: $surface-card;
+      border: 1px solid $border-brand;
+      border-radius: 14px;
+      box-shadow: 0 12px 28px rgba(18, 18, 18, 0.14);
+      z-index: 60;
+    }
+
+    .app-header-notif-head,
+    .app-header-notif-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .app-header-notif-head {
+      padding-bottom: 8px;
+      margin-bottom: 8px;
+      border-bottom: 1px solid $border-brand-light;
+    }
+
+    .app-header-notif-title {
+      font: $fw-bold 15px $font-heading;
+      color: $text-strong;
+    }
+
+    .app-header-notif-mark {
+      border: 0;
+      background: transparent;
+      color: $text-brand;
+      font: $fw-medium 12px $font-heading;
+      cursor: pointer;
+    }
+
+    .app-header-notif-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .app-header-notif-item {
+      width: 100%;
+      padding: 8px 10px;
+      border-radius: 10px;
+      border: 1px solid transparent;
+      background-color: $surface-page;
+      text-align: left;
+      cursor: pointer;
+
+      &.is-unread {
+        background-color: $surface-brand-tint;
+        border-color: $border-brand-light;
+      }
+
+      &:hover {
+        border-color: $border-brand-accent;
+      }
+    }
+
+    .app-header-notif-item-title {
+      font: $fw-bold 13px $font-heading;
+      color: $text-primary;
+    }
+
+    .app-header-notif-time {
+      font-size: 11px;
+      color: $text-muted;
+    }
+
+    .app-header-notif-desc {
+      margin: 4px 0 0;
+      font-size: 12px;
+      color: $text-body;
+    }
+
+    .app-header-avatar-card {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      padding: 1px;
+      background-color: $surface-brand-active;
+      border: 1px solid $border-brand;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.15s ease, border-color 0.2s ease;
+
+      &:hover {
+        transform: scale(1.03);
+        border-color: $border-brand-hover;
+      }
+
+      .app-header-avatar-image {
+        width: 40px;
+        height: 40px;
+        border-radius: 11px;
+        object-fit: cover;
+      }
+    }
+  }
+
+  @media (max-width: 900px) {
+    height: auto;
+    min-height: 72px;
+    padding: 12px 16px;
+    flex-wrap: wrap;
+
+    .app-header-search {
+      order: 3;
+      max-width: 100%;
+      flex-basis: 100%;
+    }
+
+    .app-header-actions {
+      gap: 12px;
+    }
+  }
+}

@@ -1,0 +1,392 @@
+<section class="account-management" aria-label="Gerenciamento da conta">
+  <!-- Abas do Perfil (#1871:1525) -->
+  <div class="profile-tabs" role="tablist">
+    <button
+      type="button"
+      role="tab"
+      class="tab-btn"
+      [class.active]="activeTab() === 'geral'"
+      [attr.aria-selected]="activeTab() === 'geral'"
+      (click)="selectTab('geral')"
+    >
+      Geral
+    </button>
+    <button
+      type="button"
+      role="tab"
+      class="tab-btn"
+      [class.active]="activeTab() === 'veiculos'"
+      [attr.aria-selected]="activeTab() === 'veiculos'"
+      (click)="selectTab('veiculos')"
+    >
+      Veículos
+    </button>
+    <button
+      type="button"
+      role="tab"
+      class="tab-btn"
+      [class.active]="activeTab() === 'garagens'"
+      [attr.aria-selected]="activeTab() === 'garagens'"
+      (click)="selectTab('garagens')"
+    >
+      Garagens
+    </button>
+    <button
+      type="button"
+      role="tab"
+      class="tab-btn"
+      [class.active]="activeTab() === 'config'"
+      [attr.aria-selected]="activeTab() === 'config'"
+      (click)="selectTab('config')"
+    >
+      Config
+    </button>
+  </div>
+
+  <!-- ABA GERAL (#1871:1534) -->
+  @if (activeTab() === 'geral') {
+    <div class="tab-panel">
+      <div class="section-header">
+        <h2 class="section-title">Sua conta</h2>
+        <p class="section-subtitle">Gerencie seus dados e preferências.</p>
+      </div>
+
+      <div class="options-grid">
+        <button type="button" class="option-card" (click)="onOptionClick('account')">
+          <span class="option-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E5BB7" stroke-width="2">
+              <path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3" stroke-linecap="round" />
+            </svg>
+          </span>
+          <span class="option-body">
+            <strong class="option-title">Minha conta</strong>
+            <span class="option-meta">R${{ formatCurrency(authService.currentUser().balance) }}</span>
+          </span>
+          <span class="option-chevron" aria-hidden="true">›</span>
+        </button>
+
+        <button type="button" class="option-card" (click)="onOptionClick('vehicles')">
+          <span class="option-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E5BB7" stroke-width="2">
+              <path d="M5 17h14v-5l-2-5H7l-2 5v5z" stroke-linejoin="round" />
+              <circle cx="7.5" cy="17.5" r="1.5" />
+              <circle cx="16.5" cy="17.5" r="1.5" />
+            </svg>
+          </span>
+          <span class="option-body">
+            <strong class="option-title">Meus Veículos</strong>
+            <span class="option-meta">{{ authService.primaryVehicle()?.licensePlate }}</span>
+          </span>
+          <span class="option-chevron" aria-hidden="true">›</span>
+        </button>
+
+        <button type="button" class="option-card" (click)="onOptionClick('payment')">
+          <span class="option-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E5BB7" stroke-width="2">
+              <rect x="2" y="5" width="20" height="14" rx="2" />
+              <path d="M2 10h20" />
+            </svg>
+          </span>
+          <span class="option-body">
+            <strong class="option-title">Formas de pagamento</strong>
+            <span class="option-meta">Mastercard **** 4812</span>
+          </span>
+          <span class="option-chevron" aria-hidden="true">›</span>
+        </button>
+
+        <button type="button" class="option-card" (click)="onOptionClick('chat')">
+          <span class="option-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E5BB7" stroke-width="2">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+            </svg>
+          </span>
+          <span class="option-body">
+            <strong class="option-title">Conversas</strong>
+            <span class="option-meta online"><span class="online-dot"></span> Online</span>
+          </span>
+          <span class="option-chevron" aria-hidden="true">›</span>
+        </button>
+
+        <button type="button" class="option-card" (click)="onOptionClick('config')">
+          <span class="option-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E5BB7" stroke-width="2">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0" />
+            </svg>
+          </span>
+          <span class="option-body">
+            <strong class="option-title">Notificações</strong>
+            <span class="option-meta">{{ authService.settings().notifications ? 'Ativas' : 'Inativas' }}</span>
+          </span>
+          <span class="option-chevron" aria-hidden="true">›</span>
+        </button>
+
+        <button type="button" class="option-card" (click)="onOptionClick('addresses')">
+          <span class="option-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E5BB7" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+          </span>
+          <span class="option-body">
+            <strong class="option-title">Endereços salvos</strong>
+            <span class="option-meta">Casa, Trabalho</span>
+          </span>
+          <span class="option-chevron" aria-hidden="true">›</span>
+        </button>
+
+        <button type="button" class="option-card" (click)="onOptionClick('config')">
+          <span class="option-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E5BB7" stroke-width="2">
+              <polygon points="3 11 22 2 13 21 11 13 3 11" />
+            </svg>
+          </span>
+          <span class="option-body">
+            <strong class="option-title">Acessibilidade</strong>
+          </span>
+          <span class="option-chevron" aria-hidden="true">›</span>
+        </button>
+
+        <button type="button" class="option-card" (click)="onOptionClick('history')">
+          <span class="option-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E5BB7" stroke-width="2">
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+          </span>
+          <span class="option-body">
+            <strong class="option-title">Histórico</strong>
+          </span>
+          <span class="option-chevron" aria-hidden="true">›</span>
+        </button>
+      </div>
+    </div>
+  }
+
+  <!-- ABA VEÍCULOS (#1425:2454) -->
+  @if (activeTab() === 'veiculos') {
+    <div class="tab-panel">
+      <div class="vehicles-list">
+        @for (vehicle of authService.vehicles(); track vehicle.id) {
+          <div
+            class="vehicle-card"
+            [class.primary]="vehicle.isPrimary"
+            (click)="authService.setPrimaryVehicle(vehicle.id)"
+          >
+            <div class="vehicle-left">
+              <span class="option-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1E5BB7" stroke-width="2">
+                  <path d="M5 17h14v-5l-2-5H7l-2 5v5z" stroke-linejoin="round" />
+                  <circle cx="7.5" cy="17.5" r="1.5" />
+                  <circle cx="16.5" cy="17.5" r="1.5" />
+                </svg>
+              </span>
+              <div class="vehicle-info">
+                <strong class="vehicle-model">{{ vehicle.model }}</strong>
+                <span class="plate-badge">{{ vehicle.licensePlate }}</span>
+              </div>
+            </div>
+
+            @if (vehicle.isPrimary) {
+              <span class="primary-pill">principal</span>
+            }
+          </div>
+        }
+      </div>
+
+      <button type="button" class="dashed-add-btn" (click)="openAddVehicleModal()">
+        + Adicionar Veículos
+      </button>
+    </div>
+  }
+
+  <!-- ABA GARAGENS (#1425:2596) -->
+  @if (activeTab() === 'garagens') {
+    <div class="tab-panel">
+      <div class="garages-list">
+        @for (garage of authService.ownedGarages(); track garage.id) {
+          <article class="owned-garage-card">
+            <div class="garage-media">
+              <img [src]="garage.imageUrl" [alt]="garage.name" width="600" height="220" />
+              @if (garage.isActive) {
+                <span class="active-pill">Ativo</span>
+              }
+            </div>
+            <div class="garage-details">
+              <div class="garage-top-row">
+                <div>
+                  <strong class="garage-title">{{ garage.name }}</strong>
+                  <p class="garage-address">{{ garage.address }}</p>
+                </div>
+                <span class="garage-rate">${{ formatCurrency(garage.pricePerHour) }}/hr</span>
+              </div>
+              <div class="garage-stats-row">
+                <div>
+                  <span class="stat-label">Este mês</span>
+                  <strong class="stat-earned">${{ formatCurrency(garage.monthlyEarnings) }} ganho</strong>
+                </div>
+                <div>
+                  <span class="stat-label">Reservas</span>
+                  <strong class="stat-total">{{ garage.totalBookings }} total</strong>
+                </div>
+              </div>
+            </div>
+          </article>
+        }
+      </div>
+
+      <button type="button" class="dashed-add-btn" (click)="openAddGarageModal()">
+        + Adicionar Garagens
+      </button>
+    </div>
+  }
+
+  <!-- ABA CONFIG (#1425:2729) -->
+  @if (activeTab() === 'config') {
+    <div class="tab-panel config-list">
+      <div class="config-row">
+        <span class="option-title">Modo Escuro</span>
+        <button
+          type="button"
+          class="switch-btn"
+          role="switch"
+          [class.on]="authService.settings().darkMode"
+          [attr.aria-checked]="authService.settings().darkMode"
+          (click)="authService.toggleSetting('darkMode')"
+        >
+          <span class="switch-knob"></span>
+        </button>
+      </div>
+
+      <div class="config-row">
+        <span class="option-title">Notificações</span>
+        <button
+          type="button"
+          class="switch-btn"
+          role="switch"
+          [class.on]="authService.settings().notifications"
+          [attr.aria-checked]="authService.settings().notifications"
+          (click)="authService.toggleSetting('notifications')"
+        >
+          <span class="switch-knob"></span>
+        </button>
+      </div>
+
+      <div class="config-row">
+        <span class="option-title">Idioma (PT-BR)</span>
+        <button
+          type="button"
+          class="switch-btn"
+          role="switch"
+          [class.on]="authService.settings().ptBrLanguage"
+          [attr.aria-checked]="authService.settings().ptBrLanguage"
+          (click)="authService.toggleSetting('ptBrLanguage')"
+        >
+          <span class="switch-knob"></span>
+        </button>
+      </div>
+
+      <button type="button" class="config-row clickable">
+        <span class="option-title">Acessibilidade</span>
+        <span class="option-chevron">›</span>
+      </button>
+
+      <button type="button" class="config-row clickable">
+        <span class="option-title">Política de privacidade</span>
+        <span class="option-chevron">›</span>
+      </button>
+
+      <button type="button" class="config-row clickable">
+        <span class="option-title">Termos de uso</span>
+        <span class="option-chevron">›</span>
+      </button>
+    </div>
+  }
+</section>
+
+<!-- Modal Adicionar Veículo -->
+<dialog #vehicleDialog class="profile-dialog" aria-labelledby="add-vehicle-title">
+  <form class="dialog-form" (ngSubmit)="submitNewVehicle()">
+    <h3 id="add-vehicle-title" class="dialog-title">Adicionar Veículo</h3>
+    <label class="dialog-field">
+      <span>Modelo do veículo</span>
+      <input
+        type="text"
+        name="vehicleModel"
+        placeholder="Ex: 2024 BYD Dolphin"
+        required
+        [ngModel]="newVehicleModel()"
+        (ngModelChange)="newVehicleModel.set($event)"
+      />
+    </label>
+    <label class="dialog-field">
+      <span>Placa</span>
+      <input
+        type="text"
+        name="vehiclePlate"
+        placeholder="Ex: BRA2E19"
+        required
+        [ngModel]="newVehiclePlate()"
+        (ngModelChange)="newVehiclePlate.set($event)"
+      />
+    </label>
+    <label class="dialog-check">
+      <input
+        type="checkbox"
+        name="vehiclePrimary"
+        [ngModel]="newVehiclePrimary()"
+        (ngModelChange)="newVehiclePrimary.set($event)"
+      />
+      <span>Definir como veículo principal</span>
+    </label>
+    <div class="dialog-actions">
+      <button type="button" class="btn-secondary" (click)="closeAddVehicleModal()">Cancelar</button>
+      <button type="submit" class="btn-primary">Salvar veículo</button>
+    </div>
+  </form>
+</dialog>
+
+<!-- Modal Adicionar Garagem -->
+<dialog #garageDialog class="profile-dialog" aria-labelledby="add-garage-title">
+  <form class="dialog-form" (ngSubmit)="submitNewGarage()">
+    <h3 id="add-garage-title" class="dialog-title">Adicionar Garagem</h3>
+    <label class="dialog-field">
+      <span>Nome da garagem</span>
+      <input
+        type="text"
+        name="garageName"
+        placeholder="Ex: Garagem Coberta Centro"
+        required
+        [ngModel]="newGarageName()"
+        (ngModelChange)="newGarageName.set($event)"
+      />
+    </label>
+    <label class="dialog-field">
+      <span>Endereço</span>
+      <input
+        type="text"
+        name="garageAddress"
+        placeholder="Ex: Av. Paulista, 1000"
+        required
+        [ngModel]="newGarageAddress()"
+        (ngModelChange)="newGarageAddress.set($event)"
+      />
+    </label>
+    <label class="dialog-field">
+      <span>Valor por hora (R$)</span>
+      <input
+        type="number"
+        name="garagePrice"
+        min="1"
+        step="0.5"
+        required
+        [ngModel]="newGaragePrice()"
+        (ngModelChange)="newGaragePrice.set($event)"
+      />
+    </label>
+    <div class="dialog-actions">
+      <button type="button" class="btn-secondary" (click)="closeAddGarageModal()">Cancelar</button>
+      <button type="submit" class="btn-primary">Cadastrar garagem</button>
+    </div>
+  </form>
+</dialog>
+
