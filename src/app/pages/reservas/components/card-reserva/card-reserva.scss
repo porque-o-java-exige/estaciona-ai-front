@@ -54,6 +54,15 @@
       align-items: center;
       justify-content: center;
       color: $clr-blue-900;
+
+      // Adicionando as propriedades para o ícone do carro:
+      .car-icon {
+        width: 16px;
+        height: 16px;
+        flex-shrink: 0;
+        aspect-ratio: 1/1;
+        object-fit: contain;
+      }
     }
 
     .detalhes-vaga {
