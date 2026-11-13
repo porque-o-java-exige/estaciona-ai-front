@@ -3,6 +3,7 @@
 .payment-garage-card {
   display: flex;
   flex-direction: column;
+  min-width: 0;
   border: 1px solid $clr-primary-100;
   border-radius: 8px;
   background: $clr-white-1100;
@@ -110,7 +111,8 @@ app-selection-control {
   }
 
   .payment-garage-meta {
-    gap: 8px;
+    flex-wrap: wrap;
+    gap: 4px 8px;
     font-size: 10px;
 
     img {
