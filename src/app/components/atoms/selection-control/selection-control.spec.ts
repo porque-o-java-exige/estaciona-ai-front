@@ -26,7 +26,7 @@ describe('SelectionControl', () => {
 
     expect(button.getAttribute('aria-pressed')).toBe('true');
     expect(button.querySelector('img')?.getAttribute('src')).toBe(
-      'assets/icons/png/check-icon.png'
+      'assets/icons/png/check-circle-icon.png'
     );
     expect(toggled).toBe(true);
   });
