@@ -25,4 +25,14 @@ describe('Avatar', () => {
     expect(host.style.width).toBe('64px');
     expect(host.style.height).toBe('64px');
   });
+
+  it('should render the verified badge from the available image asset', () => {
+    fixture.componentRef.setInput('verified', true);
+    fixture.detectChanges();
+
+    const badge: HTMLImageElement | null =
+      fixture.nativeElement.querySelector('.avatar-verified');
+
+    expect(badge?.getAttribute('src')).toBe('assets/images/png/check-circle-icon.png');
+  });
 });
