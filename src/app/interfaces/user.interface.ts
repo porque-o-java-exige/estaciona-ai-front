@@ -26,6 +26,7 @@ export interface UserGarage {
   totalBookings: number;
   isActive: boolean;
   imageUrl: string;
+  imageUrls: string[];
 }
 
 export interface UserSettings {

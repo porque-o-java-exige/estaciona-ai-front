@@ -16,7 +16,7 @@ const INITIAL_GARAGES: GarageItem[] = [
     rating: 4.8,
     reviewsCount: 124,
     distance: '0.2 km',
-    imageUrl: 'assets/images/garage-main.png',
+    imageUrl: 'assets/images/png/garage-tesla.png',
     characteristics: [
       'Acesso 24/7',
       'Vaga coberta',
@@ -30,6 +30,7 @@ const INITIAL_GARAGES: GarageItem[] = [
     ],
     ownerName: 'Marcus Kim',
     ownerInitials: 'MK',
+    ownerAvatarUrl: 'assets/images/png/chat-francisco-avatar.png',
     mapPin: { top: '34%', left: '44%' },
   },
   {
@@ -46,7 +47,7 @@ const INITIAL_GARAGES: GarageItem[] = [
     rating: 4.9,
     reviewsCount: 99,
     distance: '0.2 km',
-    imageUrl: 'assets/images/garage-alt.png',
+    imageUrl: 'assets/images/png/garage-outdoor.png',
     characteristics: [
       'Acesso 24/7',
       'Vaga coberta',
@@ -60,6 +61,7 @@ const INITIAL_GARAGES: GarageItem[] = [
     ],
     ownerName: 'Camila Rocha',
     ownerInitials: 'CR',
+    ownerAvatarUrl: 'assets/images/png/chat-woman-avatar.png',
     mapPin: { top: '48%', left: '53%' },
   },
   {
@@ -76,7 +78,7 @@ const INITIAL_GARAGES: GarageItem[] = [
     rating: 4.8,
     reviewsCount: 99,
     distance: '0.2 km',
-    imageUrl: 'assets/images/garage-main.png',
+    imageUrl: 'assets/images/png/garage-tesla.png',
     characteristics: [
       'Acesso 24/7',
       'Vaga coberta',
@@ -90,6 +92,7 @@ const INITIAL_GARAGES: GarageItem[] = [
     ],
     ownerName: 'Marcus Kim',
     ownerInitials: 'MK',
+    ownerAvatarUrl: 'assets/images/png/chat-francisco-avatar.png',
     mapPin: { top: '60%', left: '36%' },
   },
   {
@@ -106,7 +109,7 @@ const INITIAL_GARAGES: GarageItem[] = [
     rating: 4.8,
     reviewsCount: 99,
     distance: '0.3 km',
-    imageUrl: 'assets/images/garage-alt.png',
+    imageUrl: 'assets/images/png/garage-outdoor.png',
     characteristics: [
       'Acesso 24/7',
       'Vaga coberta',
@@ -120,6 +123,7 @@ const INITIAL_GARAGES: GarageItem[] = [
     ],
     ownerName: 'Rafael Mendes',
     ownerInitials: 'RM',
+    ownerAvatarUrl: 'assets/images/png/chat-francisco-avatar.png',
     mapPin: { top: '26%', left: '28%' },
   },
   {
@@ -136,7 +140,7 @@ const INITIAL_GARAGES: GarageItem[] = [
     rating: 4.8,
     reviewsCount: 99,
     distance: '0.3 km',
-    imageUrl: 'assets/images/garage-main.png',
+    imageUrl: 'assets/images/png/garage-tesla.png',
     characteristics: [
       'Acesso 24/7',
       'Vaga coberta',
@@ -150,6 +154,7 @@ const INITIAL_GARAGES: GarageItem[] = [
     ],
     ownerName: 'Beatriz Alves',
     ownerInitials: 'BA',
+    ownerAvatarUrl: 'assets/images/png/chat-woman-avatar.png',
     mapPin: { top: '54%', left: '66%' },
   },
   {
@@ -166,7 +171,7 @@ const INITIAL_GARAGES: GarageItem[] = [
     rating: 4.8,
     reviewsCount: 99,
     distance: '0.4 km',
-    imageUrl: 'assets/images/garage-alt.png',
+    imageUrl: 'assets/images/png/garage-outdoor.png',
     characteristics: [
       'Acesso 24/7',
       'Vaga coberta',
@@ -180,6 +185,7 @@ const INITIAL_GARAGES: GarageItem[] = [
     ],
     ownerName: 'Lucas Tavares',
     ownerInitials: 'LT',
+    ownerAvatarUrl: 'assets/images/png/chat-francisco-avatar.png',
     mapPin: { top: '22%', left: '60%' },
   },
   {
@@ -196,7 +202,7 @@ const INITIAL_GARAGES: GarageItem[] = [
     rating: 4.8,
     reviewsCount: 99,
     distance: '0.4 km',
-    imageUrl: 'assets/images/garage-main.png',
+    imageUrl: 'assets/images/png/garage-tesla.png',
     characteristics: [
       'Acesso 24/7',
       'Vaga coberta',
@@ -210,6 +216,7 @@ const INITIAL_GARAGES: GarageItem[] = [
     ],
     ownerName: 'Marcus Kim',
     ownerInitials: 'MK',
+    ownerAvatarUrl: 'assets/images/png/chat-francisco-avatar.png',
     mapPin: { top: '41%', left: '72%' },
   },
   {
@@ -226,7 +233,7 @@ const INITIAL_GARAGES: GarageItem[] = [
     rating: 4.9,
     reviewsCount: 99,
     distance: '0.5 km',
-    imageUrl: 'assets/images/garage-alt.png',
+    imageUrl: 'assets/images/png/garage-outdoor.png',
     characteristics: [
       'Acesso 24/7',
       'Vaga coberta',
@@ -240,6 +247,7 @@ const INITIAL_GARAGES: GarageItem[] = [
     ],
     ownerName: 'Helena Costa',
     ownerInitials: 'HC',
+    ownerAvatarUrl: 'assets/images/png/chat-woman-avatar.png',
     mapPin: { top: '70%', left: '24%' },
   },
   {
@@ -256,7 +264,7 @@ const INITIAL_GARAGES: GarageItem[] = [
     rating: 4.8,
     reviewsCount: 99,
     distance: '0.5 km',
-    imageUrl: 'assets/images/garage-main.png',
+    imageUrl: 'assets/images/png/garage-tesla.png',
     characteristics: [
       'Acesso 24/7',
       'Vaga coberta',
@@ -270,6 +278,7 @@ const INITIAL_GARAGES: GarageItem[] = [
     ],
     ownerName: 'Marcus Kim',
     ownerInitials: 'MK',
+    ownerAvatarUrl: 'assets/images/png/chat-francisco-avatar.png',
     mapPin: { top: '65%', left: '52%' },
   },
   {
@@ -286,7 +295,7 @@ const INITIAL_GARAGES: GarageItem[] = [
     rating: 4.9,
     reviewsCount: 99,
     distance: '0.6 km',
-    imageUrl: 'assets/images/garage-alt.png',
+    imageUrl: 'assets/images/png/garage-outdoor.png',
     characteristics: [
       'Acesso 24/7',
       'Vaga coberta',
@@ -300,6 +309,7 @@ const INITIAL_GARAGES: GarageItem[] = [
     ],
     ownerName: 'Fernando Silva',
     ownerInitials: 'FS',
+    ownerAvatarUrl: 'assets/images/png/chat-francisco-avatar.png',
     mapPin: { top: '76%', left: '41%' },
   },
   {
@@ -316,7 +326,7 @@ const INITIAL_GARAGES: GarageItem[] = [
     rating: 4.7,
     reviewsCount: 99,
     distance: '0.7 km',
-    imageUrl: 'assets/images/garage-main.png',
+    imageUrl: 'assets/images/png/garage-tesla.png',
     characteristics: [
       'Acesso 24/7',
       'Vaga coberta',
@@ -330,6 +340,7 @@ const INITIAL_GARAGES: GarageItem[] = [
     ],
     ownerName: 'Marcus Kim',
     ownerInitials: 'MK',
+    ownerAvatarUrl: 'assets/images/png/chat-francisco-avatar.png',
     mapPin: { top: '58%', left: '80%' },
   },
   {
@@ -346,7 +357,7 @@ const INITIAL_GARAGES: GarageItem[] = [
     rating: 4.8,
     reviewsCount: 99,
     distance: '0.7 km',
-    imageUrl: 'assets/images/garage-alt.png',
+    imageUrl: 'assets/images/png/garage-outdoor.png',
     characteristics: [
       'Acesso 24/7',
       'Vaga coberta',
@@ -360,6 +371,7 @@ const INITIAL_GARAGES: GarageItem[] = [
     ],
     ownerName: 'Patrícia Lima',
     ownerInitials: 'PL',
+    ownerAvatarUrl: 'assets/images/png/chat-woman-avatar.png',
     mapPin: { top: '38%', left: '58%' },
   },
 ];
@@ -371,7 +383,7 @@ export class GarageService {
   readonly garages = signal<GarageItem[]>(INITIAL_GARAGES);
   readonly searchQuery = signal<string>('');
   readonly activeFilter = signal<string>('Todas');
-  readonly selectedGarageId = signal<string>(INITIAL_GARAGES[0].id);
+  readonly selectedGarageId = signal<string | null>(null);
 
   readonly filterOptions = [
     'Todas',
@@ -429,4 +441,3 @@ export class GarageService {
     );
   };
 }
-

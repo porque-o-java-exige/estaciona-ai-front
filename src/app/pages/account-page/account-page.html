@@ -1,0 +1,98 @@
+<main class="account-page">
+  <header class="account-page-header">
+    <a routerLink="/profile" aria-label="Voltar para o perfil">
+      <img src="assets/icons/png/chevron-left-icon.png" alt="" aria-hidden="true" />
+    </a>
+    <h1>Minha Conta</h1>
+  </header>
+
+  @if (authService.currentUser(); as user) {
+    <section class="account-identity">
+      <img class="account-avatar" [src]="user.avatarUrl" [alt]="user.name" />
+      <div>
+        <h2>{{ user.name }}</h2>
+        <p>{{ user.email }}</p>
+        <div class="account-rating">
+          <img src="assets/icons/png/star-yellow-icon.png" alt="" aria-hidden="true" />
+          <span>{{ user.rating }}</span>
+          <span>{{ user.totalReviews }} reservas</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="account-wallet" aria-label="Saldo na carteira">
+      <div class="account-wallet-heading">
+        <span>Saldo na carteira</span>
+        <a routerLink="/payment">Recarregar</a>
+      </div>
+      <strong>R${{ formatBalance(user.balance) }}</strong>
+      <span>{{ user.cardDisplay }}</span>
+    </section>
+
+    <section class="account-actions" aria-label="Ações da carteira">
+      <a routerLink="/payment">
+        <img src="assets/icons/png/wallet-color-icon.png" alt="" aria-hidden="true" />
+        <span>Recarregar saldo</span>
+        <small>adicione dinheiro à sua carteira</small>
+      </a>
+      <a routerLink="/profile/coming-soon">
+        <img src="assets/icons/png/add-circle-icon.png" alt="" aria-hidden="true" />
+        <span>Retirar saldo</span>
+        <small>transfira para sua conta bancária</small>
+      </a>
+      <a routerLink="/booking">
+        <img src="assets/icons/png/history-icon.png" alt="" aria-hidden="true" />
+        <span>Extrato</span>
+        <small>veja todas as movimentações</small>
+      </a>
+      <a routerLink="/payment">
+        <img src="assets/icons/png/bank-card-icon.png" alt="" aria-hidden="true" />
+        <span>Pagamentos</span>
+        <small>gerencie seus cartões e formas de pagamento</small>
+      </a>
+    </section>
+  }
+
+  <nav class="account-links" aria-label="Configurações da conta">
+    <a routerLink="/profile" class="account-link">
+      <span class="account-link-icon"><img src="assets/icons/png/account-bank-icon.png" alt="" /></span>
+      <span><strong>Minha conta</strong><small>R$123,456</small></span>
+      <img class="account-chevron" src="assets/icons/png/chevron-left-icon.png" alt="" aria-hidden="true" />
+    </a>
+    <a routerLink="/profile" class="account-link">
+      <span class="account-link-icon"><img src="assets/icons/png/vehicle-icon.png" alt="" /></span>
+      <span><strong>Meus Veículos</strong><small>{{ authService.primaryVehicle()?.licensePlate }}</small></span>
+      <img class="account-chevron" src="assets/icons/png/chevron-left-icon.png" alt="" aria-hidden="true" />
+    </a>
+    <a routerLink="/payment" class="account-link">
+      <span class="account-link-icon"><img src="assets/icons/png/payment-icon.png" alt="" /></span>
+      <span><strong>Formas de pagamento</strong><small>Mastercard **** 4812</small></span>
+      <img class="account-chevron" src="assets/icons/png/chevron-left-icon.png" alt="" aria-hidden="true" />
+    </a>
+    <a routerLink="/chat" class="account-link">
+      <span class="account-link-icon"><img src="assets/icons/png/chat-icon.png" alt="" /></span>
+      <span><strong>Conversas</strong><small>Online</small></span>
+      <img class="account-chevron" src="assets/icons/png/chevron-left-icon.png" alt="" aria-hidden="true" />
+    </a>
+    <a routerLink="/profile/coming-soon" class="account-link">
+      <span class="account-link-icon"><img src="assets/icons/svg/notification-icon.svg" alt="" /></span>
+      <span><strong>Notificações</strong><small>Ativas</small></span>
+      <img class="account-chevron" src="assets/icons/png/chevron-left-icon.png" alt="" aria-hidden="true" />
+    </a>
+    <a routerLink="/list" class="account-link">
+      <span class="account-link-icon"><img src="assets/icons/png/location-pin-icon.png" alt="" /></span>
+      <span><strong>Endereços salvos</strong><small>Casa, Trabalho</small></span>
+      <img class="account-chevron" src="assets/icons/png/chevron-left-icon.png" alt="" aria-hidden="true" />
+    </a>
+    <a routerLink="/profile/coming-soon" class="account-link">
+      <span class="account-link-icon"><img src="assets/icons/png/accessibility-icon.png" alt="" /></span>
+      <span><strong>Acessibilidade</strong></span>
+      <img class="account-chevron" src="assets/icons/png/chevron-left-icon.png" alt="" aria-hidden="true" />
+    </a>
+    <a routerLink="/booking" class="account-link">
+      <span class="account-link-icon"><img src="assets/icons/png/history-icon.png" alt="" /></span>
+      <span><strong>Histórico</strong></span>
+      <img class="account-chevron" src="assets/icons/png/chevron-left-icon.png" alt="" aria-hidden="true" />
+    </a>
+  </nav>
+</main>

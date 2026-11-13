@@ -1,0 +1,162 @@
+@use '../../../../styles/variables' as *;
+
+:host,
+.payment-sidebar,
+.payment-calendar-card,
+.payment-summary-card,
+.payment-methods-card,
+.payment-summary-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.payment-calendar-card,
+.payment-summary-card,
+.payment-methods-card {
+  padding: 16px 20px;
+  border-radius: 15px;
+  border: 1px solid $clr-blue-300;
+  background: $clr-white-1100;
+
+  h2 {
+    margin: 0;
+    font: $fw-medium 20px $font-heading;
+  }
+}
+
+.payment-calendar-month,
+.payment-calendar-weekdays,
+.payment-calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  text-align: center;
+}
+
+.payment-calendar-month {
+  display: block;
+}
+
+.payment-day-btn,
+.payment-step-btn {
+  width: 28px;
+  height: 28px;
+  margin: 0 auto;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  background: $clr-white-1000;
+  font: 14px $font-heading;
+  cursor: pointer;
+}
+
+.payment-day-btn {
+  &.is-selected {
+    border-color: $clr-blue-300;
+    font-weight: $fw-bold;
+  }
+
+  &.is-highlight {
+    border-color: $clr-yellow-900;
+  }
+}
+
+.payment-step-btn {
+  background: $clr-primary-100;
+  color: $clr-blue-1000;
+  font-weight: $fw-bold;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  &.is-plus {
+    background: $clr-blue-1000;
+
+    img {
+      filter: brightness(0) invert(1);
+    }
+  }
+}
+
+.payment-summary-head,
+.payment-summary-row,
+.payment-summary-total,
+.payment-method-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.payment-summary-rows {
+  gap: 6px;
+  padding: 8px 0;
+  border-block: 1px solid $clr-primary-100;
+}
+
+.payment-summary-row,
+.payment-summary-total {
+  font: 15px $font-heading;
+  color: $clr-blue-500;
+
+  strong {
+    color: $clr-blue-1000;
+  }
+
+  &.is-discount strong {
+    color: $clr-green-1000;
+  }
+}
+
+.payment-summary-total {
+  font: $fw-bold 20px $font-heading;
+  color: $clr-black-1100;
+}
+
+.payment-hour-stepper,
+.payment-method-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.payment-method-option {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid $clr-primary-1000;
+  background: none;
+  cursor: pointer;
+
+  &.is-active {
+    background: rgba(204, 226, 255, 0.3);
+  }
+}
+
+.payment-method-left {
+  text-align: left;
+
+  div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  strong {
+    font: $fw-bold 15px $font-heading;
+    color: $clr-blue-1000;
+  }
+}
+
+.payment-radio {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid $clr-blue-1000;
+
+  &.is-checked {
+    background: $clr-blue-1000;
+    box-shadow: inset 0 0 0 3px $clr-white-1000;
+  }
+}

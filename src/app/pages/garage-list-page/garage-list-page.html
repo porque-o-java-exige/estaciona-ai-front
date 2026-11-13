@@ -16,20 +16,12 @@
       </div>
     </div>
 
-    <div class="garage-list-filters" role="group" aria-label="Filtros de vagas">
-      @for (option of filterOptions; track option) {
-        <button
-          type="button"
-          class="garage-list-filter-btn"
-          (click)="onSelectFilter(option)">
-          <app-chip
-            variant="reservation-filter"
-            [text]="option"
-            [isActive]="activeFilter() === option">
-          </app-chip>
-        </button>
-      }
-    </div>
+    <app-filter-tabs
+      [options]="filterOptions"
+      [activeOption]="activeFilter()"
+      ariaLabel="Filtros de vagas"
+      (optionSelected)="onSelectFilter($event)">
+    </app-filter-tabs>
   </div>
 
   @if (garages().length > 0) {
@@ -55,4 +47,3 @@
 
   <app-footer></app-footer>
 </div>
-

@@ -82,7 +82,7 @@ export class PixPaymentCard implements OnDestroy {
 
   onOpenCancelModal = (): void => {
     const dialog = this.cancelDialogRef()?.nativeElement;
-    if (dialog && typeof dialog.showModal === 'function') {
+    if (dialog && !dialog.open) {
       dialog.showModal();
     }
   };
@@ -106,4 +106,3 @@ export class PixPaymentCard implements OnDestroy {
     }
   }
 }
-

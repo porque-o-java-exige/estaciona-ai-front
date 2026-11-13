@@ -1,0 +1,10 @@
+<nav class="filter-tabs" [attr.aria-label]="ariaLabel()">
+  @for (option of options(); track option) {
+    <app-button
+      variant="filter-option"
+      [text]="option"
+      [isActive]="activeOption() === option"
+      (click)="optionSelected.emit(option)">
+    </app-button>
+  }
+</nav>

@@ -2,6 +2,7 @@
   <div
     class="app-shell"
     [class.is-chat-route]="isChatRoute()"
+    [class.is-garage-details-route]="isGarageDetailsRoute()"
     [class.is-mobile-chat-thread]="isMobileChatThread()"
   >
     <app-header></app-header>
@@ -17,4 +18,18 @@
   <main class="app-auth-shell">
     <router-outlet />
   </main>
+}
+
+@if (feedbackService.current(); as feedback) {
+  <div
+    class="app-feedback"
+    [class.is-success]="feedback.type === 'success'"
+    [class.is-error]="feedback.type === 'error'"
+    [attr.role]="feedback.type === 'error' ? 'alert' : 'status'"
+    aria-live="polite">
+    <span>{{ feedback.message }}</span>
+    <button type="button" aria-label="Fechar mensagem" (click)="feedbackService.dismiss()">
+      <img src="assets/icons/png/close-circle-icon.png" alt="" aria-hidden="true" />
+    </button>
+  </div>
 }

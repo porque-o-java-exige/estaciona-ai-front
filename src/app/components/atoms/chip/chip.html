@@ -1,4 +1,11 @@
-<div class="chip" [class]="'chip-' + variant()" [class.is-active]="isReservationFilterActive()" [class.is-pending-or-done]="isPendingOrDone()">
+<div
+  class="chip"
+  [class]="'chip-' + variant()"
+  [class.tone-high]="variant() === 'availability' && tone() === 'high'"
+  [class.tone-medium]="variant() === 'availability' && tone() === 'medium'"
+  [class.tone-low]="variant() === 'availability' && tone() === 'low'"
+  [class.is-active]="isReservationFilterActive()"
+  [class.is-pending-or-done]="isPendingOrDone()">
     @for (path of iconPaths(); track $index) {
     <img [src]="path" alt="" aria-hidden="true" />
     }

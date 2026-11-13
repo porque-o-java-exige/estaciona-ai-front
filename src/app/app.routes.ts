@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
+import { AccountPage } from './pages/account-page/account-page';
 import { BookingPage } from './pages/booking-page/booking-page';
 import { ChatPage } from './pages/chat-page/chat-page';
+import { ComingSoonPage } from './pages/coming-soon-page/coming-soon-page';
 import { GarageDetailsPage } from './pages/garage-details-page/garage-details-page';
 import { GarageListPage } from './pages/garage-list-page/garage-list-page';
 import { HomePage } from './pages/home-page/home-page';
@@ -23,6 +25,8 @@ export const routes: Routes = [
   { path: 'chat', component: ChatPage },
   { path: 'chat/mensagens', component: ChatPage },
   { path: 'chat/:id', component: ChatPage },
+  { path: 'profile/account', component: AccountPage },
+  { path: 'profile/coming-soon', component: ComingSoonPage },
   { path: 'profile', component: ProfilePage },
   { path: '**', redirectTo: 'sign-in' },
 ];

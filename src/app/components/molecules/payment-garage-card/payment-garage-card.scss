@@ -1,0 +1,125 @@
+@use '../../../../styles/variables' as *;
+
+.payment-garage-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid $clr-primary-100;
+  border-radius: 8px;
+  background: $clr-white-1100;
+  overflow: hidden;
+  opacity: 0.62;
+  cursor: pointer;
+
+  &.is-selected,
+  &:hover {
+    opacity: 1;
+    border-color: $clr-blue-600;
+  }
+}
+
+.payment-garage-photo {
+  width: 100%;
+  height: 150px;
+}
+
+.payment-garage-body {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 12px 60px 12px 16px;
+}
+
+.payment-garage-info {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+app-selection-control {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  display: block;
+  width: 28px;
+  height: 28px;
+  transform: translateY(-50%);
+}
+
+.payment-garage-name {
+  margin: 0;
+  font: $fw-bold 16px $font-heading;
+}
+
+.payment-garage-addr {
+  margin: 2px 0 8px;
+  font-size: 14px;
+  color: $clr-black-700;
+}
+
+.payment-garage-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: $clr-blue-400;
+
+  span {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+  }
+
+  img {
+    width: 14px;
+    height: 14px;
+    object-fit: contain;
+  }
+}
+
+@media (max-width: $bp-mobile) {
+  .payment-garage-card {
+    flex-direction: row;
+    min-height: 70px;
+  }
+
+  .payment-garage-photo {
+    width: 64px !important;
+    height: 70px !important;
+    flex: 0 0 64px;
+  }
+
+  .payment-garage-body {
+    min-width: 0;
+    padding: 6px 52px 6px 8px;
+    gap: 6px;
+  }
+
+  app-selection-control {
+    right: 16px;
+  }
+
+  .payment-garage-name {
+    overflow: hidden;
+    font-size: 12px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .payment-garage-addr {
+    margin-bottom: 4px;
+    font-size: 11px;
+  }
+
+  .payment-garage-meta {
+    gap: 8px;
+    font-size: 10px;
+
+    img {
+      width: 12px;
+      height: 12px;
+    }
+  }
+
+  app-selection-control {
+    margin-left: auto;
+  }
+}

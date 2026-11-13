@@ -1,0 +1,33 @@
+<article
+  class="payment-garage-card"
+  [class.is-selected]="selected()"
+  (click)="selectedChange.emit(booking().id)">
+  <app-image
+    class="payment-garage-photo"
+    [src]="booking().imageUrl"
+    [alt]="booking().garageName"
+    loading="lazy"
+    [width]="'100%'"
+    [height]="150">
+  </app-image>
+
+  <div class="payment-garage-body">
+    <div class="payment-garage-info">
+      <h2 class="payment-garage-name">{{ booking().garageName }}</h2>
+      <p class="payment-garage-addr">{{ booking().address }}</p>
+
+      <div class="payment-garage-meta">
+        <span><img src="assets/icons/png/history-icon.png" alt="" aria-hidden="true" />{{ booking().billingLabel }}</span>
+        <span><img src="assets/icons/png/location-pin-icon.png" alt="" aria-hidden="true" />{{ booking().distanceMeters }}</span>
+        <span>R$16,00</span>
+      </div>
+    </div>
+
+    <app-selection-control
+      [selected]="selected()"
+      [ariaLabel]="'Selecionar ' + booking().garageName"
+      (click)="$event.stopPropagation()"
+      (toggled)="selectedChange.emit(booking().id)">
+    </app-selection-control>
+  </div>
+</article>

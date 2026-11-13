@@ -1,0 +1,143 @@
+<aside class="payment-sidebar">
+  @if (billingMode() === 'day') {
+    <div class="payment-calendar-card">
+      <h2 class="payment-calendar-month">Mês atual</h2>
+
+      <div class="payment-calendar-weekdays">
+        @for (dayName of weekDays(); track dayName) {
+          <span>{{ dayName }}</span>
+        }
+      </div>
+
+      <div class="payment-calendar-days">
+        @for (day of calendarDays(); track day) {
+          <button
+            type="button"
+            class="payment-day-btn"
+            [class.is-selected]="isDaySelected(day)"
+            [class.is-highlight]="day === 14 && isDaySelected(day)"
+            (click)="calendarDayToggled.emit(day)">
+            {{ day }}
+          </button>
+        }
+      </div>
+
+      <app-button
+        variant="tertiary"
+        text="Reservar Vaga"
+        (click)="reserveSpot.emit()">
+      </app-button>
+    </div>
+  }
+
+  <div class="payment-summary-card">
+    <div class="payment-summary-head">
+      <h2 class="payment-summary-title">Duração</h2>
+
+      @if (billingMode() === 'hour') {
+        <div class="payment-hour-stepper">
+          <button
+            type="button"
+            class="payment-step-btn"
+            (click)="hoursDecrement.emit()"
+            aria-label="Diminuir horas">
+            <img src="assets/icons/png/minus-circle-icon.png" alt="" aria-hidden="true" />
+          </button>
+          <strong>{{ selectedHours() }}h</strong>
+          <button
+            type="button"
+            class="payment-step-btn is-plus"
+            (click)="hoursIncrement.emit()"
+            aria-label="Aumentar horas">
+            <img src="assets/icons/png/add-small-icon.png" alt="" aria-hidden="true" />
+          </button>
+        </div>
+      }
+    </div>
+
+    <div class="payment-summary-rows">
+      <div class="payment-summary-row">
+        <span>
+          {{
+            billingMode() === 'hour'
+              ? selectedHours() + 'h x R$8/h'
+              : 'Dias escolhidos (' + selectedDays().length + ')'
+          }}
+        </span>
+        <strong>R${{ formatCurrency(baseSubtotal()) }}</strong>
+      </div>
+
+      <div class="payment-summary-row">
+        <span>Taxa de Serviço</span>
+        <strong>R${{ formatCurrency(serviceFee()) }}</strong>
+      </div>
+
+      <div class="payment-summary-row is-discount">
+        <span>Desconto</span>
+        <strong>- R${{ formatCurrency(discountAmount()) }}</strong>
+      </div>
+    </div>
+
+    <div class="payment-summary-total">
+      <span>Total</span>
+      <strong>R${{ formatCurrency(finalTotal()) }}</strong>
+    </div>
+  </div>
+
+  <div class="payment-methods-card">
+    <h2 class="payment-methods-title">Formas de pagamento</h2>
+
+    <button
+      type="button"
+      class="payment-method-option"
+      [class.is-active]="paymentMethod() === 'pix'"
+      (click)="paymentMethodChange.emit('pix')">
+      <div class="payment-method-left">
+        <app-icon name="pix" [size]="34"></app-icon>
+        <div>
+          <strong>Pix</strong>
+          <span>Aprovação Instantânea</span>
+        </div>
+      </div>
+      <span class="payment-radio" [class.is-checked]="paymentMethod() === 'pix'"></span>
+    </button>
+
+    <button
+      type="button"
+      class="payment-method-option"
+      [class.is-active]="paymentMethod() === 'card'"
+      (click)="paymentMethodChange.emit('card')">
+      <div class="payment-method-left">
+        <app-icon name="card" [size]="34"></app-icon>
+        <div>
+          <strong>Cartão **** 4812</strong>
+          <span>Débito</span>
+        </div>
+      </div>
+      <span class="payment-radio" [class.is-checked]="paymentMethod() === 'card'"></span>
+    </button>
+
+    <button
+      type="button"
+      class="payment-method-option"
+      [class.is-active]="paymentMethod() === 'wallet'"
+      (click)="paymentMethodChange.emit('wallet')">
+      <div class="payment-method-left">
+        <img src="assets/icons/png/wallet-icon.png" alt="" width="34" height="34" />
+        <div>
+          <strong>Carteira Estaciona AI</strong>
+          <span>Saldo: R${{ formatCurrency(walletBalance()) }}</span>
+        </div>
+      </div>
+      <span class="payment-radio" [class.is-checked]="paymentMethod() === 'wallet'"></span>
+    </button>
+  </div>
+
+  <app-button
+    [variant]="payButtonVariant()"
+    [iconSrc]="payButtonIcon()"
+    [text]="payButtonText()"
+    [fullWidth]="true"
+    (click)="paymentSubmitted.emit()">
+  </app-button>
+</aside>

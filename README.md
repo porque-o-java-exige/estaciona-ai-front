@@ -1,111 +1,54 @@
-<h1 align='center'>Estaciona Ai Front</h1>
-
-## Como começar a contribuir
-> Leia este documento com atenção e crie sua branch de acordo.
-
-## Pré-requisitos
-Para rodar este projeto é necessário ter:
-  
-  - Uma IDE de sua preferência.
-  - <a href='https://git-scm.com/'>Git</a> 
-  - <a href='https://nodejs.org/pt-br/download'>Node</a>
-  - <a href='https://www.npmjs.com/'>Npm</a> 
-  - <a href='https://angular.dev/tools/cli/setup-local'>Angular CLI</a> 
-
-## Instalando o Git
-Entre no site oficial do [Git](https://git-scm.com/install/) e siga os passos para o seu respectivo sistema operacional.
-
-## Instalando o Node / Npm
-> Este comando abaixo funciona tanto no **terminal do Linux** quanto no **git bash** no Windows.
-
-```bash
-# Baixar e instalar o nvm:
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
-
-# Carregar o nvm sem precisar reiniciar o terminal
-\. "$HOME/.nvm/nvm.sh"
-
-# Baixar e instalar o Node.js:
-nvm install 24
-
-# Verifique a versão do Node.js:
-node -v # Deve exibir "v24.14.0".
-
-# Verificar a versão do npm:
-npm -v # Deve imprimir "11.9.0".
-```
-
-## Instalando Angular CLI
-Com Npm instalado rode este comando no terminal:
-```bash
-# Instalando o angular globalmente(-g)
-npm install -g @angular/cli
-```
+﻿# estacionaAi
 
 ## Como rodar o projeto
 1. Clone este repositório.
-2. Abra o terminal dentro da pasta do projeto.
-3. instale as dependências do projeto com o comando `` npm i ``.
-4. Inicie o projeto com o comando `` ng serve -o `` para rodar localmente.
+2. Entre na pasta utilizando Intellij para que a dependência `` lombok `` funcione corretamente.
+3. Verifique que o banco de dados está configurando corretamente em **application properties**.
+4. Rode o arquivo `` Application.java ``.
+
+## Como começar a contribuir
+> Preencha as tópicos vazios desse readme de acordo com a função do seu grupo e faça alterações na seção estrutura de pastas conforme sejam feitas alterações.
 
 ## Estrutura das pastas
-```
-.
-├── .github/
-│   ├── CODEOWNERS
-│   └── PULL_REQUEST_TEMPLATE.md
-│   └── ISSUE_TEMPLATE/
-│       ├── bug.md
-│       ├── docs.md
-│       ├── feature.md
-│       └── question.md
-├── .vscode/
-│   ├── extensions.json
-│   ├── launch.json
-│   └── tasks.json
+  ```
+├── .mvn/
+│   └── wrapper/
+│       └── maven-wrapper.properties
 ├── src/
-│   ├── app/
-│   │   ├── components/
-│   │   │   ├── atoms/
-│   │   │   │   └── .gitkeep
-│   │   │   ├── molecules/
-│   │   │   │   └── .gitkeep
-│   │   │   └── organisms/
-│   │   │       └── .gitkeep
-│   │   ├── pages/
-│   │   │   └── .gitkeep
-│   │   ├── app.config.ts
-│   │   ├── app.html
-│   │   ├── app.routes.ts
-│   │   ├── app.scss
-│   │   ├── app.spec.ts
-│   │   └── app.ts
-│   ├── assets/
-│   │   ├── icons/
-│   │   │   └── favicon.ico
-│   │   └── images/
-│   │       └── .gitkeep
-│   ├── styles/
-│   │   └── styles.scss
-│   ├── index.html
-│   └── main.ts
-├── .editorconfig
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com.estaciona_ai/
+│   │   │       ├── controllers/
+│   │   │       │   └── .gitkeep
+│   │   │       ├── dtos/
+│   │   │       │   └── .gitkeep
+│   │   │       ├── entities/
+│   │   │       │   └── .gitkeep
+│   │   │       ├── repositories/
+│   │   │       │   └── .gitkeep
+│   │   │       └── services/
+│   │   │           ├── .gitkeep
+│   │   │           └── Application.java
+│   │   └── resources/
+│   │       └── application.properties
+│   └── test/
+│       └── java/
+│           └── com.estaciona_ai/
+│               └── ApplicationTests.java
+├── .gitattributes
 ├── .gitignore
-├── .prettierrc
-├── angular.json
-├── package-lock.json
-├── package.json
-├── README.md
-├── tsconfig.app.json
-├── tsconfig.json
-└── tsconfig.spec.json
-```
+├── mvnw
+├── mvnw.cmd
+├── pom.xml
+└── README.md
+  ```
 
 ## Convenção de nomenclatura
 > Padrão de nomeação que deve ser seguido em todas as etapas de desenvolvimento.
 
+
 ### Linguagem
-- Inglês
+- A ser decidido
 
 ### Arquivos e pastas
 - kebab-case.
@@ -113,68 +56,52 @@ npm install -g @angular/cli
 - Exemplo:
 
   ```
-  ├── .github/
-  │   ├── CODEOWNERS
-  │   └── PULL_REQUEST_TEMPLATE.md
-  └── src/
-      └── app/
-          └── components/
-              └── atoms/
-                  └── primary-button/
+    ├── .github/
+    │   ├── CODEOWNERS 
+    │   └── PULL_REQUEST_TEMPLATE.md 
+    └──── src/ 
+           ├──.mvn
+           └──src
+                └── main 
   ```
 
 ### Variáveis e funções
 - camelCase.
-- Exemplo:
-
-  ```ts
-  export class Header {
-
-  isModalOpen = false
-
-  toggleModal = () => {
-    this.isModalOpen = !this.isModalOpen    
-  }
-
-  }
-  ```
-
-### Componentes(componentes, estilos e páginas)
-- kebab-case.
+- Nomes de variáveis e funções no front e back end devem seguir este padrão.
 - Exemplos:
 
-#### Componentes
-  ```
-    └── app/
-        └── components
-            └── organisms
-                └── header/
-                    ├── header.html
-                    ├── header.scss
-                    ├── header.spec.ts
-                    └── header.ts
+  ```java
+  private String userName;
+
+  public String getName() {
+    return userName;
+  }
   ```
 
-#### Páginas
-- Mesma nomeação com o prefixo **page** no final.
+### Endpoints
+- kebab-case.
+- Endpoints não devem iniciar nem finalizar com " / " e nomes compostos devem ser separados seguindo este padrão.
+- Exemplo:
+
+  ```java
+    @RestController
+    @RequestMapping("user")
+    public class UserController {
+
+        @PostMapping("login-admin")
+	    public ResponseEntity<?> login(@RequestBody UserRequestDTO user) {
+		
+		    return ResponseEntity.ok(userService.login(user));
+    	} 
+    }
   ```
-    └─── app/
-        └── pages/
-            └── coming-soon-page/
-  ```
 
-## Requisitos
-### Requisitos Funcionais 
 
-### Requisitos Não Funcionais
+## Modelagem do banco de dados
 
-## Ferramentas utilizadas
-![Angular logo](/src/assets/icons/angular-logo.svg)
-![Vite logo](/src/assets/icons/vite-logo.svg)
-![Vitest logo](/src/assets/icons/vitest-logo.svg)
-![Html logo](/src/assets/icons/html-logo.svg)
-![Sass logo](/src/assets/icons/sass-logo.svg)
-![Typescript logo](/src/assets/icons/typescript-logo.svg)
+### (Diagrama Entidade-Relacionamento)
+<!-- Coloque o relacionamento aqui do jeito que preferir imagem, texto, etc... -->
 
-## Licença
-Este projeto é de uso acadêmico e não possui fins comerciais.
+### Relacionamento MER
+
+### Relacionamento DER

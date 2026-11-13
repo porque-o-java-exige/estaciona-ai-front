@@ -2,28 +2,34 @@
 
 :host {
   display: block;
-  position: relative;
+  position: fixed;
+  top: 92px;
+  bottom: 0;
+  left: 0;
   width: 80px;
-  min-height: calc(100dvh - 92px);
-  flex-shrink: 0;
+  height: calc(100dvh - 92px);
   z-index: 35;
 
   @media (max-width: $bp-mobile) {
     display: none;
   }
+
+  @media (min-width: ($bp-mobile + 1px)) and (max-width: 900px) {
+    top: 116px;
+    height: calc(100dvh - 116px);
+  }
 }
 
 .app-sidebar {
   position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
+  inset: 0 auto 0 0;
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  justify-content: center;
   width: 80px;
-  min-height: 100%;
-  padding: 15px 16px;
+  height: 100%;
+  padding: 24px 12px;
   background-color: $surface-page;
   border-right: 1px solid $border-subtle;
   overflow: hidden;
@@ -32,13 +38,9 @@
     box-shadow 0.28s ease,
     border-color 0.28s ease;
 
-  &:hover,
-  &:focus-within,
-  &.is-expanded {
+  &:hover {
     width: 200px;
     border-right-color: $border-brand-light;
-    // I through box-shadow may be fine, i will talk with Ryan and Vinicius to include it
-    // box-shadow: 10px 0 28px rgba(18, 18, 18, 0.1);
 
     .app-sidebar-label {
       opacity: 1;
@@ -48,8 +50,7 @@
   }
 
   .app-sidebar-nav {
-    position: sticky;
-    top: 112px;
+    position: static;
     width: 100%;
   }
 
@@ -81,19 +82,6 @@
       background-color 0.22s ease,
       transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
 
-    &::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 50%;
-      width: 3px;
-      height: 0;
-      border-radius: 999px;
-      background-color: $surface-brand-primary;
-      transform: translateY(-50%);
-      transition: height 0.22s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
     &:hover {
       background-color: $surface-brand-tint;
       transform: translateX(2px);
@@ -116,10 +104,6 @@
 
     &.app-sidebar-link-active {
       background-color: $surface-brand-tint;
-
-      &::before {
-        height: 22px;
-      }
 
       .app-sidebar-icon-box {
         background-color: $surface-brand-active;
@@ -195,7 +179,6 @@
     transition: none;
 
     .app-sidebar-link,
-    .app-sidebar-link::before,
     .app-sidebar-icon-box,
     .app-sidebar-label {
       transition: none;

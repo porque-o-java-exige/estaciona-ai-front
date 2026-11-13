@@ -183,6 +183,24 @@ button {
   border: 0.8px solid $clr-primary-300;
 }
 
+&.button-filter-option {
+  width: auto;
+  min-height: 34px;
+  padding: 6px 14px;
+  border: 1px solid $clr-primary-300;
+  border-radius: 30px;
+  background: $clr-white-1100;
+  color: $clr-blue-600;
+  font-size: 14px;
+
+  &:hover,
+  &.is-active {
+    border-color: $clr-blue-1000;
+    background: $clr-blue-1000;
+    color: $clr-white-1100;
+  }
+}
+
   // Botões de pagamento por Pix e cartão
   &.button-payment,
   &.button-card {

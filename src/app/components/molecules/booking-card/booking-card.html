@@ -20,11 +20,7 @@
   <div class="booking-card-bottom">
     <div class="booking-card-spot-group">
       <div class="booking-card-icon-box" aria-hidden="true">
-        <img
-          src="assets/icons/distance-icon.svg"
-          alt=""
-          width="18"
-          height="18" />
+        <app-icon name="vehicle" [size]="18"></app-icon>
       </div>
 
       <div class="booking-card-spot-info">
@@ -35,8 +31,11 @@
 
     <div class="booking-card-price-group">
       <span class="booking-card-price-label">{{ totalLabel() }}</span>
-      <strong class="booking-card-price-value">R$ {{ booking().totalAmount }}</strong>
+      <app-price
+        class="booking-card-price-value"
+        [amount]="booking().totalAmount"
+        currency="R$ ">
+      </app-price>
     </div>
   </div>
 </a>
-

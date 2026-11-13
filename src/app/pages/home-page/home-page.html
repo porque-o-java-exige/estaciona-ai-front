@@ -4,68 +4,24 @@
     <h1 class="home-greeting-title">Onde vai estacionar hoje ?</h1>
   </section>
 
-  <section class="home-map-section" aria-label="Mapa de vagas próximas">
-    <div class="home-map-frame">
-      <img
-        src="assets/images/map-preview.png"
-        alt="Mapa da região com vagas de estacionamento próximas"
-        fetchpriority="high"
-        width="1280"
-        height="411"
-        class="home-map-image" />
+  <div class="home-mobile-tools">
+    <app-input
+      class="home-search"
+      type="search"
+      icon="search"
+      placeholder="Buscar endereço, bairro..."
+      [ngModel]="searchQuery()"
+      (ngModelChange)="onSearch($event)">
+    </app-input>
+    <button type="button" class="home-tool-button" aria-label="Notificações">
+      <img src="assets/icons/svg/notification-icon.svg" alt="" aria-hidden="true" />
+    </button>
+    <a routerLink="/list" class="home-tool-button" aria-label="Filtrar garagens">
+      <img src="assets/icons/svg/filter-icon.svg" alt="" aria-hidden="true" />
+    </a>
+  </div>
 
-      <div class="home-map-pins">
-        @for (garage of garages(); track garage.id) {
-          <button
-            type="button"
-            class="home-map-pin"
-            [class]="'pin-' + garage.availabilityLevel"
-            [class.is-active]="selectedGarageId() === garage.id"
-            [style.top]="garage.mapPin.top"
-            [style.left]="garage.mapPin.left"
-            (click)="onSelectGarage(garage)"
-            [attr.aria-label]="garage.name + ' R$' + garage.hourlyPrice + ' por hora'">
-            <span class="home-map-pin-price">R${{ garage.hourlyPrice }}/h</span>
-          </button>
-        }
-      </div>
-
-      @if (activePinGarage(); as activeGarage) {
-        <div class="home-map-preview-card">
-          <img
-            [src]="activeGarage.imageUrl"
-            [alt]="activeGarage.name"
-            width="64"
-            height="64"
-            class="home-map-preview-thumb" />
-
-          <div class="home-map-preview-info">
-            <div class="home-map-preview-top">
-              <strong>{{ activeGarage.name }}</strong>
-              <span class="home-map-preview-spots">
-                {{ activeGarage.remainingSpots }}
-                {{ activeGarage.remainingSpots === 1 ? 'vaga' : 'vagas' }}
-              </span>
-            </div>
-            <p>{{ activeGarage.address }}</p>
-            <div class="home-map-preview-bottom">
-              <span>★ {{ activeGarage.rating }} · {{ activeGarage.distance }}</span>
-              <a
-                [routerLink]="['/list/details']"
-                [queryParams]="{ id: activeGarage.id }"
-                class="home-map-preview-cta">
-                Ver detalhes →
-              </a>
-            </div>
-          </div>
-        </div>
-      }
-
-      <a routerLink="/list" class="home-map-list-toggle">
-        <span>Ver todas em lista ({{ garages().length }})</span>
-      </a>
-    </div>
-  </section>
+  <app-garage-map></app-garage-map>
 
   <section class="home-nearby-section">
     <div class="home-nearby-header">
@@ -73,7 +29,8 @@
         Vagas mais próximas de acordo com seu endereço
       </h2>
       <a routerLink="/list" class="home-nearby-view-all">
-        Ver catálogo completo →
+        Ver catálogo completo
+        <img src="assets/icons/png/chevron-left-icon.png" alt="" aria-hidden="true" />
       </a>
     </div>
 

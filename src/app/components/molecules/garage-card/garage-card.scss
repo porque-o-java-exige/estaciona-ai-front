@@ -41,12 +41,8 @@
 .garage-card-image {
   width: 90px;
   min-width: 90px;
-  height: auto;
-  min-height: 90px;
-  object-fit: cover;
+  height: 90px;
   border-radius: 10px 0 0 10px;
-  display: block;
-  flex-shrink: 0;
 }
 
 .garage-card-content {
@@ -99,33 +95,8 @@
   text-overflow: ellipsis;
 }
 
-.garage-card-spots {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2px 8px;
-  border-radius: 15px;
-  font-family: $font-body;
-  font-size: 12px;
-  font-weight: $fw-bold;
-  line-height: 1.5;
-  white-space: nowrap;
-  flex-shrink: 0;
-
-  &.spots-high {
-    background-color: $surface-brand-soft;
-    color: $text-brand;
-  }
-
-  &.spots-medium {
-    background-color: $status-warning-bg;
-    color: $status-warning;
-  }
-
-  &.spots-low {
-    background-color: $status-danger-bg;
-    color: $status-danger;
-  }
+.garage-card-header app-chip {
+  flex: 0 0 auto;
 }
 
 .garage-card-footer {
@@ -144,12 +115,6 @@
   min-width: 0;
 }
 
-.garage-card-star {
-  width: 13px;
-  height: 13px;
-  flex-shrink: 0;
-}
-
 .garage-card-meta-text {
   font-family: $font-body;
   font-size: 12px;
@@ -162,11 +127,6 @@
 }
 
 .garage-card-price {
-  font-family: $font-body;
-  font-size: 15px;
-  font-weight: $fw-bold;
-  line-height: 1.3;
-  color: $clr-blue-1000;
-  white-space: nowrap;
-  flex-shrink: 0;
+  --price-font: #{$fw-bold} 15px #{$font-body};
+  --price-color: #{$clr-blue-1000};
 }

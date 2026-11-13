@@ -54,109 +54,88 @@
       <div class="options-grid">
         <button type="button" class="option-card" (click)="onOptionClick('account')">
           <span class="option-icon" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E5BB7" stroke-width="2">
-              <path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3" stroke-linecap="round" />
-            </svg>
+            <img src="assets/icons/png/account-bank-icon.png" alt="" aria-hidden="true" width="20" height="20" />
           </span>
           <span class="option-body">
             <strong class="option-title">Minha conta</strong>
             <span class="option-meta">R${{ formatCurrency(authService.currentUser().balance) }}</span>
           </span>
-          <span class="option-chevron" aria-hidden="true">›</span>
+          <span class="option-chevron" aria-hidden="true"><img src="assets/icons/png/chevron-left-icon.png" alt="" /></span>
         </button>
 
         <button type="button" class="option-card" (click)="onOptionClick('vehicles')">
           <span class="option-icon" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E5BB7" stroke-width="2">
-              <path d="M5 17h14v-5l-2-5H7l-2 5v5z" stroke-linejoin="round" />
-              <circle cx="7.5" cy="17.5" r="1.5" />
-              <circle cx="16.5" cy="17.5" r="1.5" />
-            </svg>
+            <img src="assets/icons/png/vehicle-icon.png" alt="" aria-hidden="true" width="20" height="20" />
           </span>
           <span class="option-body">
             <strong class="option-title">Meus Veículos</strong>
             <span class="option-meta">{{ authService.primaryVehicle()?.licensePlate }}</span>
           </span>
-          <span class="option-chevron" aria-hidden="true">›</span>
+          <span class="option-chevron" aria-hidden="true"><img src="assets/icons/png/chevron-left-icon.png" alt="" /></span>
         </button>
 
         <button type="button" class="option-card" (click)="onOptionClick('payment')">
           <span class="option-icon" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E5BB7" stroke-width="2">
-              <rect x="2" y="5" width="20" height="14" rx="2" />
-              <path d="M2 10h20" />
-            </svg>
+            <img src="assets/icons/png/payment-icon.png" alt="" aria-hidden="true" width="20" height="20" />
           </span>
           <span class="option-body">
             <strong class="option-title">Formas de pagamento</strong>
             <span class="option-meta">Mastercard **** 4812</span>
           </span>
-          <span class="option-chevron" aria-hidden="true">›</span>
+          <span class="option-chevron" aria-hidden="true"><img src="assets/icons/png/chevron-left-icon.png" alt="" /></span>
         </button>
 
         <button type="button" class="option-card" (click)="onOptionClick('chat')">
           <span class="option-icon" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E5BB7" stroke-width="2">
-              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
-            </svg>
+            <img src="assets/icons/png/chat-icon.png" alt="" aria-hidden="true" width="20" height="20" />
           </span>
           <span class="option-body">
             <strong class="option-title">Conversas</strong>
             <span class="option-meta online"><span class="online-dot"></span> Online</span>
           </span>
-          <span class="option-chevron" aria-hidden="true">›</span>
+          <span class="option-chevron" aria-hidden="true"><img src="assets/icons/png/chevron-left-icon.png" alt="" /></span>
         </button>
 
         <button type="button" class="option-card" (click)="onOptionClick('config')">
           <span class="option-icon" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E5BB7" stroke-width="2">
-              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0" />
-            </svg>
+            <img src="assets/icons/svg/notification-icon.svg" alt="" aria-hidden="true" width="20" height="20" />
           </span>
           <span class="option-body">
             <strong class="option-title">Notificações</strong>
             <span class="option-meta">{{ authService.settings().notifications ? 'Ativas' : 'Inativas' }}</span>
           </span>
-          <span class="option-chevron" aria-hidden="true">›</span>
+          <span class="option-chevron" aria-hidden="true"><img src="assets/icons/png/chevron-left-icon.png" alt="" /></span>
         </button>
 
         <button type="button" class="option-card" (click)="onOptionClick('addresses')">
           <span class="option-icon" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E5BB7" stroke-width="2">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-              <circle cx="12" cy="10" r="3" />
-            </svg>
+            <img src="assets/icons/png/location-pin-icon.png" alt="" aria-hidden="true" width="20" height="20" />
           </span>
           <span class="option-body">
             <strong class="option-title">Endereços salvos</strong>
             <span class="option-meta">Casa, Trabalho</span>
           </span>
-          <span class="option-chevron" aria-hidden="true">›</span>
+          <span class="option-chevron" aria-hidden="true"><img src="assets/icons/png/chevron-left-icon.png" alt="" /></span>
         </button>
 
         <button type="button" class="option-card" (click)="onOptionClick('config')">
           <span class="option-icon" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E5BB7" stroke-width="2">
-              <polygon points="3 11 22 2 13 21 11 13 3 11" />
-            </svg>
+            <img src="assets/icons/png/accessibility-icon.png" alt="" aria-hidden="true" width="20" height="20" />
           </span>
           <span class="option-body">
             <strong class="option-title">Acessibilidade</strong>
           </span>
-          <span class="option-chevron" aria-hidden="true">›</span>
+          <span class="option-chevron" aria-hidden="true"><img src="assets/icons/png/chevron-left-icon.png" alt="" /></span>
         </button>
 
         <button type="button" class="option-card" (click)="onOptionClick('history')">
           <span class="option-icon" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E5BB7" stroke-width="2">
-              <circle cx="12" cy="12" r="10" />
-              <polyline points="12 6 12 12 16 14" />
-            </svg>
+            <img src="assets/icons/png/history-icon.png" alt="" aria-hidden="true" width="20" height="20" />
           </span>
           <span class="option-body">
             <strong class="option-title">Histórico</strong>
           </span>
-          <span class="option-chevron" aria-hidden="true">›</span>
+          <span class="option-chevron" aria-hidden="true"><img src="assets/icons/png/chevron-left-icon.png" alt="" /></span>
         </button>
       </div>
     </div>
@@ -174,11 +153,7 @@
           >
             <div class="vehicle-left">
               <span class="option-icon" aria-hidden="true">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1E5BB7" stroke-width="2">
-                  <path d="M5 17h14v-5l-2-5H7l-2 5v5z" stroke-linejoin="round" />
-                  <circle cx="7.5" cy="17.5" r="1.5" />
-                  <circle cx="16.5" cy="17.5" r="1.5" />
-                </svg>
+                <img src="assets/icons/png/vehicle-icon.png" alt="" aria-hidden="true" width="18" height="18" />
               </span>
               <div class="vehicle-info">
                 <strong class="vehicle-model">{{ vehicle.model }}</strong>
@@ -194,7 +169,7 @@
       </div>
 
       <button type="button" class="dashed-add-btn" (click)="openAddVehicleModal()">
-        + Adicionar Veículos
+        <img class="add-action-icon" src="assets/icons/png/add-small-icon.png" alt="" aria-hidden="true" /> Adicionar Veículos
       </button>
     </div>
   }
@@ -204,11 +179,32 @@
     <div class="tab-panel">
       <div class="garages-list">
         @for (garage of authService.ownedGarages(); track garage.id) {
+          @let images = garageImages(garage);
+          @let imageIndex = garageImageIndex(garage.id, images.length);
           <article class="owned-garage-card">
             <div class="garage-media">
-              <img [src]="garage.imageUrl" [alt]="garage.name" width="600" height="220" />
+              <img [src]="images[imageIndex]" [alt]="garage.name + ' — foto ' + (imageIndex + 1)" width="600" height="220" />
               @if (garage.isActive) {
                 <span class="active-pill">Ativo</span>
+              }
+              @if (images.length > 1) {
+                <button
+                  type="button"
+                  class="garage-carousel-control previous"
+                  [attr.aria-label]="'Foto anterior de ' + garage.name"
+                  (click)="changeGarageImage(garage.id, images.length, -1)">
+                  <img src="assets/icons/png/chevron-left-icon.png" alt="" aria-hidden="true" />
+                </button>
+                <button
+                  type="button"
+                  class="garage-carousel-control next"
+                  [attr.aria-label]="'Próxima foto de ' + garage.name"
+                  (click)="changeGarageImage(garage.id, images.length, 1)">
+                  <img src="assets/icons/png/chevron-left-icon.png" alt="" aria-hidden="true" />
+                </button>
+                <span class="garage-carousel-count" aria-live="polite">
+                  {{ imageIndex + 1 }} / {{ images.length }}
+                </span>
               }
             </div>
             <div class="garage-details">
@@ -229,13 +225,19 @@
                   <strong class="stat-total">{{ garage.totalBookings }} total</strong>
                 </div>
               </div>
+              <button
+                type="button"
+                class="garage-detail-button"
+                (click)="openGarageDetails(garage)">
+                Ver detalhes
+              </button>
             </div>
           </article>
         }
       </div>
 
       <button type="button" class="dashed-add-btn" (click)="openAddGarageModal()">
-        + Adicionar Garagens
+        <img class="add-action-icon" src="assets/icons/png/add-small-icon.png" alt="" aria-hidden="true" /> Adicionar Garagens
       </button>
     </div>
   }
@@ -285,19 +287,19 @@
         </button>
       </div>
 
-      <button type="button" class="config-row clickable">
+      <button type="button" class="config-row clickable" (click)="onOptionClick('comingSoon')">
         <span class="option-title">Acessibilidade</span>
-        <span class="option-chevron">›</span>
+        <span class="option-chevron" aria-hidden="true"><img src="assets/icons/png/chevron-left-icon.png" alt="" /></span>
       </button>
 
       <button type="button" class="config-row clickable">
         <span class="option-title">Política de privacidade</span>
-        <span class="option-chevron">›</span>
+        <span class="option-chevron" aria-hidden="true"><img src="assets/icons/png/chevron-left-icon.png" alt="" /></span>
       </button>
 
       <button type="button" class="config-row clickable">
         <span class="option-title">Termos de uso</span>
-        <span class="option-chevron">›</span>
+        <span class="option-chevron" aria-hidden="true"><img src="assets/icons/png/chevron-left-icon.png" alt="" /></span>
       </button>
     </div>
   }
@@ -305,8 +307,11 @@
 
 <!-- Modal Adicionar Veículo -->
 <dialog #vehicleDialog class="profile-dialog" aria-labelledby="add-vehicle-title">
-  <form class="dialog-form" (ngSubmit)="submitNewVehicle()">
+  <form class="dialog-form" (ngSubmit)="submitNewVehicle()" novalidate>
     <h3 id="add-vehicle-title" class="dialog-title">Adicionar Veículo</h3>
+    @if (vehicleFormError(); as error) {
+      <p class="form-feedback is-error" role="alert">{{ error }}</p>
+    }
     <label class="dialog-field">
       <span>Modelo do veículo</span>
       <input
@@ -345,10 +350,77 @@
   </form>
 </dialog>
 
+<!-- Modal de detalhes da vaga -->
+<dialog
+  #garageDetailsDialog
+  class="profile-dialog garage-detail-dialog"
+  aria-labelledby="garage-detail-title"
+  (close)="selectedGarage.set(null)">
+  @if (selectedGarage(); as garage) {
+    @let images = garageImages(garage);
+    @let imageIndex = garageImageIndex(garage.id, images.length);
+    <section class="garage-detail-content">
+      <div class="garage-detail-heading">
+        <h3 id="garage-detail-title" class="dialog-title">Detalhes da vaga</h3>
+        <button type="button" class="garage-detail-close" (click)="closeGarageDetails()">Fechar</button>
+      </div>
+      <div class="garage-detail-media">
+        <img [src]="images[imageIndex]" [alt]="garage.name + ' — foto ' + (imageIndex + 1)" />
+        @if (images.length > 1) {
+          <button
+            type="button"
+            class="garage-carousel-control previous"
+            [attr.aria-label]="'Foto anterior de ' + garage.name"
+            (click)="changeGarageImage(garage.id, images.length, -1)">
+            <img src="assets/icons/png/chevron-left-icon.png" alt="" aria-hidden="true" />
+          </button>
+          <button
+            type="button"
+            class="garage-carousel-control next"
+            [attr.aria-label]="'Próxima foto de ' + garage.name"
+            (click)="changeGarageImage(garage.id, images.length, 1)">
+            <img src="assets/icons/png/chevron-left-icon.png" alt="" aria-hidden="true" />
+          </button>
+          <span class="garage-carousel-count" aria-live="polite">
+            {{ imageIndex + 1 }} / {{ images.length }}
+          </span>
+        }
+      </div>
+      <h4 class="garage-detail-name">{{ garage.name }}</h4>
+      <p class="garage-detail-address">{{ garage.address }}</p>
+      <dl class="garage-detail-stats">
+        <div>
+          <dt>Status</dt>
+          <dd>{{ garage.isActive ? 'Ativo' : 'Inativo' }}</dd>
+        </div>
+        <div>
+          <dt>Valor por hora</dt>
+          <dd>R$ {{ formatCurrency(garage.pricePerHour) }}</dd>
+        </div>
+        <div>
+          <dt>Ganhos neste mês</dt>
+          <dd>R$ {{ formatCurrency(garage.monthlyEarnings) }}</dd>
+        </div>
+        <div>
+          <dt>Reservas</dt>
+          <dd>{{ garage.totalBookings }} total</dd>
+        </div>
+        <div>
+          <dt>Fotos cadastradas</dt>
+          <dd>{{ images.length }}</dd>
+        </div>
+      </dl>
+    </section>
+  }
+</dialog>
+
 <!-- Modal Adicionar Garagem -->
 <dialog #garageDialog class="profile-dialog" aria-labelledby="add-garage-title">
-  <form class="dialog-form" (ngSubmit)="submitNewGarage()">
+  <form class="dialog-form" (ngSubmit)="submitNewGarage()" novalidate>
     <h3 id="add-garage-title" class="dialog-title">Adicionar Garagem</h3>
+    @if (garageFormError(); as error) {
+      <p class="form-feedback is-error" role="alert">{{ error }}</p>
+    }
     <label class="dialog-field">
       <span>Nome da garagem</span>
       <input
@@ -383,10 +455,41 @@
         (ngModelChange)="newGaragePrice.set($event)"
       />
     </label>
+    <div class="dialog-field garage-photo-field">
+      <span>Fotos da garagem</span>
+      <p class="garage-photo-help">Adicione quantas fotos precisar para apresentar sua vaga.</p>
+      <label class="garage-photo-upload">
+        <img src="assets/icons/png/add-small-icon.png" alt="" aria-hidden="true" />
+        <span>Selecionar fotos</span>
+        <input
+          type="file"
+          accept="image/*"
+          multiple
+          aria-label="Selecionar fotos da garagem"
+          (change)="onGarageImagesSelected($event)" />
+      </label>
+      @if (newGarageImages().length > 0) {
+        <ul class="garage-photo-previews" aria-label="Fotos selecionadas">
+          @for (image of newGarageImages(); track $index) {
+            <li class="garage-photo-preview">
+              <img [src]="image.src" [alt]="image.name" />
+              <button
+                type="button"
+                [attr.aria-label]="'Remover foto ' + image.name"
+                (click)="removeGarageImage($index)">
+                <img src="assets/icons/png/close-circle-icon.png" alt="" aria-hidden="true" />
+              </button>
+            </li>
+          }
+        </ul>
+      }
+      @if (garageImageError(); as imageError) {
+        <span class="garage-photo-error" role="alert">{{ imageError }}</span>
+      }
+    </div>
     <div class="dialog-actions">
       <button type="button" class="btn-secondary" (click)="closeAddGarageModal()">Cancelar</button>
       <button type="submit" class="btn-primary">Cadastrar garagem</button>
     </div>
   </form>
 </dialog>
-

@@ -27,6 +27,14 @@ import { SEARCH_MOCK_DATA } from './search-mock-data';
 export type InputIconType = 'user' | 'email' | 'phone' | 'password' | 'search' | 'none';
 export type InputHtmlType = 'text' | 'email' | 'tel' | 'password' | 'search';
 
+const inputIconPaths: Record<Exclude<InputIconType, 'none'>, string> = {
+  user: 'assets/icons/png/user-icon.png',
+  email: 'assets/icons/png/email-icon.png',
+  phone: 'assets/icons/png/phone-icon.png',
+  password: 'assets/icons/png/lock-icon.png',
+  search: 'assets/icons/svg/search-icon.svg',
+};
+
 // Formato: algo@provedor.algumaCoisa — o provedor e o "." são obrigatórios,
 // mas precisa ter algo depois do último ponto também (não pode terminar em ".",
 // nem começar o provedor com "." nem ter ".." seguidos).
@@ -164,6 +172,15 @@ export class Input implements ControlValueAccessor, Validator {
     return this.type();
   });
 
+  iconPath = (name: InputIconType): string | null =>
+    name === 'none' ? null : inputIconPaths[name];
+
+  passwordVisibilityIconPath = computed(() =>
+    this.isShowPassword()
+      ? 'assets/icons/png/eye-open-icon.png'
+      : 'assets/icons/png/eye-closed-icon.png',
+  );
+
   togglePasswordVisibility(): void {
     this.isShowPassword.update((val) => !val);
   }
@@ -285,4 +302,3 @@ export class Input implements ControlValueAccessor, Validator {
 }
 
 export { Input as InputComponent };
-

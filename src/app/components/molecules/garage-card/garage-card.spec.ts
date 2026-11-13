@@ -20,10 +20,11 @@ describe('GarageCard', () => {
     rating: 4.8,
     reviewsCount: 124,
     distance: '0.2 km',
-    imageUrl: 'assets/images/garage-main.png',
+    imageUrl: 'assets/images/png/garage-tesla.png',
     characteristics: ['Acesso 24/7'],
     ownerName: 'Marcus Kim',
     ownerInitials: 'MK',
+    ownerAvatarUrl: 'assets/images/png/chat-francisco-avatar.png',
     mapPin: { top: '34%', left: '44%' },
   };
 
@@ -44,4 +45,3 @@ describe('GarageCard', () => {
     expect(component.spotsLabel()).toBe('3 vagas');
   });
 });
-

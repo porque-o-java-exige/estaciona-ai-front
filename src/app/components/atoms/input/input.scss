@@ -57,9 +57,10 @@ $radius: 14px;
     color: $color-icon;
     flex-shrink: 0;
 
-    svg {
+    img {
         width: 20px;
         height: 20px;
+        object-fit: contain;
     }
 }
 
@@ -112,9 +113,10 @@ $radius: 14px;
     cursor: pointer;
     flex-shrink: 0;
 
-    svg {
+    img {
         width: 20px;
         height: 20px;
+        object-fit: contain;
     }
 }
 
@@ -132,9 +134,11 @@ $radius: 14px;
     flex-shrink: 0;
     transition: opacity 0.15s ease;
 
-    svg {
+    img {
         width: 17px;
         height: 17px;
+        filter: brightness(0) invert(1);
+        object-fit: contain;
     }
 
     &:disabled {

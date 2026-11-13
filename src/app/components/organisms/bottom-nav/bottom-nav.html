@@ -5,9 +5,10 @@
         <a
           [routerLink]="item.route"
           routerLinkActive="app-bottom-nav-link-active"
+          #rla="routerLinkActive"
           class="app-bottom-nav-link">
           <span class="app-bottom-nav-pill">
-            <img [src]="item.icon" alt="" class="app-bottom-nav-icon" />
+            <img [src]="rla.isActive ? item.activeIcon : item.inactiveIcon" alt="" class="app-bottom-nav-icon" />
             @if (item.badgeColor) {
               <span
                 class="app-bottom-nav-badge"
@@ -22,4 +23,3 @@
     }
   </ul>
 </nav>
-

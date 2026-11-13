@@ -1,7 +1,8 @@
 import { Component, computed, inject, OnInit, signal } from '@angular/core';
+import { ViewportScroller } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Button } from '../../components/atoms/button/button';
-import { Chip } from '../../components/atoms/chip/chip';
+import { GarageDetails } from '../../components/organisms/garage-details/garage-details';
 import { Footer } from '../../components/organisms/footer/footer';
 import { BookingService } from '../../services/booking.service';
 import { GarageService } from '../../services/garage.service';
@@ -9,13 +10,14 @@ import { GarageService } from '../../services/garage.service';
 @Component({
   selector: 'app-garage-details-page',
   standalone: true,
-  imports: [RouterLink, Button, Chip, Footer],
+  imports: [RouterLink, Button, GarageDetails, Footer],
   templateUrl: './garage-details-page.html',
   styleUrl: './garage-details-page.scss',
 })
 export class GarageDetailsPage implements OnInit {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
+  private readonly viewportScroller = inject(ViewportScroller);
   private readonly garageService = inject(GarageService);
   private readonly bookingService = inject(BookingService);
 
@@ -32,6 +34,7 @@ export class GarageDetailsPage implements OnInit {
   reviewsSubtext = computed(() => `(${this.garage().reviewsCount})`);
 
   ngOnInit(): void {
+    this.viewportScroller.scrollToPosition([0, 0]);
     this.route.queryParamMap.subscribe((params) => {
       const id = params.get('id') ?? this.route.snapshot.paramMap.get('id');
       if (id) {
@@ -55,4 +58,3 @@ export class GarageDetailsPage implements OnInit {
     });
   };
 }
-

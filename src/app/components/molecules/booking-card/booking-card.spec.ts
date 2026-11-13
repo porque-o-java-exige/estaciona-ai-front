@@ -18,7 +18,7 @@ describe('BookingCard', () => {
     totalAmount: 24,
     distanceMeters: '120m',
     billingLabel: 'Hora',
-    imageUrl: 'assets/images/garage-payment.png',
+    imageUrl: 'assets/images/png/garage-interior.png',
   };
 
   beforeEach(async () => {
