@@ -1,10 +1,5 @@
 <aside
   class="app-sidebar"
-  [class.is-expanded]="isExpanded()"
-  (mouseenter)="setExpanded(true)"
-  (mouseleave)="setExpanded(false)"
-  (focusin)="setExpanded(true)"
-  (focusout)="onFocusOut($event)"
   aria-label="Menu lateral">
   <nav class="app-sidebar-nav" aria-label="Navegação principal">
     <ul class="app-sidebar-list" role="list">
@@ -20,7 +15,10 @@
             [attr.title]="item.label"
             [attr.aria-label]="item.label">
             <span class="app-sidebar-icon-box" aria-hidden="true">
-              <img [src]="item.icon" alt="" class="app-sidebar-icon" />
+              <img
+                [src]="rla.isActive ? item.activeIcon : item.inactiveIcon"
+                alt=""
+                class="app-sidebar-icon" />
               @if (item.badgeColor) {
                 <span
                   class="app-sidebar-badge"

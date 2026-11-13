@@ -1,15 +1,17 @@
 import { Component, computed, inject, OnInit, signal } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Button } from '../../components/atoms/button/button';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { PaymentGarageCard } from '../../components/molecules/payment-garage-card/payment-garage-card';
 import { Footer } from '../../components/organisms/footer/footer';
+import { PaymentCheckout } from '../../components/organisms/payment-checkout/payment-checkout';
 import { PixPaymentCard } from '../../components/organisms/pix-payment-card/pix-payment-card';
 import { BillingMode, PaymentMethodType } from '../../interfaces';
 import { BookingService } from '../../services/booking.service';
+import { FeedbackService } from '../../services/feedback.service';
 
 @Component({
   selector: 'app-payment-page',
   standalone: true,
-  imports: [Button, PixPaymentCard, Footer],
+  imports: [RouterLink, PaymentGarageCard, PaymentCheckout, PixPaymentCard, Footer],
   templateUrl: './payment-page.html',
   styleUrl: './payment-page.scss',
 })
@@ -17,6 +19,7 @@ export class PaymentPage implements OnInit {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
   private readonly bookingService = inject(BookingService);
+  private readonly feedback = inject(FeedbackService);
 
   candidates = this.bookingService.paymentCandidates;
   selectedBookingId = this.bookingService.selectedBookingId;
@@ -66,9 +69,6 @@ export class PaymentPage implements OnInit {
   formatCurrency = (value: number): string =>
     value.toFixed(2).replace('.', ',');
 
-  isDaySelected = (day: number): boolean =>
-    this.selectedDays().includes(day);
-
   onSelectCandidate = (id: string): void => {
     this.bookingService.selectBooking(id);
   };
@@ -95,6 +95,7 @@ export class PaymentPage implements OnInit {
 
   onReserveSpot = (): void => {
     this.bookingService.markSelectedBookingPaid();
+    this.feedback.showSuccess('Pagamento confirmado com sucesso.');
   };
 
   onSubmitPayment = (): void => {
@@ -104,6 +105,7 @@ export class PaymentPage implements OnInit {
     }
 
     this.bookingService.markSelectedBookingPaid();
+    this.feedback.showSuccess('Pagamento confirmado com sucesso.');
     this.router.navigate(['/booking']);
   };
 
@@ -114,4 +116,3 @@ export class PaymentPage implements OnInit {
     }
   };
 }
-

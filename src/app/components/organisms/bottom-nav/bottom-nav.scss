@@ -3,11 +3,10 @@
 .app-bottom-nav {
   display: none;
   position: fixed;
-  bottom: 16px;
-  left: 0;
-  right: 0;
-  margin-inline: auto;
-  width: calc(100% - 32px);
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(calc(100% - 32px), 390px);
   max-width: 390px;
   background-color: $clr-white-1000;
   border: 1px solid $clr-primary-900;

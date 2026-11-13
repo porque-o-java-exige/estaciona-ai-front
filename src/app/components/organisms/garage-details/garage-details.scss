@@ -1,0 +1,212 @@
+@use '../../../../styles/variables' as *;
+
+.garage-details-content {
+  display: grid;
+  grid-template-columns: minmax(340px, 734px) minmax(320px, 654px);
+  gap: 24px;
+  align-items: stretch;
+  justify-content: space-between;
+
+  @media (max-width: 1100px) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.garage-details-photo-card {
+  position: relative;
+  width: 100%;
+  min-height: 524px;
+  border-radius: 40px;
+  overflow: hidden;
+  background-color: $surface-brand-subtle;
+  box-shadow: 0 8px 24px rgba(18, 18, 18, 0.1);
+
+  @media (max-width: $bp-mobile) {
+    min-height: 325px;
+    border-radius: 20px;
+  }
+}
+
+.garage-details-photo {
+  width: 100%;
+  height: 100%;
+  min-height: 524px;
+
+  @media (max-width: $bp-mobile) {
+    min-height: 325px;
+  }
+}
+
+.garage-details-spots-badge {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  z-index: 2;
+
+  @media (max-width: $bp-mobile) {
+    top: 16px;
+    left: 16px;
+  }
+}
+
+.garage-details-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.garage-details-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.garage-details-titles {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.garage-details-title {
+  margin: 0;
+  font: $fw-bold 36px/1.25 $font-heading;
+  color: $text-strong;
+
+  @media (max-width: $bp-mobile) {
+    font-size: 26px;
+  }
+}
+
+.garage-details-address {
+  margin: 0;
+  font: $fw-regular 14px/1.45 $font-body;
+  color: $text-strong;
+}
+
+.garage-details-description {
+  margin: 0;
+  font: $fw-regular 14px/1.5 $font-body;
+  color: $text-body;
+}
+
+.garage-details-price,
+.garage-details-cta-price {
+  display: inline-flex;
+  align-items: baseline;
+  flex-shrink: 0;
+  gap: 4px;
+}
+
+.garage-details-price-amount,
+.garage-details-cta-amount {
+  font: $fw-bold 26px/1.2 $font-heading;
+  color: $text-brand;
+}
+
+.garage-details-price-period,
+.garage-details-cta-period {
+  font: $fw-bold 16px/1.25 $font-heading;
+  color: $text-muted;
+}
+
+.garage-details-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 30px;
+
+  @media (max-width: $bp-mobile) {
+    gap: 12px;
+  }
+}
+
+.garage-details-features {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.garage-details-features-title {
+  margin: 0;
+  font: $fw-bold 20px/1.4 $font-heading;
+  color: $text-strong;
+}
+
+.garage-details-features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 15px 20px;
+
+  @media (max-width: 560px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+}
+
+.garage-details-owner-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 15px 14px;
+  border: 1px solid $border-brand-accent;
+  border-radius: 10px;
+  background-color: $surface-page;
+}
+
+.garage-details-owner-profile {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.garage-details-owner-avatar {
+  display: block;
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.garage-details-owner-name {
+  font: $fw-bold 20px/1.3 $font-heading;
+  color: $text-strong;
+}
+
+.garage-details-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid $border-brand-accent;
+  border-radius: 16px;
+  gap: 16px;
+  background-color: $surface-brand-subtle;
+
+  .garage-details-cta-amount {
+    font-size: 32px;
+  }
+
+  .garage-details-cta-period {
+    font-size: 18px;
+  }
+
+  app-button {
+    flex: 1;
+    max-width: 350px;
+  }
+
+  @media (max-width: $bp-mobile) {
+    flex-direction: column;
+    align-items: stretch;
+
+    app-button {
+      max-width: 100%;
+    }
+  }
+}

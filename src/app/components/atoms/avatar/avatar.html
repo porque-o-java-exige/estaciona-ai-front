@@ -1,0 +1,14 @@
+<img class="avatar-image" [src]="src()" [alt]="alt()" />
+
+@if (status()) {
+  <span class="avatar-status" [class]="status()" aria-hidden="true"></span>
+}
+
+@if (verified()) {
+  <img
+    class="avatar-verified"
+    src="assets/images/png/verified-check-badge.png"
+    alt="Conta verificada"
+    width="24"
+    height="24" />
+}

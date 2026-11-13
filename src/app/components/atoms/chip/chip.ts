@@ -1,15 +1,29 @@
 import { Component, computed, input } from '@angular/core';
 
-export type chipVariant = 'attribute' | 'rating' | 'distance' | 'parking-spots' | 'reservation-filter' | 'status'
+export type chipVariant =
+  | 'attribute'
+  | 'availability'
+  | 'rating'
+  | 'distance'
+  | 'parking-spots'
+  | 'reservation-filter'
+  | 'status';
 
-const variantIcon:Record<chipVariant, string[]> = {
+const variantIcon: Record<chipVariant, string[]> = {
   attribute: [],
-  rating: ['star-icon.svg', 'star-icon.svg', 'star-icon.svg', 'star-icon.svg', 'star-icon.svg'],
-  distance: ['distance-icon.svg'],
-  "parking-spots": [],
-  "reservation-filter": [],
-  status: []
-}
+  availability: [],
+  rating: [
+    'assets/icons/png/star-yellow-icon.png',
+    'assets/icons/png/star-yellow-icon.png',
+    'assets/icons/png/star-yellow-icon.png',
+    'assets/icons/png/star-yellow-icon.png',
+    'assets/icons/png/star-yellow-icon.png',
+  ],
+  distance: ['assets/icons/svg/distance-icon.svg'],
+  'parking-spots': [],
+  'reservation-filter': [],
+  status: [],
+};
 
 @Component({
   selector: 'app-chip',
@@ -17,28 +31,26 @@ const variantIcon:Record<chipVariant, string[]> = {
   templateUrl: './chip.html',
   styleUrl: './chip.scss',
 })
-export class Chip {  
-  
-  variant = input<chipVariant>('attribute')
- 
-  iconPaths = computed(() => {
-    const files = variantIcon[this.variant()] ?? []
-    return files.map(file => `/assets/icons/${file}`) 
-  })
- 
-  text = input.required<string>()
-  subtext = input<string>('')
+export class Chip {
+  variant = input<chipVariant>('attribute');
+  tone = input<'high' | 'medium' | 'low'>('high');
 
-  isActive = input<boolean>(false)
+  iconPaths = computed(() => {
+    return variantIcon[this.variant()] ?? [];
+  });
+
+  text = input.required<string>();
+  subtext = input<string>('');
+
+  isActive = input<boolean>(false);
 
   isReservationFilterActive = computed(() => {
-    return this.variant() === 'reservation-filter' && this.isActive()
-  })
+    return this.variant() === 'reservation-filter' && this.isActive();
+  });
 
-  isPendingOrDone = input<boolean>(false)
+  isPendingOrDone = input<boolean>(false);
 
   isStatusPendingOrDone = computed(() => {
-    return this.variant() === 'status' && this.isPendingOrDone()
-  })
-
+    return this.variant() === 'status' && this.isPendingOrDone();
+  });
 }

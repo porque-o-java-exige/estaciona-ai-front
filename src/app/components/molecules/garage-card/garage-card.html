@@ -5,13 +5,14 @@
   [queryParams]="{ id: garage().id }"
   (click)="onSelectCard()"
   [attr.aria-label]="'Ver detalhes de ' + garage().name">
-  <img
+  <app-image
+    class="garage-card-image"
     [src]="garage().imageUrl"
     [alt]="garage().name"
     loading="lazy"
-    width="90"
-    height="90"
-    class="garage-card-image" />
+    [width]="90"
+    [height]="90">
+  </app-image>
 
   <div class="garage-card-content">
     <div class="garage-card-header">
@@ -20,27 +21,24 @@
         <p class="garage-card-address">{{ garage().address }}</p>
       </div>
 
-      <span
-        class="garage-card-spots"
-        [class]="'spots-' + garage().availabilityLevel">
-        {{ spotsLabel() }}
-      </span>
+      <app-chip
+        variant="availability"
+        [tone]="garage().availabilityLevel"
+        [text]="spotsLabel()">
+      </app-chip>
     </div>
 
     <div class="garage-card-footer">
       <div class="garage-card-meta">
-        <img
-          src="assets/icons/star-icon.svg"
-          alt=""
-          aria-hidden="true"
-          width="13"
-          height="13"
-          class="garage-card-star" />
+        <app-icon name="star" [size]="13"></app-icon>
         <span class="garage-card-meta-text">{{ metaSummary() }}</span>
       </div>
 
-      <span class="garage-card-price">R${{ garage().hourlyPrice }}/h</span>
+      <app-price
+        class="garage-card-price"
+        [amount]="garage().hourlyPrice"
+        suffix="/h">
+      </app-price>
     </div>
   </div>
 </a>
-

@@ -24,12 +24,19 @@ describe('Header', () => {
     expect(profileLink.getAttribute('href')).toBe('/profile');
   });
 
-  it('should toggle notification popover and mark notifications as read', () => {
+  it('should open the notification modal and mark notifications as read', () => {
     expect(component.isNotificationsOpen()).toBe(false);
     expect(component.unreadNotificationsCount()).toBe(2);
+    const dialog = fixture.nativeElement.querySelector(
+      '.app-header-notif-dialog',
+    ) as HTMLDialogElement;
+    Object.defineProperty(dialog, 'showModal', {
+      value: () => dialog.setAttribute('open', ''),
+    });
     component.onNotificationClick();
     fixture.detectChanges();
     expect(component.isNotificationsOpen()).toBe(true);
+    expect(dialog.open).toBe(true);
     component.markAllNotificationsAsRead();
     fixture.detectChanges();
     expect(component.unreadNotificationsCount()).toBe(0);

@@ -60,6 +60,13 @@
       width: 100%;
       gap: 15px;
 
+      .form-feedback {
+        width: 100%;
+        margin: 0;
+        color: $status-danger;
+        font-size: 13px;
+      }
+
       .auth-field {
         width: 100%;
       }
@@ -150,4 +157,3 @@
     }
   }
 }
-

@@ -1,32 +1,24 @@
 import {
-  AfterViewChecked,
   ChangeDetectionStrategy,
   Component,
-  ElementRef,
   inject,
   OnInit,
-  signal,
-  viewChild,
 } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { ChatConversationList } from '../../components/organisms/chat-conversation-list/chat-conversation-list';
+import { ChatMessageThread } from '../../components/organisms/chat-message-thread/chat-message-thread';
 import { ChatService } from '../../services/chat.service';
 
 @Component({
   selector: 'app-chat-page',
-  imports: [FormsModule],
+  imports: [ChatConversationList, ChatMessageThread],
   templateUrl: './chat-page.html',
   styleUrl: './chat-page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ChatPage implements OnInit, AfterViewChecked {
+export class ChatPage implements OnInit {
   private readonly route = inject(ActivatedRoute);
   readonly chatService = inject(ChatService);
-
-  messagesScrollRef = viewChild<ElementRef<HTMLElement>>('messagesScroll');
-
-  draftMessage = signal<string>('');
-  private shouldScrollToBottom = false;
 
   ngOnInit(): void {
     const idParam = this.route.snapshot.paramMap.get('id');
@@ -34,45 +26,22 @@ export class ChatPage implements OnInit, AfterViewChecked {
 
     if (idParam) {
       this.chatService.selectConversation(idParam);
-      this.shouldScrollToBottom = true;
     } else if (isMessagesRoute) {
       this.chatService.mobileThreadOpen.set(true);
-      this.shouldScrollToBottom = true;
     } else {
       this.chatService.mobileThreadOpen.set(false);
     }
   }
 
-  ngAfterViewChecked(): void {
-    if (this.shouldScrollToBottom) {
-      this.scrollToBottom();
-      this.shouldScrollToBottom = false;
-    }
-  }
-
   onSelectConversation = (conversationId: string): void => {
     this.chatService.selectConversation(conversationId);
-    this.shouldScrollToBottom = true;
   };
 
   onBackToList = (): void => {
     this.chatService.closeMobileThread();
   };
 
-  onSendMessage = (): void => {
-    const text = this.draftMessage().trim();
-    if (!text) {
-      return;
-    }
+  onSendMessage = (text: string): void => {
     this.chatService.sendMessage(text);
-    this.draftMessage.set('');
-    this.shouldScrollToBottom = true;
-  };
-
-  private scrollToBottom = (): void => {
-    const el = this.messagesScrollRef()?.nativeElement;
-    if (el) {
-      el.scrollTop = el.scrollHeight;
-    }
   };
 }

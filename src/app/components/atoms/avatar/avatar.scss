@@ -1,0 +1,42 @@
+@use '../../../../styles/variables' as *;
+
+:host {
+  position: relative;
+  display: inline-block;
+  flex: 0 0 auto;
+}
+
+.avatar-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.avatar-status {
+  position: absolute;
+  right: -2px;
+  bottom: -2px;
+  width: 10px;
+  height: 10px;
+  border: 1.5px solid $surface-card;
+  border-radius: 50%;
+  background: $status-success;
+
+  &.busy {
+    background: $status-danger;
+  }
+
+  &.away {
+    background: $status-warning;
+  }
+}
+
+.avatar-verified {
+  position: absolute;
+  right: -4px;
+  bottom: -4px;
+  width: 24px;
+  height: 24px;
+}

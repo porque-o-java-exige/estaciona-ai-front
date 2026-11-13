@@ -13,7 +13,7 @@ const DEFAULT_USER: UserResponse = {
   name: 'Kookie Piska',
   email: 'kookiepiska@email.com',
   phone: '5511988887777',
-  avatarUrl: 'assets/images/profile-avatar.png',
+  avatarUrl: 'assets/images/png/kookie-piska-avatar.png',
   balance: 23.5,
   rating: 4.9,
   totalReviews: 400,
@@ -46,7 +46,8 @@ const INITIAL_GARAGES: UserGarage[] = [
     monthlyEarnings: 846.5,
     totalBookings: 23,
     isActive: true,
-    imageUrl: 'assets/images/garage-main.png',
+    imageUrl: 'assets/images/png/garage-tesla.png',
+    imageUrls: ['assets/images/png/garage-tesla.png'],
   },
 ];
 
@@ -100,7 +101,12 @@ export class AuthService {
     return true;
   };
 
-  updateProfile = (payload: { name: string; email: string; phone: string }): void => {
+  updateProfile = (payload: {
+    name: string;
+    email: string;
+    phone: string;
+    avatarUrl?: string;
+  }): void => {
     const cleanName = payload.name.trim();
     const cleanEmail = payload.email.trim();
     if (!cleanName || !cleanEmail) {
@@ -111,6 +117,7 @@ export class AuthService {
       name: cleanName,
       email: cleanEmail,
       phone: payload.phone.trim() || prev.phone,
+      avatarUrl: payload.avatarUrl?.trim() || prev.avatarUrl,
     }));
   };
 
@@ -155,10 +162,16 @@ export class AuthService {
     );
   };
 
-  addOwnedGarage = (payload: { name: string; address: string; pricePerHour: number }): void => {
+  addOwnedGarage = (payload: {
+    name: string;
+    address: string;
+    pricePerHour: number;
+    imageUrls: string[];
+  }): void => {
     const cleanName = payload.name.trim();
     const cleanAddress = payload.address.trim();
-    if (!cleanName || !cleanAddress) {
+    const imageUrls = payload.imageUrls.filter((imageUrl) => imageUrl.trim().length > 0);
+    if (!cleanName || !cleanAddress || imageUrls.length === 0) {
       return;
     }
 
@@ -170,7 +183,8 @@ export class AuthService {
       monthlyEarnings: 0,
       totalBookings: 0,
       isActive: true,
-      imageUrl: 'assets/images/garage-alt.png',
+      imageUrl: imageUrls[0],
+      imageUrls,
     };
 
     this.ownedGarages.update((list) => [...list, newGarage]);

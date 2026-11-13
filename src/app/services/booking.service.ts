@@ -19,7 +19,7 @@ const INITIAL_BOOKINGS: BookingItem[] = [
     totalAmount: 24,
     distanceMeters: '120m',
     billingLabel: 'Hora',
-    imageUrl: 'assets/images/garage-payment.png',
+    imageUrl: 'assets/images/png/garage-interior.png',
   },
   {
     id: 'res-frei-caneca-1',
@@ -32,7 +32,7 @@ const INITIAL_BOOKINGS: BookingItem[] = [
     totalAmount: 24,
     distanceMeters: '180m',
     billingLabel: 'Hora',
-    imageUrl: 'assets/images/garage-payment.png',
+    imageUrl: 'assets/images/png/garage-interior.png',
   },
   {
     id: 'res-frei-caneca-2',
@@ -45,7 +45,7 @@ const INITIAL_BOOKINGS: BookingItem[] = [
     totalAmount: 24,
     distanceMeters: '180m',
     billingLabel: 'Hora',
-    imageUrl: 'assets/images/garage-payment.png',
+    imageUrl: 'assets/images/png/garage-interior.png',
   },
   {
     id: 'res-jardins-1',
@@ -58,7 +58,7 @@ const INITIAL_BOOKINGS: BookingItem[] = [
     totalAmount: 32,
     distanceMeters: '210m',
     billingLabel: 'Hora',
-    imageUrl: 'assets/images/garage-main.png',
+    imageUrl: 'assets/images/png/garage-tesla.png',
   },
   {
     id: 'res-masp-center',
@@ -71,7 +71,7 @@ const INITIAL_BOOKINGS: BookingItem[] = [
     totalAmount: 24,
     distanceMeters: '150m',
     billingLabel: 'Hora',
-    imageUrl: 'assets/images/garage-alt.png',
+    imageUrl: 'assets/images/png/garage-outdoor.png',
   },
   {
     id: 'res-trianon-vip',
@@ -84,7 +84,7 @@ const INITIAL_BOOKINGS: BookingItem[] = [
     totalAmount: 30,
     distanceMeters: '250m',
     billingLabel: 'Diária',
-    imageUrl: 'assets/images/garage-payment.png',
+    imageUrl: 'assets/images/png/garage-interior.png',
   },
 ];
 

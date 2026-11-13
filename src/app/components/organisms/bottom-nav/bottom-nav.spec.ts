@@ -20,5 +20,13 @@ describe('BottomNav', () => {
   it('should create the bottom-nav organism', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should use the opacity icons for inactive payment and chat items', () => {
+    const payment = component.navItems.find((item) => item.route === '/payment');
+    const chat = component.navItems.find((item) => item.route === '/chat');
+
+    expect(payment?.inactiveIcon).toBe('assets/icons/png/opacity-payment-icon.png');
+    expect(chat?.inactiveIcon).toBe('assets/icons/png/opacity-chat-icon.png');
+  });
 });
 

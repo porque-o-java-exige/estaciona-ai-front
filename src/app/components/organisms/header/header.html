@@ -29,16 +29,14 @@
         aria-label="Notificações">
       </app-button>
 
-      @if (unreadNotificationsCount() > 0) {
-        <span class="app-header-notif-badge" aria-label="Notificações não lidas">
-          {{ unreadNotificationsCount() }}
-        </span>
-      }
-
-      @if (isNotificationsOpen()) {
-        <section class="app-header-notif-popover" aria-label="Painel de notificações">
+      <dialog
+        #notificationsDialog
+        class="app-header-notif-dialog"
+        aria-labelledby="notifications-title"
+        (close)="onNotificationsDialogClose()">
+        <section class="app-header-notif-popover">
           <div class="app-header-notif-head">
-            <strong class="app-header-notif-title">Notificações</strong>
+            <strong id="notifications-title" class="app-header-notif-title">Notificações</strong>
             @if (unreadNotificationsCount() > 0) {
               <button
                 type="button"
@@ -67,7 +65,7 @@
             }
           </ul>
         </section>
-      }
+      </dialog>
     </div>
 
     <a routerLink="/profile" class="app-header-avatar-card" aria-label="Ir para o perfil">

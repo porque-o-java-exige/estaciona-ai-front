@@ -9,6 +9,10 @@
     </div>
 
     <form class="auth-form" (ngSubmit)="handleSubmit()" novalidate>
+      @if (formError(); as error) {
+        <p class="form-feedback" role="alert">{{ error }}</p>
+      }
+
       <div class="auth-field">
         <label class="sr-only" for="email">E-mail</label>
         <app-input
@@ -37,7 +41,6 @@
           [isRequired]="true"
           placeholder="**************"
           hint="exemplo → meuexemplodesenha123@"
-          [errorMessage]="formError()"
           [(ngModel)]="password">
         </app-input>
       </div>
@@ -75,4 +78,3 @@
     </div>
   </div>
 </section>
-

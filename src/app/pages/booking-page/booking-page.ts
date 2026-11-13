@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
-import { Chip } from '../../components/atoms/chip/chip';
+import { RouterLink } from '@angular/router';
 import { BookingCard } from '../../components/molecules/booking-card/booking-card';
+import { FilterTabs } from '../../components/molecules/filter-tabs/filter-tabs';
 import { Footer } from '../../components/organisms/footer/footer';
 import { BookingFilter, BookingItem } from '../../interfaces';
 import { BookingService } from '../../services/booking.service';
@@ -8,7 +9,7 @@ import { BookingService } from '../../services/booking.service';
 @Component({
   selector: 'app-booking-page',
   standalone: true,
-  imports: [Chip, BookingCard, Footer],
+  imports: [RouterLink, FilterTabs, BookingCard, Footer],
   templateUrl: './booking-page.html',
   styleUrl: './booking-page.scss',
 })
@@ -27,4 +28,3 @@ export class BookingPage {
     this.bookingService.selectBooking(booking.id);
   };
 }
-

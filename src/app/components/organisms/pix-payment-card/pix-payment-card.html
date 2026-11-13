@@ -7,7 +7,7 @@
     [class.is-fallback-open]="codeCopied()"
     role="status"
     aria-live="polite">
-    <span class="pix-toast-check" aria-hidden="true">✓</span>
+    <img class="pix-toast-check" src="assets/icons/png/check-circle-icon.png" alt="" aria-hidden="true" />
     <span class="pix-toast-text">Codigo pix copiado com sucesso</span>
     <button
       type="button"
@@ -16,7 +16,7 @@
       popovertargetaction="hide"
       (click)="hideToast()"
       aria-label="Fechar notificação">
-      ×
+      <img src="assets/icons/png/close-circle-icon.png" alt="" aria-hidden="true" />
     </button>
   </div>
 
@@ -83,4 +83,3 @@
     </form>
   </dialog>
 </div>
-

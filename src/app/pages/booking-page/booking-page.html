@@ -1,21 +1,18 @@
 <div class="booking-page">
   <header class="booking-header">
-    <h1 class="booking-title">Reservas</h1>
+    <div class="booking-title-row">
+      <a routerLink="/home" class="booking-back-link" aria-label="Voltar para o início">
+        <img src="assets/icons/png/chevron-left-icon.png" alt="" aria-hidden="true" />
+      </a>
+      <h1 class="booking-title">Reservas</h1>
+    </div>
 
-    <nav class="booking-filters" aria-label="Filtrar reservas por status">
-      @for (option of filterOptions; track option) {
-        <button
-          type="button"
-          class="booking-filter-btn"
-          (click)="onSelectFilter(option)">
-          <app-chip
-            variant="reservation-filter"
-            [text]="option"
-            [isActive]="activeFilter() === option">
-          </app-chip>
-        </button>
-      }
-    </nav>
+    <app-filter-tabs
+      [options]="filterOptions"
+      [activeOption]="activeFilter()"
+      ariaLabel="Filtrar reservas por status"
+      (optionSelected)="onSelectFilter($event)">
+    </app-filter-tabs>
   </header>
 
   @if (bookings().length > 0) {
@@ -35,4 +32,3 @@
 
   <app-footer></app-footer>
 </div>
-

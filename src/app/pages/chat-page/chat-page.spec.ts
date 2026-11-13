@@ -23,12 +23,20 @@ describe('ChatPage', () => {
     expect(component.chatService.activeConversation()).toBeTruthy();
   });
 
+  it('should use a unique contact name and photo for each conversation', () => {
+    const conversations = component.chatService.conversations();
+
+    expect(new Set(conversations.map(({ contactName }) => contactName)).size).toBe(
+      conversations.length,
+    );
+    expect(new Set(conversations.map(({ avatarUrl }) => avatarUrl)).size).toBe(
+      conversations.length,
+    );
+  });
+
   it('should append a new message when onSendMessage is called', () => {
     const initialCount = component.chatService.activeConversation().messages.length;
-    component.draftMessage.set('Olá, vaga disponível?');
-    component.onSendMessage();
+    component.onSendMessage('Olá, vaga disponível?');
     expect(component.chatService.activeConversation().messages.length).toBe(initialCount + 1);
-    expect(component.draftMessage()).toBe('');
   });
 });
-

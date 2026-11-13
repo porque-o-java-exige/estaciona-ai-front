@@ -1,0 +1,84 @@
+@use '../../../styles/variables' as *;
+
+.coming-soon-page {
+  display: flex;
+  min-height: calc(100dvh - 92px);
+  flex-direction: column;
+  padding: 20px 24px 32px;
+  background: $surface-page;
+}
+
+.coming-soon-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  a,
+  img {
+    display: block;
+    width: 20px;
+    height: 20px;
+  }
+
+  h1 {
+    margin: 0;
+    color: $text-primary;
+    font: $fw-bold 24px $font-heading;
+  }
+}
+
+.coming-soon-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+  text-align: center;
+
+  h2 {
+    margin: 0;
+    color: $text-strong;
+    font: $fw-medium 24px/1.35 $font-heading;
+  }
+
+  img {
+    display: block;
+    width: min(100%, 360px);
+    max-height: 48dvh;
+    object-fit: contain;
+  }
+}
+
+@media (max-width: $bp-mobile) {
+  .coming-soon-page {
+    min-height: 100dvh;
+    padding: 12px 20px 112px;
+  }
+
+  .coming-soon-header {
+    min-height: 42px;
+    gap: 20px;
+
+    h1 {
+      font-size: 24px;
+      font-weight: $fw-regular;
+    }
+  }
+
+  .coming-soon-content {
+    justify-content: center;
+    gap: 36px;
+    padding: 12px 0 0;
+
+    h2 {
+      font-size: 23px;
+      line-height: 1.35;
+    }
+
+    img {
+      width: 100%;
+      max-height: 48dvh;
+    }
+  }
+}

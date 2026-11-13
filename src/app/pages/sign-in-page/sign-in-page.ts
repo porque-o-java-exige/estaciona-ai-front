@@ -5,6 +5,7 @@ import { Button } from '../../components/atoms/button/button';
 import { Input } from '../../components/atoms/input/input';
 import { Logo } from '../../components/atoms/logo/logo';
 import { AuthService } from '../../services/auth.service';
+import { FeedbackService } from '../../services/feedback.service';
 
 @Component({
   selector: 'app-sign-in-page',
@@ -16,6 +17,7 @@ import { AuthService } from '../../services/auth.service';
 export class SignInPage {
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
+  private readonly feedback = inject(FeedbackService);
 
   email = signal('');
   password = signal('');
@@ -35,6 +37,7 @@ export class SignInPage {
     });
 
     if (isSuccess) {
+      this.feedback.showSuccess('Login realizado com sucesso.');
       this.router.navigate(['/home']);
     }
   };
@@ -42,8 +45,8 @@ export class SignInPage {
   handleGoogleSignIn = (): void => {
     const isSuccess = this.authService.signInWithGoogle();
     if (isSuccess) {
+      this.feedback.showSuccess('Login com Google realizado com sucesso.');
       this.router.navigate(['/home']);
     }
   };
 }
-

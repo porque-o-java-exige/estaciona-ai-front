@@ -1,0 +1,193 @@
+@use '../../../../styles/variables' as *;
+
+:host {
+  display: flex;
+  width: clamp(320px, 38%, 460px);
+  flex-shrink: 0;
+  border-right: 1px solid $border-brand-light;
+  background: $surface-elevated;
+}
+
+.conversations-pane,
+.conversations-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.conversations-pane {
+  width: 100%;
+}
+
+.pane-header {
+  display: flex;
+  align-items: center;
+  height: 66px;
+  padding: 0 20px;
+  gap: 16px;
+  background: $surface-card;
+  border-bottom: 1px solid $border-brand-light;
+}
+
+.pane-title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: $fw-bold;
+  color: $text-primary;
+}
+
+.conversation-back-link {
+  display: none;
+
+  img {
+    display: block;
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.count-badge,
+.unread-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  min-width: 30px;
+  padding: 0 8px;
+  border-radius: 50px;
+  font-weight: $fw-bold;
+}
+
+.count-badge {
+  border: 1px solid $border-brand-soft;
+  color: $text-brand-accent;
+}
+
+.unread-badge {
+  background: $surface-brand-soft;
+  color: $text-brand;
+  font-size: 14px;
+}
+
+.conversations-list {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.conversation-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 18px 20px;
+  gap: 16px;
+  background: $surface-elevated;
+  border: 0;
+  border-bottom: 1px solid $border-brand-light;
+  text-align: left;
+  cursor: pointer;
+
+  &:hover,
+  &.active {
+    background: $surface-brand-tint;
+  }
+
+  &.active {
+    outline: 1px solid $border-brand-strong;
+    outline-offset: -1px;
+  }
+}
+
+.conv-content {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.conv-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.contact-name {
+  font-size: 20px;
+  color: $text-primary;
+}
+
+.last-message,
+.last-time {
+  margin: 4px 0 0;
+  font-size: 14px;
+  color: $text-muted;
+}
+
+.last-message {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: $bp-mobile) {
+  :host {
+    width: 100%;
+    border: 0;
+  }
+
+  :host(.thread-open) {
+    display: none;
+  }
+
+  .pane-header {
+    height: 64px;
+    padding: 0 20px;
+    gap: 16px;
+    background: $surface-page;
+  }
+
+  .conversation-back-link {
+    display: inline-flex;
+    flex: 0 0 auto;
+  }
+
+  .pane-title {
+    font-size: 24px;
+  }
+
+  .count-badge {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+
+  .conversation-item {
+    padding: 14px 0;
+    gap: 16px;
+    background: transparent;
+
+    &:hover,
+    &.active {
+      background: transparent;
+      outline: 0;
+    }
+  }
+
+  .contact-name {
+    font-size: 15px;
+  }
+
+  .last-message,
+  .last-time {
+    font-size: 13px;
+  }
+
+  .last-message {
+    max-width: 220px;
+  }
+
+  .unread-badge {
+    min-width: 30px;
+    height: 30px;
+    font-size: 14px;
+  }
+}

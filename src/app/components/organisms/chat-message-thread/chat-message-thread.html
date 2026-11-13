@@ -1,0 +1,49 @@
+<section class="messages-pane" aria-label="Histórico de mensagens">
+  <header class="thread-header">
+    <button
+      type="button"
+      class="back-btn"
+      aria-label="Voltar para lista de conversas"
+      (click)="backToList.emit()">
+      <img src="assets/icons/png/chevron-left-icon.png" alt="" aria-hidden="true" width="28" height="28" />
+    </button>
+
+    <div class="thread-contact">
+      <app-avatar
+        [src]="conversation().avatarUrl"
+        [alt]="conversation().contactName"
+        [size]="48"
+        [status]="conversation().status">
+      </app-avatar>
+      <h2 class="thread-contact-name">{{ conversation().contactName }}</h2>
+    </div>
+  </header>
+
+  <div #messagesScroll class="messages-scroll" role="log" aria-live="polite">
+    @for (message of conversation().messages; track message.id) {
+      <div class="message-row" [class.mine]="message.isMine">
+        <div class="message-bubble">
+          <p class="message-text">{{ message.text }}</p>
+          <time class="message-time">{{ message.timestamp }}</time>
+        </div>
+      </div>
+    }
+  </div>
+
+  <footer class="composer-footer">
+    <form class="composer-bar" (ngSubmit)="onSendMessage()">
+      <input
+        type="text"
+        name="draftMessage"
+        class="composer-input"
+        placeholder="digite sua mensagem..."
+        autocomplete="off"
+        [ngModel]="draftMessage()"
+        (ngModelChange)="draftMessage.set($event)"
+        aria-label="Digite sua mensagem" />
+      <button type="submit" class="send-btn" aria-label="Enviar mensagem">
+        <img src="assets/icons/png/send-message-icon.png" alt="" aria-hidden="true" width="22" height="22" />
+      </button>
+    </form>
+  </footer>
+</section>

@@ -1,11 +1,15 @@
 import { Component, computed, input, output } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { Chip } from '../../atoms/chip/chip';
+import { Image } from '../../atoms/image/image';
+import { Icon } from '../../atoms/icon/icon';
+import { Price } from '../../atoms/price/price';
 import { GarageItem } from '../../../interfaces';
 
 @Component({
   selector: 'app-garage-card',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, Chip, Image, Icon, Price],
   templateUrl: './garage-card.html',
   styleUrl: './garage-card.scss',
 })
@@ -29,4 +33,3 @@ export class GarageCard {
     this.cardClick.emit(this.garage());
   };
 }
-

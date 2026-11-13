@@ -2,6 +2,8 @@
   [type]="buttonType()"
   [disabled]="isDisabled()"
   [class]="'button-' + variant()"
+  [class.is-active]="isActive()"
+  [attr.aria-pressed]="variant() === 'filter-option' ? isActive() : null"
   [class.button-full-width]="fullWidth()">
   @if (iconPath()) {
     <img [src]="iconPath()!" alt="" aria-hidden="true" />

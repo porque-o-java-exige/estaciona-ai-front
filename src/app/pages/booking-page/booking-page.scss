@@ -10,7 +10,7 @@
   width: 100%;
 
   @media (max-width: $bp-mobile) {
-    padding: 15px 16px 96px;
+    padding: 12px 20px 104px;
   }
 }
 
@@ -22,6 +22,22 @@
   border-bottom: 1px solid $clr-primary-100;
 }
 
+.booking-title-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.booking-back-link {
+  display: none;
+
+  img {
+    display: block;
+    width: 20px;
+    height: 20px;
+  }
+}
+
 .booking-title {
   margin: 0;
   font-family: $font-heading;
@@ -30,27 +46,30 @@
   color: $clr-black-1100;
 
   @media (max-width: $bp-mobile) {
-    font-size: 20px;
+    font-size: 24px;
   }
 }
 
-.booking-filters {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px;
-
-  ::ng-deep .chip-reservation-filter {
-    border-radius: 30px;
-    padding: 6px 14px;
+@media (max-width: $bp-mobile) {
+  .booking-header {
+    gap: 12px;
+    margin-inline: -20px;
+    padding: 0 20px 12px;
   }
-}
 
-.booking-filter-btn {
-  border: none;
-  background: transparent;
-  padding: 0;
-  cursor: pointer;
+  .booking-back-link {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .booking-header app-filter-tabs {
+    overflow-x: auto;
+  }
+
+  .booking-grid {
+    gap: 18px;
+    padding-top: 0;
+  }
 }
 
 .booking-grid {
@@ -76,4 +95,3 @@
   border: 1px solid $clr-primary-300;
   color: $clr-black-600;
 }
-

@@ -1,0 +1,200 @@
+@use '../../../styles/variables' as *;
+
+.account-page {
+  display: flex;
+  width: min(100%, 720px);
+  flex-direction: column;
+  gap: 16px;
+  margin: 0 auto;
+  padding: 18px 20px 104px;
+  color: $text-primary;
+}
+
+.account-page-header,
+.account-identity,
+.account-wallet-heading,
+.account-rating,
+.account-link {
+  display: flex;
+  align-items: center;
+}
+
+.account-page-header {
+  min-height: 42px;
+  gap: 20px;
+
+  a,
+  img {
+    display: block;
+    width: 20px;
+    height: 20px;
+  }
+
+  h1 {
+    margin: 0;
+    font: $fw-regular 24px $font-heading;
+  }
+}
+
+.account-identity {
+  gap: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid $border-neutral;
+
+  .account-avatar {
+    width: 64px;
+    height: 64px;
+    flex: 0 0 auto;
+    border-radius: 6px;
+    object-fit: cover;
+  }
+
+  h2 {
+    margin: 0 0 4px;
+    font: $fw-bold 18px $font-heading;
+  }
+
+  p {
+    margin: 0 0 8px;
+    color: $text-muted;
+    font-size: 14px;
+  }
+}
+
+.account-rating {
+  gap: 8px;
+  color: $text-muted;
+  font-size: 14px;
+
+  img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+  }
+}
+
+.account-wallet {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px 20px;
+  border-radius: 14px;
+  background: $surface-brand-strong;
+  color: $surface-elevated;
+
+  > strong {
+    font: $fw-bold 30px $font-heading;
+  }
+
+  > span {
+    font-size: 12px;
+  }
+}
+
+.account-wallet-heading {
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 14px;
+
+  a {
+    padding: 9px 14px;
+    border-radius: 10px;
+    background: $surface-brand-soft;
+    color: $text-primary;
+    text-decoration: none;
+  }
+}
+
+.account-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+
+  a {
+    display: flex;
+    min-height: 94px;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+    border-radius: 12px;
+    background: $surface-brand-tint;
+    color: $text-primary;
+    text-decoration: none;
+  }
+
+  img {
+    width: 18px;
+    height: 18px;
+    margin-bottom: 6px;
+    object-fit: contain;
+  }
+
+  span {
+    font-size: 14px;
+    font-weight: $fw-medium;
+  }
+
+  small {
+    margin-top: 4px;
+    color: $text-muted;
+    font-size: 11px;
+  }
+}
+
+.account-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.account-link {
+  min-height: 62px;
+  gap: 12px;
+  padding: 8px 10px;
+  border: 1px solid $border-brand-light;
+  border-radius: 12px;
+  background: $surface-card;
+  color: $text-primary;
+  text-decoration: none;
+
+  > span:nth-child(2) {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+
+  strong {
+    font-size: 14px;
+    font-weight: $fw-medium;
+  }
+
+  small {
+    color: $text-brand-accent;
+    font-size: 12px;
+  }
+}
+
+.account-link-icon {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid $border-brand-light;
+  border-radius: 9px;
+  background: $surface-page;
+
+  img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+  }
+}
+
+.account-chevron {
+  width: 18px;
+  height: 18px;
+  transform: rotate(180deg);
+}

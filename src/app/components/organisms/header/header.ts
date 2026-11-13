@@ -1,4 +1,12 @@
-import { Component, computed, inject, output, signal } from '@angular/core';
+import {
+  Component,
+  computed,
+  ElementRef,
+  inject,
+  output,
+  signal,
+  viewChild,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { Button } from '../../atoms/button/button';
@@ -31,6 +39,7 @@ export class Header {
   user = this.authService.currentUser;
   searchQuery = this.garageService.searchQuery;
   isNotificationsOpen = signal<boolean>(false);
+  notificationsDialogRef = viewChild<ElementRef<HTMLDialogElement>>('notificationsDialog');
 
   notifications = signal<HeaderNotification[]>([
     {
@@ -76,8 +85,21 @@ export class Header {
   };
 
   onNotificationClick = (): void => {
-    this.isNotificationsOpen.update((open) => !open);
+    const dialog = this.notificationsDialogRef()?.nativeElement;
+    if (dialog) {
+      if (dialog.open) {
+        dialog.close();
+        this.isNotificationsOpen.set(false);
+      } else {
+        dialog.showModal();
+        this.isNotificationsOpen.set(true);
+      }
+    }
     this.notificationClick.emit();
+  };
+
+  onNotificationsDialogClose = (): void => {
+    this.isNotificationsOpen.set(false);
   };
 
   markAllNotificationsAsRead = (): void => {
@@ -88,6 +110,10 @@ export class Header {
     this.notifications.update((list) =>
       list.map((item) => (item.id === notification.id ? { ...item, read: true } : item))
     );
+    const dialog = this.notificationsDialogRef()?.nativeElement;
+    if (dialog?.open) {
+      dialog.close();
+    }
     this.isNotificationsOpen.set(false);
     this.router.navigateByUrl(notification.route);
   };

@@ -24,12 +24,15 @@ describe('Sidebar', () => {
     expect(listItems.length).toBe(5);
   });
 
-  it('should toggle expanded overlay state on hover interaction', () => {
-    expect(component.isExpanded()).toBe(false);
-    component.setExpanded(true);
-    fixture.detectChanges();
-    expect(component.isExpanded()).toBe(true);
-    const aside = fixture.nativeElement.querySelector('.app-sidebar') as HTMLElement;
-    expect(aside.classList.contains('is-expanded')).toBe(true);
+  it('should define active and inactive image assets for every menu item', () => {
+    expect(component.navItems.every((item) => item.activeIcon !== item.inactiveIcon)).toBe(true);
+  });
+
+  it('should use the opacity icons for inactive payment and chat items', () => {
+    const payment = component.navItems.find((item) => item.id === 'payment');
+    const chat = component.navItems.find((item) => item.id === 'chat');
+
+    expect(payment?.inactiveIcon).toBe('assets/icons/png/opacity-payment-icon.png');
+    expect(chat?.inactiveIcon).toBe('assets/icons/png/opacity-chat-icon.png');
   });
 });

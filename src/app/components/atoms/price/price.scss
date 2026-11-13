@@ -1,0 +1,23 @@
+@use '../../../../styles/variables' as *;
+
+:host {
+  display: inline-flex;
+  flex: 0 0 auto;
+}
+
+.price {
+  color: var(--price-color, $clr-blue-1000);
+  font: var(--price-font, $fw-bold 15px $font-body);
+  white-space: nowrap;
+}
+
+.price-compact {
+  font-size: 15px;
+  line-height: 1.3;
+}
+
+.price-prominent {
+  font-family: $font-heading;
+  font-size: 26px;
+  line-height: 1.2;
+}

@@ -1,0 +1,97 @@
+<section class="identity-card" aria-label="Identidade e atividade">
+  <div class="identity-head">
+    <app-avatar
+      [src]="user().avatarUrl"
+      [alt]="user().name"
+      [size]="64"
+      [verified]="user().isVerified">
+    </app-avatar>
+
+    <div class="identity-info">
+      <h2 class="user-name">{{ user().name }}</h2>
+      <p class="user-email">{{ user().email }}</p>
+      <div class="reputation-row">
+        <img class="star-icon" src="assets/icons/png/star-yellow-icon.png" alt="" aria-hidden="true" />
+        <strong class="rating-val">{{ user().rating }}</strong>
+        <span class="reviews-count">· {{ user().totalReviews }} reservas</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="kpi-list">
+    <div class="kpi-box">
+      <div class="kpi-top">
+        <strong class="kpi-val">{{ vehicleCount() }}</strong>
+        <img src="assets/icons/png/vehicle-icon.png" alt="" aria-hidden="true" width="18" height="18" />
+      </div>
+      <span class="kpi-label">Veículos</span>
+    </div>
+
+    <div class="kpi-box">
+      <div class="kpi-top">
+        <strong class="kpi-val">{{ garageCount() }}</strong>
+        <img src="assets/icons/png/garage-icon.png" alt="" aria-hidden="true" width="18" height="18" />
+      </div>
+      <span class="kpi-label">Garagem</span>
+    </div>
+
+    <div class="kpi-box">
+      <div class="kpi-top">
+        <strong class="kpi-val">{{ user().totalBookingsCount }}</strong>
+        <img src="assets/icons/svg/booking-icon.svg" alt="" aria-hidden="true" width="18" height="18" />
+      </div>
+      <span class="kpi-label">Reservas</span>
+    </div>
+  </div>
+
+  <span class="card-divider" aria-hidden="true"></span>
+
+  <button type="button" class="edit-profile-btn" (click)="editProfile.emit()">
+    <img src="assets/icons/png/edit-icon.png" alt="" aria-hidden="true" width="16" height="16" />
+    <span>Editar perfil</span>
+  </button>
+</section>
+
+<section class="wallet-reservation-row" aria-label="Carteira e reserva ativa">
+  <article class="wallet-card">
+    <div class="wallet-top">
+      <span class="wallet-label">Saldo na carteira</span>
+      <img src="assets/icons/png/wallet-icon.png" alt="" aria-hidden="true" width="21" height="21" />
+    </div>
+
+    <strong class="wallet-balance">R${{ formatBalance(user().balance) }}</strong>
+
+    <div class="wallet-bottom">
+      <span class="wallet-card-info">{{ user().cardDisplay }}</span>
+      <button type="button" class="recharge-btn" (click)="rechargeWallet.emit()">
+        <img src="assets/icons/png/add-small-icon.png" alt="" aria-hidden="true" />
+        <span>Recarregar</span>
+      </button>
+    </div>
+  </article>
+
+  <article class="active-reservation-card">
+    <div class="reservation-header">
+      <h3 class="reservation-title">Reserva ativa</h3>
+      <span class="today-badge">Hoje</span>
+    </div>
+
+    <a routerLink="/booking" class="reservation-body">
+      <span class="pin-box" aria-hidden="true">
+        <img src="assets/icons/png/location-pin-icon.png" alt="" aria-hidden="true" width="22" height="22" />
+      </span>
+
+      <span class="reservation-details">
+        <strong class="spot-name">Nome da vaga da garagem</strong>
+        <span class="spot-schedule">Hoje 15:00 - 17:00 - $16,00</span>
+      </span>
+
+      <img class="chevron-icon" src="assets/icons/png/chevron-left-icon.png" alt="" aria-hidden="true" />
+    </a>
+
+    <div class="reservation-footer">
+      <img src="assets/icons/png/shield-icon.png" alt="" aria-hidden="true" width="15" height="15" />
+      <span>Máximo de <strong>1 vaga reservada</strong> por vez</span>
+    </div>
+  </article>
+</section>

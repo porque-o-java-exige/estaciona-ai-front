@@ -1,5 +1,10 @@
 @use '../../../../styles/variables' as *;
 
+:host {
+  display: block;
+  width: 100%;
+}
+
 .pix-stage {
   display: flex;
   flex-direction: column;
@@ -131,10 +136,9 @@
   justify-content: center;
   width: 26px;
   height: 26px;
-  border-radius: 50%;
-  border: 2px solid $clr-green-1000;
-  color: $clr-green-1000;
-  font-weight: $fw-bold;
+  object-fit: contain;
+  filter: brightness(0) saturate(100%) invert(53%) sepia(91%) saturate(414%) hue-rotate(86deg)
+    brightness(94%) contrast(89%);
 }
 
 .pix-toast-text {
@@ -146,9 +150,15 @@
   border: none;
   background: transparent;
   color: $clr-white-1100;
-  font-size: 20px;
   cursor: pointer;
   padding: 0 4px;
+
+  img {
+    display: block;
+    width: 18px;
+    height: 18px;
+    filter: brightness(0) invert(1);
+  }
 }
 
 dialog.pix-cancel-dialog {
@@ -200,6 +210,41 @@ dialog.pix-cancel-dialog {
   border: none;
 }
 
+@media (max-width: $bp-mobile) {
+  .pix-stage {
+    min-height: calc(100dvh - 60px);
+    padding: 10px 0;
+    justify-content: flex-start;
+    background: transparent;
+  }
+
+  .pix-card {
+    max-width: 380px;
+    box-shadow: none;
+    border: 0;
+    padding: 22px 10px;
+  }
+
+  .pix-card-title,
+  .pix-card-amount {
+    font-size: 18px;
+  }
+
+  .pix-card-instruction {
+    max-width: 290px;
+    font-size: 13px;
+  }
+
+  .pix-toast {
+    margin-top: 4px;
+    padding: 8px 12px;
+  }
+
+  .pix-toast-text {
+    font-size: 14px;
+  }
+}
+
 .pix-dialog-btn-keep {
   background-color: $clr-blue-1100;
   color: $clr-white-1100;
@@ -209,4 +254,3 @@ dialog.pix-cancel-dialog {
   background-color: $clr-red-1000;
   color: $clr-white-1100;
 }
-

@@ -22,6 +22,6 @@ export interface GarageItem {
   characteristics: string[];
   ownerName: string;
   ownerInitials: string;
+  ownerAvatarUrl: string;
   mapPin: GarageMapPin;
 }
-

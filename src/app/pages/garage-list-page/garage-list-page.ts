@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Button } from '../../components/atoms/button/button';
-import { Chip } from '../../components/atoms/chip/chip';
+import { FilterTabs } from '../../components/molecules/filter-tabs/filter-tabs';
 import { GarageCard } from '../../components/molecules/garage-card/garage-card';
 import { Footer } from '../../components/organisms/footer/footer';
 import { GarageItem } from '../../interfaces';
@@ -10,7 +10,7 @@ import { GarageService } from '../../services/garage.service';
 @Component({
   selector: 'app-garage-list-page',
   standalone: true,
-  imports: [RouterLink, Button, Chip, GarageCard, Footer],
+  imports: [RouterLink, Button, FilterTabs, GarageCard, Footer],
   templateUrl: './garage-list-page.html',
   styleUrl: './garage-list-page.scss',
 })
@@ -36,4 +36,3 @@ export class GarageListPage {
     this.garageService.selectGarage(garage.id);
   };
 }
-

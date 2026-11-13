@@ -1,12 +1,14 @@
 import { Component, computed, input, output } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Chip } from '../../atoms/chip/chip';
+import { Icon } from '../../atoms/icon/icon';
+import { Price } from '../../atoms/price/price';
 import { BookingItem } from '../../../interfaces';
 
 @Component({
   selector: 'app-booking-card',
   standalone: true,
-  imports: [RouterLink, Chip],
+  imports: [RouterLink, Chip, Icon, Price],
   templateUrl: './booking-card.html',
   styleUrl: './booking-card.scss',
 })
@@ -36,4 +38,3 @@ export class BookingCard {
     this.cardSelect.emit(this.booking());
   };
 }
-

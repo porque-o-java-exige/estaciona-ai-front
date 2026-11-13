@@ -1,0 +1,11 @@
+<button
+  type="button"
+  class="selection-control"
+  [class.is-selected]="selected()"
+  [attr.aria-label]="ariaLabel()"
+  [attr.aria-pressed]="selected()"
+  (click)="toggled.emit()">
+  @if (selected()) {
+    <img src="assets/icons/png/check-icon.png" alt="" aria-hidden="true" />
+  }
+</button>
