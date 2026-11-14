@@ -1,6 +1,26 @@
+:host {
+  display: block;
+  min-width: 0;
+  max-width: 100%;
+}
+
 .filter-tabs {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   gap: 8px;
+}
+
+@media (max-width: 768px) {
+  .filter-tabs {
+    flex-wrap: nowrap;
+    max-width: 100%;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: thin;
+  }
+
+  .filter-tabs app-button {
+    flex: 0 0 auto;
+  }
 }

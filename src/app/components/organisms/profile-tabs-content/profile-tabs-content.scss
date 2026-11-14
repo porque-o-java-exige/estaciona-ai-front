@@ -616,6 +616,11 @@
     gap: 10px;
   }
 
+  .garage-stats-row {
+    flex-wrap: wrap;
+    gap: 10px 20px;
+  }
+
   .garage-carousel-control {
     width: 32px;
     height: 32px;

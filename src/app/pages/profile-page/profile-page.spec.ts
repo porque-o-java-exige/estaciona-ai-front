@@ -20,7 +20,7 @@ describe('ProfilePage', () => {
 
   it('should create and render user profile data', () => {
     expect(component).toBeTruthy();
-    expect(component.authService.currentUser().name).toBe('Kookie Piska');
+    expect(component.authService.currentUser().name).toBe('Lucas Ferreira');
   });
 
   it('should update the profile photo after selecting an image', async () => {

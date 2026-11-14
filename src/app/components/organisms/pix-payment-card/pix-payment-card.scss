@@ -84,6 +84,17 @@
   word-break: break-all;
 }
 
+.pix-copy-action {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.pix-copy-action app-button {
+  display: block;
+  width: min(300px, 100%);
+}
+
 .pix-progress-group {
   display: flex;
   flex-direction: column;
@@ -242,6 +253,14 @@ dialog.pix-cancel-dialog {
 
   .pix-toast-text {
     font-size: 14px;
+  }
+
+  .pix-dialog-actions {
+    flex-direction: column;
+  }
+
+  .pix-dialog-btn {
+    min-height: 44px;
   }
 }
 

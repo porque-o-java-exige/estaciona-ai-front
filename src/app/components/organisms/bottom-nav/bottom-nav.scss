@@ -34,6 +34,7 @@
 
   .app-bottom-nav-link {
     display: flex;
+    min-height: 44px;
     flex-direction: column;
     align-items: center;
     text-decoration: none;

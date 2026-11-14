@@ -33,10 +33,10 @@
   }
 
   .garage-details-back-row {
-    position: absolute;
-    top: 24px;
-    left: 24px;
-    z-index: 5;
+    position: fixed;
+    top: calc(16px + env(safe-area-inset-top, 0px));
+    left: 16px;
+    z-index: 100;
   }
 
   .garage-details-back-link {
@@ -50,8 +50,9 @@
   }
 
   .garage-details-back-link app-button {
-    width: 20px;
-    height: 20px;
+    display: block;
+    width: 36px;
+    height: 36px;
   }
 
   .garage-details-page app-footer {

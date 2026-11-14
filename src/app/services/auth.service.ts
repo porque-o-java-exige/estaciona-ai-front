@@ -10,8 +10,8 @@ import {
 
 const DEFAULT_USER: UserResponse = {
   id: 'usr-01',
-  name: 'Kookie Piska',
-  email: 'kookiepiska@email.com',
+  name: 'Lucas Ferreira',
+  email: 'lucas.ferreira@email.com',
   phone: '5511988887777',
   avatarUrl: 'assets/images/png/kookie-piska-avatar.png',
   balance: 23.5,
