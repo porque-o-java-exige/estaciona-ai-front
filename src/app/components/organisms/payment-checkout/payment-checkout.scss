@@ -16,8 +16,8 @@
 .payment-methods-card {
   padding: 16px 20px;
   border-radius: 15px;
-  border: 1px solid $clr-blue-300;
-  background: $clr-white-1100;
+  border: 1px solid $border-brand-subtle;
+  background: $surface-card;
 
   h2 {
     margin: 0;
@@ -45,7 +45,7 @@
   margin: 0 auto;
   border-radius: 50%;
   border: 1px solid transparent;
-  background: $clr-white-1000;
+  background: $surface-page-subtle;
   font: 14px $font-heading;
   cursor: pointer;
 }
@@ -75,10 +75,6 @@
 
   &.is-plus {
     background: $clr-blue-1000;
-
-    img {
-      filter: brightness(0) invert(1);
-    }
   }
 }
 
@@ -113,7 +109,7 @@
 
 .payment-summary-total {
   font: $fw-bold 20px $font-heading;
-  color: $clr-black-1100;
+  color: $text-primary;
 }
 
 .payment-hour-stepper,
@@ -157,6 +153,22 @@
 
   &.is-checked {
     background: $clr-blue-1000;
-    box-shadow: inset 0 0 0 3px $clr-white-1000;
+    box-shadow: inset 0 0 0 3px $surface-card;
+  }
+}
+
+.payment-wallet-warning {
+  margin: 0;
+  color: $status-danger;
+  font-size: 13px;
+  text-align: center;
+}
+
+:host-context([data-theme='dark']) .payment-step-btn {
+  background: $surface-brand-soft;
+  color: $text-on-brand;
+
+  &.is-plus {
+    background: $surface-brand-primary;
   }
 }

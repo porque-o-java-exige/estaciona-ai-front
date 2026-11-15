@@ -24,6 +24,9 @@ export class PaymentCheckout {
   finalTotal = input.required<number>();
   payButtonVariant = input.required<buttonVariant>();
   payButtonText = input.required<string>();
+  walletInsufficient = computed(
+    () => this.paymentMethod() === 'wallet' && this.walletBalance() < this.finalTotal()
+  );
   payButtonIcon = computed(() => {
     switch (this.paymentMethod()) {
       case 'pix':

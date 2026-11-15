@@ -42,4 +42,16 @@ describe('PaymentCheckout', () => {
     fixture.detectChanges();
     expect(buttonIcon()).toBe('assets/icons/png/wallet-icon.png');
   });
+
+  it('should show and emit the hour increment action', () => {
+    let incrementCount = 0;
+    component.hoursIncrement.subscribe(() => incrementCount++);
+
+    const incrementButton = fixture.nativeElement.querySelector(
+      '.payment-step-btn.is-plus',
+    ) as HTMLButtonElement | null;
+    expect(incrementButton).not.toBeNull();
+    incrementButton?.click();
+    expect(incrementCount).toBe(1);
+  });
 });

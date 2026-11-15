@@ -133,11 +133,18 @@
     </button>
   </div>
 
+  @if (walletInsufficient()) {
+    <p class="payment-wallet-warning" role="status">
+      Saldo insuficiente para concluir este pagamento.
+    </p>
+  }
+
   <app-button
     [variant]="payButtonVariant()"
     [iconSrc]="payButtonIcon()"
     [text]="payButtonText()"
     [fullWidth]="true"
+    [isDisabled]="walletInsufficient()"
     (click)="paymentSubmitted.emit()">
   </app-button>
 </aside>
