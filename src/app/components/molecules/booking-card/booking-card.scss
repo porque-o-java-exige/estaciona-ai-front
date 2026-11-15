@@ -10,8 +10,8 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  background-color: $clr-white-1000;
-  border: 1px solid $clr-primary-300;
+  background-color: $surface-card;
+  border: 1px solid $border-brand-subtle;
   border-radius: 15px;
   overflow: hidden;
   text-decoration: none;
@@ -20,7 +20,7 @@
 
   &:hover {
     transform: translateY(-2px);
-    border-color: $clr-blue-600;
+    border-color: $border-brand-accent;
     box-shadow: 0 8px 20px rgba(30, 91, 183, 0.12);
   }
 }
@@ -45,8 +45,14 @@
   }
 
   ::ng-deep .chip-status {
+    flex: 0 0 auto;
     border-radius: 30px;
     padding: 3px 12px;
+    white-space: nowrap;
+  }
+
+  ::ng-deep .chip-status p {
+    white-space: nowrap;
   }
 }
 
@@ -62,7 +68,7 @@
   font-family: $font-heading;
   font-size: 16px;
   font-weight: $fw-medium;
-  color: $clr-black-1000;
+  color: $text-primary;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -73,7 +79,7 @@
   font-family: $font-heading;
   font-size: 14px;
   font-weight: $fw-regular;
-  color: $clr-black-600;
+  color: $text-muted;
 }
 
 .booking-card-bottom {
@@ -97,8 +103,8 @@
   width: 40px;
   height: 40px;
   border-radius: 12px;
-  border: 0.8px solid $clr-blue-500;
-  background-color: $clr-white-1100;
+  border: 0.8px solid $border-brand;
+  background-color: $surface-card;
   flex-shrink: 0;
 }
 
@@ -111,14 +117,14 @@
 .booking-card-spot-label {
   font-family: $font-heading;
   font-size: 14px;
-  color: $clr-black-600;
+  color: $text-muted;
 }
 
 .booking-card-spot-code {
   font-family: $font-heading;
   font-size: 16px;
   font-weight: $fw-medium;
-  color: $clr-black-1000;
+  color: $text-primary;
 }
 
 .booking-card-price-group {
@@ -131,7 +137,7 @@
 .booking-card-price-label {
   font-family: $font-heading;
   font-size: 13px;
-  color: $clr-black-600;
+  color: $text-muted;
 }
 
 .booking-card-price-value {

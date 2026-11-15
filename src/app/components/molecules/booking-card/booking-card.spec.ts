@@ -15,6 +15,7 @@ describe('BookingCard', () => {
     dateTimeRange: '08/06 · 19:00–21:00',
     spotCode: 'C03 · Nível 1',
     status: 'Ativo',
+    paymentStatus: 'Pago',
     totalAmount: 24,
     distanceMeters: '120m',
     billingLabel: 'Hora',
