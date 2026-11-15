@@ -23,11 +23,15 @@
   min-height: 42px;
   gap: 20px;
 
-  a,
+  a:not(.back-button),
   img {
     display: block;
     width: 20px;
     height: 20px;
+  }
+
+  a.back-button {
+    flex: 0 0 40px;
   }
 
   h1 {
@@ -85,7 +89,7 @@
   padding: 18px 20px;
   border-radius: 14px;
   background: $surface-brand-strong;
-  color: $surface-elevated;
+  color: $text-on-brand;
 
   > strong {
     font: $fw-bold 30px $font-heading;
@@ -104,8 +108,8 @@
   a {
     padding: 9px 14px;
     border-radius: 10px;
-    background: $surface-brand-soft;
-    color: $text-primary;
+    background: $surface-brand-primary;
+    color: $text-on-brand;
     text-decoration: none;
   }
 }
