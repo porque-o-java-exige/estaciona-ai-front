@@ -24,12 +24,12 @@
           enterkeyhint="next"
           [isRequired]="true"
           placeholder="meuexemplodeemail@email.com"
-          hint="exemplo → meuexemplodeemail@email.com"
+          hint="Ex: meuexemplodeemail@email.com"
           [(ngModel)]="email">
         </app-input>
       </div>
 
-      <div class="auth-field">
+      <div class="auth-field auth-password-field">
         <label class="sr-only" for="current-password">Senha</label>
         <app-input
           inputId="current-password"
@@ -40,9 +40,14 @@
           enterkeyhint="done"
           [isRequired]="true"
           placeholder="**************"
-          hint="exemplo → meuexemplodesenha123@"
           [(ngModel)]="password">
         </app-input>
+        <div class="auth-password-hint-row">
+          <span>Ex: meuexemplodesenha123@</span>
+          <a routerLink="/sign-in" class="auth-link auth-forgot-link">
+            Esqueceu a senha ?
+          </a>
+        </div>
       </div>
 
       <app-button
@@ -52,9 +57,6 @@
         text="Entrar">
       </app-button>
 
-      <a routerLink="/sign-in" class="auth-link auth-forgot-link">
-        Esqueceu a senha ?
-      </a>
     </form>
 
     <div class="auth-social-section">
