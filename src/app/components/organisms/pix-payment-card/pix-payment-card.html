@@ -49,6 +49,14 @@
   </div>
 
   <app-button
+    class="pix-confirm-action"
+    variant="primary"
+    text="Já realizei o pagamento"
+    [fullWidth]="true"
+    (click)="paymentConfirmed.emit()">
+  </app-button>
+
+  <app-button
     variant="pix-cancel"
     text="Cancelar pagamento por pix ?"
     (click)="onOpenCancelModal()">

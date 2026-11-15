@@ -31,8 +31,8 @@
   width: 100%;
   max-width: 453px;
   padding: 22px 20px;
-  background-color: $clr-white-1100;
-  border: 1px solid $clr-primary-100;
+  background-color: $surface-card;
+  border: 1px solid $border-brand-subtle;
   border-radius: 15px;
   box-shadow: 0 8px 24px rgba(18, 18, 18, 0.08);
 }
@@ -49,7 +49,7 @@
   font-family: $font-heading;
   font-size: 30px;
   font-weight: $fw-medium;
-  color: $clr-black-1100;
+  color: $text-primary;
 }
 
 .pix-card-amount {
@@ -57,7 +57,7 @@
   font-family: $font-heading;
   font-size: 30px;
   font-weight: $fw-regular;
-  color: $clr-black-900;
+  color: $text-secondary;
 }
 
 .pix-card-instruction {
@@ -65,14 +65,14 @@
   font-family: $font-heading;
   font-size: 16px;
   text-align: center;
-  color: $clr-black-900;
+  color: $text-secondary;
 }
 
 .pix-code-box {
   width: 100%;
   padding: 10px 12px;
-  background-color: $clr-black-100;
-  border: 1px dashed $clr-black-400;
+  background-color: $surface-input;
+  border: 1px dashed $border-neutral;
   border-radius: 4px;
   overflow-x: auto;
 }
@@ -80,7 +80,7 @@
 .pix-code-value {
   font-family: $font-heading;
   font-size: 13px;
-  color: $clr-blue-1100;
+  color: $text-brand;
   word-break: break-all;
 }
 
@@ -91,6 +91,11 @@
 }
 
 .pix-copy-action app-button {
+  display: block;
+  width: min(300px, 100%);
+}
+
+.pix-confirm-action {
   display: block;
   width: min(300px, 100%);
 }
@@ -121,7 +126,7 @@
 .pix-progress-timer {
   font-family: $font-heading;
   font-size: 15px;
-  color: $clr-black-900;
+  color: $text-secondary;
 }
 
 .pix-toast {
@@ -178,8 +183,8 @@ dialog.pix-cancel-dialog {
   padding: 24px;
   border: 1px solid $clr-primary-300;
   border-radius: 15px;
-  background-color: $clr-white-1100;
-  color: $clr-black-1100;
+  background-color: $surface-card;
+  color: $text-primary;
 
   &:modal {
     overscroll-behavior: contain;
@@ -202,7 +207,7 @@ dialog.pix-cancel-dialog {
 .pix-dialog-desc {
   margin: 0 0 20px;
   font-size: 14px;
-  color: $clr-black-700;
+  color: $text-body;
 }
 
 .pix-dialog-actions {

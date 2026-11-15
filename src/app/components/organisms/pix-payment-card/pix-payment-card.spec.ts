@@ -24,5 +24,16 @@ describe('PixPaymentCard', () => {
     expect(component).toBeTruthy();
     expect(component.formattedAmount()).toBe('12,50');
   });
+
+  it('emits payment confirmation when the user confirms the Pix payment', () => {
+    let confirmed = false;
+    component.paymentConfirmed.subscribe(() => {
+      confirmed = true;
+    });
+
+    fixture.nativeElement.querySelector('button.button-primary').click();
+
+    expect(confirmed).toBe(true);
+  });
 });
 
