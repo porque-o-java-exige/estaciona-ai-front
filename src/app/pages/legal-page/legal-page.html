@@ -1,0 +1,38 @@
+<main class="legal-page">
+  <header class="legal-page-header">
+    <a routerLink="/home" class="back-button" aria-label="Voltar para o início">
+      <img src="assets/icons/png/chevron-left-icon.png" alt="" aria-hidden="true" />
+    </a>
+    <div>
+      <h1>{{ document().title }}</h1>
+      <p>Última atualização: 08/03/2025</p>
+    </div>
+  </header>
+
+  @if (document().key === 'cookies') {
+    <button type="button" class="manage-cookie-settings" (click)="openCookieSettings()">
+      Gerenciar preferências de cookies
+    </button>
+  }
+
+  <article class="legal-content">
+    @for (section of document().sections; track section.heading) {
+      <section>
+        <h2>{{ section.heading }}</h2>
+        @for (paragraph of section.paragraphs; track paragraph) {
+          <p>{{ paragraph }}</p>
+        }
+        @if (section.contactLead && section.contactEmail) {
+          <p>
+            {{ section.contactLead }}
+            <a class="legal-contact-email" [href]="'mailto:' + section.contactEmail">
+              {{ section.contactEmail }}
+            </a>.
+          </p>
+        }
+      </section>
+    }
+  </article>
+
+  <app-footer></app-footer>
+</main>

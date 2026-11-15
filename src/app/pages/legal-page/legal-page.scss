@@ -1,0 +1,102 @@
+@use '../../../styles/variables' as *;
+
+.legal-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: min(100%, 980px);
+  min-height: calc(100dvh - 92px);
+  margin: 0 auto;
+  padding: 28px 32px 48px;
+  color: $text-primary;
+}
+
+.legal-page-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid $border-brand-subtle;
+
+  h1,
+  p {
+    margin: 0;
+  }
+
+  h1 {
+    font-size: 26px;
+  }
+
+  p {
+    margin-top: 5px;
+    color: $text-muted;
+    font-size: 13px;
+  }
+
+  img {
+    width: 20px;
+    height: 20px;
+    transform: rotate(0);
+  }
+}
+
+.legal-draft-notice {
+  margin: 0;
+  padding: 14px 16px;
+  border: 1px solid $border-brand-subtle;
+  border-radius: 10px;
+  background: $surface-brand-tint;
+  color: $text-primary;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.manage-cookie-settings {
+  align-self: flex-start;
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid $border-brand;
+  border-radius: 8px;
+  background: $surface-card;
+  color: $text-brand;
+  cursor: pointer;
+}
+
+.legal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  h2 {
+    margin: 0 0 8px;
+    font-size: 17px;
+  }
+
+  p {
+    margin: 0;
+    color: $text-body;
+    font-size: 14px;
+    line-height: 1.65;
+  }
+}
+
+.legal-contact-email {
+  color: $text-brand;
+  font-weight: $fw-bold;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+@media (max-width: $bp-mobile) {
+  .legal-page {
+    min-height: calc(100dvh - 64px);
+    gap: 18px;
+    padding: 18px 20px 104px;
+  }
+
+  .legal-page-header h1 {
+    font-size: 21px;
+  }
+}
