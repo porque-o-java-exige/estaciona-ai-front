@@ -10,10 +10,19 @@ export interface SignInRequest {
   password: string;
 }
 
+export type UserVehicleType = 'small-car' | 'suv' | 'motorcycle' | 'van';
+
+export type VehicleVerificationStatus = 'pending' | 'verified' | 'rejected';
+
 export interface UserVehicle {
   id: string;
   model: string;
+  brand: string;
+  year: number;
+  color: string;
   licensePlate: string;
+  vehicleType: UserVehicleType;
+  verificationStatus: VehicleVerificationStatus;
   isPrimary: boolean;
 }
 
@@ -32,7 +41,6 @@ export interface UserGarage {
 export interface UserSettings {
   darkMode: boolean;
   notifications: boolean;
-  ptBrLanguage: boolean;
 }
 
 export interface UserResponse {
