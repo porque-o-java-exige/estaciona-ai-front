@@ -1,5 +1,6 @@
-import { computed, Injectable, signal } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { ChatConversation, ChatMessage } from '../interfaces/chat.interface';
+import { GarageService } from './garage.service';
 
 const INITIAL_CONVERSATIONS: ChatConversation[] = [
   {
@@ -7,8 +8,8 @@ const INITIAL_CONVERSATIONS: ChatConversation[] = [
     contactName: 'Francisco',
     avatarUrl: 'assets/images/png/chat-francisco-avatar.png',
     status: 'online',
-    lastMessage: 'Obrigado! Te aviso quando chegar.',
-    lastTime: '14:32',
+    lastMessage: 'Combinado, obrigado! Até mais.',
+    lastTime: '14:36',
     unreadCount: 0,
     messages: [
       {
@@ -39,6 +40,20 @@ const INITIAL_CONVERSATIONS: ChatConversation[] = [
         timestamp: '14:32',
         isMine: true,
       },
+      {
+        id: 'msg-105',
+        senderId: 'contact',
+        text: 'Pode me chamar por aqui assim que estiver chegando.',
+        timestamp: '14:34',
+        isMine: false,
+      },
+      {
+        id: 'msg-106',
+        senderId: 'me',
+        text: 'Combinado, obrigado! Até mais.',
+        timestamp: '14:36',
+        isMine: true,
+      },
     ],
   },
   {
@@ -47,7 +62,7 @@ const INITIAL_CONVERSATIONS: ChatConversation[] = [
     avatarUrl: 'assets/images/png/chat-woman-avatar.png',
     status: 'online',
     lastMessage: 'Perfeito, obrigada!',
-    lastTime: '13:49',
+    lastTime: '13:53',
     unreadCount: 0,
     messages: [
       {
@@ -92,6 +107,20 @@ const INITIAL_CONVERSATIONS: ChatConversation[] = [
         timestamp: '13:49',
         isMine: true,
       },
+      {
+        id: 'msg-207',
+        senderId: 'contact',
+        text: 'Isso mesmo. É só informar seu nome na portaria.',
+        timestamp: '13:51',
+        isMine: false,
+      },
+      {
+        id: 'msg-208',
+        senderId: 'me',
+        text: 'Perfeito, obrigada!',
+        timestamp: '13:53',
+        isMine: true,
+      },
     ],
   },
 ];
@@ -100,11 +129,94 @@ const INITIAL_CONVERSATIONS: ChatConversation[] = [
   providedIn: 'root',
 })
 export class ChatService {
-  conversations = signal<ChatConversation[]>(INITIAL_CONVERSATIONS);
+  private readonly garageService = inject(GarageService);
+
+  conversations = signal<ChatConversation[]>(this.createInitialConversations());
   selectedConversationId = signal<string>('conv-02');
   mobileThreadOpen = signal<boolean>(false);
 
+  private createInitialConversations(): ChatConversation[] {
+    const conversations = [...INITIAL_CONVERSATIONS];
+    const knownContacts = new Set(conversations.map((conversation) => conversation.contactName));
+
+    for (const garage of this.garageService.garages()) {
+      if (knownContacts.has(garage.ownerName)) {
+        continue;
+      }
+
+      const id = `catalog-${garage.ownerName.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+      const lastMessage = `Na ${garage.name}, avise-me quando estiver chegando.`;
+      conversations.push({
+        id,
+        contactName: garage.ownerName,
+        avatarUrl: garage.ownerAvatarUrl,
+        status: 'away',
+        lastMessage,
+        lastTime: 'Agora',
+        unreadCount: 1,
+        messages: [
+          {
+            id: `${id}-welcome`,
+            senderId: 'contact',
+            text: `Olá! Posso ajudar com sua reserva na ${garage.name}.`,
+            timestamp: '14:10',
+            isMine: false,
+          },
+          {
+            id: `${id}-availability-question`,
+            senderId: 'me',
+            text: 'Oi! Gostaria de saber se há vaga disponível hoje.',
+            timestamp: '14:12',
+            isMine: true,
+          },
+          {
+            id: `${id}-availability-answer`,
+            senderId: 'contact',
+            text: `Sim, temos vagas. O valor por hora é R$${garage.hourlyPrice}.`,
+            timestamp: '14:14',
+            isMine: false,
+          },
+          {
+            id: `${id}-access-question`,
+            senderId: 'me',
+            text: 'A vaga é coberta? Como faço para entrar?',
+            timestamp: '14:16',
+            isMine: true,
+          },
+          {
+            id: `${id}-access-answer`,
+            senderId: 'contact',
+            text: `A garagem fica em ${garage.address}. A entrada é bem sinalizada.`,
+            timestamp: '14:18',
+            isMine: false,
+          },
+          {
+            id: `${id}-booking-confirmation`,
+            senderId: 'me',
+            text: 'Perfeito! Vou fazer a reserva pelo aplicativo.',
+            timestamp: '14:20',
+            isMine: true,
+          },
+          {
+            id: `${id}-arrival-help`,
+            senderId: 'contact',
+            text: lastMessage,
+            timestamp: 'Agora',
+            isMine: false,
+          },
+        ],
+      });
+      knownContacts.add(garage.ownerName);
+    }
+
+    return conversations;
+  }
+
   totalConversations = computed(() => this.conversations().length);
+
+  unreadMessagesCount = computed(() =>
+    this.conversations().reduce((total, conversation) => total + conversation.unreadCount, 0)
+  );
 
   activeConversation = computed(
     () =>

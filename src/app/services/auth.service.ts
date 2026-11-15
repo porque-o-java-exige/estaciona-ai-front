@@ -6,6 +6,7 @@ import {
   UserResponse,
   UserSettings,
   UserVehicle,
+  UserVehicleType,
 } from '../interfaces/user.interface';
 
 const DEFAULT_USER: UserResponse = {
@@ -26,13 +27,23 @@ const INITIAL_VEHICLES: UserVehicle[] = [
   {
     id: 'veh-01',
     model: '2023 Tesla Model Y',
-    licensePlate: 'HB20 ABC - 1A23',
+    brand: 'Tesla',
+    year: 2023,
+    color: 'Branco',
+    licensePlate: 'BRA2E19',
+    vehicleType: 'suv',
+    verificationStatus: 'pending',
     isPrimary: true,
   },
   {
     id: 'veh-02',
-    model: '2049 Honda civic',
-    licensePlate: 'AKBI DKH - 123',
+    model: '2024 Honda civic',
+    brand: 'Honda',
+    year: 2024,
+    color: 'Preto',
+    licensePlate: 'ABC1234',
+    vehicleType: 'small-car',
+    verificationStatus: 'pending',
     isPrimary: false,
   },
 ];
@@ -51,6 +62,8 @@ const INITIAL_GARAGES: UserGarage[] = [
   },
 ];
 
+const DARK_MODE_STORAGE_KEY = 'estaciona-ai-dark-mode';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -61,9 +74,8 @@ export class AuthService {
   vehicles = signal<UserVehicle[]>(INITIAL_VEHICLES);
   ownedGarages = signal<UserGarage[]>(INITIAL_GARAGES);
   settings = signal<UserSettings>({
-    darkMode: false,
+    darkMode: this.readDarkModePreference(),
     notifications: true,
-    ptBrLanguage: true,
   });
 
   primaryVehicle = computed(
@@ -131,17 +143,32 @@ export class AuthService {
     }));
   };
 
-  addVehicle = (payload: { model: string; licensePlate: string; isPrimary: boolean }): void => {
+  addVehicle = (payload: {
+    model: string;
+    brand: string;
+    year: number;
+    color: string;
+    licensePlate: string;
+    vehicleType: UserVehicleType;
+    isPrimary: boolean;
+  }): void => {
     const cleanModel = payload.model.trim();
+    const cleanBrand = payload.brand.trim();
+    const cleanColor = payload.color.trim();
     const cleanPlate = payload.licensePlate.trim().toUpperCase();
-    if (!cleanModel || !cleanPlate) {
+    if (!cleanModel || !cleanBrand || !cleanColor || !payload.year || !cleanPlate) {
       return;
     }
 
     const newVehicle: UserVehicle = {
       id: `veh-${Date.now()}`,
       model: cleanModel,
+      brand: cleanBrand,
+      year: payload.year,
+      color: cleanColor,
       licensePlate: cleanPlate,
+      vehicleType: payload.vehicleType,
+      verificationStatus: 'pending',
       isPrimary: payload.isPrimary || this.vehicles().length === 0,
     };
 
@@ -153,12 +180,60 @@ export class AuthService {
     });
   };
 
+  updateVehicle = (
+    vehicleId: string,
+    payload: Omit<UserVehicle, 'id' | 'verificationStatus'>,
+  ): void => {
+    const cleanModel = payload.model.trim();
+    const cleanBrand = payload.brand.trim();
+    const cleanColor = payload.color.trim();
+    const cleanPlate = payload.licensePlate.trim().toUpperCase();
+    if (!cleanModel || !cleanBrand || !cleanColor || !payload.year || !cleanPlate) {
+      return;
+    }
+
+    this.vehicles.update((list) => {
+      const currentVehicle = list.find((vehicle) => vehicle.id === vehicleId);
+      if (!currentVehicle) {
+        return list;
+      }
+
+      const updatedVehicle: UserVehicle = {
+        ...currentVehicle,
+        ...payload,
+        model: cleanModel,
+        brand: cleanBrand,
+        color: cleanColor,
+        licensePlate: cleanPlate,
+        verificationStatus:
+          cleanPlate === currentVehicle.licensePlate ? currentVehicle.verificationStatus : 'pending',
+      };
+
+      return updatedVehicle.isPrimary
+        ? list.map((vehicle) =>
+            vehicle.id === vehicleId ? updatedVehicle : { ...vehicle, isPrimary: false },
+          )
+        : list.map((vehicle) => (vehicle.id === vehicleId ? updatedVehicle : vehicle));
+    });
+  };
+
   setPrimaryVehicle = (vehicleId: string): void => {
     this.vehicles.update((list) =>
       list.map((item) => ({
         ...item,
         isPrimary: item.id === vehicleId,
       }))
+    );
+  };
+
+  setVehicleVerificationStatus = (
+    vehicleId: string,
+    verificationStatus: UserVehicle['verificationStatus'],
+  ): void => {
+    this.vehicles.update((list) =>
+      list.map((vehicle) =>
+        vehicle.id === vehicleId ? { ...vehicle, verificationStatus } : vehicle,
+      ),
     );
   };
 
@@ -195,5 +270,16 @@ export class AuthService {
       ...prev,
       [key]: !prev[key],
     }));
+
+    if (key === 'darkMode' && typeof window !== 'undefined') {
+      window.localStorage.setItem(DARK_MODE_STORAGE_KEY, String(this.settings().darkMode));
+    }
   };
+
+  private readDarkModePreference(): boolean {
+    return (
+      typeof window !== 'undefined' &&
+      window.localStorage.getItem(DARK_MODE_STORAGE_KEY) === 'true'
+    );
+  }
 }

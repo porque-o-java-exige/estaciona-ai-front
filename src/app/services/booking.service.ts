@@ -16,6 +16,7 @@ const INITIAL_BOOKINGS: BookingItem[] = [
     dateTimeRange: '08/06 · 19:00–21:00',
     spotCode: 'C03 · Nível 1',
     status: 'Ativo',
+    paymentStatus: 'Pago',
     totalAmount: 24,
     distanceMeters: '120m',
     billingLabel: 'Hora',
@@ -29,6 +30,7 @@ const INITIAL_BOOKINGS: BookingItem[] = [
     dateTimeRange: '08/06 · 19:00–21:00',
     spotCode: 'C03 · Nível 1',
     status: 'Em andamento',
+    paymentStatus: 'Pendente',
     totalAmount: 24,
     distanceMeters: '180m',
     billingLabel: 'Hora',
@@ -42,6 +44,7 @@ const INITIAL_BOOKINGS: BookingItem[] = [
     dateTimeRange: '08/06 · 19:00–21:00',
     spotCode: 'C03 · Nível 1',
     status: 'Concluído',
+    paymentStatus: 'Pago',
     totalAmount: 24,
     distanceMeters: '180m',
     billingLabel: 'Hora',
@@ -55,6 +58,7 @@ const INITIAL_BOOKINGS: BookingItem[] = [
     dateTimeRange: '06/06 · 14:00–18:00',
     spotCode: 'B12 · Subsolo 1',
     status: 'Concluído',
+    paymentStatus: 'Pago',
     totalAmount: 32,
     distanceMeters: '210m',
     billingLabel: 'Hora',
@@ -68,6 +72,7 @@ const INITIAL_BOOKINGS: BookingItem[] = [
     dateTimeRange: '04/06 · 09:00–12:00',
     spotCode: 'A07 · Térreo',
     status: 'Concluído',
+    paymentStatus: 'Pago',
     totalAmount: 24,
     distanceMeters: '150m',
     billingLabel: 'Hora',
@@ -81,6 +86,7 @@ const INITIAL_BOOKINGS: BookingItem[] = [
     dateTimeRange: '10/06 · 08:00–18:00',
     spotCode: 'D04 · Nível 1',
     status: 'Ativo',
+    paymentStatus: 'Pendente',
     totalAmount: 30,
     distanceMeters: '250m',
     billingLabel: 'Diária',
@@ -88,13 +94,20 @@ const INITIAL_BOOKINGS: BookingItem[] = [
   },
 ];
 
+export type PaymentResult =
+  | 'paid'
+  | 'no-pending-booking'
+  | 'insufficient-wallet-balance';
+
 @Injectable({
   providedIn: 'root',
 })
 export class BookingService {
   readonly bookings = signal<BookingItem[]>(INITIAL_BOOKINGS);
   readonly activeFilter = signal<BookingFilter>('Todas');
-  readonly selectedBookingId = signal<string>(INITIAL_BOOKINGS[0].id);
+  readonly selectedBookingId = signal<string>(
+    INITIAL_BOOKINGS.find((item) => item.paymentStatus === 'Pendente')?.id ?? ''
+  );
 
   readonly billingMode = signal<BillingMode>('day');
   readonly selectedDays = signal<number[]>([11, 14]);
@@ -129,12 +142,12 @@ export class BookingService {
     return all;
   });
 
-  readonly paymentCandidates = computed(() => this.bookings().slice(0, 4));
+  readonly paymentCandidates = computed(() =>
+    this.bookings().filter((item) => item.paymentStatus === 'Pendente')
+  );
 
   readonly selectedBooking = computed(
-    () =>
-      this.bookings().find((item) => item.id === this.selectedBookingId()) ??
-      this.bookings()[0]
+    () => this.paymentCandidates().find((item) => item.id === this.selectedBookingId())
   );
 
   readonly baseSubtotal = computed(() => {
@@ -165,7 +178,8 @@ export class BookingService {
   };
 
   selectBooking = (id: string): void => {
-    this.selectedBookingId.set(id);
+    const candidate = this.paymentCandidates().find((item) => item.id === id);
+    this.selectedBookingId.set(candidate?.id ?? '');
   };
 
   setBillingMode = (mode: BillingMode): void => {
@@ -199,7 +213,15 @@ export class BookingService {
     const existing = this.bookings().find((b) => b.garageId === garage.id);
     if (existing) {
       this.selectedBookingId.set(existing.id);
-      return existing;
+      if (existing.status === 'Em andamento') {
+        return existing;
+      }
+
+      const resumedBooking = { ...existing, status: 'Em andamento' as const };
+      this.bookings.update((list) =>
+        list.map((item) => (item.id === existing.id ? resumedBooking : item))
+      );
+      return resumedBooking;
     }
 
     const newBooking: BookingItem = {
@@ -210,6 +232,7 @@ export class BookingService {
       dateTimeRange: 'Hoje · 19:00–21:00',
       spotCode: 'A01 · Nível 1',
       status: 'Em andamento',
+      paymentStatus: 'Pendente',
       totalAmount: garage.hourlyPrice * 2,
       distanceMeters: garage.distance,
       billingLabel: 'Hora',
@@ -221,15 +244,37 @@ export class BookingService {
     return newBooking;
   };
 
-  markSelectedBookingPaid = (): void => {
+  markSelectedBookingPaid = (): PaymentResult => {
     const activeId = this.selectedBookingId();
+    const booking = this.paymentCandidates().find((item) => item.id === activeId);
+    if (!booking) {
+      return 'no-pending-booking';
+    }
+
+    const total = this.finalTotal();
+    if (this.paymentMethod() === 'wallet' && this.walletBalance() < total) {
+      return 'insufficient-wallet-balance';
+    }
+
     this.bookings.update((list) =>
       list.map((item) =>
         item.id === activeId
-          ? { ...item, status: 'Ativo', totalAmount: this.finalTotal() }
+          ? {
+              ...item,
+              status: item.status === 'Em andamento' ? 'Ativo' : item.status,
+              paymentStatus: 'Pago',
+              totalAmount: total,
+            }
           : item
       )
     );
+
+    if (this.paymentMethod() === 'wallet') {
+      this.walletBalance.update((balance) => balance - total);
+    }
+
+    this.selectedBookingId.set(this.paymentCandidates()[0]?.id ?? '');
+    return 'paid';
   };
 }
 
