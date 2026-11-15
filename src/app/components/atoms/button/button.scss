@@ -94,13 +94,13 @@ button {
     padding: 10px 14px;
 
     border-radius: 7.5px;
-    background-color: $clr-blue-100;
-    color: $clr-black-1100;
+    background-color: $surface-brand-subtle;
+    color: $text-brand-strong;
 
     font-size: 14px;
 
     &:hover {
-      background-color: $clr-blue-200;
+      background-color: $surface-brand-active;
     }
   }
 
@@ -116,12 +116,12 @@ button {
     border: 1.5px dashed $clr-blue-400;
     border-radius: 10px;
 
-    color: $clr-black-1100;
+    color: $text-primary;
     font-family: 'DM Sans', sans-serif;
     font-size: 16px;
 
     &:hover {
-      background-color: $clr-blue-100;
+      background-color: $surface-brand-tint;
     }
   }
 
@@ -189,8 +189,8 @@ button {
   padding: 6px 14px;
   border: 1px solid $clr-primary-300;
   border-radius: 30px;
-  background: $clr-white-1100;
-  color: $clr-blue-600;
+  background: $surface-card;
+  color: $text-brand-accent;
   font-size: 14px;
 
   &:hover,
@@ -209,10 +209,10 @@ button {
     padding: 16px;
     gap: 12px;
 
-    background-color: $clr-black-1100;
+    background-color: var(--payment-action-bg);
 
     &:hover {
-      background-color: $clr-black-900;
+      background-color: var(--payment-action-bg);
     }
 
     img {
@@ -270,16 +270,16 @@ button {
     gap: 10px;
     padding: 10px 20px;
 
-    background-color: $clr-white-1100;
-    border: 1px solid $clr-black-800;
+    background-color: $surface-card;
+    border: 1px solid $border-neutral;
     border-radius: 5px;
 
-    color: $clr-black-700;
+    color: $text-body;
     font-weight: 400;
     font-size: 16px;
 
     &:hover {
-      background-color: $clr-black-100;
+      background-color: $surface-muted;
     }
   }
 
@@ -308,8 +308,8 @@ button {
 
   border-radius: 5px;
   border: 1px solid $clr-blue-600;
-  background: $clr-blue-100;
-  color: $clr-black-1000;
+  background: $surface-brand-soft;
+  color: $text-brand-strong;
 
   font-weight: normal;
   font-size: 14px;
