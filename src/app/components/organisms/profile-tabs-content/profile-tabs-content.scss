@@ -3,7 +3,6 @@
 .account-management,
 .tab-panel,
 .vehicles-list,
-.garages-list,
 .config-list,
 .dialog-form,
 .option-body,
@@ -43,7 +42,7 @@
 .dialog-actions .btn-primary {
   background: $surface-brand-primary;
   border: 0;
-  color: $surface-card;
+  color: $text-on-brand;
 }
 
 .section-header,
@@ -109,8 +108,6 @@
 
   img {
     width: 20px;
-    height: 20px;
-    object-fit: contain;
   }
 }
 
@@ -208,23 +205,29 @@
 }
 
 .owned-garage-card {
+  min-width: 0;
   background: $surface-card;
   border-radius: 15px;
   border: 1px solid $border-brand-subtle;
   overflow: hidden;
-  padding-bottom: 18px;
+}
+
+.garages-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: start;
+  gap: 16px;
 }
 
 .garage-media {
   position: relative;
-  height: 220px;
+  height: 110px;
   overflow: hidden;
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
   }
 }
 
@@ -239,7 +242,7 @@
   padding: 8px;
   border: 0;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.92);
+  background: $surface-card;
   transform: translateY(-50%);
   cursor: pointer;
 
@@ -268,7 +271,7 @@
   bottom: 12px;
   padding: 4px 9px;
   border-radius: 20px;
-  background: rgba(18, 18, 18, 0.7);
+  background: rgba(0, 0, 0, 0.72);
   color: #fff;
   font-size: 12px;
 }
@@ -286,8 +289,25 @@
 }
 
 .garage-details {
-  padding: 14px 16px 0;
-  gap: 10px;
+  padding: 14px 16px;
+}
+
+.garage-top-row,
+.garage-stats-row {
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.garage-stats-row {
+  padding-top: 8px;
+  border-top: 1px solid $border-neutral;
+  justify-content: flex-start;
+
+  > div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
 }
 
 .garage-detail-button {
@@ -327,13 +347,20 @@
 }
 
 .garage-detail-close {
-  min-height: 34px;
-  padding: 0 12px;
-  border: 1px solid $border-brand-subtle;
-  border-radius: 8px;
-  background: $surface-page-subtle;
-  color: $text-primary;
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
   cursor: pointer;
+
+  img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+  }
 }
 
 .garage-detail-media {
@@ -387,13 +414,6 @@
     color: $text-primary;
     font-weight: $fw-bold;
   }
-}
-
-.garage-stats-row {
-  padding-top: 8px;
-  border-top: 1px solid $border-neutral;
-  justify-content: flex-start;
-  gap: 32px;
 }
 
 .garage-rate {
@@ -578,6 +598,10 @@
 }
 
 @media (max-width: $bp-mobile) {
+  .garages-list {
+    grid-template-columns: 1fr;
+  }
+
   .options-grid {
     grid-template-columns: 1fr;
   }
@@ -598,10 +622,6 @@
     height: auto;
     min-height: 60px;
     padding: 8px 10px;
-  }
-
-  .garage-media {
-    height: 190px;
   }
 
   .garage-detail-content {

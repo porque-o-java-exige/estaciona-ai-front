@@ -141,7 +141,7 @@
 
 .edit-profile-btn {
   background: $surface-brand-primary;
-  color: $surface-card;
+  color: $text-on-brand;
 }
 
 .wallet-card,
@@ -158,12 +158,12 @@
   width: 400px;
   flex-shrink: 0;
   background: $surface-brand-strong;
-  color: $surface-muted;
+  color: $text-on-brand;
 }
 
 .wallet-balance {
   font-size: 36px;
-  color: $surface-elevated;
+  color: $text-on-brand;
 }
 
 .wallet-top,

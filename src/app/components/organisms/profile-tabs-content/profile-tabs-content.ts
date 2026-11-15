@@ -9,11 +9,23 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserGarage } from '../../../interfaces/user.interface';
+import {
+  UserGarage,
+  UserVehicle,
+  UserVehicleType,
+  VehicleVerificationStatus,
+} from '../../../interfaces/user.interface';
 import { AuthService } from '../../../services/auth.service';
 import { FeedbackService } from '../../../services/feedback.service';
 
 export type ProfileTab = 'geral' | 'veiculos' | 'garagens' | 'config';
+
+const VEHICLE_ICONS: Record<UserVehicleType, string> = {
+  'small-car': 'assets/icons/png/sedan-icon.png',
+  suv: 'assets/icons/png/suv-icon.png',
+  motorcycle: 'assets/icons/png/motorcycle-icon.png',
+  van: 'assets/icons/png/van-icon.png',
+};
 
 @Component({
   selector: 'app-profile-tabs-content',
@@ -36,10 +48,15 @@ export class ProfileTabsContent {
   garageDetailsDialogRef = viewChild<ElementRef<HTMLDialogElement>>('garageDetailsDialog');
   selectedGarage = signal<UserGarage | null>(null);
 
-  newVehicleModel = signal<string>('');
+  editingVehicleId = signal<string | null>(null);
+  newVehicleBrand = signal<string>('');
+  newVehicleYear = signal<number>(new Date().getFullYear());
+  newVehicleColor = signal<string>('');
   newVehiclePlate = signal<string>('');
+  newVehicleType = signal<UserVehicleType>('small-car');
   newVehiclePrimary = signal<boolean>(false);
   vehicleFormError = signal<string | null>(null);
+  currentYear = new Date().getFullYear();
 
   newGarageName = signal<string>('');
   newGarageAddress = signal<string>('');
@@ -76,6 +93,12 @@ export class ProfileTabsContent {
       case 'history':
         this.router.navigate(['/booking']);
         break;
+      case 'privacy':
+        this.router.navigate(['/privacy']);
+        break;
+      case 'terms':
+        this.router.navigate(['/terms']);
+        break;
       case 'comingSoon':
         this.router.navigate(['/profile/coming-soon']);
         break;
@@ -83,9 +106,28 @@ export class ProfileTabsContent {
   };
 
   openAddVehicleModal = (): void => {
-    this.newVehicleModel.set('');
+    this.editingVehicleId.set(null);
+    this.newVehicleBrand.set('');
+    this.newVehicleYear.set(this.currentYear);
+    this.newVehicleColor.set('');
     this.newVehiclePlate.set('');
+    this.newVehicleType.set('small-car');
     this.newVehiclePrimary.set(false);
+    this.vehicleFormError.set(null);
+    const dialog = this.vehicleDialogRef()?.nativeElement;
+    if (dialog && !dialog.open) {
+      dialog.showModal();
+    }
+  };
+
+  openEditVehicleModal = (vehicle: UserVehicle): void => {
+    this.editingVehicleId.set(vehicle.id);
+    this.newVehicleBrand.set(vehicle.brand);
+    this.newVehicleYear.set(vehicle.year);
+    this.newVehicleColor.set(vehicle.color);
+    this.newVehiclePlate.set(vehicle.licensePlate);
+    this.newVehicleType.set(vehicle.vehicleType);
+    this.newVehiclePrimary.set(vehicle.isPrimary);
     this.vehicleFormError.set(null);
     const dialog = this.vehicleDialogRef()?.nativeElement;
     if (dialog && !dialog.open) {
@@ -100,19 +142,80 @@ export class ProfileTabsContent {
     }
   };
 
+  onVehiclePlateChange = (value: string): void => {
+    this.newVehiclePlate.set(value.replace(/[^a-zA-Z0-9]/g, '').toUpperCase().slice(0, 7));
+  };
+
   submitNewVehicle = (): void => {
     this.vehicleFormError.set(null);
-    if (!this.newVehicleModel().trim() || !this.newVehiclePlate().trim()) {
-      this.vehicleFormError.set('Preencha o modelo e a placa do veículo.');
+    const brand = this.newVehicleBrand().trim();
+    const year = Number(this.newVehicleYear());
+    const color = this.newVehicleColor().trim();
+    const plate = this.newVehiclePlate().replace(/[^a-zA-Z0-9]/g, '').toUpperCase();
+    if (!brand || !Number.isInteger(year) || year < 1900 || year > this.currentYear + 1 || !color || !plate) {
+      this.vehicleFormError.set('Preencha a marca, o ano, a cor e a placa do veículo.');
       return;
     }
-    this.authService.addVehicle({
-      model: this.newVehicleModel(),
-      licensePlate: this.newVehiclePlate(),
+    if (!/^[A-Z]{3}(?:[0-9]{4}|[0-9][A-Z][0-9]{2})$/.test(plate)) {
+      this.vehicleFormError.set('Informe uma placa válida: ABC1234 ou ABC1D23.');
+      return;
+    }
+    const editingVehicleId = this.editingVehicleId();
+    const currentVehicle = this.authService.vehicles().find(
+      (vehicle) => vehicle.id === editingVehicleId,
+    );
+    const currentPrefix = currentVehicle
+      ? `${currentVehicle.year} ${currentVehicle.brand}`
+      : '';
+    const modelSuffix =
+      currentVehicle &&
+      currentVehicle.model.toLowerCase().startsWith(currentPrefix.toLowerCase())
+        ? currentVehicle.model.slice(currentPrefix.length).trim()
+        : '';
+    const payload = {
+      model: [year, brand, modelSuffix].filter(Boolean).join(' '),
+      brand,
+      year,
+      color,
+      licensePlate: plate,
+      vehicleType: this.newVehicleType(),
       isPrimary: this.newVehiclePrimary(),
-    });
+    };
+    if (editingVehicleId) {
+      this.authService.updateVehicle(editingVehicleId, payload);
+    } else {
+      this.authService.addVehicle(payload);
+    }
     this.closeAddVehicleModal();
-    this.feedback.showSuccess('Veículo cadastrado com sucesso.');
+    this.feedback.showSuccess(
+      editingVehicleId ? 'Veículo atualizado com sucesso.' : 'Veículo cadastrado com sucesso.',
+    );
+  };
+
+  vehicleTypeLabel = (type: UserVehicleType): string => {
+    switch (type) {
+      case 'small-car':
+        return 'Carro pequeno';
+      case 'suv':
+        return 'SUV';
+      case 'motorcycle':
+        return 'Moto';
+      case 'van':
+        return 'Van';
+    }
+  };
+
+  vehicleIcon = (type: UserVehicleType): string => VEHICLE_ICONS[type];
+
+  vehicleVerificationLabel = (status: VehicleVerificationStatus): string => {
+    switch (status) {
+      case 'verified':
+        return 'Verificado';
+      case 'rejected':
+        return 'Indeferido';
+      case 'pending':
+        return 'Em verificação';
+    }
   };
 
   openAddGarageModal = (): void => {

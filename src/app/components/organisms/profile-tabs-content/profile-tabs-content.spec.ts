@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { provideRouter } from '@angular/router';
+import { provideRouter, Router } from '@angular/router';
 import { FeedbackService } from '../../../services/feedback.service';
 import { ProfileTabsContent } from './profile-tabs-content';
 
@@ -10,7 +10,12 @@ describe('ProfileTabsContent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ProfileTabsContent],
-      providers: [provideRouter([])],
+      providers: [
+        provideRouter([
+          { path: 'privacy', component: ProfileTabsContent },
+          { path: 'terms', component: ProfileTabsContent },
+        ]),
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ProfileTabsContent);
@@ -48,13 +53,136 @@ describe('ProfileTabsContent', () => {
     expect(component.activeTab()).toBe('config');
   });
 
+  it('should navigate to the privacy policy and terms pages from config', async () => {
+    component.selectTab('config');
+    fixture.detectChanges();
+
+    const legalButtons = [
+      ...fixture.nativeElement.querySelectorAll('button.config-row.clickable'),
+    ] as HTMLButtonElement[];
+    legalButtons.find((button) => button.textContent?.includes('Política de privacidade'))?.click();
+    await fixture.whenStable();
+    expect(TestBed.inject(Router).url).toBe('/privacy');
+
+    legalButtons.find((button) => button.textContent?.includes('Termos de uso'))?.click();
+    await fixture.whenStable();
+    expect(TestBed.inject(Router).url).toBe('/terms');
+  });
+
   it('should show a required-field error when submitting an incomplete vehicle', () => {
     const vehicleCount = component.authService.vehicles().length;
 
     component.submitNewVehicle();
 
     expect(component.authService.vehicles()).toHaveLength(vehicleCount);
-    expect(component.vehicleFormError()).toBe('Preencha o modelo e a placa do veículo.');
+    expect(component.vehicleFormError()).toBe(
+      'Preencha a marca, o ano, a cor e a placa do veículo.',
+    );
+  });
+
+  it('should add a vehicle with its brand, year, color, and plate', () => {
+    component.newVehicleBrand.set('BYD');
+    component.newVehicleYear.set(2024);
+    component.newVehicleColor.set('Prata');
+    component.newVehiclePlate.set('BRA2E19');
+    component.newVehicleType.set('motorcycle');
+
+    component.submitNewVehicle();
+
+    const vehicle = component.authService.vehicles().at(-1);
+    expect(vehicle).toMatchObject({
+      model: '2024 BYD',
+      brand: 'BYD',
+      year: 2024,
+      color: 'Prata',
+      licensePlate: 'BRA2E19',
+      vehicleType: 'motorcycle',
+      verificationStatus: 'pending',
+    });
+  });
+
+  it('should normalize and accept old-format Brazilian plates', () => {
+    component.onVehiclePlateChange('abc-1234');
+    expect(component.newVehiclePlate()).toBe('ABC1234');
+
+    component.newVehicleBrand.set('Fiat');
+    component.newVehicleColor.set('Preto');
+    component.submitNewVehicle();
+
+    expect(component.authService.vehicles().at(-1)?.licensePlate).toBe('ABC1234');
+  });
+
+  it('should reject vehicle plates that are not in the old or Mercosul format', () => {
+    const vehicleCount = component.authService.vehicles().length;
+    component.newVehicleBrand.set('Fiat');
+    component.newVehicleColor.set('Preto');
+    component.newVehiclePlate.set('ABC12D34');
+
+    component.submitNewVehicle();
+
+    expect(component.authService.vehicles()).toHaveLength(vehicleCount);
+    expect(component.vehicleFormError()).toBe('Informe uma placa válida: ABC1234 ou ABC1D23.');
+  });
+
+  it('should edit vehicle details and require verification again when its plate changes', () => {
+    const vehicle = component.authService.vehicles()[0];
+    component.authService.vehicles.update((vehicles) =>
+      vehicles.map((item) =>
+        item.id === vehicle.id ? { ...item, verificationStatus: 'verified' } : item,
+      ),
+    );
+    const dialog = fixture.nativeElement.querySelector(
+      '[aria-labelledby="add-vehicle-title"]',
+    ) as HTMLDialogElement;
+    Object.defineProperty(dialog, 'showModal', {
+      value: () => dialog.setAttribute('open', ''),
+    });
+    Object.defineProperty(dialog, 'close', {
+      value: () => dialog.removeAttribute('open'),
+    });
+
+    component.openEditVehicleModal(vehicle);
+    component.newVehicleColor.set('Azul');
+    component.newVehiclePlate.set('XYZ1234');
+    component.newVehicleType.set('van');
+    component.submitNewVehicle();
+
+    expect(component.authService.vehicles().find((item) => item.id === vehicle.id)).toMatchObject({
+      model: '2023 Tesla Model Y',
+      color: 'Azul',
+      licensePlate: 'XYZ1234',
+      vehicleType: 'van',
+      verificationStatus: 'pending',
+    });
+    expect(TestBed.inject(FeedbackService).current()?.message).toBe(
+      'Veículo atualizado com sucesso.',
+    );
+  });
+
+  it('should show all system vehicle verification statuses', () => {
+    const [verifiedVehicle, rejectedVehicle] = component.authService.vehicles();
+    component.authService.setVehicleVerificationStatus(verifiedVehicle.id, 'verified');
+    component.authService.setVehicleVerificationStatus(rejectedVehicle.id, 'rejected');
+    component.selectTab('veiculos');
+    fixture.detectChanges();
+
+    const statuses = [...fixture.nativeElement.querySelectorAll('.vehicle-status-badge')];
+    expect(statuses.map((status: HTMLElement) => status.textContent?.trim())).toEqual([
+      'Verificado',
+      'Indeferido',
+    ]);
+    expect(
+      [...fixture.nativeElement.querySelectorAll('select[name="vehicleType"] option')].map(
+        (option: HTMLOptionElement) => option.textContent?.trim(),
+      ),
+    ).toEqual(['Carro pequeno', 'SUV', 'Moto', 'Van']);
+  });
+
+  it('should show an icon that matches each vehicle type', () => {
+    expect(component.vehicleIcon('small-car')).toBe('assets/icons/png/sedan-icon.png');
+    expect(component.vehicleIcon('suv')).toBe('assets/icons/png/suv-icon.png');
+    expect(component.vehicleIcon('motorcycle')).toBe('assets/icons/png/motorcycle-icon.png');
+    expect(component.vehicleIcon('van')).toBe('assets/icons/png/van-icon.png');
   });
 
   it('should require a garage photo before creating the garage', () => {
@@ -87,6 +215,12 @@ describe('ProfileTabsContent', () => {
     expect(dialog.textContent).toContain(garage.address);
     expect(dialog.textContent).toContain('Reservas');
     expect(fixture.nativeElement.textContent).toContain('Ver detalhes');
+    expect(dialog.querySelector('.garage-detail-close')?.getAttribute('aria-label')).toBe(
+      'Fechar detalhes da vaga',
+    );
+    expect(dialog.querySelector('.garage-detail-close img')?.getAttribute('src')).toBe(
+      'assets/icons/png/close-circle-icon.png',
+    );
   });
 
   it('should register all uploaded garage photos and show them in its carousel', async () => {
