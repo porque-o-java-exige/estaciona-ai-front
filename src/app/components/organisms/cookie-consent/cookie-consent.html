@@ -1,0 +1,55 @@
+@if (consent.visible()) {
+  <section class="cookie-consent" aria-labelledby="cookie-consent-title" aria-live="polite">
+    <div class="cookie-consent-copy">
+      <h2 id="cookie-consent-title">Suas preferências de cookies</h2>
+      <p>
+        Usamos um cookie necessário para guardar esta escolha. Cookies opcionais de medição
+        só serão usados com sua autorização; nenhum serviço de análise está integrado neste
+        protótipo.
+      </p>
+      <a routerLink="/cookies">Saiba mais na Política de Cookies</a>
+    </div>
+
+    @if (consent.settingsOpen()) {
+      <div class="cookie-preferences">
+        <label class="cookie-preference">
+          <input type="checkbox" checked disabled />
+          <span>
+            <strong>Necessários</strong>
+            <small>Armazenam sua preferência de consentimento e não podem ser desativados.</small>
+          </span>
+        </label>
+        <label class="cookie-preference">
+          <input type="checkbox" (change)="onAnalyticsChange($event)" [checked]="consent.analyticsChoice()" />
+          <span>
+            <strong>Medição de uso (opcional)</strong>
+            <small>Preferência registrada para uso somente se essa ferramenta for integrada.</small>
+          </span>
+        </label>
+      </div>
+    }
+
+    <div class="cookie-consent-actions">
+      <button type="button" class="cookie-secondary" (click)="consent.rejectOptional()">
+        Rejeitar opcionais
+      </button>
+      @if (consent.settingsOpen()) {
+        <button type="button" class="cookie-primary" (click)="consent.saveChoice()">
+          Salvar preferências
+        </button>
+        @if (consent.preferences()) {
+          <button type="button" class="cookie-settings" (click)="consent.toggleSettings()">
+            Cancelar
+          </button>
+        }
+      } @else {
+        <button type="button" class="cookie-primary" (click)="consent.acceptAll()">
+          Aceitar todos
+        </button>
+        <button type="button" class="cookie-settings" (click)="consent.toggleSettings()">
+          Configurar
+        </button>
+      }
+    </div>
+  </section>
+}
