@@ -9,7 +9,7 @@
           class="app-bottom-nav-link">
           <span class="app-bottom-nav-pill">
             <img [src]="rla.isActive ? item.activeIcon : item.inactiveIcon" alt="" class="app-bottom-nav-icon" />
-            @if (item.badgeColor) {
+            @if (item.badgeColor && shouldShowBadge(item)) {
               <span
                 class="app-bottom-nav-badge"
                 [class.app-bottom-nav-badge-yellow]="item.badgeColor === 'yellow'"

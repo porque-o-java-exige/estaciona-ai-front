@@ -8,8 +8,8 @@
   transform: translateX(-50%);
   width: min(calc(100% - 32px), 390px);
   max-width: 390px;
-  background-color: $clr-white-1000;
-  border: 1px solid $clr-primary-900;
+  background-color: $surface-card;
+  border: 1px solid $border-brand;
   border-radius: 50px;
   box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.08);
   z-index: 50;
@@ -96,5 +96,15 @@
 
   @media (max-width: $bp-mobile) {
     display: flex;
+  }
+}
+
+:host-context([data-theme='dark']) .app-bottom-nav-link-active {
+  &.app-bottom-nav-link .app-bottom-nav-pill {
+    background-color: $surface-brand-primary;
+  }
+
+  &.app-bottom-nav-link .app-bottom-nav-label {
+    color: $text-on-brand;
   }
 }

@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { BookingService } from '../../../services/booking.service';
+import { ChatService } from '../../../services/chat.service';
 
 export interface BottomNavItem {
   label: string;
@@ -17,6 +19,9 @@ export interface BottomNavItem {
   styleUrl: './bottom-nav.scss',
 })
 export class BottomNav {
+  private readonly bookingService = inject(BookingService);
+  private readonly chatService = inject(ChatService);
+
   navItems: BottomNavItem[] = [
     {
       label: 'Início',
@@ -51,4 +56,11 @@ export class BottomNav {
       inactiveIcon: 'assets/icons/png/opacity-user-icon.png',
     },
   ];
+
+  shouldShowBadge = (item: BottomNavItem): boolean => {
+    if (item.route === '/payment') {
+      return this.bookingService.paymentCandidates().length > 0;
+    }
+    return item.route === '/chat' && this.chatService.unreadMessagesCount() > 0;
+  };
 }
