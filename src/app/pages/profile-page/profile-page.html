@@ -9,7 +9,7 @@
 
       <div class="title-row">
         <div class="mobile-back-row">
-          <a routerLink="/home" class="mobile-back-link" aria-label="Voltar para início">
+          <a routerLink="/home" class="mobile-back-link back-button" aria-label="Voltar para início">
             <img src="assets/icons/png/chevron-left-icon.png" alt="" aria-hidden="true" />
           </a>
           <h1 class="page-title">Perfil</h1>
@@ -30,6 +30,7 @@
 
     <app-profile-tabs-content (openEditProfile)="openEditModal()" />
   </div>
+  <app-footer></app-footer>
 </div>
 
 <dialog #editProfileDialog class="action-dialog" aria-labelledby="edit-profile-title">

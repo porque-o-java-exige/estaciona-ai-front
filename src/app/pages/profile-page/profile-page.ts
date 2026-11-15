@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { Footer } from '../../components/organisms/footer/footer';
 import { ProfileOverview } from '../../components/organisms/profile-overview/profile-overview';
 import { ProfileTabsContent } from '../../components/organisms/profile-tabs-content/profile-tabs-content';
 import { AuthService } from '../../services/auth.service';
@@ -15,7 +16,7 @@ import { FeedbackService } from '../../services/feedback.service';
 
 @Component({
   selector: 'app-profile-page',
-  imports: [FormsModule, RouterLink, ProfileOverview, ProfileTabsContent],
+  imports: [FormsModule, RouterLink, Footer, ProfileOverview, ProfileTabsContent],
   templateUrl: './profile-page.html',
   styleUrl: './profile-page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
