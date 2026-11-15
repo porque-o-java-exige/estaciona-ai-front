@@ -22,6 +22,13 @@ describe('ChatMessageThread', () => {
         timestamp: '12:50',
         isMine: false,
       },
+      {
+        id: 'message-2',
+        senderId: 'me',
+        text: 'Olá! Como posso entrar na garagem?',
+        timestamp: '12:52',
+        isMine: true,
+      },
     ],
   };
 
@@ -61,5 +68,12 @@ describe('ChatMessageThread', () => {
     const time = fixture.nativeElement.querySelector('.message-time') as HTMLTimeElement;
 
     expect(time.textContent.trim()).toBe('12:50');
+  });
+
+  it('should distinguish incoming and outgoing message rows', () => {
+    const rows = fixture.nativeElement.querySelectorAll('.message-row');
+
+    expect(rows[0].classList.contains('mine')).toBe(false);
+    expect(rows[1].classList.contains('mine')).toBe(true);
   });
 });

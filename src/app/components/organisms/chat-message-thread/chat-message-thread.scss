@@ -63,6 +63,17 @@
 
     .message-bubble {
       border-radius: 8px 8px 0 8px;
+      border-color: $surface-brand-primary;
+      background: $surface-brand-primary;
+    }
+
+    .message-text,
+    .message-time {
+      color: $text-on-brand;
+    }
+
+    .message-time {
+      opacity: 0.8;
     }
   }
 }
@@ -72,9 +83,9 @@
   flex-direction: column;
   max-width: 75%;
   padding: 10px 14px 6px;
-  border: 1px solid $border-brand-accent;
+  border: 1px solid $border-brand-subtle;
   border-radius: 0 8px 8px 8px;
-  background: $surface-brand-soft;
+  background: $surface-elevated;
   word-break: break-word;
 }
 
@@ -120,24 +131,18 @@
   outline: 0;
 }
 
-.send-btn,
-.back-btn {
+.send-btn {
   padding: 4px;
   border: 0;
   background: transparent;
   cursor: pointer;
 }
 
-.send-btn img,
-.back-btn img {
+.send-btn img {
   display: block;
   width: 22px;
   height: 22px;
   object-fit: contain;
-}
-
-.back-btn img {
-  transform: rotate(0deg);
 }
 
 @media (max-width: $bp-mobile) {
