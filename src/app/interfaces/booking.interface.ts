@@ -1,4 +1,5 @@
 export type BookingStatus = 'Ativo' | 'Em andamento' | 'Concluído';
+export type PaymentStatus = 'Pago' | 'Pendente';
 
 export type BookingFilter = 'Todas' | 'Em andamento' | 'Concluidas' | 'Ativas';
 
@@ -14,6 +15,7 @@ export interface BookingItem {
   dateTimeRange: string;
   spotCode: string;
   status: BookingStatus;
+  paymentStatus: PaymentStatus;
   totalAmount: number;
   distanceMeters: string;
   billingLabel: string;
