@@ -14,6 +14,7 @@ describe('PaymentGarageCard', () => {
     dateTimeRange: 'Hoje, 15h–17h',
     spotCode: 'A1',
     status: 'Ativo',
+    paymentStatus: 'Pago',
     totalAmount: 16,
     distanceMeters: '200 m',
     billingLabel: '2 horas',

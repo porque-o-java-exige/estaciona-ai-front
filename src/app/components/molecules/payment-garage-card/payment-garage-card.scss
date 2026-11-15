@@ -1,12 +1,19 @@
 @use '../../../../styles/variables' as *;
 
+:host {
+  display: flex;
+  min-width: 0;
+}
+
 .payment-garage-card {
   display: flex;
   flex-direction: column;
+  flex: 1;
   min-width: 0;
-  border: 1px solid $clr-primary-100;
+  min-height: 270px;
+  border: 1px solid $border-brand-subtle;
   border-radius: 8px;
-  background: $clr-white-1100;
+  background: $surface-card;
   overflow: hidden;
   opacity: 0.62;
   cursor: pointer;
@@ -14,7 +21,7 @@
   &.is-selected,
   &:hover {
     opacity: 1;
-    border-color: $clr-blue-600;
+    border-color: $border-brand-accent;
   }
 }
 
@@ -26,11 +33,14 @@
 .payment-garage-body {
   position: relative;
   display: flex;
-  align-items: center;
+  flex: 1;
+  align-items: stretch;
   padding: 12px 60px 12px 16px;
 }
 
 .payment-garage-info {
+  display: flex;
+  flex-direction: column;
   flex: 1 1 0;
   min-width: 0;
 }
@@ -53,10 +63,11 @@ app-selection-control {
 .payment-garage-addr {
   margin: 2px 0 8px;
   font-size: 14px;
-  color: $clr-black-700;
+  color: $text-muted;
 }
 
 .payment-garage-meta {
+  margin-top: auto;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -79,6 +90,7 @@ app-selection-control {
 @media (max-width: $bp-mobile) {
   .payment-garage-card {
     flex-direction: row;
+    min-height: 94px;
     min-height: 70px;
   }
 
@@ -92,6 +104,11 @@ app-selection-control {
     min-width: 0;
     padding: 6px 52px 6px 8px;
     gap: 6px;
+  }
+
+  .payment-garage-info {
+    justify-content: center;
+    gap: 2px;
   }
 
   app-selection-control {
