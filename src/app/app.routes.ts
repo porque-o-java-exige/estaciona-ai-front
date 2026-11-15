@@ -6,7 +6,9 @@ import { ComingSoonPage } from './pages/coming-soon-page/coming-soon-page';
 import { GarageDetailsPage } from './pages/garage-details-page/garage-details-page';
 import { GarageListPage } from './pages/garage-list-page/garage-list-page';
 import { HomePage } from './pages/home-page/home-page';
+import { LegalPage } from './pages/legal-page/legal-page';
 import { PaymentPage } from './pages/payment-page/payment-page';
+import { PaymentHistoryPage } from './pages/payment-history-page/payment-history-page';
 import { ProfilePage } from './pages/profile-page/profile-page';
 import { SignInPage } from './pages/sign-in-page/sign-in-page';
 import { SignUpPage } from './pages/sign-up-page/sign-up-page';
@@ -22,6 +24,10 @@ export const routes: Routes = [
   { path: 'booking', component: BookingPage },
   { path: 'payment', component: PaymentPage },
   { path: 'payment/pix', component: PaymentPage },
+  { path: 'payment/history', component: PaymentHistoryPage },
+  { path: 'privacy', component: LegalPage, data: { document: 'privacy' } },
+  { path: 'terms', component: LegalPage, data: { document: 'terms' } },
+  { path: 'cookies', component: LegalPage, data: { document: 'cookies' } },
   { path: 'chat', component: ChatPage },
   { path: 'chat/mensagens', component: ChatPage },
   { path: 'chat/:id', component: ChatPage },
