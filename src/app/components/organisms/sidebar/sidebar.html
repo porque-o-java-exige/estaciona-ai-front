@@ -19,7 +19,7 @@
                 [src]="rla.isActive ? item.activeIcon : item.inactiveIcon"
                 alt=""
                 class="app-sidebar-icon" />
-              @if (item.badgeColor) {
+              @if (item.badgeColor && shouldShowBadge(item)) {
                 <span
                   class="app-sidebar-badge"
                   [class.app-sidebar-badge-yellow]="item.badgeColor === 'yellow'"

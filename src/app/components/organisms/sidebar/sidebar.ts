@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { BookingService } from '../../../services/booking.service';
+import { ChatService } from '../../../services/chat.service';
 
 export interface SidebarNavItem {
   id: 'home' | 'booking' | 'payment' | 'chat' | 'profile';
@@ -18,6 +20,9 @@ export interface SidebarNavItem {
   styleUrl: './sidebar.scss',
 })
 export class Sidebar {
+  private readonly bookingService = inject(BookingService);
+  private readonly chatService = inject(ChatService);
+
   navItems: SidebarNavItem[] = [
     {
       id: 'home',
@@ -58,4 +63,10 @@ export class Sidebar {
     },
   ];
 
+  shouldShowBadge = (item: SidebarNavItem): boolean => {
+    if (item.id === 'payment') {
+      return this.bookingService.paymentCandidates().length > 0;
+    }
+    return item.id === 'chat' && this.chatService.unreadMessagesCount() > 0;
+  };
 }
