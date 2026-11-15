@@ -1,0 +1,40 @@
+<div class="payment-history-page">
+  <header class="payment-history-header">
+    <a routerLink="/payment" class="payment-history-back back-button" aria-label="Voltar para pagamentos">
+      <img src="assets/icons/png/chevron-left-icon.png" alt="" aria-hidden="true" />
+    </a>
+    <div>
+      <h1>Histórico de pagamentos</h1>
+      <p>Consulte os pagamentos concluídos e os que ainda estão pendentes.</p>
+    </div>
+  </header>
+
+  @if (payments().length > 0) {
+    <section class="payment-history-list" aria-label="Pagamentos">
+      @for (payment of payments(); track payment.id) {
+        <article class="payment-history-card">
+          <div class="payment-history-info">
+            <h2>{{ payment.garageName }}</h2>
+            <p>{{ payment.address }}</p>
+            <span>{{ payment.dateTimeRange }} · {{ payment.billingLabel }}</span>
+          </div>
+          <div class="payment-history-summary">
+            <strong>R$ {{ formatAmount(payment.totalAmount) }}</strong>
+            <span
+              class="payment-status"
+              [class.is-paid]="payment.paymentStatus === 'Pago'"
+              [class.is-pending]="payment.paymentStatus === 'Pendente'">
+              {{ payment.paymentStatus }}
+            </span>
+          </div>
+        </article>
+      }
+    </section>
+  } @else {
+    <div class="payment-history-empty">
+      <p>Nenhum pagamento registrado até o momento.</p>
+    </div>
+  }
+
+  <app-footer></app-footer>
+</div>

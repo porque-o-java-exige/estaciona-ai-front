@@ -94,19 +94,29 @@ export class PaymentPage implements OnInit {
   };
 
   onReserveSpot = (): void => {
-    this.bookingService.markSelectedBookingPaid();
-    this.feedback.showSuccess('Pagamento confirmado com sucesso.');
+    this.recordPayment();
   };
 
   onSubmitPayment = (): void => {
     if (this.paymentMethod() === 'pix') {
+      if (!this.bookingService.selectedBooking()) {
+        this.feedback.showError('Selecione uma reserva pendente para pagar.');
+        return;
+      }
       this.showPixStage.set(true);
       return;
     }
 
-    this.bookingService.markSelectedBookingPaid();
-    this.feedback.showSuccess('Pagamento confirmado com sucesso.');
+    if (!this.recordPayment()) {
+      return;
+    }
     this.router.navigate(['/booking']);
+  };
+
+  onConfirmPixPayment = (): void => {
+    if (this.recordPayment()) {
+      this.router.navigate(['/booking']);
+    }
   };
 
   onCancelPix = (): void => {
@@ -114,5 +124,20 @@ export class PaymentPage implements OnInit {
     if (this.router.url.includes('/payment/pix')) {
       this.router.navigate(['/payment']);
     }
+  };
+
+  private recordPayment = (): boolean => {
+    const result = this.bookingService.markSelectedBookingPaid();
+    if (result === 'paid') {
+      this.feedback.showSuccess('Pagamento confirmado com sucesso.');
+      return true;
+    }
+    if (result === 'insufficient-wallet-balance') {
+      this.feedback.showError('Saldo insuficiente na carteira para este pagamento.');
+      return false;
+    }
+
+    this.feedback.showError('Selecione uma reserva pendente para pagar.');
+    return false;
   };
 }

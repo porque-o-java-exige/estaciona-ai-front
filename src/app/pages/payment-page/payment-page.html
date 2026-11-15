@@ -3,7 +3,7 @@
     <div class="payment-title-row" [class.is-pix-stage]="showPixStage()">
       <a
         [routerLink]="showPixStage() ? '/payment' : '/home'"
-        class="payment-back-link"
+        class="payment-back-link back-button"
         aria-label="Voltar">
         <img src="assets/icons/png/chevron-left-icon.png" alt="" aria-hidden="true" />
       </a>
@@ -27,16 +27,20 @@
         (click)="onSetBillingMode('hour')">
         Por hora
       </button>
+      <a routerLink="/payment/history" class="payment-history-link">
+        Histórico de pagamentos
+      </a>
     </div>
   </header>
 
-  @if (showPixStage()) {
+  @if (showPixStage() && selectedBookingId()) {
     <app-pix-payment-card
       [amount]="finalTotal()"
       [pixCode]="pixCode()"
+      (paymentConfirmed)="onConfirmPixPayment()"
       (cancelConfirmed)="onCancelPix()">
     </app-pix-payment-card>
-  } @else {
+  } @else if (candidates().length > 0) {
     <div class="payment-layout">
       <section class="payment-candidates-grid" aria-label="Garagens para pagamento">
         @for (item of candidates(); track item.id) {
@@ -48,29 +52,39 @@
         }
       </section>
 
-      <app-payment-checkout
-        [billingMode]="billingMode()"
-        [selectedDays]="selectedDays()"
-        [selectedHours]="selectedHours()"
-        [calendarDays]="calendarDays"
-        [weekDays]="weekDays"
-        [paymentMethod]="paymentMethod()"
-        [walletBalance]="walletBalance()"
-        [baseSubtotal]="baseSubtotal()"
-        [serviceFee]="serviceFee()"
-        [discountAmount]="discountAmount()"
-        [finalTotal]="finalTotal()"
-        [payButtonVariant]="payButtonVariant()"
-        [payButtonText]="payButtonText()"
-        (billingModeChange)="onSetBillingMode($event)"
-        (calendarDayToggled)="onToggleDay($event)"
-        (reserveSpot)="onReserveSpot()"
-        (hoursDecrement)="onDecrementHours()"
-        (hoursIncrement)="onIncrementHours()"
-        (paymentMethodChange)="onSelectPaymentMethod($event)"
-        (paymentSubmitted)="onSubmitPayment()">
-      </app-payment-checkout>
+      @if (selectedBookingId()) {
+        <app-payment-checkout
+          [billingMode]="billingMode()"
+          [selectedDays]="selectedDays()"
+          [selectedHours]="selectedHours()"
+          [calendarDays]="calendarDays"
+          [weekDays]="weekDays"
+          [paymentMethod]="paymentMethod()"
+          [walletBalance]="walletBalance()"
+          [baseSubtotal]="baseSubtotal()"
+          [serviceFee]="serviceFee()"
+          [discountAmount]="discountAmount()"
+          [finalTotal]="finalTotal()"
+          [payButtonVariant]="payButtonVariant()"
+          [payButtonText]="payButtonText()"
+          (billingModeChange)="onSetBillingMode($event)"
+          (calendarDayToggled)="onToggleDay($event)"
+          (reserveSpot)="onReserveSpot()"
+          (hoursDecrement)="onDecrementHours()"
+          (hoursIncrement)="onIncrementHours()"
+          (paymentMethodChange)="onSelectPaymentMethod($event)"
+          (paymentSubmitted)="onSubmitPayment()">
+        </app-payment-checkout>
+      } @else {
+        <p class="payment-selection-prompt">Selecione uma reserva pendente para continuar.</p>
+      }
     </div>
+  } @else {
+    <section class="payment-empty-state">
+      <h2>Nenhum pagamento pendente</h2>
+      <p>As reservas pagas continuam disponíveis na tela de reservas e no histórico.</p>
+      <a routerLink="/booking">Ver minhas reservas</a>
+    </section>
   }
 
   <app-footer></app-footer>

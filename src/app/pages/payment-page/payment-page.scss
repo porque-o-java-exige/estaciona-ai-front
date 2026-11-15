@@ -61,7 +61,7 @@
   padding: 6px 14px;
   border-radius: 30px;
   border: 1px solid $clr-primary-300;
-  background: $clr-white-1100;
+  background: $surface-card;
   color: $clr-blue-600;
   font: 14px $font-heading;
   cursor: pointer;
@@ -70,6 +70,17 @@
     background: $clr-blue-1000;
     border-color: $clr-blue-1000;
     color: $clr-white-1100;
+  }
+}
+
+.payment-history-link {
+  color: $clr-blue-1000;
+  font-size: 13px;
+  font-weight: $fw-bold;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
   }
 }
 
@@ -96,6 +107,43 @@
   @media (max-width: $bp-mobile) {
     grid-template-columns: minmax(0, 1fr);
   }
+}
+
+.payment-empty-state,
+.payment-selection-prompt {
+  padding: 28px;
+  border: 1px solid $border-brand-subtle;
+  border-radius: 15px;
+  background: $surface-card;
+  color: $text-primary;
+  text-align: center;
+}
+
+.payment-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  min-height: 220px;
+  justify-content: center;
+
+  h2,
+  p {
+    margin: 0;
+  }
+
+  p {
+    color: $text-secondary;
+  }
+
+  a {
+    color: $text-brand;
+    font-weight: $fw-bold;
+  }
+}
+
+.payment-selection-prompt {
+  margin: 0;
 }
 
 @media (max-width: $bp-mobile) {
