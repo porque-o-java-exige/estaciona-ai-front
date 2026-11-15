@@ -26,6 +26,10 @@
   height: 100%;
 }
 
+:host-context([data-theme='dark']) .home-map-image {
+  filter: invert(1) hue-rotate(180deg);
+}
+
 .home-map-pins {
   position: absolute;
   inset: 0;
@@ -119,7 +123,7 @@
 
   strong {
     font-size: 14px;
-    color: $clr-black-1100;
+    color: $text-primary;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -141,7 +145,7 @@
   justify-content: space-between;
   gap: 8px;
   font-size: 12px;
-  color: $clr-black-700;
+  color: $text-body;
 
   span {
     display: inline-flex;
