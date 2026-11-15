@@ -98,6 +98,14 @@ export class Header {
     this.notificationClick.emit();
   };
 
+  onCloseNotifications = (): void => {
+    const dialog = this.notificationsDialogRef()?.nativeElement;
+    if (dialog?.open) {
+      dialog.close();
+    }
+    this.isNotificationsOpen.set(false);
+  };
+
   onNotificationsDialogClose = (): void => {
     this.isNotificationsOpen.set(false);
   };

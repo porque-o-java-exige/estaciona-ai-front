@@ -41,4 +41,24 @@ describe('Header', () => {
     fixture.detectChanges();
     expect(component.unreadNotificationsCount()).toBe(0);
   });
+
+  it('closes the notification modal with its X button', () => {
+    const dialog = fixture.nativeElement.querySelector(
+      '.app-header-notif-dialog',
+    ) as HTMLDialogElement;
+    Object.defineProperty(dialog, 'showModal', {
+      value: () => dialog.setAttribute('open', ''),
+    });
+    Object.defineProperty(dialog, 'close', {
+      value: () => dialog.removeAttribute('open'),
+    });
+
+    component.onNotificationClick();
+    fixture.detectChanges();
+    fixture.nativeElement.querySelector('.app-header-notif-close').click();
+    fixture.detectChanges();
+
+    expect(dialog.open).toBe(false);
+    expect(component.isNotificationsOpen()).toBe(false);
+  });
 });

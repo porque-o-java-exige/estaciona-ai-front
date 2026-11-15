@@ -37,14 +37,23 @@
         <section class="app-header-notif-popover">
           <div class="app-header-notif-head">
             <strong id="notifications-title" class="app-header-notif-title">Notificações</strong>
-            @if (unreadNotificationsCount() > 0) {
+            <div class="app-header-notif-actions">
+              @if (unreadNotificationsCount() > 0) {
+                <button
+                  type="button"
+                  class="app-header-notif-mark"
+                  (click)="markAllNotificationsAsRead()">
+                  Marcar lidas
+                </button>
+              }
               <button
                 type="button"
-                class="app-header-notif-mark"
-                (click)="markAllNotificationsAsRead()">
-                Marcar lidas
+                class="app-header-notif-close"
+                aria-label="Fechar notificações"
+                (click)="onCloseNotifications()">
+                &times;
               </button>
-            }
+            </div>
           </div>
 
           <ul class="app-header-notif-list">
