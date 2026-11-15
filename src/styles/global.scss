@@ -142,6 +142,7 @@
   --status-warning-bg: var(--color-yellow-100);
   --status-danger: var(--color-red-1000);
   --status-danger-bg: var(--color-red-100);
+  --payment-action-bg: #121212;
 
   // Compact Semantic Aliases
   --bg: var(--surface-page);
@@ -186,6 +187,121 @@
   --err-bg: var(--status-danger-bg);
 }
 
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --surface-page: #111827;
+  --surface-page-subtle: #1b2533;
+  --surface-card: #1f2937;
+  --surface-elevated: #273449;
+  --surface-input: #182332;
+  --surface-muted: #344256;
+  --surface-brand-tint: rgba(96, 165, 250, 0.14);
+  --surface-brand-subtle: #26384f;
+  --surface-brand-soft: #2b3f59;
+  --surface-brand-active: #344d6c;
+  --surface-brand-primary: #2563eb;
+  --surface-brand-strong: #1d4ed8;
+
+  --text-strong: #f8fafc;
+  --text-primary: #e5e7eb;
+  --text-secondary: #d1d5db;
+  --text-body: #cbd5e1;
+  --text-muted: #9ca3af;
+  --text-placeholder: #94a3b8;
+  --text-brand: #93c5fd;
+  --text-brand-hover: #bfdbfe;
+  --text-brand-accent: #60a5fa;
+  --text-brand-strong: #dbeafe;
+  --text-on-brand: #ffffff;
+
+  --border-subtle: #334155;
+  --border-neutral: #475569;
+  --border-brand-subtle: #344861;
+  --border-brand-light: #3b5574;
+  --border-brand-soft: #4b6a8e;
+  --border-brand: #5b83b2;
+  --border-brand-accent: #60a5fa;
+  --border-brand-hover: #93c5fd;
+  --border-brand-strong: #bfdbfe;
+
+  --status-success: #4ade80;
+  --status-success-strong: #86efac;
+  --status-success-bg: #173c32;
+  --status-warning: #fbbf24;
+  --status-warning-soft: #61491e;
+  --status-warning-bg: #44351d;
+  --status-danger: #f87171;
+  --status-danger-bg: #492832;
+  --payment-action-bg: #2563eb;
+
+  --bg: var(--surface-page);
+  --bg-sub: var(--surface-page-subtle);
+  --card: var(--surface-card);
+  --elev: var(--surface-elevated);
+  --inp: var(--surface-input);
+  --muted: var(--surface-muted);
+  --tint: var(--surface-brand-tint);
+  --b-sub: var(--surface-brand-subtle);
+  --b-soft: var(--surface-brand-soft);
+  --b-act: var(--surface-brand-active);
+  --brand: var(--surface-brand-primary);
+  --brand-str: var(--surface-brand-strong);
+  --tx-str: var(--text-strong);
+  --tx: var(--text-primary);
+  --tx-sec: var(--text-secondary);
+  --tx-body: var(--text-body);
+  --tx-mut: var(--text-muted);
+  --tx-ph: var(--text-placeholder);
+  --tx-brand: var(--text-brand);
+  --tx-hov: var(--text-brand-hover);
+  --tx-acc: var(--text-brand-accent);
+  --tx-b-str: var(--text-brand-strong);
+  --tx-on: var(--text-on-brand);
+  --bd-sub: var(--border-subtle);
+  --bd-neu: var(--border-neutral);
+  --bd-b-sub: var(--border-brand-subtle);
+  --bd-b-lt: var(--border-brand-light);
+  --bd-b-soft: var(--border-brand-soft);
+  --bd-b: var(--border-brand);
+  --bd-b-acc: var(--border-brand-accent);
+  --bd-b-hov: var(--border-brand-hover);
+  --bd-b-str: var(--border-brand-strong);
+  --ok: var(--status-success);
+  --ok-str: var(--status-success-strong);
+  --ok-bg: var(--status-success-bg);
+  --warn: var(--status-warning);
+  --warn-soft: var(--status-warning-soft);
+  --warn-bg: var(--status-warning-bg);
+  --err: var(--status-danger);
+  --err-bg: var(--status-danger-bg);
+}
+
+[data-theme='dark']
+  img[src*='assets/icons/']:not(
+    [src$='google-icon.svg'],
+    [src$='pix-icon.png'],
+    [src$='pix-icon.svg'],
+    [src$='star-yellow-icon.png'],
+    [src$='wallet-color-icon.png'],
+    [src$='wallet-icon.png'],
+    [src$='bank-card-icon.png'],
+    [src$='card-icon.svg'],
+    [src*='opacity-'],
+    [src*='inactive'],
+    [src$='add-small-icon.png'],
+    [src$='minus-circle-icon.png'],
+    .pix-toast-check
+  ) {
+  filter: brightness(0) invert(1);
+}
+
+[data-theme='dark'] app-button button.button-notification,
+[data-theme='dark'] app-button button.button-filter {
+  border-color: var(--border-brand-light);
+  background-color: var(--surface-brand-soft);
+}
+
 body {
   font-family: $font-primary;
   background-color: $surface-page;
@@ -209,4 +325,127 @@ dialog[open] {
 dialog::backdrop {
   background-color: rgba(18, 18, 18, 0.45);
   backdrop-filter: blur(2px);
+}
+
+a.back-button,
+button.back-button {
+  display: inline-flex;
+  flex: 0 0 40px;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid var(--border-brand-light);
+  border-radius: 10px;
+  background: var(--surface-card);
+  color: var(--text-brand);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s, border-color 0.15s;
+}
+
+a.back-button:hover,
+button.back-button:hover {
+  border-color: var(--border-brand-accent);
+  background: var(--surface-brand-tint);
+}
+
+a.back-button:focus-visible,
+button.back-button:focus-visible {
+  outline: 2px solid var(--border-brand-accent);
+  outline-offset: 2px;
+}
+
+.back-button img {
+  display: block;
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.dialog-field select {
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid var(--border-brand-light);
+  border-radius: 8px;
+  background: var(--surface-card);
+  color: var(--text-primary);
+  font: inherit;
+}
+
+.profile-dialog {
+  background: $surface-card;
+  color: $text-primary;
+}
+
+.profile-dialog input {
+  background: $surface-input;
+  color: $text-primary;
+}
+
+.vehicle-card-actions {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 8px;
+}
+
+.vehicle-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.vehicle-type-badge,
+.vehicle-status-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 3px 8px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.vehicle-type-badge {
+  background: var(--surface-page-subtle);
+  color: var(--text-muted);
+}
+
+.vehicle-status-badge.is-pending {
+  background: var(--status-warning-bg);
+  color: var(--status-warning);
+}
+
+.vehicle-status-badge.is-verified {
+  background: var(--status-success-bg);
+  color: var(--status-success-strong);
+}
+
+.vehicle-status-badge.is-rejected {
+  background: var(--status-danger-bg);
+  color: var(--status-danger);
+}
+
+.vehicle-edit-button {
+  min-height: 34px;
+  padding: 0 10px;
+  border: 1px solid var(--border-brand-light);
+  border-radius: 8px;
+  background: var(--surface-card);
+  color: var(--text-brand);
+  font: inherit;
+  cursor: pointer;
+}
+
+.vehicle-edit-button:hover {
+  background: var(--surface-brand-tint);
+}
+
+@media (max-width: 640px) {
+  .vehicle-card-actions {
+    flex-direction: column;
+    align-items: flex-end;
+  }
 }
