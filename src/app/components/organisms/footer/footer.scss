@@ -9,13 +9,13 @@
   width: 100%;
   padding-top: 25px;
   margin-top: 32px;
-  border-top: 1px solid $clr-black-1100;
+  border-top: 1px solid $border-subtle;
   font-family: $font-body;
-  color: $clr-black-1100;
+  color: $text-primary;
 
   @media (max-width: $bp-mobile) {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     padding-top: 18px;
     margin-top: 24px;
   }
@@ -26,7 +26,25 @@
   font-size: 15px;
   font-weight: $fw-regular;
   line-height: 1.5;
-  color: $clr-black-1100;
+  color: $text-primary;
+}
+
+.app-footer-rights {
+  @media (max-width: $bp-mobile) {
+    display: block;
+  }
+}
+
+@media (max-width: $bp-mobile) {
+  .app-footer-copy {
+    width: 100%;
+    text-align: center;
+  }
+
+  .app-footer-links {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 .app-footer-links {
@@ -44,7 +62,7 @@
   font-size: 15px;
   font-weight: $fw-regular;
   line-height: 1.5;
-  color: $clr-black-1100;
+  color: $text-primary;
   text-decoration: none;
   transition: color 0.2s ease;
 
