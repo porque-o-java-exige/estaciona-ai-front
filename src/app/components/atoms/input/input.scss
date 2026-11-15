@@ -5,14 +5,14 @@
     width: 100%;
 }
 
-$color-border: $clr-black-200;
-$color-bg: $clr-white-1000;
-$color-bg-disabled: $clr-black-100;
-$color-text: $clr-black-1000;
-$color-placeholder: $clr-black-400;
-$color-icon: $clr-black-600;
-$color-primary: $clr-blue-1000;
-$color-hint: $clr-black-500;
+$color-border: $border-neutral;
+$color-bg: $surface-input;
+$color-bg-disabled: $surface-muted;
+$color-text: $text-primary;
+$color-placeholder: $text-placeholder;
+$color-icon: $text-muted;
+$color-primary: $text-brand-accent;
+$color-hint: $text-muted;
 $color-error: $clr-red-800;
 $radius: 14px;
 
@@ -25,7 +25,7 @@ $radius: 14px;
             border-color: $color-error;
 
             &:focus-within {
-                box-shadow: 0 0 0 3px rgba($color-error, 0.12);
+                box-shadow: 0 0 0 3px rgba($clr-red-800, 0.12);
             }
         }
     }
@@ -43,7 +43,7 @@ $radius: 14px;
 
     &:focus-within {
         border-color: $color-primary;
-        box-shadow: 0 0 0 3px rgba($color-primary, 0.12);
+        box-shadow: 0 0 0 3px var(--surface-brand-tint);
     }
 
     &.app-input-field-disabled {
