@@ -22,7 +22,7 @@ Não possui outputs.
 <app-logo size="md" linkTo="/sign-in"></app-logo>
 ```
 
-O símbolo SVG da marca fica em `assets/logos/svg/estaciona-ai-symbol.svg`. O texto acessível do link descreve a ação de retornar ao início.
+O símbolo SVG padrão fica em `assets/logos/svg/estaciona-ai-symbol.svg`; no modo escuro, o componente usa `assets/logos/svg/estaciona-ai-white-symbol.svg`. O favicon também usa o símbolo branco. O texto acessível do link descreve a ação de retornar ao início.
 
 ## Testes
 
