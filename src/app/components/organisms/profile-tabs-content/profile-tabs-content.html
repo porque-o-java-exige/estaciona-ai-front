@@ -313,14 +313,49 @@
       <p class="form-feedback is-error" role="alert">{{ error }}</p>
     }
     <label class="dialog-field">
+      <span>Marca</span>
+      <input
+        type="text"
+        name="vehicleBrand"
+        placeholder="Ex: BYD"
+        required
+        [ngModel]="newVehicleBrand()"
+        (ngModelChange)="newVehicleBrand.set($event)"
+      />
+    </label>
+    <label class="dialog-field">
       <span>Modelo do veículo</span>
       <input
         type="text"
         name="vehicleModel"
-        placeholder="Ex: 2024 BYD Dolphin"
+        placeholder="Ex: Dolphin"
         required
         [ngModel]="newVehicleModel()"
         (ngModelChange)="newVehicleModel.set($event)"
+      />
+    </label>
+    <label class="dialog-field">
+      <span>Ano</span>
+      <input
+        type="number"
+        name="vehicleYear"
+        min="1900"
+        max="2100"
+        placeholder="Ex: 2024"
+        required
+        [ngModel]="newVehicleYear()"
+        (ngModelChange)="newVehicleYear.set($event)"
+      />
+    </label>
+    <label class="dialog-field">
+      <span>Cor</span>
+      <input
+        type="text"
+        name="vehicleColor"
+        placeholder="Ex: Preto"
+        required
+        [ngModel]="newVehicleColor()"
+        (ngModelChange)="newVehicleColor.set($event)"
       />
     </label>
     <label class="dialog-field">

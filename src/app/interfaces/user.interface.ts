@@ -15,6 +15,9 @@ export interface UserVehicle {
   model: string;
   licensePlate: string;
   isPrimary: boolean;
+  brand?: string;
+  year?: number;
+  color?: string;
 }
 
 export interface UserGarage {

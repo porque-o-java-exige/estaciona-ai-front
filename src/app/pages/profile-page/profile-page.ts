@@ -31,6 +31,7 @@ export class ProfilePage {
   editEmail = signal<string>('');
   editPhone = signal<string>('');
   editAvatarUrl = signal<string | null>(null);
+  editAvatarFile = signal<File | null>(null);
 
   rechargeAmount = signal<number>(50);
   editFormError = signal<string | null>(null);
@@ -43,6 +44,7 @@ export class ProfilePage {
     this.editEmail.set(user.email);
     this.editPhone.set(user.phone);
     this.editAvatarUrl.set(user.avatarUrl);
+    this.editAvatarFile.set(null);
 
     const dialog = this.editDialogRef()?.nativeElement;
     if (dialog && !dialog.open) {
@@ -76,6 +78,7 @@ export class ProfilePage {
     }
 
     try {
+      this.editAvatarFile.set(file);
       this.editAvatarUrl.set(await this.readImageFile(file));
     } catch (error) {
       this.editFormError.set(
@@ -95,6 +98,7 @@ export class ProfilePage {
       email: this.editEmail(),
       phone: this.editPhone(),
       avatarUrl: this.editAvatarUrl() ?? undefined,
+      avatarFile: this.editAvatarFile() ?? undefined,
     });
     this.closeEditModal();
     this.feedback.showSuccess('Perfil atualizado com sucesso.');

@@ -1,3 +1,4 @@
+export * from './api.interface';
 export * from './booking.interface';
 export * from './country.interface';
 export * from './garage.interface';

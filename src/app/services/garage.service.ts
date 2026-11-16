@@ -1,5 +1,12 @@
-import { computed, Injectable, signal } from '@angular/core';
-import { GarageItem } from '../interfaces';
+import { HttpClient } from '@angular/common/http';
+import { computed, inject, Injectable, signal } from '@angular/core';
+import { catchError, of, tap } from 'rxjs';
+import { environment } from '../../environments/environment';
+import {
+  GarageItem,
+  GarageRatingSummaryDto,
+  GarageResponseDto,
+} from '../interfaces';
 
 const INITIAL_GARAGES: GarageItem[] = [
   {
@@ -376,10 +383,31 @@ const INITIAL_GARAGES: GarageItem[] = [
   },
 ];
 
+const UUID_REGEX =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+const MAP_PIN_PRESETS = [
+  { top: '34%', left: '44%' },
+  { top: '48%', left: '53%' },
+  { top: '60%', left: '36%' },
+  { top: '26%', left: '28%' },
+  { top: '54%', left: '66%' },
+  { top: '22%', left: '60%' },
+  { top: '41%', left: '72%' },
+  { top: '70%', left: '24%' },
+  { top: '65%', left: '52%' },
+  { top: '76%', left: '41%' },
+  { top: '58%', left: '80%' },
+  { top: '38%', left: '58%' },
+];
+
 @Injectable({
   providedIn: 'root',
 })
 export class GarageService {
+  private readonly http = inject(HttpClient, { optional: true });
+  private readonly apiUrl = environment.apiUrl;
+
   readonly garages = signal<GarageItem[]>(INITIAL_GARAGES);
   readonly searchQuery = signal<string>('');
   readonly activeFilter = signal<string>('Todas');
@@ -392,6 +420,10 @@ export class GarageService {
     'Carregador EV',
     'Mais vagas',
   ] as const;
+
+  constructor() {
+    this.loadGaragesFromApi();
+  }
 
   readonly filteredGarages = computed(() => {
     const query = this.searchQuery().trim().toLowerCase();
@@ -422,6 +454,26 @@ export class GarageService {
 
   readonly homeGarages = computed(() => this.filteredGarages().slice(0, 12));
 
+  loadGaragesFromApi = (): void => {
+    if (!this.http) {
+      return;
+    }
+
+    this.http
+      .get<GarageResponseDto[]>(`${this.apiUrl}/garages`)
+      .pipe(
+        tap((dtos) => {
+          if (Array.isArray(dtos) && dtos.length > 0) {
+            this.garages.set(
+              dtos.map((dto, index) => this.mapDtoToGarageItem(dto, index))
+            );
+          }
+        }),
+        catchError(() => of(null))
+      )
+      .subscribe();
+  };
+
   setSearchQuery = (query: string): void => {
     this.searchQuery.set(query);
   };
@@ -432,6 +484,30 @@ export class GarageService {
 
   selectGarage = (id: string): void => {
     this.selectedGarageId.set(id);
+
+    if (this.http && UUID_REGEX.test(id)) {
+      this.http
+        .get<GarageRatingSummaryDto>(`${this.apiUrl}/garages/${id}/rating`)
+        .pipe(
+          tap((summary) => {
+            if (summary && summary.averageRating != null) {
+              this.garages.update((list) =>
+                list.map((g) =>
+                  g.id === id
+                    ? {
+                        ...g,
+                        rating: Number(summary.averageRating!.toFixed(1)),
+                        reviewsCount: summary.totalReviews ?? g.reviewsCount,
+                      }
+                    : g
+                )
+              );
+            }
+          }),
+          catchError(() => of(null))
+        )
+        .subscribe();
+    }
   };
 
   getGarageById = (id?: string | null): GarageItem => {
@@ -440,4 +516,37 @@ export class GarageService {
       this.garages().find((garage) => garage.id === targetId) ?? this.garages()[0]
     );
   };
+
+  private mapDtoToGarageItem(dto: GarageResponseDto, index: number): GarageItem {
+    const fallbackTemplate = INITIAL_GARAGES[index % INITIAL_GARAGES.length];
+    const features =
+      dto.features && dto.features.length > 0
+        ? Array.from(dto.features)
+        : fallbackTemplate.characteristics;
+
+    const characteristics = features.includes('Acesso 24/7')
+      ? features
+      : ['Acesso 24/7', ...features];
+
+    return {
+      id: dto.garageId,
+      name: dto.name,
+      address: dto.address,
+      shortSummary: 'Coberta 24h',
+      description: dto.description || fallbackTemplate.description,
+      hourlyPrice: Number(dto.pricePerHour ?? dto.price ?? fallbackTemplate.hourlyPrice),
+      dailyPrice: Number(dto.pricePerDay ?? fallbackTemplate.dailyPrice),
+      remainingSpots: fallbackTemplate.remainingSpots,
+      availabilityLevel: dto.available ? fallbackTemplate.availabilityLevel : 'low',
+      rating: fallbackTemplate.rating,
+      reviewsCount: fallbackTemplate.reviewsCount,
+      distance: fallbackTemplate.distance,
+      imageUrl: dto.coverImageUrl || fallbackTemplate.imageUrl,
+      characteristics,
+      ownerName: fallbackTemplate.ownerName,
+      ownerInitials: fallbackTemplate.ownerInitials,
+      ownerAvatarUrl: fallbackTemplate.ownerAvatarUrl,
+      mapPin: MAP_PIN_PRESETS[index % MAP_PIN_PRESETS.length],
+    };
+  }
 }

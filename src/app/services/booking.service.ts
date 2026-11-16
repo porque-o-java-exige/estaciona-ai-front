@@ -1,11 +1,20 @@
-import { computed, Injectable, signal } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { computed, inject, Injectable, signal } from '@angular/core';
+import { catchError, of, tap } from 'rxjs';
+import { environment } from '../../environments/environment';
+import { AUTH_TOKEN_STORAGE_KEY } from '../interceptors/auth.interceptor';
 import {
   BillingMode,
   BookingFilter,
   BookingItem,
+  BookingRequestDto,
+  BookingResponseDto,
+  BookingStatus,
   GarageItem,
   PaymentMethodType,
 } from '../interfaces';
+import { AuthService } from './auth.service';
+import { GarageService } from './garage.service';
 
 const INITIAL_BOOKINGS: BookingItem[] = [
   {
@@ -88,10 +97,18 @@ const INITIAL_BOOKINGS: BookingItem[] = [
   },
 ];
 
+const UUID_REGEX =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
 @Injectable({
   providedIn: 'root',
 })
 export class BookingService {
+  private readonly http = inject(HttpClient, { optional: true });
+  private readonly authService = inject(AuthService);
+  private readonly garageService = inject(GarageService);
+  private readonly apiUrl = environment.apiUrl;
+
   readonly bookings = signal<BookingItem[]>(INITIAL_BOOKINGS);
   readonly activeFilter = signal<BookingFilter>('Todas');
   readonly selectedBookingId = signal<string>(INITIAL_BOOKINGS[0].id);
@@ -100,7 +117,7 @@ export class BookingService {
   readonly selectedDays = signal<number[]>([11, 14]);
   readonly selectedHours = signal<number>(2);
   readonly paymentMethod = signal<PaymentMethodType>('card');
-  readonly walletBalance = signal<number>(23.5);
+  readonly walletBalance = computed(() => this.authService.currentUser().balance);
 
   readonly pixCode = signal<string>(
     '06465a4s654d32a13654r68a4s5d.pix.a3s21d68w4as54f23r1bv'
@@ -112,6 +129,10 @@ export class BookingService {
     'Concluidas',
     'Ativas',
   ];
+
+  constructor() {
+    this.loadMyBookingsFromApi();
+  }
 
   readonly filteredBookings = computed(() => {
     const filter = this.activeFilter();
@@ -160,6 +181,26 @@ export class BookingService {
     )
   );
 
+  loadMyBookingsFromApi = (): void => {
+    if (!this.http || !this.hasAuthToken()) {
+      return;
+    }
+
+    this.http
+      .get<BookingResponseDto[]>(`${this.apiUrl}/bookings`)
+      .pipe(
+        tap((dtos) => {
+          if (Array.isArray(dtos) && dtos.length > 0) {
+            const mapped = dtos.map((dto) => this.mapDtoToBookingItem(dto));
+            this.bookings.set(mapped);
+            this.selectedBookingId.set(mapped[0].id);
+          }
+        }),
+        catchError(() => of(null))
+      )
+      .subscribe();
+  };
+
   setFilter = (filter: BookingFilter): void => {
     this.activeFilter.set(filter);
   };
@@ -202,8 +243,9 @@ export class BookingService {
       return existing;
     }
 
+    const tempId = `res-${garage.id}`;
     const newBooking: BookingItem = {
-      id: `res-${garage.id}`,
+      id: tempId,
       garageId: garage.id,
       garageName: garage.name,
       address: garage.address,
@@ -218,7 +260,57 @@ export class BookingService {
 
     this.bookings.update((list) => [newBooking, ...list]);
     this.selectedBookingId.set(newBooking.id);
+
+    const primaryVehicle = this.authService.primaryVehicle();
+    if (
+      this.http &&
+      this.hasAuthToken() &&
+      UUID_REGEX.test(garage.id) &&
+      primaryVehicle &&
+      UUID_REGEX.test(primaryVehicle.id)
+    ) {
+      const start = new Date(Date.now() + 60 * 60 * 1000);
+      const end = new Date(start.getTime() + this.selectedHours() * 60 * 60 * 1000);
+      const requestBody: BookingRequestDto = {
+        garageId: garage.id,
+        vehicleId: primaryVehicle.id,
+        bookingType: this.billingMode() === 'day' ? 'DAILY' : 'HOURLY',
+        startDateTime: start.toISOString().slice(0, 19),
+        endDateTime: end.toISOString().slice(0, 19),
+      };
+
+      this.http
+        .post<BookingResponseDto>(`${this.apiUrl}/bookings`, requestBody)
+        .pipe(
+          tap((created) => {
+            const mapped = this.mapDtoToBookingItem(created, garage);
+            this.bookings.update((list) =>
+              list.map((item) => (item.id === tempId ? mapped : item))
+            );
+            this.selectedBookingId.set(mapped.id);
+          }),
+          catchError(() => of(null))
+        )
+        .subscribe();
+    }
+
     return newBooking;
+  };
+
+  cancelBooking = (bookingId: string): void => {
+    if (this.http && this.hasAuthToken() && UUID_REGEX.test(bookingId)) {
+      this.http
+        .patch<BookingResponseDto>(`${this.apiUrl}/bookings/${bookingId}/cancel`, {})
+        .pipe(
+          tap(() => {
+            this.bookings.update((list) =>
+              list.filter((item) => item.id !== bookingId)
+            );
+          }),
+          catchError(() => of(null))
+        )
+        .subscribe();
+    }
   };
 
   markSelectedBookingPaid = (): void => {
@@ -231,5 +323,60 @@ export class BookingService {
       )
     );
   };
-}
 
+  private mapDtoToBookingItem(
+    dto: BookingResponseDto,
+    knownGarage?: GarageItem
+  ): BookingItem {
+    const garage =
+      knownGarage ?? this.garageService.getGarageById(dto.garageId);
+    const statusMap: Record<BookingResponseDto['status'], BookingStatus> = {
+      PENDING: 'Em andamento',
+      CONFIRMED: 'Ativo',
+      COMPLETED: 'Concluído',
+      CANCELLED: 'Concluído',
+    };
+
+    return {
+      id: dto.bookingId,
+      garageId: dto.garageId,
+      garageName: garage?.name ?? 'Garagem Estaciona.AI',
+      address: garage?.address ?? 'São Paulo - SP',
+      dateTimeRange: this.formatDateRange(dto.startDateTime, dto.endDateTime),
+      spotCode: 'A01 · Nível 1',
+      status: statusMap[dto.status] ?? 'Em andamento',
+      totalAmount: Number(dto.totalAmount ?? 24),
+      distanceMeters: garage?.distance ?? '200m',
+      billingLabel: dto.bookingType === 'DAILY' ? 'Diária' : 'Hora',
+      imageUrl: garage?.imageUrl ?? 'assets/images/png/garage-interior.png',
+    };
+  }
+
+  private formatDateRange(startIso: string, endIso: string): string {
+    const start = new Date(startIso);
+    const end = new Date(endIso);
+    if (Number.isNaN(start.getTime()) || Number.isNaN(end.getTime())) {
+      return 'Hoje · 19:00–21:00';
+    }
+    const day = String(start.getDate()).padStart(2, '0');
+    const month = String(start.getMonth() + 1).padStart(2, '0');
+    const startTime = `${String(start.getHours()).padStart(2, '0')}:${String(
+      start.getMinutes()
+    ).padStart(2, '0')}`;
+    const endTime = `${String(end.getHours()).padStart(2, '0')}:${String(
+      end.getMinutes()
+    ).padStart(2, '0')}`;
+    return `${day}/${month} · ${startTime}–${endTime}`;
+  }
+
+  private hasAuthToken(): boolean {
+    try {
+      return (
+        typeof window !== 'undefined' &&
+        Boolean(window.localStorage?.getItem(AUTH_TOKEN_STORAGE_KEY))
+      );
+    } catch {
+      return false;
+    }
+  }
+}

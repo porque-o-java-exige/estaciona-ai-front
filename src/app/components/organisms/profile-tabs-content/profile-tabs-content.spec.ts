@@ -57,6 +57,27 @@ describe('ProfileTabsContent', () => {
     expect(component.vehicleFormError()).toBe('Preencha o modelo e a placa do veículo.');
   });
 
+  it('should register a new vehicle with brand, model, year, color and licensePlate', () => {
+    const initialCount = component.authService.vehicles().length;
+    component.newVehicleBrand.set('BYD');
+    component.newVehicleModel.set('Dolphin');
+    component.newVehicleYear.set(2024);
+    component.newVehicleColor.set('Preto');
+    component.newVehiclePlate.set('BRA2E19');
+    component.newVehiclePrimary.set(true);
+
+    component.submitNewVehicle();
+
+    expect(component.authService.vehicles()).toHaveLength(initialCount + 1);
+    const created = component.authService.vehicles().at(-1);
+    expect(created?.brand).toBe('BYD');
+    expect(created?.year).toBe(2024);
+    expect(created?.color).toBe('Preto');
+    expect(created?.model).toBe('2024 BYD Dolphin');
+    expect(created?.licensePlate).toBe('BRA2E19');
+    expect(created?.isPrimary).toBe(true);
+  });
+
   it('should require a garage photo before creating the garage', () => {
     component.newGarageName.set('Garagem nova');
     component.newGarageAddress.set('Rua Exemplo, 100');

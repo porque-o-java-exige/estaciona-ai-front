@@ -36,7 +36,10 @@ export class ProfileTabsContent {
   garageDetailsDialogRef = viewChild<ElementRef<HTMLDialogElement>>('garageDetailsDialog');
   selectedGarage = signal<UserGarage | null>(null);
 
+  newVehicleBrand = signal<string>('');
   newVehicleModel = signal<string>('');
+  newVehicleYear = signal<number>(new Date().getFullYear());
+  newVehicleColor = signal<string>('');
   newVehiclePlate = signal<string>('');
   newVehiclePrimary = signal<boolean>(false);
   vehicleFormError = signal<string | null>(null);
@@ -83,7 +86,10 @@ export class ProfileTabsContent {
   };
 
   openAddVehicleModal = (): void => {
+    this.newVehicleBrand.set('');
     this.newVehicleModel.set('');
+    this.newVehicleYear.set(new Date().getFullYear());
+    this.newVehicleColor.set('');
     this.newVehiclePlate.set('');
     this.newVehiclePrimary.set(false);
     this.vehicleFormError.set(null);
@@ -107,7 +113,10 @@ export class ProfileTabsContent {
       return;
     }
     this.authService.addVehicle({
+      brand: this.newVehicleBrand().trim() || undefined,
       model: this.newVehicleModel(),
+      year: Number(this.newVehicleYear()) || undefined,
+      color: this.newVehicleColor().trim() || undefined,
       licensePlate: this.newVehiclePlate(),
       isPrimary: this.newVehiclePrimary(),
     });

@@ -1,4 +1,16 @@
-import { computed, Injectable, signal } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { computed, inject, Injectable, signal } from '@angular/core';
+import { catchError, forkJoin, map, of, switchMap, tap } from 'rxjs';
+import { environment } from '../../environments/environment';
+import {
+  AUTH_TOKEN_STORAGE_KEY,
+  AUTH_USER_ID_STORAGE_KEY,
+} from '../interceptors/auth.interceptor';
+import {
+  ChatMessageResponseDto,
+  ChatRoomResponseDto,
+  UserResponseDto,
+} from '../interfaces/api.interface';
 import { ChatConversation, ChatMessage } from '../interfaces/chat.interface';
 
 const INITIAL_CONVERSATIONS: ChatConversation[] = [
@@ -96,10 +108,16 @@ const INITIAL_CONVERSATIONS: ChatConversation[] = [
   },
 ];
 
+const UUID_REGEX =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
 @Injectable({
   providedIn: 'root',
 })
 export class ChatService {
+  private readonly http = inject(HttpClient, { optional: true });
+  private readonly apiUrl = environment.apiUrl;
+
   conversations = signal<ChatConversation[]>(INITIAL_CONVERSATIONS);
   selectedConversationId = signal<string>('conv-02');
   mobileThreadOpen = signal<boolean>(false);
@@ -111,6 +129,77 @@ export class ChatService {
       this.conversations().find((conv) => conv.id === this.selectedConversationId()) ??
       this.conversations()[0]
   );
+
+  constructor() {
+    this.loadRoomsFromApi();
+  }
+
+  loadRoomsFromApi = (): void => {
+    if (!this.http || !this.hasAuthToken()) {
+      return;
+    }
+
+    const currentUserId = this.getCurrentUserId();
+
+    this.http
+      .get<ChatRoomResponseDto[]>(`${this.apiUrl}/chat/rooms`)
+      .pipe(
+        switchMap((rooms) => {
+          if (!Array.isArray(rooms) || rooms.length === 0) {
+            return of(null);
+          }
+
+          const roomObservables = rooms.map((room, index) => {
+            const contactId =
+              room.driverId === currentUserId ? room.ownerId : room.driverId;
+
+            return forkJoin({
+              contact: this.http!
+                .get<UserResponseDto>(`${this.apiUrl}/users/${contactId}`)
+                .pipe(catchError(() => of(null))),
+              messages: this.http!
+                .get<ChatMessageResponseDto[]>(
+                  `${this.apiUrl}/chat/rooms/${room.roomId}/messages`
+                )
+                .pipe(catchError(() => of([] as ChatMessageResponseDto[]))),
+            }).pipe(
+              map(({ contact, messages }) =>
+                this.mapRoomToConversation(room, contact, messages, currentUserId, index)
+              )
+            );
+          });
+
+          return forkJoin(roomObservables);
+        }),
+        tap((mappedConversations) => {
+          if (mappedConversations && mappedConversations.length > 0) {
+            this.conversations.set(mappedConversations);
+            this.selectedConversationId.set(mappedConversations[0].id);
+          }
+        }),
+        catchError(() => of(null))
+      )
+      .subscribe();
+  };
+
+  openOrCreateRoomForBooking = (bookingId: string): void => {
+    if (!this.http || !this.hasAuthToken() || !UUID_REGEX.test(bookingId)) {
+      return;
+    }
+
+    this.http
+      .post<ChatRoomResponseDto>(`${this.apiUrl}/chat/booking/${bookingId}`, {})
+      .pipe(
+        tap((room) => {
+          if (room?.roomId) {
+            this.loadRoomsFromApi();
+            this.selectedConversationId.set(room.roomId);
+          }
+        }),
+        catchError(() => of(null))
+      )
+      .subscribe();
+  };
 
   selectConversation = (conversationId: string): void => {
     this.selectedConversationId.set(conversationId);
@@ -155,4 +244,72 @@ export class ChatService {
       )
     );
   };
+
+  private mapRoomToConversation(
+    room: ChatRoomResponseDto,
+    contact: UserResponseDto | null,
+    messages: ChatMessageResponseDto[],
+    currentUserId: string | null,
+    index: number
+  ): ChatConversation {
+    const fallbackAvatar =
+      index % 2 === 0
+        ? 'assets/images/png/chat-francisco-avatar.png'
+        : 'assets/images/png/chat-woman-avatar.png';
+
+    const mappedMessages: ChatMessage[] = messages.map((msg) => {
+      const isMine = Boolean(currentUserId && msg.senderId === currentUserId);
+      return {
+        id: msg.messageId,
+        senderId: isMine ? 'me' : 'contact',
+        text: msg.content,
+        timestamp: this.formatMessageTime(msg.createdAt),
+        isMine,
+      };
+    });
+
+    const lastMsg = mappedMessages.at(-1);
+
+    return {
+      id: room.roomId,
+      contactName: contact?.name || `Contato #${index + 1}`,
+      avatarUrl: contact?.photoUrl || fallbackAvatar,
+      status: 'online',
+      lastMessage: lastMsg?.text || 'Sala de conversa iniciada',
+      lastTime: lastMsg?.timestamp || this.formatMessageTime(room.createdAt),
+      unreadCount: 0,
+      messages: mappedMessages,
+    };
+  }
+
+  private formatMessageTime(isoDate: string): string {
+    const date = new Date(isoDate);
+    if (Number.isNaN(date.getTime())) {
+      return '14:00';
+    }
+    return `${String(date.getHours()).padStart(2, '0')}:${String(
+      date.getMinutes()
+    ).padStart(2, '0')}`;
+  }
+
+  private hasAuthToken(): boolean {
+    try {
+      return (
+        typeof window !== 'undefined' &&
+        Boolean(window.localStorage?.getItem(AUTH_TOKEN_STORAGE_KEY))
+      );
+    } catch {
+      return false;
+    }
+  }
+
+  private getCurrentUserId(): string | null {
+    try {
+      return typeof window !== 'undefined' && window.localStorage
+        ? window.localStorage.getItem(AUTH_USER_ID_STORAGE_KEY)
+        : null;
+    } catch {
+      return null;
+    }
+  }
 }
